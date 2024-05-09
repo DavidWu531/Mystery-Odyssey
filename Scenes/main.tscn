@@ -1,0 +1,187 @@
+[gd_scene load_steps=23 format=3 uid="uid://dpwqsclckjman"]
+
+[ext_resource type="Texture2D" uid="uid://bisy0w1gh3esm" path="res://Art/Block.png" id="1_e8xob"]
+[ext_resource type="Texture2D" uid="uid://b6oi4k7w6im4t" path="res://Art/Slab.png" id="2_lt8hd"]
+[ext_resource type="Texture2D" uid="uid://b5qafojg7livy" path="res://Art/Spike.png" id="3_oa0xb"]
+[ext_resource type="Texture2D" uid="uid://b04to7ssess5e" path="res://Art/Slope.png" id="3_q74oi"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="4_7swer"]
+[ext_resource type="Texture2D" uid="uid://dvg35jrw48s2s" path="res://Art/SmallSpike.png" id="5_1idnh"]
+[ext_resource type="Texture2D" uid="uid://bvdoh4rix857d" path="res://Art/PlayerTemp.png" id="5_dcf0m"]
+[ext_resource type="Texture2D" uid="uid://1ebk0cd5myc4" path="res://Art/SecretKey.png" id="8_u0cp0"]
+[ext_resource type="Texture2D" uid="uid://bu4273q2tcrhf" path="res://Art/Checkpoint.png" id="9_mggn1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6rvlx"]
+texture = ExtResource("1_e8xob")
+0:0/size_in_atlas = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_323pp"]
+texture = ExtResource("2_lt8hd")
+0:0/size_in_atlas = Vector2i(8, 4)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, 0, -64, 0, -64, -32)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_33bcd"]
+texture = ExtResource("3_q74oi")
+0:0/size_in_atlas = Vector2i(8, 8)
+0:0/next_alternative_id = 3
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -64, 64, 64, -64, 64, 64, -64)
+
+[sub_resource type="TileSet" id="TileSet_565dw"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_6rvlx")
+sources/1 = SubResource("TileSetAtlasSource_323pp")
+sources/2 = SubResource("TileSetAtlasSource_33bcd")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_farhw"]
+texture = ExtResource("3_oa0xb")
+0:0/size_in_atlas = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -48, -4, 60, 4, 60, 4, -48)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yctl0"]
+texture = ExtResource("5_1idnh")
+0:0/size_in_atlas = Vector2i(8, 4)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -24, -4, 28, 4, 28, 4, -24, -4, -24)
+
+[sub_resource type="TileSet" id="TileSet_vvv6q"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_farhw")
+sources/1 = SubResource("TileSetAtlasSource_yctl0")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ytor"]
+size = Vector2(124, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_loq8f"]
+size = Vector2(96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwtuv"]
+atlas = ExtResource("9_mggn1")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wxi2"]
+atlas = ExtResource("9_mggn1")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ucw1n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwtuv")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wxi2")
+}],
+"loop": false,
+"name": &"not_hit",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e5n4w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwtuv")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wxi2")
+}],
+"loop": false,
+"name": &"not_hit",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(6360, -1416)
+zoom = Vector2(0.75, 0.75)
+
+[node name="Blocks" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_565dw")
+collision_visibility_mode = 1
+format = 2
+layer_0/tile_data = PackedInt32Array(131072, 0, 0, 131080, 0, 0, 131088, 0, 0, 131096, 0, 0, 131104, 0, 0, 131112, 0, 0, 131120, 0, 0, 131128, 0, 0, 131136, 0, 0, 131144, 0, 0, -393144, 0, 0, -917432, 0, 0, -1441720, 0, 0, -1966008, 0, 0, -917456, 0, 0, -1441744, 0, 0, -1966032, 0, 0, -2490296, 0, 0, -2490320, 0, 0, -524224, 1, 0, -1048520, 1, 0, -1572800, 1, 0, -2097096, 1, 0, -2490288, 0, 0, -2490280, 0, 0, -2490272, 0, 0, -2490264, 0, 0, -2490256, 0, 0, -3014616, 2, 268435456, -3538912, 2, 268435456, 196600, 0, 0, -327688, 0, 0, -851976, 0, 0, -1376264, 0, 0, -1900552, 0, 0, -2490328, 0, 0, -2490336, 0, 0, -2490344, 0, 0, -2490352, 0, 0, -2490360, 0, 0, -2490368, 0, 0, -2424840, 0, 0, -3014632, 0, 0, -3014624, 0, 0, -3538920, 0, 0, 131152, 0, 0, 131160, 0, 0, 131168, 0, 0, 131176, 0, 0, 131184, 0, 0, -3538808, 0, 0, -3014520, 0, 0, -2490248, 0, 0, -2490240, 0, 0, -2490232, 0, 0, -1965944, 0, 0, -1441656, 0, 0, -917368, 0, 0, -393080, 0, 0, 131208, 0, 0, 131192, 0, 0, 131200, 0, 0, -3145600, 1, 0, -3669888, 1, 0, -6684648, 0, 0, -6160360, 0, 0, -5636072, 0, 0, -5111784, 0, 0, -4587496, 0, 0, -4587464, 0, 0, -7733144, 0, 0, -7208856, 0, 0, -7602064, 1, 0, -7077776, 1, 0, -6553488, 1, 0, -7733128, 0, 0, -7208840, 0, 0, -6684536, 0, 0, -6160248, 0, 0, -5635960, 0, 0, -5111672, 0, 0, -4587384, 0, 0, -7208936, 0, 0, -7208928, 0, 0, -7208920, 0, 0, -7208912, 0, 0, -7208904, 0, 0, -7208896, 0, 0, -4587456, 0, 0, -7208888, 0, 0, -5636024, 0, 0, -4587448, 0, 0, -7208880, 0, 0, -5636016, 0, 0, -4587440, 0, 0, -7208872, 0, 0, -5636008, 0, 0, -4587432, 0, 0, -7208864, 0, 0, -5636000, 0, 0, -4587424, 0, 0, -8257432, 0, 0, -5635992, 0, 0, -4718488, 1, 0, -8126352, 1, 0, -5635984, 0, 0, -4718480, 1, 0, -8257416, 0, 0, -5635976, 0, 0, -4718472, 1, 0, -7208832, 0, 0, -5635968, 0, 0, -4718464, 1, 0, -7208824, 0, 0, -4063096, 0, 0, -4063208, 0, 0, -5636032, 2, 0, -5111752, 2, 0, -4587472, 2, 0, -4194176, 1, 0, -5111616, 0, 0, -4587328, 0, 0, -4063040, 0, 0, -3538752, 0, 0, -3014464, 0, 0, -2490176, 0, 0, -1965888, 0, 0, -1441600, 0, 0, -917312, 0, 0, -5111608, 0, 0, -2490168, 0, 0, -5111600, 0, 0, -2490160, 0, 0, -5111592, 0, 0, -2490152, 0, 0, -5111584, 0, 0, -2490144, 0, 0, -5111576, 0, 0, -2490136, 0, 0, -1441560, 0, 0, -917272, 0, 0, -5111568, 0, 0, -4587280, 0, 0, -4062992, 0, 0, -3538704, 0, 0, -3014416, 0, 0, -1441552, 0, 0, -5111560, 0, 0, -1441544, 0, 0, -5111552, 0, 0, -1441536, 0, 0, -5111544, 0, 0, -1572600, 1, 0, -5111536, 0, 0, -1572592, 1, 0, -5111528, 0, 0, -5111472, 0, 0, -5111464, 0, 0, -5111456, 0, 0, -5111448, 0, 0, -5111440, 0, 0, -5111432, 0, 0, -4587184, 0, 0, -4587176, 0, 0, -4587144, 0, 0, -4587152, 0, 0, -4849308, 0, 0, -4783761, 0, 0, -4783769, 0, 0, -4259481, 0, 0, -4259473, 0, 0, -4390540, 0, 0, -4193943, 0, 0, -6684312, 0, 0, -6684304, 0, 0, -7208592, 0, 0, -7208600, 0, 0, -7732816, 0, 0, -7208528, 0, 0, -7732808, 0, 0, -7208520, 0, 0, -5373500, 0, 0, -4849212, 0, 0, -5373492, 0, 0, -4849204, 0, 0, -4587071, 0, 0, -5242434, 0, 0, -5176905, 2, 0, -5439044, 2, 0, -5701183, 2, 0, -5963322, 2, 0)
+
+[node name="Spikes" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_vvv6q")
+collision_visibility_mode = 1
+format = 2
+layer_0/tile_data = PackedInt32Array(-393200, 0, 0, -393192, 0, 0, -1966072, 0, 805306368, -1966064, 0, 805306368, -1966056, 0, 805306368, -1966048, 0, 805306368, -1376258, 1, 1342177280, -1441750, 1, 1610612736, -2097112, 1, 805306368, -1966038, 1, 1610612736, -1900546, 1, 1342177280, -2097152, 1, 805306368, -2883504, 1, 0, -2883496, 1, 0, -2883488, 1, 0, -6160354, 1, 1342177280, -5636066, 1, 1342177280, -6160254, 1, 1073741824, -6684642, 1, 1342177280, -6815712, 1, 805306368, -6815704, 1, 805306368, -6815696, 1, 805306368, -6815688, 1, 805306368, -6815680, 1, 536870912, -6815672, 1, 536870912, -6815664, 1, 536870912, -6815656, 1, 536870912, -6815648, 1, 536870912, -6815640, 1, 536870912, -6815624, 1, 536870912, -6815616, 1, 805306368, -6029184, 1, 0, -6684542, 1, 1610612736, -3014576, 0, 0, -3014568, 0, 0, -3014560, 0, 0, -2883368, 1, 0, -2883360, 1, 0, -2883352, 1, 0, -1965824, 0, 0, -4587240, 0, 805306368)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(1272, -1232)
+floor_stop_on_slope = false
+script = ExtResource("4_7swer")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("5_dcf0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_8ytor")
+
+[node name="Key" type="Area2D" parent="."]
+position = Vector2(1040, -1246)
+
+[node name="Sprite2D" type="Sprite2D" parent="Key"]
+position = Vector2(0, 8)
+texture = ExtResource("8_u0cp0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Key"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_loq8f")
+
+[node name="Checkpoint" type="Area2D" parent="."]
+position = Vector2(3240, -728)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Checkpoint"]
+sprite_frames = SubResource("SpriteFrames_ucw1n")
+animation = &"not_hit"
+autoplay = "not_hit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_loq8f")
+
+[node name="Checkpoint2" type="Area2D" parent="."]
+position = Vector2(5504, -1376)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Checkpoint2"]
+sprite_frames = SubResource("SpriteFrames_e5n4w")
+animation = &"not_hit"
+autoplay = "not_hit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint2"]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_loq8f")
+
+[connection signal="body_entered" from="Key" to="Player" method="_on_key_body_entered"]
+[connection signal="body_entered" from="Checkpoint" to="Player" method="_on_checkpoint_body_entered"]
+[connection signal="body_entered" from="Checkpoint2" to="Player" method="_on_checkpoint_2_body_entered"]
