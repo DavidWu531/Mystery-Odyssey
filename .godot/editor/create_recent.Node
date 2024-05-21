@@ -1,0 +1,6 @@
+LightOccluder2D
+DirectionalLight2D
+PointLight2D
+RigidBody2D
+AnimatedSprite2D
+Camera2D
