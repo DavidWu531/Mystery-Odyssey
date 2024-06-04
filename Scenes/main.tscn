@@ -96,7 +96,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ytor"]
-size = Vector2(124, 124)
+size = Vector2(128, 128)
 
 [sub_resource type="LabelSettings" id="LabelSettings_20hdy"]
 font_size = 20

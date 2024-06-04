@@ -64,9 +64,19 @@ func _process(_delta):
 			position = start_pos
 			gravity = 980.0
 		if "Coin" in collision.get_collider().name:
-			$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, 96)), -1, Vector2i(0,0), 0)
-			$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, 96)), -1, Vector2i(0,0), 0)
-			$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, -96)), -1, Vector2i(0,0), 0)
-			$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, -96)), -1, Vector2i(0,0), 0)
+			collectible_kill()
 			Global.score += 1
 			Global.ooh_shiny_mine_progress += 1
+
+func collectible_kill():
+	# Top and Bottom Collision
+	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, 96)), -1, Vector2i(0,0), 0)
+	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, 96)), -1, Vector2i(0,0), 0)
+	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, -96)), -1, Vector2i(0,0), 0)
+	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, -96)), -1, Vector2i(0,0), 0)
+	
+	# Left and Right Collision
+	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(96, 32)), -1, Vector2i(0,0), 0)
+	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-96, 32)), -1, Vector2i(0,0), 0)
+	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(96, -32)), -1, Vector2i(0,0), 0)
+	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-96, -32)), -1, Vector2i(0,0), 0)
