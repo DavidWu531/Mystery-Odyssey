@@ -47,16 +47,26 @@ func _physics_process(delta):
 		velocity.x = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
-
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if "Spikes" in collision.get_collider().name:
-			position = start_pos
-			gravity = 980.0
-		
+	
 	move_and_slide()
 	
 func _process(_delta):
 	if position.y > 1000:
 		position = start_pos
 		gravity = 980.0
+	
+	$"../CanvasLayer/PlayerPos".text = str("Player Position: " + str(round(Vector2(global_position))))
+	$"../CanvasLayer/CoinPos".text = str("Coin Position: " + str($"../Coin".local_to_map(global_position)))
+	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if "Spikes" in collision.get_collider().name:
+			position = start_pos
+			gravity = 980.0
+		if "Coin" in collision.get_collider().name:
+			$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, 96)), -1, Vector2i(0,0), 0)
+			$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, 96)), -1, Vector2i(0,0), 0)
+			$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, -96)), -1, Vector2i(0,0), 0)
+			$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, -96)), -1, Vector2i(0,0), 0)
+			Global.score += 1
+			Global.ooh_shiny_mine_progress += 1

@@ -141,7 +141,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(196589, 1, 0, -2162707, 1, 0, -2228191, 1, 0, 131105, 1, 0)
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(376, 8)
+position = Vector2(296, -16)
 floor_stop_on_slope = false
 script = ExtResource("4_7swer")
 metadata/_edit_group_ = true
