@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dpwqsclckjman"]
+[gd_scene load_steps=27 format=3 uid="uid://dpwqsclckjman"]
 
 [ext_resource type="Script" path="res://Scripts/Global.gd" id="1_6y2go"]
 [ext_resource type="Texture2D" uid="uid://bisy0w1gh3esm" path="res://Art/Block.png" id="1_e8xob"]
@@ -70,9 +70,10 @@ texture = ExtResource("8_e3aos")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -32, 32, 32, -32, 32, -32, -32)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -32, 8, -32, 24, -24, 32, -8, 32, 8, 24, 24, 8, 32, -8, 32, -24, 24, -32, 8, -32, -8, -24, -24, -8, -32)
 
 [sub_resource type="TileSet" id="TileSet_pk51x"]
+tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_abvb5")
 
@@ -95,8 +96,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ytor"]
-size = Vector2(128, 128)
+[sub_resource type="CircleShape2D" id="CircleShape2D_kdi6v"]
+radius = 64.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_20hdy"]
 font_size = 20
@@ -108,8 +109,54 @@ font_size = 20
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_p2h8b"]
+resource_name = "Cycle"
+length = 90.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-2, 30, 60, 90),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.443137, 0.737255, 0.882353, 1), Color(0.0156863, 0.101961, 0.25098, 1), Color(0.0156863, 0.101961, 0.25098, 1), Color(0.443137, 0.737255, 0.882353, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3ynj0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.443137, 0.737255, 0.882353, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n58ot"]
+_data = {
+"Cycle": SubResource("Animation_p2h8b"),
+"RESET": SubResource("Animation_3ynj0")
+}
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6y2go")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -864.0
+offset_top = -808.0
+offset_right = 1056.0
+offset_bottom = 272.0
+color = Color(0.443137, 0.737255, 0.882353, 1)
 
 [node name="SceneCamera" type="Camera2D" parent="."]
 position = Vector2(96, -267)
@@ -138,21 +185,21 @@ layer_0/tile_data = PackedInt32Array(7, 0, 0, -2031617, 0, 805306368, -2097137, 
 tile_set = SubResource("TileSet_pk51x")
 collision_visibility_mode = 1
 format = 2
-layer_0/tile_data = PackedInt32Array(196589, 1, 0, -2162707, 1, 0, -2228191, 1, 0, 131105, 1, 0)
+layer_0/tile_data = PackedInt32Array(-2162707, 1, 0, -2228191, 1, 0, -262136, 1, 0, -262137, 1, 0, -196613, 1, 0, -196612, 1, 0, 65531, 1, 0, 65532, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, -1, 1, 0, -65536, 1, 0, -131072, 1, 0, -131071, 1, 0, -196607, 1, 0, -196606, 1, 0, -131070, 1, 0, -131069, 1, 0, -65533, 1, 0, -65532, 1, 0, 4, 1, 0, 8, 1, 0, 7, 1, 0, 6, 1, 0, 5, 1, 0)
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(376, 8)
+position = Vector2(384, -64)
 floor_stop_on_slope = false
 script = ExtResource("4_7swer")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_c03ud")
-animation = &"Temp2"
+animation = &"Temp1"
 autoplay = "Temp1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_8ytor")
+shape = SubResource("CircleShape2D_kdi6v")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 enabled = false
@@ -168,15 +215,20 @@ editor_draw_limits = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerPos" type="Label" parent="CanvasLayer"]
-offset_left = -1.0
-offset_top = 38.0
-offset_right = 99.0
-offset_bottom = 66.0
+offset_right = 100.0
+offset_bottom = 28.0
 text = "Player Pos"
 label_settings = SubResource("LabelSettings_20hdy")
 
 [node name="CoinPos" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 32.0
+offset_right = 83.0
+offset_bottom = 60.0
 text = "Coin Pos"
 label_settings = SubResource("LabelSettings_0ag0f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n58ot")
+}
+autoplay = "Cycle"

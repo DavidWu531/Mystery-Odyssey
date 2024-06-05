@@ -4,6 +4,7 @@ var speed = 0
 const JUMP_VELOCITY = 625.0
 
 var start_pos = Vector2(0,0)
+var offsets = [Vector2(96, 32), Vector2(-96, 32), Vector2(96, -32), Vector2(-96, -32), Vector2(96, 32), Vector2(-96, 32), Vector2(96, -32), Vector2(-96, -32)]
 
 const half_speed = 383.1
 const normal_speed = 475.0
@@ -48,15 +49,14 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
+	$"../CanvasLayer/PlayerPos".text = str("Score: " + str(Global.score))
+	
 	move_and_slide()
 	
 func _process(_delta):
 	if position.y > 1000:
 		position = start_pos
 		gravity = 980.0
-	
-	$"../CanvasLayer/PlayerPos".text = str("Player Position: " + str(round(Vector2(global_position))))
-	$"../CanvasLayer/CoinPos".text = str("Coin Position: " + str($"../Coin".local_to_map(global_position)))
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -65,18 +65,57 @@ func _process(_delta):
 			gravity = 980.0
 		if "Coin" in collision.get_collider().name:
 			collectible_kill()
-			Global.score += 1
-			Global.ooh_shiny_mine_progress += 1
 
 func collectible_kill():
+	var granted = false
 	# Top and Bottom Collision
-	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, 96)), -1, Vector2i(0,0), 0)
-	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, 96)), -1, Vector2i(0,0), 0)
-	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, -96)), -1, Vector2i(0,0), 0)
-	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, -96)), -1, Vector2i(0,0), 0)
-	
+	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(32, 96)), false) != -1:
+		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, 96)), -1, Vector2i(0,0), 0)
+		if granted == false:
+			Global.score += 1
+			Global.ooh_shiny_mine_progress += 1
+			granted = true
+	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(-32, 96)), false) != -1:
+		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, 96)), -1, Vector2i(0,0), 0)
+		if granted == false:
+			Global.score += 1
+			Global.ooh_shiny_mine_progress += 1
+			granted = true
+	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(32, -96)), false) != -1:
+		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, -96)), -1, Vector2i(0,0), 0)
+		if granted == false:
+			Global.score += 1
+			Global.ooh_shiny_mine_progress += 1
+			granted = true
+	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(-32, -96)), false) != -1:
+		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, -96)), -1, Vector2i(0,0), 0)
+		if granted == false:
+			Global.score += 1
+			Global.ooh_shiny_mine_progress += 1
+			granted = true
+				
 	# Left and Right Collision
-	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(96, 32)), -1, Vector2i(0,0), 0)
-	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-96, 32)), -1, Vector2i(0,0), 0)
-	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(96, -32)), -1, Vector2i(0,0), 0)
-	$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-96, -32)), -1, Vector2i(0,0), 0)
+	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(96, 32)), false) != -1:
+		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(96, 32)), -1, Vector2i(0,0), 0)
+		if granted == false:
+			Global.score += 1
+			Global.ooh_shiny_mine_progress += 1
+			granted = true
+	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(-96, 32)), false) != -1:
+		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-96, 32)), -1, Vector2i(0,0), 0)
+		if granted == false:
+			Global.score += 1
+			Global.ooh_shiny_mine_progress += 1
+			granted = true
+	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(96, -32)), false) != -1:
+		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(96, -32)), -1, Vector2i(0,0), 0)
+		if granted == false:
+			Global.score += 1
+			Global.ooh_shiny_mine_progress += 1
+			granted = true
+	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(-96, -32)), false) != -1:
+		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-96, -32)), -1, Vector2i(0,0), 0)
+		if granted == false:
+			Global.score += 1
+			Global.ooh_shiny_mine_progress += 1
+			granted = true
