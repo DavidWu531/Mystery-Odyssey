@@ -93,3 +93,10 @@ func _process(_delta):
 		killing_machine_iii = true
 	if ooh_shiny_mine_progress == 60:
 		ooh_shiny_mine_iii = true
+
+func nothing_there():
+	pass
+	"""1 hr = 3.75s
+	24 hrs = 90s
+	10am, 6pm, 2am, 10am
+	30s = 6hrs """

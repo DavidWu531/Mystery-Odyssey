@@ -1,1 +1,3 @@
 res://Scenes/main.tscn
+res://Scripts/Global.gd
+res://Scripts/Player.gd

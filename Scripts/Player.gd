@@ -65,6 +65,12 @@ func _process(_delta):
 			gravity = 980.0
 		if "Coin" in collision.get_collider().name:
 			collectible_kill()
+			
+	var hr = $"../AnimationPlayer".current_animation_position / $"../AnimationPlayer".current_animation_length * 24
+	if hr + 10 <= 24:
+		$"../CanvasLayer/PlayerPos".text = str("Time: " + str(hr + 10))
+	else:
+		$"../CanvasLayer/PlayerPos".text = str("Time: " + str(hr - 14))
 
 func collectible_kill():
 	var granted = false
