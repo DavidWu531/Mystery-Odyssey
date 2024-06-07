@@ -14,8 +14,7 @@ const quadruple_speed = 878.2
 
 var gravity = 980.0
 
-var hr = 10
-var mi = 0
+var time_elapsed = 0.00
 
 var object_mode = "Default"
 
@@ -52,14 +51,16 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
-	$"../CanvasLayer/PlayerPos".text = str("Score: " + str(Global.score))
+	$"../CanvasLayer/CoinPos".text = str("Score: " + str(Global.score))
 	
 	move_and_slide()
 	
-func _process(_delta):
+func _process(delta):
 	if position.y > 1000:
 		position = start_pos
 		gravity = 980.0
+	
+	time_elapsed += delta
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -69,15 +70,8 @@ func _process(_delta):
 		if "Coin" in collision.get_collider().name:
 			collectible_kill()
 			
-	mi = int($"../AnimationPlayer".current_animation_position / $"../AnimationPlayer".current_animation_length * 60 * 24) % 60
-	if mi == 59:
-		hr += 0.2
-		mi = 0
-	if hr == 24:
-		hr = 0
+	$"../CanvasLayer/PlayerPos".text = str(time_elapsed).pad_decimals(3)
 	
-	$"../CanvasLayer/PlayerPos".text = str("Time: " + str("%02d" % hr) + ":" + str("%02d" % mi))
-
 func collectible_kill():
 	var granted = false
 	# Top and Bottom Collision

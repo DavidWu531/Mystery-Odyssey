@@ -185,7 +185,7 @@ layer_0/tile_data = PackedInt32Array(7, 0, 0, -2031617, 0, 805306368, -2097137, 
 tile_set = SubResource("TileSet_pk51x")
 collision_visibility_mode = 1
 format = 2
-layer_0/tile_data = PackedInt32Array(-2162707, 1, 0, -2228191, 1, 0, -262136, 1, 0, -262137, 1, 0, -196613, 1, 0, -196612, 1, 0, 65531, 1, 0, 65532, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, -1, 1, 0, -65536, 1, 0, -131072, 1, 0, -131071, 1, 0, -196607, 1, 0, -196606, 1, 0, -131070, 1, 0, -131069, 1, 0, -65533, 1, 0, -65532, 1, 0, 4, 1, 0, 8, 1, 0, 7, 1, 0, 6, 1, 0, 5, 1, 0)
+layer_0/tile_data = PackedInt32Array(-262136, 1, 0, -262137, 1, 0, -196613, 1, 0, -196612, 1, 0, 65531, 1, 0, 65532, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, -1, 1, 0, -65536, 1, 0, -131072, 1, 0, -131071, 1, 0, -196607, 1, 0, -196606, 1, 0, -131070, 1, 0, -131069, 1, 0, -65533, 1, 0, -65532, 1, 0, 4, 1, 0, 8, 1, 0, 7, 1, 0, 6, 1, 0, 5, 1, 0)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(384, -64)
@@ -215,7 +215,8 @@ editor_draw_limits = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerPos" type="Label" parent="CanvasLayer"]
-offset_right = 100.0
+offset_left = 960.0
+offset_right = 1060.0
 offset_bottom = 28.0
 text = "Player Pos"
 label_settings = SubResource("LabelSettings_20hdy")

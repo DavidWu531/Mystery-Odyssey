@@ -1,2 +1,7 @@
 res://Scenes/main.tscn
 res://Scripts/Player.gd
+res://Resources/platforms.tres
+res://Resources/obstacles.tres
+res://Resources/miscellaneous.tres
+res://section_grass.tscn
+res://Scripts/Global.gd
