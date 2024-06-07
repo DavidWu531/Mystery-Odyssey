@@ -14,6 +14,9 @@ const quadruple_speed = 878.2
 
 var gravity = 980.0
 
+var hr = 10
+var mi = 0
+
 var object_mode = "Default"
 
 func _ready():
@@ -66,11 +69,14 @@ func _process(_delta):
 		if "Coin" in collision.get_collider().name:
 			collectible_kill()
 			
-	var hr = $"../AnimationPlayer".current_animation_position / $"../AnimationPlayer".current_animation_length * 24
-	if hr + 10 <= 24:
-		$"../CanvasLayer/PlayerPos".text = str("Time: " + str(hr + 10))
-	else:
-		$"../CanvasLayer/PlayerPos".text = str("Time: " + str(hr - 14))
+	mi = int($"../AnimationPlayer".current_animation_position / $"../AnimationPlayer".current_animation_length * 60 * 24) % 60
+	if mi == 59:
+		hr += 0.2
+		mi = 0
+	if hr == 24:
+		hr = 0
+	
+	$"../CanvasLayer/PlayerPos".text = str("Time: " + str("%02d" % hr) + ":" + str("%02d" % mi))
 
 func collectible_kill():
 	var granted = false
