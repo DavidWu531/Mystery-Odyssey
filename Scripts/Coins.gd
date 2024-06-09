@@ -10,7 +10,7 @@ func _ready():
 	SignalBus.player_died.connect(player_died)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func player_died():

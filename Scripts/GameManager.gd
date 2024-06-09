@@ -3,7 +3,7 @@ extends CanvasLayer
 var time_elapsed = 0.00
 
 func _process(delta):
-	$Score.text = str("Score: " + str(Global.score))
+	$Score.text = "Score: " + str(Global.score)
 	
 	$PlayerHealth.size = Vector2(Global.player_health * 38, 32)
 	

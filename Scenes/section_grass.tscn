@@ -45,15 +45,16 @@ size = Vector2(128, 128)
 [node name="Platforms" type="TileMap" parent="."]
 tile_set = ExtResource("1_f3bp0")
 format = 2
-layer_0/tile_data = PackedInt32Array(0, 0, 0, 65528, 0, 0, -458760, 0, 0, -983048, 0, 0, 8, 0, 0, 16, 0, 0, 24, 0, 0, 32, 0, 0, 40, 0, 0, -524240, 0, 0, -524232, 0, 0, -524224, 0, 0, -524216, 0, 0, -524208, 0, 0, -1507336, 0, 0, -2031624, 0, 0, -2555912, 0, 0, -3080200, 0, 0, -3604488, 0, 0, -1703902, 0, 0, -1703894, 0, 0, -1703875, 0, 0, -1703867, 0, 0, -1703859, 0, 0, -3407846, 0, 0, -3407838, 0, 0, -3407830, 0, 0, -3407822, 0, 0, -3932102, 0, 0, -3932094, 0, 0, -3932086, 0, 0, -4456358, 0, 0, -4456350, 0, 0, -4456342, 0, 0, -4456334, 0, 0, -4456326, 0, 0, -3932078, 0, 0, -1048478, 0, 0, -1048470, 0, 0, -1048462, 0, 0, -4063110, 1, 0, -3669894, 0, 0, -3145606, 0, 0, -2621318, 0, 0, -2097030, 0, 0, -1572742, 0, 0, -1048454, 0, 0, -2621440, 0, 0, -2162673, 0, 0)
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65528, 0, 0, -458760, 0, 0, -983048, 0, 0, 8, 0, 0, 16, 0, 0, 24, 0, 0, 32, 0, 0, 40, 0, 0, -524240, 0, 0, -524232, 0, 0, -524224, 0, 0, -524216, 0, 0, -524208, 0, 0, -1507336, 0, 0, -2031624, 0, 0, -2555912, 0, 0, -3080200, 0, 0, -3604488, 0, 0, -1703902, 0, 0, -1703894, 0, 0, -1703875, 0, 0, -1703867, 0, 0, -1703859, 0, 0, -3407846, 0, 0, -3407838, 0, 0, -3407830, 0, 0, -3407822, 0, 0, -3932102, 0, 0, -3932094, 0, 0, -3932086, 0, 0, -4456358, 0, 0, -4456350, 0, 0, -4456342, 0, 0, -4456334, 0, 0, -4456326, 0, 0, -3932078, 0, 0, -1048478, 0, 0, -1048470, 0, 0, -1048462, 0, 0, -4063110, 1, 0, -3669894, 0, 0, -3145606, 0, 0, -2621318, 0, 0, -2097030, 0, 0, -1572742, 0, 0, -1048454, 0, 0, -2621440, 0, 0, -2162673, 0, 0, -4456318, 0, 0, -4456310, 0, 0, -4456302, 0, 0, -4980574, 0, 0, -4980566, 0, 0, -4980558, 0, 0, -4980550, 0, 0, -4980542, 0, 0, -4980534, 0, 0, -7077726, 0, 0, -7602014, 0, 0, -7602006, 0, 0, -7601998, 0, 0, -7601990, 0, 0, -7601982, 0, 0, -7601966, 0, 0, -7077678, 0, 0, -6553390, 0, 0, -6029102, 0, 0, -5504814, 0, 0, -7601974, 0, 0, -4980526, 0, 0, -3931966, 0, 0, -3931958, 0, 0, -3407654, 0, 0, -3407646, 0, 0, -3407638, 0, 0, -3407630, 0, 0, -3931974, 0, 0, -7601958, 0, 0, -7601950, 0, 0, -7601942, 0, 0, -7601934, 0, 0, -7601926, 0, 0, -7601918, 0, 0)
 
 [node name="Obstacles" type="TileMap" parent="."]
 tile_set = ExtResource("2_tgpft")
 format = 2
+layer_0/tile_data = PackedInt32Array(-5373758, 1, 0, -5373750, 1, 0, -5373766, 1, 0, -3931918, 0, 0, -7077630, 0, 805306368, -6553438, 0, 805306368)
 
 [node name="Coins" type="Node2D" parent="."]
 
-[node name="CoinI" type="Area2D" parent="Coins"]
+[node name="CoinI" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(1264, -240)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
@@ -64,7 +65,7 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinI"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinII" type="Area2D" parent="Coins"]
+[node name="CoinII" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(1000, -520)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
@@ -75,7 +76,7 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinII"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinIII" type="Area2D" parent="Coins"]
+[node name="CoinIII" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(256, -624)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
@@ -86,7 +87,7 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinIII"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinIV" type="Area2D" parent="Coins"]
+[node name="CoinIV" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(1120, -520)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
@@ -97,7 +98,7 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinIV"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinV" type="Area2D" parent="Coins"]
+[node name="CoinV" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(1248, -520)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
@@ -108,7 +109,7 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinV"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinVI" type="Area2D" parent="Coins"]
+[node name="CoinVI" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(1656, -368)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
@@ -119,7 +120,7 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinVI"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinVII" type="Area2D" parent="Coins"]
+[node name="CoinVII" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(0, -744)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
@@ -130,7 +131,7 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinVII"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinVIII" type="Area2D" parent="Coins"]
+[node name="CoinVIII" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(552, -920)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
@@ -141,7 +142,7 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinVIII"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinIX" type="Area2D" parent="Coins"]
+[node name="CoinIX" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(680, -928)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
@@ -152,7 +153,7 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinIX"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinX" type="Area2D" parent="Coins"]
+[node name="CoinX" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(1824, -1184)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
@@ -163,7 +164,7 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinX"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinXI" type="Area2D" parent="Coins"]
+[node name="CoinXI" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(1704, -1184)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true

@@ -61,12 +61,13 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-func _process(delta):
-	if position.y > 1000:
+func _process(_delta):
+	if position.y > 10000 or position.y < -10000:
 		Global.player_health -= 1
+		gravity = 980.0
+		velocity = Vector2(0,0)
 		if Global.player_health <= 0:
 			position = respawn_pos
-			gravity = 980.0
 			Global.player_health = 3
 			SignalBus.player_died.emit()
 		elif Global.player_health >= 1:
@@ -76,9 +77,10 @@ func _process(delta):
 		var collision = get_slide_collision(i)
 		if "Obstacles" in collision.get_collider().name:
 			Global.player_health -= 1
+			gravity = 980.0
+			velocity = Vector2(0,0)
 			if Global.player_health <= 0:
 				position = respawn_pos
-				gravity = 980.0
 				take_damage_respos = respawn_pos
 				Global.player_health = 3
 				SignalBus.player_died.emit()

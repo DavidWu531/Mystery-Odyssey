@@ -4,9 +4,12 @@ res://Resources/obstacles.tres
 res://Scenes/section_grass.tscn
 res://Scenes/player.tscn
 res://Scenes/game_manager.tscn
-res://Scripts/Checkpoint.gd
-res://Scripts/Coins.gd
 res://Scenes/section_desert.tscn
 res://Scenes/section_frost.tscn
+res://Scripts/Checkpoint.gd
+res://Scripts/Coins.gd
+res://Scripts/Player.gd
+res://Scripts/SignalBus.gd
+res://Scripts/Keypad.gd
+res://Scenes/keypad.tscn
 res://Scripts/GameManager.gd
-res://Scripts/Global.gd
