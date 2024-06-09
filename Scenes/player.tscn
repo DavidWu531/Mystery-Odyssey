@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://k6q106c05g5l"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_vjncl"]
-[ext_resource type="Texture2D" uid="uid://bvdoh4rix857d" path="res://Art/PlayerTemp.png" id="2_a8wfb"]
-[ext_resource type="Texture2D" uid="uid://dtvvx8bg6id0g" path="res://Art/PlayerTemp2.png" id="3_nclh6"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_o3pfn"]
+[ext_resource type="Texture2D" uid="uid://bvdoh4rix857d" path="res://Art/PlayerTemp.png" id="2_uh2fv"]
+[ext_resource type="Texture2D" uid="uid://dtvvx8bg6id0g" path="res://Art/PlayerTemp2.png" id="3_vbqre"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c03ud"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_a8wfb")
+"texture": ExtResource("2_uh2fv")
 }],
 "loop": false,
 "name": &"Temp1",
@@ -16,37 +16,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_nclh6")
+"texture": ExtResource("3_vbqre")
 }],
 "loop": true,
 "name": &"Temp2",
 "speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kdi6v"]
-radius = 64.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ic70q"]
+size = Vector2(128, 128)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(960, 540)
 floor_stop_on_slope = false
-script = ExtResource("1_vjncl")
+script = ExtResource("1_o3pfn")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_c03ud")
-animation = &"new_animation"
+animation = &"Temp1"
 autoplay = "Temp1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_kdi6v")
+shape = SubResource("RectangleShape2D_ic70q")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true

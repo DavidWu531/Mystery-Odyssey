@@ -1,0 +1,201 @@
+[gd_scene load_steps=12 format=3 uid="uid://bs0rjq8hecmbe"]
+
+[ext_resource type="TileSet" uid="uid://by7wu55cjrnhd" path="res://Resources/platforms.tres" id="1_f3bp0"]
+[ext_resource type="TileSet" uid="uid://dqj7cg6vm786t" path="res://Resources/obstacles.tres" id="2_tgpft"]
+[ext_resource type="Script" path="res://Scripts/Coins.gd" id="3_unk3e"]
+[ext_resource type="Texture2D" uid="uid://bm85w71qi4tuo" path="res://Art/Coin.png" id="4_iafu4"]
+[ext_resource type="Script" path="res://Scripts/Checkpoint.gd" id="5_8wgrw"]
+[ext_resource type="Texture2D" uid="uid://bu4273q2tcrhf" path="res://Art/Checkpoint.png" id="6_n8anj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8nprj"]
+radius = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjy4x"]
+atlas = ExtResource("6_n8anj")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi5q8"]
+atlas = ExtResource("6_n8anj")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idwtm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjy4x")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi5q8")
+}],
+"loop": true,
+"name": &"Hit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jx47"]
+size = Vector2(128, 128)
+
+[node name="Section_Grass" type="Node2D"]
+
+[node name="Platforms" type="TileMap" parent="."]
+tile_set = ExtResource("1_f3bp0")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65528, 0, 0, -458760, 0, 0, -983048, 0, 0, 8, 0, 0, 16, 0, 0, 24, 0, 0, 32, 0, 0, 40, 0, 0, -524240, 0, 0, -524232, 0, 0, -524224, 0, 0, -524216, 0, 0, -524208, 0, 0, -1507336, 0, 0, -2031624, 0, 0, -2555912, 0, 0, -3080200, 0, 0, -3604488, 0, 0, -1703902, 0, 0, -1703894, 0, 0, -1703875, 0, 0, -1703867, 0, 0, -1703859, 0, 0, -3407846, 0, 0, -3407838, 0, 0, -3407830, 0, 0, -3407822, 0, 0, -3932102, 0, 0, -3932094, 0, 0, -3932086, 0, 0, -4456358, 0, 0, -4456350, 0, 0, -4456342, 0, 0, -4456334, 0, 0, -4456326, 0, 0, -3932078, 0, 0, -1048478, 0, 0, -1048470, 0, 0, -1048462, 0, 0, -4063110, 1, 0, -3669894, 0, 0, -3145606, 0, 0, -2621318, 0, 0, -2097030, 0, 0, -1572742, 0, 0, -1048454, 0, 0, -2621440, 0, 0, -2162673, 0, 0)
+
+[node name="Obstacles" type="TileMap" parent="."]
+tile_set = ExtResource("2_tgpft")
+format = 2
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="CoinI" type="Area2D" parent="Coins"]
+position = Vector2(1264, -240)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinI"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinI"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="CoinII" type="Area2D" parent="Coins"]
+position = Vector2(1000, -520)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinII"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinII"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="CoinIII" type="Area2D" parent="Coins"]
+position = Vector2(256, -624)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinIII"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinIII"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="CoinIV" type="Area2D" parent="Coins"]
+position = Vector2(1120, -520)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinIV"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinIV"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="CoinV" type="Area2D" parent="Coins"]
+position = Vector2(1248, -520)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinV"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinV"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="CoinVI" type="Area2D" parent="Coins"]
+position = Vector2(1656, -368)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinVI"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinVI"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="CoinVII" type="Area2D" parent="Coins"]
+position = Vector2(0, -744)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinVII"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinVII"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="CoinVIII" type="Area2D" parent="Coins"]
+position = Vector2(552, -920)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinVIII"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinVIII"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="CoinIX" type="Area2D" parent="Coins"]
+position = Vector2(680, -928)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinIX"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinIX"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="CoinX" type="Area2D" parent="Coins"]
+position = Vector2(1824, -1184)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinX"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinX"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="CoinXI" type="Area2D" parent="Coins"]
+position = Vector2(1704, -1184)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinXI"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinXI"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="Checkpoint" type="Area2D" parent="."]
+position = Vector2(1960, -1208)
+script = ExtResource("5_8wgrw")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Checkpoint"]
+sprite_frames = SubResource("SpriteFrames_idwtm")
+animation = &"Default"
+autoplay = "Default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
+shape = SubResource("RectangleShape2D_5jx47")
+
+[connection signal="body_entered" from="Coins/CoinI" to="Coins/CoinI" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/CoinII" to="Coins/CoinII" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/CoinIII" to="Coins/CoinIII" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/CoinIV" to="Coins/CoinIV" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/CoinV" to="Coins/CoinV" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/CoinVI" to="Coins/CoinVI" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/CoinVII" to="Coins/CoinVII" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/CoinVIII" to="Coins/CoinVIII" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/CoinIX" to="Coins/CoinIX" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/CoinX" to="Coins/CoinX" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/CoinXI" to="Coins/CoinXI" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]

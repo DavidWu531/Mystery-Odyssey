@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmpp7c4u2ikui"]
+
+[ext_resource type="Texture2D" uid="uid://1ebk0cd5myc4" path="res://Art/SecretKey.png" id="1_lfymc"]
+
+[node name="Section_Desert" type="Node2D"]
+position = Vector2(440, 328)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lfymc")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc5kpmgtm7i7k"]
+
+[ext_resource type="Texture2D" uid="uid://3tkib23fob0l" path="res://Art/SecretKeyRed.png" id="1_fxjbu"]
+
+[node name="Section_Frost" type="Node2D"]
+
+[node name="SecretKeyRed" type="Sprite2D" parent="."]
+position = Vector2(232, 216)
+texture = ExtResource("1_fxjbu")

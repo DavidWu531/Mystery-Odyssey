@@ -3,8 +3,8 @@ extends CharacterBody2D
 var speed = 0
 const JUMP_VELOCITY = 625.0
 
-var start_pos = Vector2(0,0)
-var offsets = [Vector2(96, 32), Vector2(-96, 32), Vector2(96, -32), Vector2(-96, -32), Vector2(96, 32), Vector2(-96, 32), Vector2(96, -32), Vector2(-96, -32)]
+var respawn_pos = Vector2(0,0)
+var take_damage_respos = Vector2(0,0)
 
 const half_speed = 383.1
 const normal_speed = 475.0
@@ -20,7 +20,8 @@ var object_mode = "Default"
 
 func _ready():
 	speed = normal_speed
-	start_pos = position
+	respawn_pos = position
+	take_damage_respos = position
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
@@ -33,6 +34,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("Jump"):
 		if is_on_floor() or is_on_ceiling():
+			take_damage_respos = position
 			if $Sprite2D.animation == "Temp1":
 				if gravity > 0.0:
 					velocity.y = -JUMP_VELOCITY
@@ -44,6 +46,12 @@ func _physics_process(delta):
 				elif gravity < 0.0:
 					velocity.y = 1000.0
 				gravity = -gravity
+		
+	if Input.is_action_just_pressed("FastDrop"):
+		if gravity > 0.0:
+			velocity.y = JUMP_VELOCITY * 5
+		elif gravity < 0.0:
+			velocity.y = -JUMP_VELOCITY * 5
 
 	var direction = Input.get_axis("Left", "Right")
 	if direction:
@@ -51,77 +59,29 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
-	$"../CanvasLayer/CoinPos".text = str("Score: " + str(Global.score))
-	
 	move_and_slide()
 	
 func _process(delta):
 	if position.y > 1000:
-		position = start_pos
-		gravity = 980.0
-	
-	time_elapsed += delta
-	
+		Global.player_health -= 1
+		if Global.player_health <= 0:
+			position = respawn_pos
+			gravity = 980.0
+			Global.player_health = 3
+			SignalBus.player_died.emit()
+		elif Global.player_health >= 1:
+			position = take_damage_respos
+		
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		if "Spikes" in collision.get_collider().name:
-			position = start_pos
-			gravity = 980.0
-		if "Coin" in collision.get_collider().name:
-			collectible_kill()
-			
-	$"../CanvasLayer/PlayerPos".text = str(time_elapsed).pad_decimals(3)
-	
-func collectible_kill():
-	var granted = false
-	# Top and Bottom Collision
-	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(32, 96)), false) != -1:
-		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, 96)), -1, Vector2i(0,0), 0)
-		if granted == false:
-			Global.score += 1
-			Global.ooh_shiny_mine_progress += 1
-			granted = true
-	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(-32, 96)), false) != -1:
-		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, 96)), -1, Vector2i(0,0), 0)
-		if granted == false:
-			Global.score += 1
-			Global.ooh_shiny_mine_progress += 1
-			granted = true
-	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(32, -96)), false) != -1:
-		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(32, -96)), -1, Vector2i(0,0), 0)
-		if granted == false:
-			Global.score += 1
-			Global.ooh_shiny_mine_progress += 1
-			granted = true
-	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(-32, -96)), false) != -1:
-		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-32, -96)), -1, Vector2i(0,0), 0)
-		if granted == false:
-			Global.score += 1
-			Global.ooh_shiny_mine_progress += 1
-			granted = true
-				
-	# Left and Right Collision
-	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(96, 32)), false) != -1:
-		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(96, 32)), -1, Vector2i(0,0), 0)
-		if granted == false:
-			Global.score += 1
-			Global.ooh_shiny_mine_progress += 1
-			granted = true
-	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(-96, 32)), false) != -1:
-		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-96, 32)), -1, Vector2i(0,0), 0)
-		if granted == false:
-			Global.score += 1
-			Global.ooh_shiny_mine_progress += 1
-			granted = true
-	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(96, -32)), false) != -1:
-		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(96, -32)), -1, Vector2i(0,0), 0)
-		if granted == false:
-			Global.score += 1
-			Global.ooh_shiny_mine_progress += 1
-			granted = true
-	if $"../Coin".get_cell_source_id(0, $"../Coin".local_to_map(global_position + Vector2(-96, -32)), false) != -1:
-		$"../Coin".set_cell(0, $"../Coin".local_to_map(global_position + Vector2(-96, -32)), -1, Vector2i(0,0), 0)
-		if granted == false:
-			Global.score += 1
-			Global.ooh_shiny_mine_progress += 1
-			granted = true
+		if "Obstacles" in collision.get_collider().name:
+			Global.player_health -= 1
+			if Global.player_health <= 0:
+				position = respawn_pos
+				gravity = 980.0
+				take_damage_respos = respawn_pos
+				Global.player_health = 3
+				SignalBus.player_died.emit()
+			elif Global.player_health >= 1:
+				position = take_damage_respos
+			break

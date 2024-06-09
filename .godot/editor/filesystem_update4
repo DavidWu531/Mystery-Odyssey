@@ -1,7 +1,12 @@
 res://Scenes/main.tscn
-res://Scripts/Player.gd
 res://Resources/platforms.tres
 res://Resources/obstacles.tres
-res://Resources/miscellaneous.tres
-res://section_grass.tscn
+res://Scenes/section_grass.tscn
+res://Scenes/player.tscn
+res://Scenes/game_manager.tscn
+res://Scripts/Checkpoint.gd
+res://Scripts/Coins.gd
+res://Scenes/section_desert.tscn
+res://Scenes/section_frost.tscn
+res://Scripts/GameManager.gd
 res://Scripts/Global.gd

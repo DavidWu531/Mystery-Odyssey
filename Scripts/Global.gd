@@ -44,6 +44,9 @@ var ooh_shiny_mine_progress = 0
 
 # Other Global
 var score = 0
+var player_health = 3
+var player_energy = 200
+
 
 func _process(_delta):
 	if grassland_explored_progress == 1:
