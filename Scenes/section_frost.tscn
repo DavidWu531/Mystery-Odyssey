@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc5kpmgtm7i7k"]
+[gd_scene load_steps=3 format=3 uid="uid://dc5kpmgtm7i7k"]
 
-[ext_resource type="Texture2D" uid="uid://3tkib23fob0l" path="res://Art/SecretKeyRed.png" id="1_fxjbu"]
+[ext_resource type="TileSet" uid="uid://by7wu55cjrnhd" path="res://Resources/platforms.tres" id="1_4e3iy"]
+[ext_resource type="TileSet" uid="uid://dqj7cg6vm786t" path="res://Resources/obstacles.tres" id="2_7tm2o"]
 
 [node name="Section_Frost" type="Node2D"]
 
-[node name="SecretKeyRed" type="Sprite2D" parent="."]
-position = Vector2(232, 216)
-texture = ExtResource("1_fxjbu")
+[node name="Platforms" type="TileMap" parent="."]
+tile_set = ExtResource("1_4e3iy")
+format = 2
+layer_0/tile_data = PackedInt32Array(393221, 5, 0, 393225, 5, 0, 393229, 5, 0)
+
+[node name="Obstacles" type="TileMap" parent="."]
+tile_set = ExtResource("2_7tm2o")
+format = 2

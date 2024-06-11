@@ -65,21 +65,15 @@ position = Vector2(8, -128)
 [node name="Section_Grass" parent="Layouts" instance=ExtResource("2_at4yo")]
 
 [node name="Section_Desert" parent="Layouts" instance=ExtResource("4_kmwog")]
-position = Vector2(1848, -360)
+position = Vector2(4744, -880)
 
 [node name="Section_Frost" parent="Layouts" instance=ExtResource("5_lpywg")]
-position = Vector2(192, -1144)
+position = Vector2(4952, -1128)
 
 [node name="SceneCamera" type="Camera2D" parent="."]
-position = Vector2(3064, -1352)
-zoom = Vector2(0.8, 0.8)
+position = Vector2(1032, -648)
+zoom = Vector2(0.7, 0.7)
 position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.1
-drag_top_margin = 0.1
-drag_right_margin = 0.1
-drag_bottom_margin = 0.1
 editor_draw_limits = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkosicp6ba7it"
-path="res://.godot/imported/red_block.png-05c948e2c401f662ccf806154e430a60.ctex"
+uid="uid://cwilutgcv1x2c"
+path="res://.godot/imported/BlockSnow.png-5b7d54b75c3dfc6ca89ada2955837e30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/red_block.png"
-dest_files=["res://.godot/imported/red_block.png-05c948e2c401f662ccf806154e430a60.ctex"]
+source_file="res://Art/BlockSnow.png"
+dest_files=["res://.godot/imported/BlockSnow.png-5b7d54b75c3dfc6ca89ada2955837e30.ctex"]
 
 [params]
 

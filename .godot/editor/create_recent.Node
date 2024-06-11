@@ -1,3 +1,4 @@
+TileMap
 WorldEnvironment
 Label
 ColorRect
@@ -11,5 +12,3 @@ SpinBox
 LineEdit
 CollisionShape2D
 AnimatedSprite2D
-Area2D
-CanvasModulate

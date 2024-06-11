@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmpp7c4u2ikui"]
+[gd_scene load_steps=3 format=3 uid="uid://dmpp7c4u2ikui"]
 
-[ext_resource type="Texture2D" uid="uid://1ebk0cd5myc4" path="res://Art/SecretKey.png" id="1_lfymc"]
+[ext_resource type="TileSet" uid="uid://by7wu55cjrnhd" path="res://Resources/platforms.tres" id="1_kva2j"]
+[ext_resource type="TileSet" uid="uid://dqj7cg6vm786t" path="res://Resources/obstacles.tres" id="2_1sx2f"]
 
 [node name="Section_Desert" type="Node2D"]
 position = Vector2(440, 328)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_lfymc")
+[node name="Platforms" type="TileMap" parent="."]
+tile_set = ExtResource("1_kva2j")
+format = 2
+layer_0/tile_data = PackedInt32Array(65519, 4, 0, 65523, 4, 0, 65527, 4, 0)
+
+[node name="Obstacles" type="TileMap" parent="."]
+tile_set = ExtResource("2_1sx2f")
+format = 2

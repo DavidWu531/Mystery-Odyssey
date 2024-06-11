@@ -10,7 +10,7 @@ func _process(delta):
 	time_elapsed += delta
 	$TimeElapsed.text = str(time_elapsed).pad_decimals(2)
 	
-	Global.player_energy -= 0.05
+	Global.player_energy -= 0.01
 	
 	$PlayerEnergy.max_value = 200
 	$PlayerEnergy.value = Global.player_energy
