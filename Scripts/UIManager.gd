@@ -3,7 +3,7 @@ extends CanvasLayer
 var time_elapsed = 0.00
 
 func _process(delta):
-	$Score.text = "Score: " + str(Global.score)
+	$PauseMenu/Score.text = "Score: " + str(Global.score)
 	
 	$PlayerHealth.size = Vector2(Global.player_health * 38, 32)
 	
@@ -15,3 +15,11 @@ func _process(delta):
 	$PlayerEnergy.max_value = 200
 	$PlayerEnergy.value = Global.player_energy
 	
+func _physics_process(_delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().paused = true
+		$PauseMenu.show()
+
+func _on_continue_pressed():
+	$PauseMenu.hide()
+	get_tree().paused = false

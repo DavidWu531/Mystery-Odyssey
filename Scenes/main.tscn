@@ -51,8 +51,10 @@ script = ExtResource("1_2e46h")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_left = -2752.0
+offset_top = -3600.0
+offset_right = 7248.0
+offset_bottom = 6400.0
 color = Color(0.443137, 0.737255, 0.882353, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_r8fqo")]
@@ -69,8 +71,8 @@ position = Vector2(1848, -360)
 position = Vector2(192, -1144)
 
 [node name="SceneCamera" type="Camera2D" parent="."]
-position = Vector2(976, -616)
-zoom = Vector2(0.75, 0.75)
+position = Vector2(3064, -1352)
+zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true

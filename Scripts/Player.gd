@@ -90,4 +90,4 @@ func _process(_delta):
 			break
 
 func checkpoint_i_hit():
-	$Camera2D.enabled = true
+	pass
