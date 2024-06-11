@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://dpwqsclckjman"]
 
-[ext_resource type="Script" path="res://Scripts/Global.gd" id="1_6y2go"]
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_2e46h"]
 [ext_resource type="PackedScene" uid="uid://bs0rjq8hecmbe" path="res://Scenes/section_grass.tscn" id="2_at4yo"]
 [ext_resource type="PackedScene" uid="uid://k6q106c05g5l" path="res://Scenes/player.tscn" id="3_r8fqo"]
-[ext_resource type="PackedScene" uid="uid://bvdcl15vsqy0v" path="res://Scenes/game_manager.tscn" id="4_kf2re"]
+[ext_resource type="PackedScene" uid="uid://bvdcl15vsqy0v" path="res://Scenes/ui_manager.tscn" id="4_kf2re"]
 [ext_resource type="PackedScene" uid="uid://dmpp7c4u2ikui" path="res://Scenes/section_desert.tscn" id="4_kmwog"]
 [ext_resource type="PackedScene" uid="uid://dc5kpmgtm7i7k" path="res://Scenes/section_frost.tscn" id="5_lpywg"]
 
@@ -47,7 +47,7 @@ _data = {
 }
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_6y2go")
+script = ExtResource("1_2e46h")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -68,8 +68,6 @@ position = Vector2(1848, -360)
 [node name="Section_Frost" parent="Layouts" instance=ExtResource("5_lpywg")]
 position = Vector2(192, -1144)
 
-[node name="GameManager" parent="." instance=ExtResource("4_kf2re")]
-
 [node name="SceneCamera" type="Camera2D" parent="."]
 position = Vector2(976, -616)
 zoom = Vector2(0.75, 0.75)
@@ -87,3 +85,5 @@ libraries = {
 "": SubResource("AnimationLibrary_n58ot")
 }
 autoplay = "Cycle"
+
+[node name="UIManager" parent="." instance=ExtResource("4_kf2re")]

@@ -1,8 +1,10 @@
-SpinBox
 ColorRect
 Label
-LineEdit
 ProgressBar
+Control
+Button
+SpinBox
+LineEdit
 Sprite2D
 CollisionShape2D
 AnimatedSprite2D
@@ -10,6 +12,3 @@ Area2D
 CanvasModulate
 DirectionalLight2D
 LightOccluder2D
-PointLight2D
-TextureRect
-Node2D

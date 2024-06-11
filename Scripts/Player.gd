@@ -22,6 +22,7 @@ func _ready():
 	speed = normal_speed
 	respawn_pos = position
 	take_damage_respos = position
+	SignalBus.checkpoint_i_hit.connect(checkpoint_i_hit)
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
@@ -87,3 +88,6 @@ func _process(_delta):
 			elif Global.player_health >= 1:
 				position = take_damage_respos
 			break
+
+func checkpoint_i_hit():
+	$Camera2D.enabled = true

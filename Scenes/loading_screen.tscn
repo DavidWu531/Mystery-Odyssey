@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bktn0dljsrq5u"]
+
+[ext_resource type="Script" path="res://Scripts/LoadingScreen.gd" id="1_r48p6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jbxt0"]
+font_size = 69
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r48p6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="Loading" type="Label" parent="."]
+layout_mode = 0
+offset_left = 808.0
+offset_top = 328.0
+offset_right = 1096.0
+offset_bottom = 456.0
+text = "Loading"
+label_settings = SubResource("LabelSettings_jbxt0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 672.0
+offset_top = 520.0
+offset_right = 1248.0
+offset_bottom = 584.0
