@@ -9,4 +9,3 @@ res://Scenes/section_frost.tscn
 res://Scenes/keypad.tscn
 res://Scenes/main_menu.tscn
 res://Scenes/loading_screen.tscn
-res://Scripts/Coins.gd
