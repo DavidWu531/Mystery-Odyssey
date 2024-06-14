@@ -46,6 +46,7 @@ var ooh_shiny_mine_progress = 0
 var score = 0
 var player_health = 3
 var player_energy = 200
+var time_elapsed = 0.00
 
 
 func _process(_delta):

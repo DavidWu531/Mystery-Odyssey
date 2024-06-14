@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bs0rjq8hecmbe"]
+[gd_scene load_steps=21 format=3 uid="uid://bs0rjq8hecmbe"]
 
 [ext_resource type="Script" path="res://Scripts/GrassManager.gd" id="1_ef5ps"]
 [ext_resource type="TileSet" uid="uid://by7wu55cjrnhd" path="res://Resources/platforms.tres" id="1_f3bp0"]
@@ -50,6 +50,18 @@ size = Vector2(32, 32)
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7fcy"]
+size = Vector2(152, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3wfh"]
+size = Vector2(256, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txgmu"]
+size = Vector2(74, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqdjd"]
+size = Vector2(8, 8)
+
 [node name="Section_Grass" type="Node2D"]
 script = ExtResource("1_ef5ps")
 
@@ -61,7 +73,7 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 8, 0, 0, 16, 0, 0, 24, 0, 0, 32, 0
 [node name="Obstacles" type="TileMap" parent="."]
 tile_set = ExtResource("2_tgpft")
 format = 2
-layer_0/tile_data = PackedInt32Array(-1310602, 2, 0, -1310606, 2, 0, -1966044, 2, 0, -3669966, 2, 1610612736, -3932110, 2, 1610612736, -4194222, 2, 0, -4718446, 2, 0, -6815580, 2, 805306368, -5242672, 2, 0, -5242676, 2, 0, -5242680, 2, 0, -5242684, 2, 0, -5242688, 2, 0, -5242692, 2, 0, -7339776, 2, 805306368, -7339772, 2, 805306368, -7339768, 2, 805306368, -3669772, 2, 0, -3669776, 2, 0, -3669780, 2, 0)
+layer_0/tile_data = PackedInt32Array(-1310602, 2, 0, -1310606, 2, 0, -1966044, 2, 0, -3669966, 2, 1610612736, -3932110, 2, 1610612736, -4194222, 2, 0, -4718446, 2, 0, -6815580, 2, 805306368, -5242672, 2, 0, -5242676, 2, 0, -5242680, 2, 0, -5242684, 2, 0, -5242688, 2, 0, -7339776, 2, 805306368, -7339772, 2, 805306368, -7339768, 2, 805306368, -3669772, 2, 0, -3669776, 2, 0, -3669780, 2, 0, -5242692, 2, 0)
 
 [node name="Coins" type="Node2D" parent="."]
 
@@ -227,6 +239,36 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="Jumpscaro" type="Node2D" parent="."]
+
+[node name="ChangeZone" type="Area2D" parent="Jumpscaro"]
+position = Vector2(2680, -1280)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jumpscaro/ChangeZone"]
+shape = SubResource("RectangleShape2D_f7fcy")
+
+[node name="GateShut" type="Area2D" parent="Jumpscaro"]
+position = Vector2(2816, -1776)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jumpscaro/GateShut"]
+shape = SubResource("RectangleShape2D_u3wfh")
+
+[node name="HatchOpen" type="Area2D" parent="Jumpscaro"]
+position = Vector2(3328, -1568)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jumpscaro/HatchOpen"]
+shape = SubResource("RectangleShape2D_txgmu")
+
+[node name="Revert" type="Area2D" parent="Jumpscaro"]
+position = Vector2(2664, -1680)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jumpscaro/Revert"]
+shape = SubResource("RectangleShape2D_nqdjd")
+
 [connection signal="body_entered" from="Coins/CoinI" to="Coins/CoinI" method="_on_body_entered"]
 [connection signal="body_entered" from="Coins/CoinII" to="Coins/CoinII" method="_on_body_entered"]
 [connection signal="body_entered" from="Coins/CoinIII" to="Coins/CoinIII" method="_on_body_entered"]
@@ -241,3 +283,7 @@ autowrap_mode = 2
 [connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]
 [connection signal="body_entered" from="NPCs/NPCI" to="." method="_on_npci_body_entered"]
 [connection signal="body_exited" from="NPCs/NPCI" to="." method="_on_npci_body_exited"]
+[connection signal="body_entered" from="Jumpscaro/ChangeZone" to="." method="_on_change_zone_body_entered"]
+[connection signal="body_entered" from="Jumpscaro/GateShut" to="." method="_on_gate_shut_body_entered"]
+[connection signal="body_entered" from="Jumpscaro/HatchOpen" to="." method="_on_hatch_open_body_entered"]
+[connection signal="body_entered" from="Jumpscaro/Revert" to="." method="_on_revert_body_entered"]

@@ -14,8 +14,6 @@ const quadruple_speed = 878.2
 
 var gravity = 980.0
 
-var time_elapsed = 0.00
-
 var object_mode = "Default"
 
 func _ready():
@@ -78,7 +76,10 @@ func _process(_delta):
 		var collision = get_slide_collision(i)
 		if "Obstacles" in collision.get_collider().name:
 			Global.player_health -= 1
-			gravity = 980.0
+			if gravity > 0.0:
+				gravity = 980.0
+			elif gravity < 0.0:
+				gravity = -980.0
 			velocity = Vector2(0,0)
 			if Global.player_health <= 0:
 				position = respawn_pos
