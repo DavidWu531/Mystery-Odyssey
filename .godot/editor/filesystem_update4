@@ -9,9 +9,4 @@ res://Scenes/section_frost.tscn
 res://Scenes/keypad.tscn
 res://Scenes/main_menu.tscn
 res://Scenes/loading_screen.tscn
-res://Scripts/Player.gd
-res://Scripts/GrassManager.gd
-res://Scripts/Global.gd
-res://Scripts/UIManager.gd
-res://Won.gd
 res://Scenes/won.tscn
