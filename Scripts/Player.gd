@@ -13,8 +13,10 @@ const triple_speed = 713.9
 const quadruple_speed = 878.2
 
 var gravity = 980.0
+var jump_count = 2
 
-var object_mode = "Default"
+var current_mode = "Default"
+var player_modes = ["Default", "DoubleJump", "GravityFlip"]
 
 func _ready():
 	speed = normal_speed
@@ -26,25 +28,37 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	
 	if Input.is_action_just_pressed("ui_filedialog_show_hidden"):
-		if $Sprite2D.animation == "Temp1":
-			$Sprite2D.play("Temp2")
-		elif $Sprite2D.animation == "Temp2":
-			$Sprite2D.play("Temp1")
+		if current_mode == player_modes[0]:
+			current_mode = player_modes[1]
+		elif current_mode == player_modes[1]:
+			current_mode = player_modes[2]
+		elif current_mode == player_modes[2]:
+			current_mode = player_modes[0]
 	
 	if Input.is_action_just_pressed("Jump"):
-		if is_on_floor() or is_on_ceiling():
-			take_damage_respos = position
-			if $Sprite2D.animation == "Temp1":
+		if current_mode == "DoubleJump":
+			if jump_count > 0:
+				take_damage_respos = position
 				if gravity > 0.0:
 					velocity.y = -JUMP_VELOCITY
 				elif gravity < 0.0:
 					velocity.y = JUMP_VELOCITY
-			elif $Sprite2D.animation == "Temp2":
+		elif current_mode == "Default":
+			if is_on_floor() or is_on_ceiling():
+				take_damage_respos = position
+				if gravity > 0.0:
+					velocity.y = -JUMP_VELOCITY
+				elif gravity < 0.0:
+					velocity.y = JUMP_VELOCITY
+		elif current_mode == "GravityFlip":
+			if is_on_floor() or is_on_ceiling():
+				take_damage_respos = position
 				if gravity > 0.0:
 					velocity.y = -1000.0
 				elif gravity < 0.0:
 					velocity.y = 1000.0
 				gravity = -gravity
+
 		
 	if Input.is_action_just_pressed("FastDrop"):
 		if gravity > 0.0:
@@ -57,6 +71,10 @@ func _physics_process(delta):
 		velocity.x = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
+	
+	if is_on_floor() or is_on_ceiling():
+		if current_mode == "DoubleJump":
+			jump_count = 2
 	
 	move_and_slide()
 	
