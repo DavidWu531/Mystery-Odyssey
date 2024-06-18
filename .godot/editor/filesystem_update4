@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 res://Scenes/main.tscn
 res://Resources/platforms.tres
 res://Resources/obstacles.tres
 res://Scenes/section_grass.tscn
+=======
+res://Scenes/section_grass.tscn
+res://Resources/platforms.tres
+res://Resources/obstacles.tres
+res://Scenes/main.tscn
+>>>>>>> 647c030991e86df820a1cefef4653b2c19e6a35e
 res://Scenes/player.tscn
 res://Scenes/ui_manager.tscn
 res://Scenes/section_desert.tscn
@@ -10,6 +17,9 @@ res://Scenes/keypad.tscn
 res://Scenes/main_menu.tscn
 res://Scenes/loading_screen.tscn
 res://Scenes/won.tscn
+<<<<<<< HEAD
 res://Scripts/GrassManager.gd
 res://Scripts/Player.gd
 res://Scripts/UIManager.gd
+=======
+>>>>>>> 647c030991e86df820a1cefef4653b2c19e6a35e
