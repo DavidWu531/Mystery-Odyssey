@@ -21,14 +21,17 @@ texture = ExtResource("1_7atk2")
 0:0/6/transpose = true
 0:0/6/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/6/physics_layer_0/angular_velocity = 0.0
+0:0/6/physics_layer_0/polygon_0/points = PackedVector2Array(32, -32, -32, -32, -32, 32, 32, 32)
 0:0/7 = 7
 0:0/7/transpose = true
 0:0/7/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/7/physics_layer_0/angular_velocity = 0.0
+0:0/7/physics_layer_0/polygon_0/points = PackedVector2Array(32, -32, 32, 32, -32, 32, -32, -32)
 0:0/8 = 8
 0:0/8/flip_v = true
 0:0/8/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/8/physics_layer_0/angular_velocity = 0.0
+0:0/8/physics_layer_0/polygon_0/points = PackedVector2Array(32, -32, 32, 32, -32, 32, -32, -32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_323pp"]
 texture = ExtResource("2_n5nai")
