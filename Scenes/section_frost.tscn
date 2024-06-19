@@ -8,7 +8,7 @@
 [node name="Platforms" type="TileMap" parent="."]
 tile_set = ExtResource("1_4e3iy")
 format = 2
-layer_0/tile_data = PackedInt32Array(393221, 5, 0, 393225, 5, 0, 393229, 5, 0)
+layer_0/tile_data = PackedInt32Array(393221, 5, 0, 393225, 5, 0, 393229, 5, 0, 655365, 10, 0, 917509, 5, 65536, 917513, 5, 65536, 655369, 10, 0, 655373, 10, 0, 917517, 5, 65536, 655361, 5, 131072, 655377, 5, 196608)
 
 [node name="Obstacles" type="TileMap" parent="."]
 tile_set = ExtResource("2_7tm2o")

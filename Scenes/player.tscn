@@ -49,3 +49,9 @@ drag_top_margin = 0.1
 drag_right_margin = 0.1
 drag_bottom_margin = 0.1
 editor_draw_limits = true
+
+[node name="ResPosTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="ResPosTimer" to="." method="_on_res_pos_timer_timeout"]

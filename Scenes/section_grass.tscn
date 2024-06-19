@@ -77,8 +77,19 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinI"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinIII" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
+[node name="CoinII" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
 position = Vector2(584, -632)
+script = ExtResource("3_unk3e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinII"]
+texture = ExtResource("4_iafu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinII"]
+shape = SubResource("CircleShape2D_8nprj")
+
+[node name="CoinIII" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
+position = Vector2(1040, -504)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
 
@@ -89,7 +100,7 @@ texture = ExtResource("4_iafu4")
 shape = SubResource("CircleShape2D_8nprj")
 
 [node name="CoinIV" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
-position = Vector2(1040, -504)
+position = Vector2(1152, -504)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
 
@@ -100,7 +111,7 @@ texture = ExtResource("4_iafu4")
 shape = SubResource("CircleShape2D_8nprj")
 
 [node name="CoinV" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
-position = Vector2(1152, -504)
+position = Vector2(1848, -776)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
 
@@ -111,7 +122,7 @@ texture = ExtResource("4_iafu4")
 shape = SubResource("CircleShape2D_8nprj")
 
 [node name="CoinVI" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
-position = Vector2(1848, -776)
+position = Vector2(-72, -736)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
 
@@ -122,7 +133,7 @@ texture = ExtResource("4_iafu4")
 shape = SubResource("CircleShape2D_8nprj")
 
 [node name="CoinVII" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
-position = Vector2(-72, -736)
+position = Vector2(672, -1312)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
 
@@ -133,7 +144,7 @@ texture = ExtResource("4_iafu4")
 shape = SubResource("CircleShape2D_8nprj")
 
 [node name="CoinVIII" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
-position = Vector2(672, -1312)
+position = Vector2(640, -1032)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
 
@@ -144,7 +155,7 @@ texture = ExtResource("4_iafu4")
 shape = SubResource("CircleShape2D_8nprj")
 
 [node name="CoinIX" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
-position = Vector2(640, -1032)
+position = Vector2(1824, -1184)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
 
@@ -155,7 +166,7 @@ texture = ExtResource("4_iafu4")
 shape = SubResource("CircleShape2D_8nprj")
 
 [node name="CoinX" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
-position = Vector2(1824, -1184)
+position = Vector2(1704, -1184)
 script = ExtResource("3_unk3e")
 metadata/_edit_group_ = true
 
@@ -165,28 +176,19 @@ texture = ExtResource("4_iafu4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinX"]
 shape = SubResource("CircleShape2D_8nprj")
 
-[node name="CoinXI" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
-position = Vector2(1704, -1184)
-script = ExtResource("3_unk3e")
-metadata/_edit_group_ = true
+[node name="Checkpoints" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Coins/CoinXI"]
-texture = ExtResource("4_iafu4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/CoinXI"]
-shape = SubResource("CircleShape2D_8nprj")
-
-[node name="Checkpoint" type="Area2D" parent="."]
+[node name="CheckpointI" type="Area2D" parent="Checkpoints"]
 position = Vector2(1992, -1176)
 script = ExtResource("5_8wgrw")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Checkpoint"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Checkpoints/CheckpointI"]
 sprite_frames = SubResource("SpriteFrames_idwtm")
 animation = &"Default"
 autoplay = "Default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/CheckpointI"]
 shape = SubResource("RectangleShape2D_5jx47")
 
 [node name="NPCs" type="Node2D" parent="."]
@@ -217,15 +219,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="TakeDamageResPos" type="Area2D" parent="."]
-
-[node name="Line2D" type="Line2D" parent="TakeDamageResPos"]
-position = Vector2(-4.29091, -45)
-scale = Vector2(0.940909, 0.1)
-points = PackedVector2Array(-199.498, -30, 684.754, -30, 727.266, -1310, 1407.46, -1310, 1577.51, -2590, 1875.09, -2590, 1322.44, -4190, 1543.5, -5950, 1611.52, -5950, 1849.58, -6430, 1917.6, -6430, 1322.44, -4190, 1050.36, -4190, 905.817, -5070, 710.261, -4190, 625.237, -5790, 523.208, -4190, 319.15, -5310, 115.092, -5310, 30.0676, -6430, -173.99, -6430, 285.14, -8350, 378.667, -8350, 421.179, -8990)
-width = 1.0
-
 [connection signal="body_entered" from="Coins/CoinI" to="Coins/CoinI" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/CoinII" to="Coins/CoinII" method="_on_body_entered"]
 [connection signal="body_entered" from="Coins/CoinIII" to="Coins/CoinIII" method="_on_body_entered"]
 [connection signal="body_entered" from="Coins/CoinIV" to="Coins/CoinIV" method="_on_body_entered"]
 [connection signal="body_entered" from="Coins/CoinV" to="Coins/CoinV" method="_on_body_entered"]
@@ -234,7 +229,6 @@ width = 1.0
 [connection signal="body_entered" from="Coins/CoinVIII" to="Coins/CoinVIII" method="_on_body_entered"]
 [connection signal="body_entered" from="Coins/CoinIX" to="Coins/CoinIX" method="_on_body_entered"]
 [connection signal="body_entered" from="Coins/CoinX" to="Coins/CoinX" method="_on_body_entered"]
-[connection signal="body_entered" from="Coins/CoinXI" to="Coins/CoinXI" method="_on_body_entered"]
-[connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoints/CheckpointI" to="Checkpoints/CheckpointI" method="_on_body_entered"]
 [connection signal="body_entered" from="NPCs/NPCI" to="." method="_on_npci_body_entered"]
 [connection signal="body_exited" from="NPCs/NPCI" to="." method="_on_npci_body_exited"]

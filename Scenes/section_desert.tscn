@@ -9,7 +9,7 @@ position = Vector2(440, 328)
 [node name="Platforms" type="TileMap" parent="."]
 tile_set = ExtResource("1_kva2j")
 format = 2
-layer_0/tile_data = PackedInt32Array(65519, 4, 0, 65523, 4, 0, 65527, 4, 0)
+layer_0/tile_data = PackedInt32Array(65519, 4, 0, 65523, 4, 0, 65527, 4, 0, 327663, 9, 0, 327667, 9, 0, 327671, 9, 0, 589807, 4, 65536, 589811, 4, 65536, 589815, 4, 65536, 327675, 4, 196608, 327659, 4, 131072)
 
 [node name="Obstacles" type="TileMap" parent="."]
 tile_set = ExtResource("2_1sx2f")

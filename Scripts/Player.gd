@@ -110,3 +110,7 @@ func _process(_delta):
 
 func checkpoint_i_hit():
 	pass
+
+func _on_res_pos_timer_timeout():
+	if is_on_floor() or is_on_floor():
+		take_damage_respos = position
