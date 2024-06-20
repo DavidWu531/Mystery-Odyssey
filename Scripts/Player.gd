@@ -13,7 +13,7 @@ const triple_speed = 713.9
 const quadruple_speed = 878.2
 
 var gravity = 980.0
-var jump_count = 2
+var jump_count = 1
 
 var current_mode = "Default"
 var player_modes = ["Default", "DoubleJump", "GravityFlip"]
@@ -43,6 +43,7 @@ func _physics_process(delta):
 					velocity.y = -JUMP_VELOCITY
 				elif gravity < 0.0:
 					velocity.y = JUMP_VELOCITY
+				jump_count -= 1
 		elif current_mode == "Default":
 			if is_on_floor() or is_on_ceiling():
 				take_damage_respos = position
@@ -72,9 +73,14 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
-	if is_on_floor() or is_on_ceiling():
-		if current_mode == "DoubleJump":
-			jump_count = 2
+	if gravity > 0.0:
+		if is_on_floor():
+			if current_mode == "DoubleJump":
+				jump_count = 1
+	elif gravity < 0.0:
+		if is_on_ceiling():
+			if current_mode == "DoubleJump":
+				jump_count = 1
 	
 	move_and_slide()
 	

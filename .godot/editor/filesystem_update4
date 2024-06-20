@@ -1,14 +1,8 @@
-<<<<<<< Updated upstream
-res://Scenes/section_grass.tscn
-res://Resources/platforms.tres
-res://Resources/obstacles.tres
-res://Scenes/main.tscn
-=======
 res://Scenes/main.tscn
 res://Resources/platforms.tres
 res://Resources/obstacles.tres
+res://Scripts/Player.gd
 res://Scenes/section_grass.tscn
->>>>>>> Stashed changes
 res://Scenes/player.tscn
 res://Scenes/ui_manager.tscn
 res://Scenes/section_desert.tscn
