@@ -1,5 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
+<<<<<<< Updated upstream
 ::res://::1718841898
+=======
+::res://::1718841838
+>>>>>>> Stashed changes
 README.md::TextFile::-1::1718588592::0::1::::<><>::
 Won.gd::GDScript::-1::1718588592::0::1::::<>Node2D<>::
 ::res://Art/::1718841620
@@ -35,6 +39,7 @@ Slope.png::CompressedTexture2D::4202189062866471896::1718588592::1718588592::1::
 SmallSpike.png::CompressedTexture2D::8647368183628427976::1718588592::1718588592::1::::<><>::
 Spike.png::CompressedTexture2D::4525125715414512858::1718588592::1718588592::1::::<><>::
 SpikeGrass.png::CompressedTexture2D::1101068784296309269::1718588592::1718588592::1::::<><>::
+<<<<<<< Updated upstream
 ::res://Resources/::1718841872
 miscellaneous.tres::TileSet::1763452606108473437::1718588592::0::1::::<><>::uid://bm85w71qi4tuo::::res://Art/Coin.png
 obstacles.tres::TileSet::8302809828431210581::1718841872::0::1::::<><>::uid://b5qafojg7livy::::res://Art/Spike.png<>uid://dvg35jrw48s2s::::res://Art/SmallSpike.png<>uid://pxmpa7y2kkor::::res://Art/SpikeGrass.png
@@ -49,6 +54,22 @@ section_desert.tscn::PackedScene::8033461892134186632::1718841872::0::1::::<><>:
 section_frost.tscn::PackedScene::7362205668243004682::1718841872::0::1::::<><>::uid://by7wu55cjrnhd::::res://Resources/platforms.tres<>uid://dqj7cg6vm786t::::res://Resources/obstacles.tres
 section_grass.tscn::PackedScene::3702478465726986182::1718841878::0::1::::<><>::res://Scripts/GrassManager.gd<>uid://by7wu55cjrnhd::::res://Resources/platforms.tres<>uid://dqj7cg6vm786t::::res://Resources/obstacles.tres<>res://Scripts/Coins.gd<>uid://bm85w71qi4tuo::::res://Art/Coin.png<>res://Scripts/Checkpoint.gd<>uid://bu4273q2tcrhf::::res://Art/Checkpoint.png<>uid://d3mn8l1jrdceo::::res://Art/NPC.png<>uid://bam67d3f7tdl1::::res://Art/NPC_Interact.png
 ui_manager.tscn::PackedScene::3866722024002538887::1718841872::0::1::::<><>::res://Scripts/UIManager.gd<>uid://j5bqpsh1t2qt::::res://Art/Health.png<>uid://6kiya1n6rgrh::::res://Art/PlayerFrame.png<>uid://bvdoh4rix857d::::res://Art/PlayerTemp.png
+=======
+::res://Resources/::1718841682
+miscellaneous.tres::TileSet::1763452606108473437::1718588592::0::1::::<><>::uid://bm85w71qi4tuo::::res://Art/Coin.png
+obstacles.tres::TileSet::8302809828431210581::1718841682::0::1::::<><>::uid://b5qafojg7livy::::res://Art/Spike.png<>uid://dvg35jrw48s2s::::res://Art/SmallSpike.png<>uid://pxmpa7y2kkor::::res://Art/SpikeGrass.png
+platforms.tres::TileSet::4138386131002969341::1718841682::0::1::::<><>::uid://b46k16y3h0l4::::res://Art/BlockGrass.png<>uid://b6oi4k7w6im4t::::res://Art/Slab.png<>uid://b2i74deafsa22::::res://Art/BlockSnowUnder.png<>uid://b04to7ssess5e::::res://Art/Slope.png<>uid://bfnr7sgdlonv5::::res://Art/BlockGrassCorner.png<>uid://ck7leyr6yd6rp::::res://Art/BlockDirt.png<>uid://m4spi74qg3q0::::res://Art/BlockSand.png<>uid://cwilutgcv1x2c::::res://Art/BlockSnow.png<>uid://sjuxfsadjwxo::::res://Art/BlockGrassAltI.png<>uid://cmwswya1m22gt::::res://Art/BlockGrassAltII.png<>uid://dyj2km6kbgakn::::res://Art/BlockGrassSlant.png<>uid://bpgcl1tuqvtv4::::res://Art/BlockSandUnder.png
+::res://Scenes/::1718841686
+keypad.tscn::PackedScene::1483608066319565772::1718841684::0::1::::<><>::res://Scripts/Keypad.gd
+loading_screen.tscn::PackedScene::3128366438150706648::1718841686::0::1::::<><>::res://Scripts/LoadingScreen.gd
+main.tscn::PackedScene::8258514754557806245::1718841682::0::1::::<><>::res://Scripts/GameManager.gd<>uid://bs0rjq8hecmbe::::res://Scenes/section_grass.tscn<>uid://k6q106c05g5l::::res://Scenes/player.tscn<>uid://bvdcl15vsqy0v::::res://Scenes/ui_manager.tscn<>uid://dmpp7c4u2ikui::::res://Scenes/section_desert.tscn<>uid://dc5kpmgtm7i7k::::res://Scenes/section_frost.tscn
+main_menu.tscn::PackedScene::6168622256877045087::1718841686::0::1::::<><>::res://Scripts/MainMenu.gd
+player.tscn::PackedScene::766903410380124447::1718841682::0::1::::<><>::res://Scripts/Player.gd<>uid://bvdoh4rix857d::::res://Art/PlayerTemp.png<>uid://dtvvx8bg6id0g::::res://Art/PlayerTemp2.png
+section_desert.tscn::PackedScene::8033461892134186632::1718841684::0::1::::<><>::uid://by7wu55cjrnhd::::res://Resources/platforms.tres<>uid://dqj7cg6vm786t::::res://Resources/obstacles.tres
+section_frost.tscn::PackedScene::7362205668243004682::1718841684::0::1::::<><>::uid://by7wu55cjrnhd::::res://Resources/platforms.tres<>uid://dqj7cg6vm786t::::res://Resources/obstacles.tres
+section_grass.tscn::PackedScene::3702478465726986182::1718841682::0::1::::<><>::res://Scripts/GrassManager.gd<>uid://by7wu55cjrnhd::::res://Resources/platforms.tres<>uid://dqj7cg6vm786t::::res://Resources/obstacles.tres<>res://Scripts/Coins.gd<>uid://bm85w71qi4tuo::::res://Art/Coin.png<>res://Scripts/Checkpoint.gd<>uid://bu4273q2tcrhf::::res://Art/Checkpoint.png<>uid://d3mn8l1jrdceo::::res://Art/NPC.png<>uid://bam67d3f7tdl1::::res://Art/NPC_Interact.png
+ui_manager.tscn::PackedScene::3866722024002538887::1718841684::0::1::::<><>::res://Scripts/UIManager.gd<>uid://j5bqpsh1t2qt::::res://Art/Health.png<>uid://6kiya1n6rgrh::::res://Art/PlayerFrame.png<>uid://bvdoh4rix857d::::res://Art/PlayerTemp.png
+>>>>>>> Stashed changes
 won.tscn::PackedScene::2690205742836697189::1718841686::0::1::::<><>::res://Won.gd
 ::res://Scripts/::1718841620
 Checkpoint.gd::GDScript::-1::1718841620::0::1::::<>Area2D<>::
