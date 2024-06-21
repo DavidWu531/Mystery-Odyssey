@@ -1,3 +1,6 @@
+Label
+ColorRect
+Control
 Node2D
 Timer
 CollisionShape2D
@@ -5,9 +8,6 @@ Area2D
 Line2D
 PathFollow2D
 Path2D
-Control
-ColorRect
-Label
 Sprite2D
 TileMap
 WorldEnvironment

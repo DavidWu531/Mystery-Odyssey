@@ -24,6 +24,9 @@ var killing_machine_iii = false
 var ooh_shiny_mine_i = false
 var ooh_shiny_mine_ii = false
 var ooh_shiny_mine_iii = false
+var quest_hunter_i = false
+var quest_hunter_ii = false
+var quest_hunter_iii = false
 
 var grassland_explored_progress = 0
 var desert_explored_progress = 0
@@ -41,13 +44,13 @@ var i_c_u_progress = 0
 var no_stopping_now_progress = 0
 var killing_machine_progress = 0
 var ooh_shiny_mine_progress = 0
+var quest_hunter_progress = 0
 
 # Other Global
 var score = 0
 var player_health = 3
 var player_energy = 200
 var time_elapsed = 0.00
-
 
 func _process(_delta):
 	if grassland_explored_progress == 1:
@@ -77,25 +80,30 @@ func _process(_delta):
 	if i_c_u_progress == 1:
 		i_c_u = true
 
-	if no_stopping_now_progress == 1:
+	if no_stopping_now_progress == 1 and not no_stopping_now_i:
 		no_stopping_now_i = true
-	if killing_machine_progress == 1:
+	if killing_machine_progress == 1 and not killing_machine_i:
 		killing_machine_i = true
-	if ooh_shiny_mine_progress == 1:
+	if ooh_shiny_mine_progress == 1 and not ooh_shiny_mine_i:
 		ooh_shiny_mine_i = true
+	if quest_hunter_progress == 2 and not quest_hunter_i:
+		quest_hunter_iii = true
 	
-	if no_stopping_now_progress == 10:
+	if no_stopping_now_progress == 10 and not no_stopping_now_ii:
 		no_stopping_now_ii = true
-	if killing_machine_progress == 20:
+	if killing_machine_progress == 20 and not killing_machine_ii:
 		killing_machine_ii = true
-	if ooh_shiny_mine_progress == 25:
+	if ooh_shiny_mine_progress == 25 and not ooh_shiny_mine_ii:
 		ooh_shiny_mine_ii = true
+	if quest_hunter_progress == 5 and not quest_hunter_ii:
+		quest_hunter_iii = true
 	
-	if no_stopping_now_progress == 20:
+	if no_stopping_now_progress == 20 and not ooh_shiny_mine_i:
 		no_stopping_now_iii = true
-	if killing_machine_progress == 50:
+	if killing_machine_progress == 50 and not killing_machine_iii:
 		killing_machine_iii = true
-	if ooh_shiny_mine_progress == 60:
+	if ooh_shiny_mine_progress == 60 and not ooh_shiny_mine_iii:
 		ooh_shiny_mine_iii = true
-
+	if quest_hunter_progress == 10 and not quest_hunter_iii:
+		quest_hunter_iii = true
 

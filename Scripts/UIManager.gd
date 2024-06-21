@@ -1,6 +1,15 @@
 extends CanvasLayer
 
+#var quests = { 
+	#"Talk to the NPC": 0,
+	#"Collect Coins": 5
+#}
+#var current_quest = quests.find_key([0])
+
+
 func _process(delta):
+	#$MainScreen/Quest/Label.text = "Quest: \n" + str(current_quest)
+	
 	$PauseMenu/Score.text = "Score: " + str(Global.score)
 	
 	$MainScreen/PlayerHealth.size = Vector2(Global.player_health * 38, 32)

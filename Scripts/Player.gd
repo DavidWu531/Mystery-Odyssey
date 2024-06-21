@@ -100,15 +100,22 @@ func _process(_delta):
 		var collision = get_slide_collision(i)
 		if "Obstacles" in collision.get_collider().name:
 			Global.player_health -= 1
-			if gravity > 0.0:
-				gravity = 980.0
-			elif gravity < 0.0:
-				gravity = -980.0
+			if current_mode == "GravityFlip":
+				if gravity > 0.0:
+					gravity = -980.0
+				elif gravity < 0.0:
+					gravity = 980.0
+			elif current_mode == "Default" or current_mode == "DoubleJump":
+				if gravity > 0.0:
+					gravity = 980.0
+				elif gravity < 0.0:
+					gravity = -980.0
 			velocity = Vector2(0,0)
 			if Global.player_health <= 0:
 				position = respawn_pos
 				take_damage_respos = respawn_pos
 				Global.player_health = 3
+				gravity = 980
 				SignalBus.player_died.emit()
 			elif Global.player_health >= 1:
 				position = take_damage_respos
