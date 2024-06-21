@@ -1,13 +1,3 @@
-res://Scenes/main.tscn
+res://Scenes/section_grass.tscn
 res://Resources/platforms.tres
 res://Resources/obstacles.tres
-res://Scripts/Player.gd
-res://Scenes/section_grass.tscn
-res://Scenes/player.tscn
-res://Scenes/ui_manager.tscn
-res://Scenes/section_desert.tscn
-res://Scenes/section_frost.tscn
-res://Scenes/keypad.tscn
-res://Scenes/main_menu.tscn
-res://Scenes/loading_screen.tscn
-res://Scenes/won.tscn
