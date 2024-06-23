@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bs0rjq8hecmbe"]
+[gd_scene load_steps=23 format=3 uid="uid://bs0rjq8hecmbe"]
 
 [ext_resource type="Script" path="res://Scripts/GrassManager.gd" id="1_ef5ps"]
 [ext_resource type="TileSet" uid="uid://by7wu55cjrnhd" path="res://Resources/platforms.tres" id="1_f3bp0"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://d3mn8l1jrdceo" path="res://Art/NPC.png" id="7_anl2d"]
 [ext_resource type="Texture2D" uid="uid://bam67d3f7tdl1" path="res://Art/NPC_Interact.png" id="9_m4d8i"]
 [ext_resource type="Script" path="res://Scripts/GravityFlip.gd" id="10_vhfgw"]
+[ext_resource type="Texture2D" uid="uid://bkosicp6ba7it" path="res://Art/BlockRed.png" id="11_3n062"]
+[ext_resource type="Texture2D" uid="uid://duwkuyjcpor8s" path="res://Art/Sign.png" id="12_we44c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8nprj"]
 radius = 32.0
@@ -53,6 +55,14 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nv2yk"]
 size = Vector2(136, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3mgm"]
+size = Vector2(64, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ebt0m"]
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Section_Grass" type="Node2D"]
 script = ExtResource("1_ef5ps")
@@ -216,7 +226,7 @@ shape = SubResource("CircleShape2D_8nprj")
 [node name="Checkpoints" type="Node2D" parent="."]
 
 [node name="CheckpointI" type="Area2D" parent="Checkpoints"]
-position = Vector2(1992, -1256)
+position = Vector2(1992, -1208)
 script = ExtResource("5_8wgrw")
 metadata/_edit_group_ = true
 
@@ -231,7 +241,7 @@ shape = SubResource("RectangleShape2D_5jx47")
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="NPCI" type="Area2D" parent="NPCs"]
-position = Vector2(352, -64)
+position = Vector2(968, -192)
 scale = Vector2(2.5, 2.5)
 metadata/_edit_group_ = true
 
@@ -260,6 +270,9 @@ autowrap_mode = 2
 position = Vector2(2976, -984)
 script = ExtResource("10_vhfgw")
 
+[node name="Sprite2D" type="Sprite2D" parent="GravityFlip"]
+texture = ExtResource("11_3n062")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityFlip"]
 shape = SubResource("RectangleShape2D_nv2yk")
 
@@ -268,6 +281,43 @@ visible = false
 position = Vector2(0, -80)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("9_m4d8i")
+
+[node name="SignMovement" type="Area2D" parent="."]
+position = Vector2(128, -80)
+
+[node name="Sprite2D" type="Sprite2D" parent="SignMovement"]
+position = Vector2(0, 24)
+texture = ExtResource("12_we44c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SignMovement"]
+shape = SubResource("RectangleShape2D_w3mgm")
+
+[node name="Control" type="Control" parent="SignMovement"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -160.0
+offset_top = -200.0
+offset_right = 160.0
+offset_bottom = -48.0
+
+[node name="ColorRect" type="ColorRect" parent="SignMovement/Control"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 152.0
+color = Color(0.25098, 0.184314, 0.113725, 1)
+
+[node name="Label" type="Label" parent="SignMovement/Control"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 152.0
+text = "➡ D
+⬅ A
+⬆ W, Space
+⬇ S"
+label_settings = SubResource("LabelSettings_ebt0m")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="Coins/CoinI" to="Coins/CoinI" method="_on_body_entered"]
 [connection signal="body_entered" from="Coins/CoinII" to="Coins/CoinII" method="_on_body_entered"]
@@ -287,3 +337,5 @@ texture = ExtResource("9_m4d8i")
 [connection signal="body_exited" from="NPCs/NPCI" to="." method="_on_npci_body_exited"]
 [connection signal="body_entered" from="GravityFlip" to="GravityFlip" method="_on_body_entered"]
 [connection signal="body_exited" from="GravityFlip" to="GravityFlip" method="_on_body_exited"]
+[connection signal="body_entered" from="SignMovement" to="." method="_on_sign_movement_body_entered"]
+[connection signal="body_exited" from="SignMovement" to="." method="_on_sign_movement_body_exited"]

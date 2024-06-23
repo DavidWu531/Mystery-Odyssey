@@ -25,7 +25,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ic70q"]
-size = Vector2(128, 128)
+size = Vector2(64, 64)
 
 [node name="Player" type="CharacterBody2D"]
 floor_stop_on_slope = false
@@ -57,7 +57,7 @@ autostart = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture = ExtResource("4_tlauu")
-offset = Vector2(456, 0)
-texture_scale = 10.0
+offset = Vector2(196, 0)
+texture_scale = 5.0
 
 [connection signal="timeout" from="ResPosTimer" to="." method="_on_res_pos_timer_timeout"]
