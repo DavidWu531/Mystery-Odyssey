@@ -5,6 +5,7 @@ const JUMP_VELOCITY = 625.0
 
 var respawn_pos = Vector2(0,0)
 var take_damage_respos = Vector2(0,0)
+var respawn_gravity = 980.0
 
 const half_speed = 383.1
 const normal_speed = 475.0
@@ -22,10 +23,11 @@ func _ready():
 	speed = normal_speed
 	respawn_pos = position
 	take_damage_respos = position
-	SignalBus.checkpoint_i_hit.connect(checkpoint_i_hit)
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
+	
+	$PointLight2D.look_at(get_global_mouse_position())
 	
 	if Input.is_action_just_pressed("ui_filedialog_show_hidden"):
 		if current_mode == player_modes[0]:
@@ -36,6 +38,7 @@ func _physics_process(delta):
 			current_mode = player_modes[0]
 	
 	if Input.is_action_just_pressed("Jump"):
+		respawn_gravity = gravity
 		if current_mode == "DoubleJump":
 			if jump_count > 0:
 				take_damage_respos = position
@@ -100,16 +103,7 @@ func _process(_delta):
 		var collision = get_slide_collision(i)
 		if "Obstacles" in collision.get_collider().name:
 			Global.player_health -= 1
-			if current_mode == "GravityFlip":
-				if gravity > 0.0:
-					gravity = -980.0
-				elif gravity < 0.0:
-					gravity = 980.0
-			elif current_mode == "Default" or current_mode == "DoubleJump":
-				if gravity > 0.0:
-					gravity = 980.0
-				elif gravity < 0.0:
-					gravity = -980.0
+			gravity = respawn_gravity
 			velocity = Vector2(0,0)
 			if Global.player_health <= 0:
 				position = respawn_pos
@@ -121,9 +115,6 @@ func _process(_delta):
 				position = take_damage_respos
 			break
 
-func checkpoint_i_hit():
-	pass
-
 func _on_res_pos_timer_timeout():
-	if is_on_floor() or is_on_floor():
+	if (is_on_floor() and gravity > 0.0) or (is_on_ceiling() and gravity < 0.0):
 		take_damage_respos = position

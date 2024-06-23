@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://k6q106c05g5l"]
+[gd_scene load_steps=7 format=3 uid="uid://k6q106c05g5l"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_o3pfn"]
 [ext_resource type="Texture2D" uid="uid://bvdoh4rix857d" path="res://Art/PlayerTemp.png" id="2_uh2fv"]
 [ext_resource type="Texture2D" uid="uid://dtvvx8bg6id0g" path="res://Art/PlayerTemp2.png" id="3_vbqre"]
+[ext_resource type="Texture2D" uid="uid://c0pqg6ccmku2o" path="res://Art/Light.png" id="4_tlauu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c03ud"]
 animations = [{
@@ -53,5 +54,10 @@ editor_draw_limits = true
 [node name="ResPosTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("4_tlauu")
+offset = Vector2(456, 0)
+texture_scale = 10.0
 
 [connection signal="timeout" from="ResPosTimer" to="." method="_on_res_pos_timer_timeout"]

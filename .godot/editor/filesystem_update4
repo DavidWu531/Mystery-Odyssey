@@ -1,23 +1,11 @@
-<<<<<<< HEAD
-res://Scenes/main_menu.tscn
-res://Scenes/ui_manager.tscn
-res://Resources/platforms.tres
-res://Resources/obstacles.tres
-res://Scripts/Global.gd
-res://Scripts/Player.gd
-res://Scripts/UIManager.gd
-res://Scenes/section_grass.tscn
-=======
-res://Scenes/main.tscn
-res://Resources/platforms.tres
-res://Resources/obstacles.tres
-res://Scenes/section_grass.tscn
 res://Scenes/player.tscn
-res://Scenes/ui_manager.tscn
-res://Scenes/section_desert.tscn
-res://Scenes/section_frost.tscn
-res://Scenes/keypad.tscn
+res://Resources/platforms.tres
+res://Resources/obstacles.tres
 res://Scenes/main_menu.tscn
-res://Scenes/loading_screen.tscn
-res://Scenes/won.tscn
->>>>>>> 61ec026b9723d811c23850aaee4529800a52669d
+res://Scenes/section_grass.tscn
+res://Scenes/main.tscn
+res://Scripts/GrassManager.gd
+res://Scripts/Player.gd
+res://Scripts/GravityFlip.gd
+res://Scripts/GameManager.gd
+res://Scripts/Settings.gd
