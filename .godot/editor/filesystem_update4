@@ -3,8 +3,7 @@ res://Resources/platforms.tres
 res://Resources/obstacles.tres
 res://Scenes/section_grass.tscn
 res://Scenes/main.tscn
-<<<<<<< Updated upstream
 res://Scenes/player.tscn
-=======
+res://Scripts/HiddenCoins.gd
+res://Scripts/Coins.gd
 res://Scripts/GrassManager.gd
->>>>>>> Stashed changes

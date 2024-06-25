@@ -85,7 +85,7 @@ offset_bottom = 6400.0
 color = Color(0.443137, 0.737255, 0.882353, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_r8fqo")]
-position = Vector2(8, -128)
+position = Vector2(3760, -1240)
 
 [node name="Layouts" type="Node2D" parent="."]
 
@@ -99,6 +99,7 @@ position = Vector2(4952, -1128)
 
 [node name="SceneCamera" type="Camera2D" parent="."]
 position = Vector2(2944, -1568)
+enabled = false
 zoom = Vector2(0.7, 0.7)
 position_smoothing_enabled = true
 editor_draw_limits = true

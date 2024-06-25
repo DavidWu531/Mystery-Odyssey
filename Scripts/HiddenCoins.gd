@@ -11,5 +11,5 @@ func _on_body_entered(body):
 		set_deferred("monitorable", false)
 		set_deferred("monitoring", false)
 		$CollisionShape2D.set_deferred("disabled", true)
-		Global.score += 1
+		Global.score += 5
 		Global.ooh_shiny_mine_progress += 1

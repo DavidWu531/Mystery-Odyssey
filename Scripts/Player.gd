@@ -15,6 +15,7 @@ const quadruple_speed = 878.2
 
 var gravity = 980.0
 var jump_count = 1
+var can_move = true
 
 var current_mode = "Default"
 var player_modes = ["Default", "DoubleJump", "GravityFlip"]
@@ -38,43 +39,52 @@ func _physics_process(delta):
 			current_mode = player_modes[0]
 	
 	if Input.is_action_just_pressed("Jump"):
-		respawn_gravity = gravity
-		if current_mode == "DoubleJump":
-			if jump_count > 0:
-				take_damage_respos = position
-				if gravity > 0.0:
-					velocity.y = -JUMP_VELOCITY
-				elif gravity < 0.0:
-					velocity.y = JUMP_VELOCITY
-				jump_count -= 1
-		elif current_mode == "Default":
-			if is_on_floor() or is_on_ceiling():
-				take_damage_respos = position
-				if gravity > 0.0:
-					velocity.y = -JUMP_VELOCITY
-				elif gravity < 0.0:
-					velocity.y = JUMP_VELOCITY
-		elif current_mode == "GravityFlip":
-			if is_on_floor() or is_on_ceiling():
-				take_damage_respos = position
-				if gravity > 0.0:
-					velocity.y = -1000.0
-				elif gravity < 0.0:
-					velocity.y = 1000.0
-				gravity = -gravity
+		if can_move:
+			respawn_gravity = gravity
+			if current_mode == "DoubleJump":
+				if jump_count > 0:
+					take_damage_respos = position
+					if gravity > 0.0:
+						velocity.y = -JUMP_VELOCITY
+					elif gravity < 0.0:
+						velocity.y = JUMP_VELOCITY
+					jump_count -= 1
+			elif current_mode == "Default":
+				if is_on_floor() or is_on_ceiling():
+					take_damage_respos = position
+					if gravity > 0.0:
+						velocity.y = -JUMP_VELOCITY
+					elif gravity < 0.0:
+						velocity.y = JUMP_VELOCITY
+			elif current_mode == "GravityFlip":
+				if is_on_floor() or is_on_ceiling():
+					take_damage_respos = position
+					if gravity > 0.0:
+						velocity.y = -1000.0
+					elif gravity < 0.0:
+						velocity.y = 1000.0
+					gravity = -gravity
 
 		
 	if Input.is_action_just_pressed("FastDrop"):
-		if gravity > 0.0:
-			velocity.y = JUMP_VELOCITY * 5
-		elif gravity < 0.0:
-			velocity.y = -JUMP_VELOCITY * 5
+		if can_move:
+			if gravity > 0.0:
+				if is_on_floor():
+					position.y += 1
+				else:
+					velocity.y = JUMP_VELOCITY * 5
+			elif gravity < 0.0:
+				if is_on_ceiling():
+					position.y -= 1
+				else:
+					velocity.y = -JUMP_VELOCITY * 5
 
 	var direction = Input.get_axis("Left", "Right")
-	if direction:
-		velocity.x = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+	if can_move:
+		if direction:
+			velocity.x = direction * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
 	
 	if gravity > 0.0:
 		if is_on_floor():
