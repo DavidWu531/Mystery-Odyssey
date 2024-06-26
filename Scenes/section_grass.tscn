@@ -552,6 +552,19 @@ autoplay = "Default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/CheckpointI"]
 shape = SubResource("RectangleShape2D_5jx47")
 
+[node name="CheckpointII" type="Area2D" parent="Checkpoints"]
+position = Vector2(6179, -2415)
+script = ExtResource("5_8wgrw")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Checkpoints/CheckpointII"]
+sprite_frames = SubResource("SpriteFrames_idwtm")
+animation = &"Default"
+autoplay = "Default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/CheckpointII"]
+shape = SubResource("RectangleShape2D_5jx47")
+
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="NPCI" type="Area2D" parent="NPCs"]
@@ -647,6 +660,7 @@ shape = SubResource("RectangleShape2D_wy553")
 [connection signal="body_entered" from="Coins/CoinXV" to="Coins/CoinXV" method="_on_body_entered"]
 [connection signal="body_entered" from="Coins/HiddenCoinI" to="Coins/HiddenCoinI" method="_on_body_entered"]
 [connection signal="body_entered" from="Checkpoints/CheckpointI" to="Checkpoints/CheckpointI" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoints/CheckpointII" to="Checkpoints/CheckpointII" method="_on_body_entered"]
 [connection signal="body_entered" from="NPCs/NPCI" to="." method="_on_npci_body_entered"]
 [connection signal="body_exited" from="NPCs/NPCI" to="." method="_on_npci_body_exited"]
 [connection signal="body_entered" from="SignMovement" to="." method="_on_sign_movement_body_entered"]

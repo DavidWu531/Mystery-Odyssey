@@ -5,6 +5,7 @@ func _ready():
 	set_deferred("monitoring", true)
 	$CollisionShape2D.set_deferred("disabled", false)
 
+
 func _on_body_entered(body):
 	if "Player" in body.name:
 		hide()

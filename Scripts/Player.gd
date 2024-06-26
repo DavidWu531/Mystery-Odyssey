@@ -64,20 +64,18 @@ func _physics_process(delta):
 					elif gravity < 0.0:
 						velocity.y = 1000.0
 					gravity = -gravity
+		else:
+			velocity = Vector2(0,0)
 
 		
 	if Input.is_action_just_pressed("FastDrop"):
 		if can_move:
 			if gravity > 0.0:
-				if is_on_floor():
-					position.y += 1
-				else:
-					velocity.y = JUMP_VELOCITY * 5
+				velocity.y = JUMP_VELOCITY * 5
 			elif gravity < 0.0:
-				if is_on_ceiling():
-					position.y -= 1
-				else:
-					velocity.y = -JUMP_VELOCITY * 5
+				velocity.y = -JUMP_VELOCITY * 5
+		else:
+			velocity = Vector2(0,0)
 
 	var direction = Input.get_axis("Left", "Right")
 	if can_move:
@@ -85,6 +83,8 @@ func _physics_process(delta):
 			velocity.x = direction * speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
+	else:
+		velocity = Vector2(0,0)
 	
 	if gravity > 0.0:
 		if is_on_floor():

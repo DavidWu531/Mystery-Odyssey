@@ -13,7 +13,8 @@ func _process(_delta):
 	pass
 	
 func checkpoint_i_hit():
-	$SceneCamera.position = Vector2(2944, -1568)
+	$SceneCamera.position = Vector2(2986, -1568)
+	$SceneCamera.zoom = Vector2(0.69, 0.69)
 
 func player_died():
 	if SignalBus.checkpoint_i_emitted and SignalBus.checkpoint_i_available:

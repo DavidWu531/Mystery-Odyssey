@@ -41,6 +41,7 @@ autoplay = "Temp1"
 shape = SubResource("RectangleShape2D_ic70q")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
