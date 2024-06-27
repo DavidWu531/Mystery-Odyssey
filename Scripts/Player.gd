@@ -24,6 +24,9 @@ func _ready():
 	speed = normal_speed
 	respawn_pos = position
 	take_damage_respos = position
+	
+	SignalBus.checkpoint_ii_hit.connect(checkpoint_ii_hit)
+
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
@@ -96,7 +99,8 @@ func _physics_process(delta):
 				jump_count = 1
 	
 	move_and_slide()
-	
+
+
 func _process(_delta):
 	if position.y > 10000 or position.y < -10000:
 		Global.player_health -= 1
@@ -125,6 +129,11 @@ func _process(_delta):
 				position = take_damage_respos
 			break
 
+
 func _on_res_pos_timer_timeout():
 	if (is_on_floor() and gravity > 0.0) or (is_on_ceiling() and gravity < 0.0):
 		take_damage_respos = position
+
+
+func checkpoint_ii_hit():
+	$Camera2D.enabled = true

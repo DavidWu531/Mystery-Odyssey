@@ -40,6 +40,10 @@ func checkpoint_i_hit():
 	$Platforms.set_cell(0, Vector2i(102,-80), 0, Vector2i(0,0), 6)
 	$Platforms.set_cell(0, Vector2i(102,-76), 0, Vector2i(0,0), 6)
 	$Platforms.set_cell(0, Vector2i(102,-72), 0, Vector2i(0,0), 6)
+	
+	$Checkpoints/CheckpointI.set_deferred("monitorable", false)
+	$Checkpoints/CheckpointI.set_deferred("monitoring", false)
+	$Checkpoints/CheckpointI/CollisionShape2D.set_deferred("disabled", true)
 
 
 func _on_sign_movement_body_entered(body):

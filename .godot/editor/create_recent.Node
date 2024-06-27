@@ -1,8 +1,8 @@
-CollisionShape2D
-Timer
-Area2D
 Sprite2D
+CollisionShape2D
 AnimatedSprite2D
+Area2D
+Timer
 ColorRect
 Label
 Control

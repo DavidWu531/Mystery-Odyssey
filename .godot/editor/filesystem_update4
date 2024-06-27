@@ -1,14 +1,10 @@
-res://Scenes/main_menu.tscn
+res://Scenes/main.tscn
 res://Resources/platforms.tres
 res://Resources/obstacles.tres
-res://Scripts/Coins.gd
-res://Scenes/section_grass.tscn
-res://Scenes/main.tscn
-res://Scenes/player.tscn
-<<<<<<< Updated upstream
-res://Scenes/section_frost.tscn
-=======
-res://Scripts/Player.gd
-res://Scripts/GravityFlip.gd
 res://Scripts/GameManager.gd
->>>>>>> Stashed changes
+res://Scenes/main_menu.tscn
+res://Scripts/Player.gd
+res://Scenes/section_grass.tscn
+res://Scripts/Checkpoint.gd
+res://Scripts/GravityFlip.gd
+res://Scripts/MainMenu.gd
