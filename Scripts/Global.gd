@@ -27,6 +27,9 @@ var ooh_shiny_mine_iii = false
 var quest_hunter_i = false
 var quest_hunter_ii = false
 var quest_hunter_iii = false
+var social_expert_i = false
+var social_expert_ii = false
+var social_expert_iii = false
 
 var grassland_explored_progress = 0
 var desert_explored_progress = 0
@@ -45,6 +48,7 @@ var no_stopping_now_progress = 0
 var killing_machine_progress = 0
 var ooh_shiny_mine_progress = 0
 var quest_hunter_progress = 0
+var social_expert_progress = 0
 
 # Other Global
 var score = 0
@@ -87,7 +91,9 @@ func _process(_delta):
 	if ooh_shiny_mine_progress == 1 and not ooh_shiny_mine_i:
 		ooh_shiny_mine_i = true
 	if quest_hunter_progress == 2 and not quest_hunter_i:
-		quest_hunter_iii = true
+		quest_hunter_i = true
+	if social_expert_progress == 2 and not social_expert_i:
+		social_expert_i = true
 	
 	if no_stopping_now_progress == 10 and not no_stopping_now_ii:
 		no_stopping_now_ii = true
@@ -97,6 +103,8 @@ func _process(_delta):
 		ooh_shiny_mine_ii = true
 	if quest_hunter_progress == 5 and not quest_hunter_ii:
 		quest_hunter_iii = true
+	if social_expert_progress == 6 and not social_expert_ii:
+		social_expert_ii = true
 	
 	if no_stopping_now_progress == 20 and not ooh_shiny_mine_i:
 		no_stopping_now_iii = true
@@ -106,4 +114,6 @@ func _process(_delta):
 		ooh_shiny_mine_iii = true
 	if quest_hunter_progress == 10 and not quest_hunter_iii:
 		quest_hunter_iii = true
+	if social_expert_progress == 12 and not social_expert_iii:
+		social_expert_iii = true
 

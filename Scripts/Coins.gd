@@ -14,3 +14,4 @@ func _on_body_entered(body):
 		$CollisionShape2D.set_deferred("disabled", true)
 		Global.score += 1
 		Global.ooh_shiny_mine_progress += 1
+		SignalBus.coin_collected.emit()

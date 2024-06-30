@@ -1,24 +1,29 @@
 extends Node2D
 
-var npci_dialogue = 0
+var npci_dialogue_id = 0
+var npci_talked = false
 
 func _ready():
 	SignalBus.checkpoint_i_hit.connect(checkpoint_i_hit)
+	SignalBus.checkpoint_ii_hit.connect(checkpoint_ii_hit)
 
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Interact"):
 		if $NPCs/NPCI/Interactable.visible:
-			if npci_dialogue == 0:
+			if npci_dialogue_id == 0:
 				$NPCs/NPCI/Dialogue.text = "Hello, traveller"
-			elif npci_dialogue == 1:
+			elif npci_dialogue_id == 1:
 				$NPCs/NPCI/Dialogue.text = "Wait, where have I seen you before?"
-			elif npci_dialogue == 2:
+			elif npci_dialogue_id == 2:
 				$NPCs/NPCI/Dialogue.text = "Anyway, whatever you're doing, watch out for obstacles"
 			else:
 				$NPCs/NPCI/Dialogue.text = ""
 				$NPCs/NPCI/Interactable.hide()
-			npci_dialogue += 1
+			npci_dialogue_id += 1
+			if not npci_talked:
+				npci_talked = true
+				SignalBus.npc_talked.emit()
 	
 
 func _on_npci_body_entered(body):
@@ -29,7 +34,7 @@ func _on_npci_body_entered(body):
 func _on_npci_body_exited(body):
 	if "Player" in body.name:
 		$NPCs/NPCI/Interactable.hide()
-		npci_dialogue = 0
+		npci_dialogue_id = 0
 		$NPCs/NPCI/Dialogue.text = ""
 		
 		
@@ -48,12 +53,12 @@ func checkpoint_i_hit():
 
 func _on_sign_movement_body_entered(body):
 	if "Player" in body.name:
-		$SignMovement/Control.show()
+		pass
 
 
 func _on_sign_movement_body_exited(body):
 	if "Player" in body.name:
-		$SignMovement/Control.hide()
+		pass
 
 
 func _on_lily_vanish_body_entered(body):
@@ -69,7 +74,9 @@ func _on_lily_vanish_body_exited(body):
 func _on_lily_timer_timeout():
 	$Platforms.set_cell(0, Vector2i(206,-68), -1, Vector2i(0,0), -1)
 	$Platforms.set_cell(0, Vector2i(210,-68), -1, Vector2i(0,0), -1)
-	await get_tree().create_timer(2.5).timeout
+
+
+func checkpoint_ii_hit():
 	$Platforms.set_cell(0, Vector2i(206,-68), 0, Vector2i(0,0), 0)
 	$Platforms.set_cell(0, Vector2i(210,-68), 0, Vector2i(0,0), 0)
 	

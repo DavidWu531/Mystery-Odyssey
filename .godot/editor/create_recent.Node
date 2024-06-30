@@ -1,14 +1,14 @@
+Label
+Control
+Node2D
 Sprite2D
 CollisionShape2D
 AnimatedSprite2D
 Area2D
 Timer
 ColorRect
-Label
-Control
 PointLight2D
 DirectionalLight2D
 CanvasModulate
 TextureRect
-Node2D
 Line2D

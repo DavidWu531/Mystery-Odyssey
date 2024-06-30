@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Coins.gd" id="3_unk3e"]
 [ext_resource type="Texture2D" uid="uid://bm5vw7761cl8u" path="res://Art/DoubleJumpPress.png" id="3_xddn1"]
 [ext_resource type="Texture2D" uid="uid://bm85w71qi4tuo" path="res://Art/Coin.png" id="4_iafu4"]
+[ext_resource type="Material" uid="uid://dwffojaycyc6x" path="res://Resources/darkness_immune.tres" id="4_kbac1"]
 [ext_resource type="Script" path="res://Scripts/Checkpoint.gd" id="5_8wgrw"]
 [ext_resource type="Texture2D" uid="uid://bu4273q2tcrhf" path="res://Art/Checkpoint.png" id="6_n8anj"]
 [ext_resource type="Texture2D" uid="uid://d3mn8l1jrdceo" path="res://Art/NPC.png" id="7_anl2d"]
@@ -575,11 +576,6 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3mgm"]
 size = Vector2(64, 64)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ebt0m"]
-font_size = 25
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wy553"]
 size = Vector2(112, 16)
 
@@ -604,6 +600,7 @@ shape = SubResource("RectangleShape2D_ivdpm")
 
 [node name="Interactable" type="Sprite2D" parent="DoubleJump"]
 visible = false
+material = ExtResource("4_kbac1")
 position = Vector2(8, -7.62939e-06)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("9_m4d8i")
@@ -626,6 +623,7 @@ shape = SubResource("RectangleShape2D_nv2yk")
 
 [node name="Interactable" type="Sprite2D" parent="GravityFlip"]
 visible = false
+material = ExtResource("4_kbac1")
 position = Vector2(0, -80)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("9_m4d8i")
@@ -861,10 +859,12 @@ shape = SubResource("RectangleShape2D_4jobg")
 
 [node name="Interactable" type="Sprite2D" parent="NPCs/NPCI"]
 visible = false
+material = ExtResource("4_kbac1")
 position = Vector2(0, -28)
 texture = ExtResource("9_m4d8i")
 
 [node name="Dialogue" type="Label" parent="NPCs/NPCI"]
+material = ExtResource("4_kbac1")
 offset_left = -129.0
 offset_top = -45.0
 offset_right = 132.0
@@ -875,7 +875,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="SignMovement" type="Area2D" parent="."]
-position = Vector2(128, -80)
+position = Vector2(2720, -1168)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="SignMovement"]
@@ -884,33 +884,6 @@ texture = ExtResource("12_we44c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SignMovement"]
 shape = SubResource("RectangleShape2D_w3mgm")
-
-[node name="Control" type="Control" parent="SignMovement"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = -160.0
-offset_top = -200.0
-offset_right = 160.0
-offset_bottom = -48.0
-
-[node name="ColorRect" type="ColorRect" parent="SignMovement/Control"]
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 152.0
-color = Color(0.25098, 0.184314, 0.113725, 1)
-
-[node name="Label" type="Label" parent="SignMovement/Control"]
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 152.0
-text = "➡ D
-⬅ A
-⬆ W, Space
-⬇ S"
-label_settings = SubResource("LabelSettings_ebt0m")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="LilyVanish" type="Area2D" parent="."]
 position = Vector2(3336, -1112)
