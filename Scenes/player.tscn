@@ -60,4 +60,7 @@ texture = ExtResource("4_tlauu")
 offset = Vector2(196, 0)
 texture_scale = 5.0
 
+[node name="LinearDirection" type="Marker2D" parent="."]
+gizmo_extents = 69.0
+
 [connection signal="timeout" from="ResPosTimer" to="." method="_on_res_pos_timer_timeout"]

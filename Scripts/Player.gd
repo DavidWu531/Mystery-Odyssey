@@ -16,9 +16,10 @@ const quadruple_speed = 878.2
 var gravity = 980.0
 var jump_count = 1
 var can_move = true
+var linear_moving = false
 
 var current_mode = "Default"
-var player_modes = ["Default", "DoubleJump", "GravityFlip"]
+var player_modes = ["Default", "DoubleJump", "GravityFlip", "LinearMotion"]
 
 func _ready():
 	speed = normal_speed
@@ -29,9 +30,12 @@ func _ready():
 
 
 func _physics_process(delta):
-	velocity.y += gravity * delta
+	if not linear_moving:
+		velocity.y += gravity * delta
+		$LinearDirection.look_at(get_global_mouse_position())
 	
 	$PointLight2D.look_at(get_global_mouse_position())
+
 	
 	if Input.is_action_just_pressed("ui_filedialog_show_hidden"):
 		if current_mode == player_modes[0]:
@@ -39,6 +43,8 @@ func _physics_process(delta):
 		elif current_mode == player_modes[1]:
 			current_mode = player_modes[2]
 		elif current_mode == player_modes[2]:
+			current_mode = player_modes[3]
+		elif current_mode == player_modes[3]:
 			current_mode = player_modes[0]
 	
 	if Input.is_action_just_pressed("Jump"):
@@ -70,6 +76,19 @@ func _physics_process(delta):
 		else:
 			velocity = Vector2(0,0)
 
+	if Input.is_action_pressed("Jump"):
+		if can_move:
+			if current_mode == "LinearMotion":
+				linear_moving = true
+				velocity.x = cos(-90) * speed
+				velocity.y = sin(-90) * speed
+		else:
+			velocity = Vector2(0,0)
+	
+	if Input.is_action_just_released("Jump"):
+		if current_mode == "LinearMotion":
+			linear_moving = false
+			velocity = Vector2(0,0)
 		
 	if Input.is_action_just_pressed("FastDrop"):
 		if can_move:
@@ -82,10 +101,11 @@ func _physics_process(delta):
 
 	var direction = Input.get_axis("Left", "Right")
 	if can_move:
-		if direction:
-			velocity.x = direction * speed
-		else:
-			velocity.x = move_toward(velocity.x, 0, speed)
+		if current_mode != "LinearMotion":
+			if direction:
+				velocity.x = direction * speed
+			else:
+				velocity.x = move_toward(velocity.x, 0, speed)
 	else:
 		velocity = Vector2(0,0)
 	
