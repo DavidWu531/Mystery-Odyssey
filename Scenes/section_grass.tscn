@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://bs0rjq8hecmbe"]
+[gd_scene load_steps=103 format=3 uid="uid://bs0rjq8hecmbe"]
 
 [ext_resource type="Script" path="res://Scripts/GrassManager.gd" id="1_ef5ps"]
 [ext_resource type="TileSet" uid="uid://by7wu55cjrnhd" path="res://Resources/platforms.tres" id="1_f3bp0"]
@@ -579,6 +579,10 @@ size = Vector2(64, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wy553"]
 size = Vector2(112, 16)
 
+[sub_resource type="LabelSettings" id="LabelSettings_iq553"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Section_Grass" type="Node2D"]
 script = ExtResource("1_ef5ps")
 
@@ -874,15 +878,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="SignMovement" type="Area2D" parent="."]
+[node name="GravityFlipTip" type="Area2D" parent="."]
 position = Vector2(2720, -1168)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="SignMovement"]
+[node name="Sprite2D" type="Sprite2D" parent="GravityFlipTip"]
 position = Vector2(0, 24)
 texture = ExtResource("12_we44c")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SignMovement"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityFlipTip"]
 shape = SubResource("RectangleShape2D_w3mgm")
 
 [node name="LilyVanish" type="Area2D" parent="."]
@@ -894,6 +898,107 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LilyVanish"]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_wy553")
+
+[node name="MovementSign" type="Control" parent="."]
+material = ExtResource("4_kbac1")
+layout_mode = 3
+anchors_preset = 0
+offset_left = -216.0
+offset_top = -216.0
+offset_right = 24.0
+offset_bottom = -152.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="MovementSign"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 64.0
+color = Color(0.415686, 0.286275, 0.203922, 1)
+
+[node name="Label" type="Label" parent="MovementSign"]
+layout_mode = 0
+offset_right = 237.0
+offset_bottom = 64.0
+text = "A or Left Arrow to move left
+D or Right Arrow to move right"
+label_settings = SubResource("LabelSettings_iq553")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JumpSign" type="Control" parent="."]
+material = ExtResource("4_kbac1")
+layout_mode = 3
+anchors_preset = 0
+offset_left = 440.0
+offset_top = -152.0
+offset_right = 680.0
+offset_bottom = -88.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="JumpSign"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 64.0
+color = Color(0.415686, 0.286275, 0.203922, 1)
+
+[node name="Label" type="Label" parent="JumpSign"]
+layout_mode = 0
+offset_right = 237.0
+offset_bottom = 64.0
+text = "W or Up Arrow to jump"
+label_settings = SubResource("LabelSettings_iq553")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractSign" type="Control" parent="."]
+material = ExtResource("4_kbac1")
+layout_mode = 3
+anchors_preset = 0
+offset_left = 992.0
+offset_top = -376.0
+offset_right = 1232.0
+offset_bottom = -312.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="InteractSign"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 64.0
+color = Color(0.415686, 0.286275, 0.203922, 1)
+
+[node name="Label" type="Label" parent="InteractSign"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 64.0
+text = "E, Space or LMB to interact"
+label_settings = SubResource("LabelSettings_iq553")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FastDropSign" type="Control" parent="."]
+material = ExtResource("4_kbac1")
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1520.0
+offset_top = -920.0
+offset_right = 1760.0
+offset_bottom = -856.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="FastDropSign"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 64.0
+color = Color(0.415686, 0.286275, 0.203922, 1)
+
+[node name="Label" type="Label" parent="FastDropSign"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 64.0
+text = "S or Down Arrow to fall faster"
+label_settings = SubResource("LabelSettings_iq553")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="DoubleJump" to="DoubleJump" method="_on_body_entered"]
 [connection signal="body_exited" from="DoubleJump" to="DoubleJump" method="_on_body_exited"]
@@ -919,8 +1024,8 @@ shape = SubResource("RectangleShape2D_wy553")
 [connection signal="body_entered" from="Checkpoints/CheckpointII" to="Checkpoints/CheckpointII" method="_on_body_entered"]
 [connection signal="body_entered" from="NPCs/NPCI" to="." method="_on_npci_body_entered"]
 [connection signal="body_exited" from="NPCs/NPCI" to="." method="_on_npci_body_exited"]
-[connection signal="body_entered" from="SignMovement" to="." method="_on_sign_movement_body_entered"]
-[connection signal="body_exited" from="SignMovement" to="." method="_on_sign_movement_body_exited"]
+[connection signal="body_entered" from="GravityFlipTip" to="." method="_on_sign_movement_body_entered"]
+[connection signal="body_exited" from="GravityFlipTip" to="." method="_on_sign_movement_body_exited"]
 [connection signal="body_entered" from="LilyVanish" to="." method="_on_lily_vanish_body_entered"]
 [connection signal="body_exited" from="LilyVanish" to="." method="_on_lily_vanish_body_exited"]
 [connection signal="timeout" from="LilyVanish/LilyTimer" to="." method="_on_lily_timer_timeout"]

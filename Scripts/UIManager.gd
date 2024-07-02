@@ -38,8 +38,6 @@ func _process(delta):
 	
 	$MainScreen/PlayerEnergy.max_value = 200
 	$MainScreen/PlayerEnergy.value = Global.player_energy
-	
-	$MainScreen/FPS.text = str(round(Engine.get_frames_per_second())) + " FPS"
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):

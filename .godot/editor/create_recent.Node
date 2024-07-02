@@ -1,15 +1,14 @@
-Marker2D
 Label
+ColorRect
 Control
+Marker2D
 Node2D
 Sprite2D
 CollisionShape2D
 AnimatedSprite2D
 Area2D
 Timer
-ColorRect
 PointLight2D
 DirectionalLight2D
 CanvasModulate
 TextureRect
-Line2D
