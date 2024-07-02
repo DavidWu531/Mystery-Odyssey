@@ -17,6 +17,7 @@ var gravity = 980.0
 var jump_count = 1
 var can_move = true
 var linear_moving = false
+var on_ice = false
 
 var current_mode = "Default"
 var player_modes = ["Default", "DoubleJump", "GravityFlip", "LinearMotion"]
@@ -80,8 +81,8 @@ func _physics_process(delta):
 		if can_move:
 			if current_mode == "LinearMotion":
 				linear_moving = true
-				velocity.x = cos(-90) * speed
-				velocity.y = sin(-90) * speed
+				velocity.x = cos($LinearDirection.rotation) * speed
+				velocity.y = sin($LinearDirection.rotation) * speed
 		else:
 			velocity = Vector2(0,0)
 	
@@ -98,7 +99,7 @@ func _physics_process(delta):
 				velocity.y = -JUMP_VELOCITY * 5
 		else:
 			velocity = Vector2(0,0)
-
+	
 	var direction = Input.get_axis("Left", "Right")
 	if can_move:
 		if current_mode != "LinearMotion":
