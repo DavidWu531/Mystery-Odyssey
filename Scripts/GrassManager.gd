@@ -51,15 +51,34 @@ func checkpoint_i_hit():
 	$Checkpoints/CheckpointI/CollisionShape2D.set_deferred("disabled", true)
 
 
-func _on_sign_movement_body_entered(body):
+func _on_gravity_flip_tip_body_entered(body):
+	if "Player" in body.name:
+		$GravityFlipTip/Instruction.show()
+
+
+func _on_gravity_flip_tip_body_exited(body):
+	if "Player" in body.name:
+		$GravityFlipTip/Instruction.hide()
+
+
+func _on_double_jump_tip_body_entered(body):
 	if "Player" in body.name:
 		pass
 
 
-func _on_sign_movement_body_exited(body):
+func _on_double_jump_tip_body_exited(body):
 	if "Player" in body.name:
 		pass
 
+
+func _on_linear_motion_tip_body_entered(body):
+	if "Player" in body.name:
+		pass
+
+
+func _on_linear_motion_tip_body_exited(body):
+	if "Player" in body.name:
+		pass
 
 func _on_lily_vanish_body_entered(body):
 	if "Player" in body.name:

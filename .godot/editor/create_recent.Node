@@ -1,9 +1,10 @@
+Sprite2D
+Button
 Label
 ColorRect
 Control
 Marker2D
 Node2D
-Sprite2D
 CollisionShape2D
 AnimatedSprite2D
 Area2D
@@ -11,4 +12,3 @@ Timer
 PointLight2D
 DirectionalLight2D
 CanvasModulate
-TextureRect

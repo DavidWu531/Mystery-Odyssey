@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvdcl15vsqy0v"]
+[gd_scene load_steps=14 format=3 uid="uid://bvdcl15vsqy0v"]
 
 [ext_resource type="Script" path="res://Scripts/UIManager.gd" id="1_aajpp"]
 [ext_resource type="Texture2D" uid="uid://j5bqpsh1t2qt" path="res://Art/Health.png" id="2_ajn7e"]
@@ -17,14 +17,17 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ar46"]
-font_size = 58
+font_size = 52
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t0jrn"]
-font_size = 58
+font_size = 52
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_ugd5s"]
+Button/font_sizes/font_size = 42
 
 [sub_resource type="LabelSettings" id="LabelSettings_fw5wo"]
 font_size = 69
@@ -151,6 +154,7 @@ offset_bottom = 832.0
 text = "Advanced
 Toggle Torch - 1 (TBC)
 Drill Attack - 2 (TBC)
+TBC - TBC
 
 Gamemodes
 Default - Jumps once
@@ -161,6 +165,14 @@ label_settings = SubResource("LabelSettings_t0jrn")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="OK" type="Button" parent="MainScreen/Tutorial"]
+layout_mode = 0
+offset_top = 960.0
+offset_right = 1920.0
+offset_bottom = 1024.0
+theme = SubResource("Theme_ugd5s")
+text = "OKAY"
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
@@ -207,4 +219,5 @@ offset_bottom = 703.0
 theme = SubResource("Theme_h57yl")
 text = "Continue"
 
+[connection signal="pressed" from="MainScreen/Tutorial/OK" to="." method="_on_ok_pressed"]
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]

@@ -58,3 +58,7 @@ func npc_talked():
 func coin_collected():
 	if current_quest == "Collect Coins":
 		current_quest_progress += 1
+
+
+func _on_ok_pressed():
+	$MainScreen/Tutorial.hide()
