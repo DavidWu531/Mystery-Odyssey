@@ -2,7 +2,10 @@ extends CanvasLayer
 
 var quests = { 
 	"Talk to the NPC": 1,  # Max 1
-	"Collect Coins": 10  # Max 10
+	"Collect Coins": 10,  # Max 10
+	#"Talk to Pil": 1,
+	#"Activate Gravity Flip Mode": 1,
+	#"Escape the maze": 1,
 }
 
 var npci_dialogue_id = 0
@@ -30,6 +33,12 @@ func _process(delta):
 			current_quest = quests.keys()[quests_completed]
 			current_quest_max = quests.get(current_quest)
 	
+	if Input.is_action_just_pressed("ui_text_submit"):
+		if $MainScreen/Quest.visible:
+			$MainScreen/Quest.hide()
+		else:
+			$MainScreen/Quest.show()
+	
 	$MainScreen/Quest/Label.text = "Quest: \n" + str(current_quest) + "\n(" + str(current_quest_progress) + "/" + str(current_quest_max) + ")"
 	
 	$PauseMenu/Score.text = "Score: " + str(Global.score)
@@ -49,8 +58,8 @@ func _process(delta):
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().paused = false
-		$PauseMenu.hide()
+		get_tree().paused = true
+		$PauseMenu.show()
 
 
 func _on_continue_pressed():

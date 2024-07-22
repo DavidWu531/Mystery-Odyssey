@@ -18,7 +18,8 @@ var jump_count = 1
 var can_move = true
 var linear_moving = false
 var on_ice = false
-var torch_level = 3
+var torch_level = 1
+var on_pad = false
 
 var current_mode = "Default"
 var player_modes = ["Default", "DoubleJump", "GravityFlip", "LinearMotion"]
@@ -124,6 +125,9 @@ func _physics_process(delta):
 			if current_mode == "DoubleJump":
 				jump_count = 1
 	
+	if on_pad:
+		velocity.y = JUMP_VELOCITY * 2
+	
 	move_and_slide()
 
 
@@ -178,3 +182,13 @@ func _on_res_pos_timer_timeout():
 
 func checkpoint_ii_hit():
 	$Camera2D.enabled = true
+	current_mode = player_modes[0]
+	
+
+func pad_launch():
+	on_pad = true
+
+
+func pad_delaunch():
+	get_tree().create_timer(0.5).timeout
+	on_pad = false
