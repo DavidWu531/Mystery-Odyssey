@@ -83,17 +83,17 @@ offset_bottom = 4640.0
 color = Color(0.443137, 0.737255, 0.882353, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_r8fqo")]
-position = Vector2(8, -128)
+position = Vector2(1888, -1256)
 
 [node name="Layouts" type="Node2D" parent="."]
 
 [node name="Section_Grass" parent="Layouts" instance=ExtResource("2_at4yo")]
 
 [node name="Section_Desert" parent="Layouts" instance=ExtResource("4_kmwog")]
-position = Vector2(8144, -2392)
+position = Vector2(3864, -3360)
 
 [node name="Section_Frost" parent="Layouts" instance=ExtResource("5_lpywg")]
-position = Vector2(5864, 1000)
+position = Vector2(992, 1376)
 
 [node name="SceneCamera" type="Camera2D" parent="."]
 position = Vector2(3232, -1416)

@@ -7,7 +7,9 @@ func _process(_delta):
 			for node in get_overlapping_bodies():
 				if "Player" in node.name:
 					if not $AnimatedSprite2D.is_playing():
-						node.position = position + Vector2(0, 50)
+						var animation_tween = get_tree().create_tween()
+						animation_tween.tween_property(node, "position", position + Vector2(0, 50), 1.5).set_trans(Tween.TRANS_BOUNCE)
+						#node.position = position + Vector2(0, 50)
 						$AnimatedSprite2D.play("default")
 						node.can_move = false
 						await $AnimatedSprite2D.animation_finished

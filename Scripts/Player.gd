@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed = 0
-const JUMP_VELOCITY = 625.0
+const JUMP_VELOCITY = 625.0 * 1.4
 
 var respawn_pos = Vector2(0,0)
 var take_damage_respos = Vector2(0,0)
@@ -13,7 +13,7 @@ const double_speed = 590.7
 const triple_speed = 713.9
 const quadruple_speed = 878.2
 
-var gravity = 980.0
+var gravity = 980.0 * 1.75
 var jump_count = 1
 var can_move = true
 var linear_moving = false
@@ -126,7 +126,7 @@ func _physics_process(delta):
 				jump_count = 1
 	
 	if on_pad:
-		velocity.y = JUMP_VELOCITY * 2
+		velocity.y = -JUMP_VELOCITY * 1.5
 	
 	move_and_slide()
 
@@ -190,5 +190,4 @@ func pad_launch():
 
 
 func pad_delaunch():
-	get_tree().create_timer(0.5).timeout
 	on_pad = false
