@@ -15,6 +15,11 @@ var current_quest_progress = 0
 func _ready():
 	SignalBus.npc_talked.connect(npc_talked)
 	SignalBus.coin_collected.connect(coin_collected)
+	
+	SignalBus.default_silhouette.connect(default_silhouette)
+	SignalBus.double_jump_silhouette.connect(double_jump_silhouette)
+	SignalBus.gravity_flip_silhouette.connect(gravity_flip_silhouette)
+	SignalBus.linear_motion_silhouette.connect(linear_motion_silhouette)
 
 
 func _process(delta):
@@ -29,9 +34,12 @@ func _process(delta):
 	
 	$PauseMenu/Score.text = "Score: " + str(Global.score)
 	
+	$MainScreen/PlayerHealthOverlay.size = Vector2(Global.player_maxhealth * 38, 32)
 	$MainScreen/PlayerHealth.size = Vector2(Global.player_health * 38, 32)
 	
-	Global.time_elapsed += delta
+	if not $MainScreen/Tutorial.visible:
+		Global.time_elapsed += delta
+	
 	$MainScreen/TimeElapsed.text = str(Global.time_elapsed).pad_decimals(2)
 	
 	Global.player_energy -= 0.01
@@ -62,3 +70,20 @@ func coin_collected():
 
 func _on_ok_pressed():
 	$MainScreen/Tutorial.hide()
+
+
+func gravity_flip_silhouette():
+	$MainScreen/PlayerFrame/AnimatedSprite2D.play("gravityflip")
+
+
+func default_silhouette():
+	$MainScreen/PlayerFrame/AnimatedSprite2D.play("default")
+	
+	
+func double_jump_silhouette():
+	$MainScreen/PlayerFrame/AnimatedSprite2D.play("doublejump")
+	
+	
+func linear_motion_silhouette():
+	$MainScreen/PlayerFrame/AnimatedSprite2D.play("linearmotion")
+	

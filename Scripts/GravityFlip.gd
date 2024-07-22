@@ -11,6 +11,7 @@ func _process(_delta):
 						$AnimatedSprite2D.play("default")
 						node.can_move = false
 						await $AnimatedSprite2D.animation_finished
+						SignalBus.gravity_flip_silhouette.emit()
 						node.current_mode = node.player_modes[2]
 						node.can_move = true
 						$Interactable.hide()

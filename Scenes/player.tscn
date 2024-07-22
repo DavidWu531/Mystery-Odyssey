@@ -25,7 +25,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ic70q"]
-size = Vector2(64, 64)
+size = Vector2(63.5, 63.5)
 
 [node name="Player" type="CharacterBody2D"]
 floor_stop_on_slope = false
@@ -56,9 +56,10 @@ wait_time = 2.0
 autostart = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+editor_description = "Formula: offset.x = 45.5 * texture_scale - 32"
 texture = ExtResource("4_tlauu")
-offset = Vector2(196, 0)
-texture_scale = 5.0
+offset = Vector2(650.5, 0)
+texture_scale = 15.0
 
 [node name="LinearDirection" type="Marker2D" parent="."]
 gizmo_extents = 69.0

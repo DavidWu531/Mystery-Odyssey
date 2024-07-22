@@ -18,6 +18,7 @@ var jump_count = 1
 var can_move = true
 var linear_moving = false
 var on_ice = false
+var torch_level = 3
 
 var current_mode = "Default"
 var player_modes = ["Default", "DoubleJump", "GravityFlip", "LinearMotion"]
@@ -37,6 +38,10 @@ func _physics_process(delta):
 	
 	$PointLight2D.look_at(get_global_mouse_position())
 
+	if Input.is_anything_pressed():
+		if not Global.grassland_explored and Global.grassland_explored_progress == 0:
+			Global.grassland_explored_progress += 1
+	
 	
 	if Input.is_action_just_pressed("ui_filedialog_show_hidden"):
 		if current_mode == player_modes[0]:
@@ -129,7 +134,7 @@ func _process(_delta):
 		velocity = Vector2(0,0)
 		if Global.player_health <= 0:
 			position = respawn_pos
-			Global.player_health = 3
+			Global.player_health = Global.player_maxhealth
 			SignalBus.player_died.emit()
 		elif Global.player_health >= 1:
 			position = take_damage_respos
@@ -143,13 +148,28 @@ func _process(_delta):
 			if Global.player_health <= 0:
 				position = respawn_pos
 				take_damage_respos = respawn_pos
-				Global.player_health = 3
+				Global.player_health = Global.player_maxhealth
 				gravity = 980
 				SignalBus.player_died.emit()
 			elif Global.player_health >= 1:
 				position = take_damage_respos
 			break
-
+	
+	if Input.is_action_just_pressed("TorchToggle"):
+		if $PointLight2D.enabled:
+			$PointLight2D.enabled = false
+		else:
+			$PointLight2D.enabled = true
+	
+	if torch_level == 1:
+		$PointLight2D.offset = Vector2(195.5, 0)
+		$PointLight2D.texture_scale = 5
+	elif torch_level == 2:
+		$PointLight2D.offset = Vector2(423, 0)
+		$PointLight2D.texture_scale = 10
+	elif torch_level == 3:
+		$PointLight2D.offset = Vector2(878, 0)
+		$PointLight2D.texture_scale = 20
 
 func _on_res_pos_timer_timeout():
 	if (is_on_floor() and gravity > 0.0) or (is_on_ceiling() and gravity < 0.0):

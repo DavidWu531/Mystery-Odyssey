@@ -15,12 +15,14 @@ func _process(_delta):
 
 
 func checkpoint_i_hit():
-	$SceneCamera.position = Vector2(2986, -1568)
-	$SceneCamera.zoom = Vector2(0.69, 0.69)
+	$SceneCamera.position = Vector2(3232, -1416)
+	$SceneCamera.zoom = Vector2(0.58, 0.58)
+	Global.player_health = Global.player_maxhealth
 
 
 func checkpoint_ii_hit():
 	$SceneCamera.enabled = false
+	Global.player_health = Global.player_maxhealth
 
 
 func player_died():

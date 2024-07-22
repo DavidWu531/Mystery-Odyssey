@@ -1,7 +1,11 @@
-res://Scenes/main_menu.tscn
+res://Scripts/GrassManager.gd
+res://Scenes/section_grass.tscn
 res://Resources/platforms.tres
 res://Resources/obstacles.tres
+res://Scenes/main_menu.tscn
 res://Scenes/main.tscn
-res://Scenes/section_grass.tscn
 res://Scenes/ui_manager.tscn
 res://Scenes/player.tscn
+res://Scripts/Won.gd
+res://Scripts/UIManager.gd
+res://Scenes/won.tscn

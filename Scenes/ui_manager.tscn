@@ -1,10 +1,49 @@
-[gd_scene load_steps=14 format=3 uid="uid://bvdcl15vsqy0v"]
+[gd_scene load_steps=19 format=3 uid="uid://bvdcl15vsqy0v"]
 
 [ext_resource type="Script" path="res://Scripts/UIManager.gd" id="1_aajpp"]
 [ext_resource type="Texture2D" uid="uid://j5bqpsh1t2qt" path="res://Art/Health.png" id="2_ajn7e"]
 [ext_resource type="Texture2D" uid="uid://6kiya1n6rgrh" path="res://Art/PlayerFrame.png" id="2_ie8wj"]
-[ext_resource type="Texture2D" uid="uid://bvdoh4rix857d" path="res://Art/PlayerTemp.png" id="3_1ia76"]
+[ext_resource type="Texture2D" uid="uid://dylyf6mfg78dr" path="res://Art/DefaultSilhoutte.png" id="3_dwg7d"]
+[ext_resource type="Texture2D" uid="uid://bl3berkqrbv5y" path="res://Art/DoubleJumpSilhoutte.png" id="4_5uqyk"]
+[ext_resource type="Texture2D" uid="uid://dphmqqevangxu" path="res://Art/HealthOverlay.png" id="4_pvg0f"]
+[ext_resource type="Texture2D" uid="uid://rcww6b5hkcyw" path="res://Art/GravityFlipSilhouette.png" id="5_egrq5"]
 [ext_resource type="Material" uid="uid://dwffojaycyc6x" path="res://Resources/darkness_immune.tres" id="5_emty2"]
+[ext_resource type="Texture2D" uid="uid://cccp47o04jf0n" path="res://Art/LinearMotionSilhouette.png" id="6_2e8di"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0jo67"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_dwg7d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5uqyk")
+}],
+"loop": true,
+"name": &"doublejump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_egrq5")
+}],
+"loop": true,
+"name": &"gravityflip",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2e8di")
+}],
+"loop": true,
+"name": &"linearmotion",
+"speed": 5.0
+}]
 
 [sub_resource type="LabelSettings" id="LabelSettings_veqy4"]
 font_size = 40
@@ -57,10 +96,11 @@ offset_right = 64.0
 offset_bottom = 64.0
 texture = ExtResource("2_ie8wj")
 
-[node name="Sprite2D" type="Sprite2D" parent="MainScreen/PlayerFrame"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainScreen/PlayerFrame"]
 position = Vector2(32, 32)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_1ia76")
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_0jo67")
+autoplay = "default"
 
 [node name="TimeElapsed" type="Label" parent="MainScreen"]
 layout_mode = 0
@@ -72,6 +112,16 @@ text = "10"
 label_settings = SubResource("LabelSettings_veqy4")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PlayerHealthOverlay" type="TextureRect" parent="MainScreen"]
+layout_mode = 0
+offset_left = 64.0
+offset_right = 254.0
+offset_bottom = 32.0
+scale = Vector2(1.684, 2)
+texture = ExtResource("4_pvg0f")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="PlayerHealth" type="TextureRect" parent="MainScreen"]
 layout_mode = 0
@@ -121,6 +171,7 @@ autowrap_mode = 2
 
 [node name="Tutorial" type="Control" parent="MainScreen"]
 material = ExtResource("5_emty2")
+layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
