@@ -227,7 +227,43 @@ offset_bottom = 1024.0
 theme = SubResource("Theme_ugd5s")
 text = "OKAY"
 
+<<<<<<< HEAD
 [node name="AchievementBanner" parent="." instance=ExtResource("10_rruds")]
+=======
+[node name="AchievementBanner" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 836.0
+offset_right = 512.0
+offset_bottom = 948.0
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="AchievementBanner"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("10_8q5h8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AchievementBanner"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Shiny"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="AchievementBanner"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=green]Achievement Unlocked![/color][/b]
+[color=gold]Ooh, shiny! Mine![/color]
+[i]Collect 25 Coins[/i]"
+>>>>>>> refs/remotes/origin/main
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3

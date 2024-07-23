@@ -3,10 +3,12 @@ extends Node2D
 var npci_dialogue_id = 0
 var npcii_dialogue_id = 0
 var npciv_dialogue_id = 0
+var npcv_dialogue_id = 0
 var npci_talked = false
 var npcii_talked = false
 var npciii_talked = false
 var npciv_talked = false
+var npcv_talked = false
 
 func _ready():
 	SignalBus.checkpoint_i_hit.connect(checkpoint_i_hit)
@@ -59,6 +61,20 @@ func _process(_delta):
 				$NPCs/NPCIV/Interactable.hide()
 			npciv_dialogue_id += 1
 			if not npciv_talked:
+				npciv_talked = true
+				SignalBus.npc_talked.emit()
+				Global.social_expert_progress += 1
+				
+		if $NPCs/NPCV/Interactable.visible:
+			if npciv_dialogue_id == 0:
+				$NPCs/NPCV/Dialogue.text = "Jump pads make you jump higher"
+			elif npciv_dialogue_id == 1:
+				$NPCs/NPCV/Dialogue.text = "but here you wan't to avoid them"
+			else:
+				$NPCs/NPCIV/Dialogue.text = ""
+				$NPCs/NPCIV/Interactable.hide()
+			npcv_dialogue_id += 1
+			if not npcv_talked:
 				npciv_talked = true
 				SignalBus.npc_talked.emit()
 				Global.social_expert_progress += 1
@@ -172,9 +188,21 @@ func _on_npciv_body_exited(body):
 	if "Player" in body.name:
 		$NPCs/NPCIV/Interactable.hide()
 		npciv_dialogue_id = 0
-		$NPCs/NPCII/Dialogue.text = ""
+		$NPCs/NPCIV/Dialogue.text = ""
 
 
 func _on_door_body_entered(body):
 	if "Player" in body.name:
 		get_tree().change_scene_to_file("res://Scenes/won.tscn")
+
+
+func _on_npcv_body_entered(body):
+	if "Player" in body.name:
+		$NPCs/NPCV/Interactable.show()
+
+
+func _on_npcv_body_exited(body):
+	if "Player" in body.name:
+		$NPCs/NPCV/Interactable.hide()
+		npcv_dialogue_id = 0
+		$NPCs/NPCV/Dialogue.text = ""
