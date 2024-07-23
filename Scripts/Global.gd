@@ -6,7 +6,7 @@ var desert_explored = false  # MORE POWER!!
 var frostland_explored = false  # Don’t slide off!
 var enter_cave = false  # Anyone got a torch?
 var escape_cave = false  # My brain hurts
-var one_heart_escape = false  # Sticks and stones won’t break glass
+var one_heart_escape = false  # Unbreakable
 var u_cant_c_me = false  # U Can’t C Me
 var eagle_eye = false  # Nice vision
 var cant_let_go = false  # Can’t let go
@@ -61,6 +61,7 @@ var achievement_completed = 0
 func _process(_delta):
 	if grassland_explored_progress == 1 and not grassland_explored:
 		grassland_explored = true
+		SignalBus.grassland_explored.emit()
 		achievement_completed += 1
 	if desert_explored_progress == 1 and not desert_explored:
 		desert_explored = true
