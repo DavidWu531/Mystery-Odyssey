@@ -1056,7 +1056,7 @@ shape = SubResource("RectangleShape2D_dbmt0")
 [node name="Other" type="Node2D" parent="."]
 
 [node name="PadI" type="Area2D" parent="Other"]
-position = Vector2(3304, 88)
+position = Vector2(392, -48)
 scale = Vector2(2, 2)
 metadata/_edit_group_ = true
 

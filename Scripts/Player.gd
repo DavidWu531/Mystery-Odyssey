@@ -5,7 +5,7 @@ const JUMP_VELOCITY = 625.0 * 1.4
 
 var respawn_pos = Vector2(0,0)
 var take_damage_respos = Vector2(0,0)
-var respawn_gravity = 980.0
+var respawn_gravity = 980.0 * 1.75
 
 const half_speed = 383.1
 const normal_speed = 475.0
@@ -18,7 +18,7 @@ var jump_count = 1
 var can_move = true
 var linear_moving = false
 var on_ice = false
-var torch_level = 1
+var torch_level = 6
 var on_pad = false
 
 var current_mode = "Default"
@@ -59,7 +59,8 @@ func _physics_process(delta):
 			respawn_gravity = gravity
 			if current_mode == "DoubleJump":
 				if jump_count > 0:
-					take_damage_respos = position
+					if is_on_floor() or is_on_ceiling():
+						take_damage_respos = position
 					if gravity > 0.0:
 						velocity.y = -JUMP_VELOCITY
 					elif gravity < 0.0:
@@ -134,7 +135,7 @@ func _physics_process(delta):
 func _process(_delta):
 	if position.y > 10000 or position.y < -10000:
 		Global.player_health -= 1
-		gravity = 980.0
+		gravity = respawn_gravity
 		velocity = Vector2(0,0)
 		if Global.player_health <= 0:
 			position = respawn_pos
@@ -165,15 +166,9 @@ func _process(_delta):
 		else:
 			$PointLight2D.enabled = true
 	
-	if torch_level == 1:
-		$PointLight2D.offset = Vector2(195.5, 0)
-		$PointLight2D.texture_scale = 5
-	elif torch_level == 2:
-		$PointLight2D.offset = Vector2(423, 0)
-		$PointLight2D.texture_scale = 10
-	elif torch_level == 3:
-		$PointLight2D.offset = Vector2(878, 0)
-		$PointLight2D.texture_scale = 20
+
+	$PointLight2D.offset = Vector2(45.5 * (5 * torch_level) - 32, 0)
+	$PointLight2D.texture_scale = 5 * torch_level
 
 func _on_res_pos_timer_timeout():
 	if (is_on_floor() and gravity > 0.0) or (is_on_ceiling() and gravity < 0.0):

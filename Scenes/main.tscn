@@ -83,7 +83,7 @@ offset_bottom = 4640.0
 color = Color(0.443137, 0.737255, 0.882353, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_r8fqo")]
-position = Vector2(1888, -1256)
+position = Vector2(8, -128)
 
 [node name="Layouts" type="Node2D" parent="."]
 
