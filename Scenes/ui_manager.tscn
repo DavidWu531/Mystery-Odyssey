@@ -170,7 +170,6 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Tutorial" type="Control" parent="MainScreen"]
-visible = false
 material = ExtResource("5_emty2")
 layout_mode = 3
 anchors_preset = 0

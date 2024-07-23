@@ -1,3 +1,4 @@
+Timer
 Node2D
 CollisionShape2D
 Sprite2D
@@ -8,7 +9,6 @@ Label
 ColorRect
 Control
 Marker2D
-Timer
 PointLight2D
 DirectionalLight2D
 CanvasModulate

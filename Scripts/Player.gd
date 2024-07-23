@@ -37,7 +37,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		$LinearDirection.look_at(get_global_mouse_position())
 	
-	$PointLight2D.look_at(get_global_mouse_position())
+	$AngularLight.look_at(get_global_mouse_position())
 
 	if Input.is_anything_pressed():
 		if not Global.grassland_explored and Global.grassland_explored_progress == 0:
@@ -137,6 +137,9 @@ func _process(_delta):
 		Global.player_health -= 1
 		gravity = respawn_gravity
 		velocity = Vector2(0,0)
+		can_move = false
+		$SpawnImmunity.start(2.0)
+		$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
 		if Global.player_health <= 0:
 			position = respawn_pos
 			Global.player_health = Global.player_maxhealth
@@ -150,25 +153,30 @@ func _process(_delta):
 			Global.player_health -= 1
 			gravity = respawn_gravity
 			velocity = Vector2(0,0)
+			can_move = false
+			$SpawnImmunity.start(2.0)
+			$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
 			if Global.player_health <= 0:
 				position = respawn_pos
 				take_damage_respos = respawn_pos
 				Global.player_health = Global.player_maxhealth
-				gravity = 980
+				gravity = respawn_gravity
 				SignalBus.player_died.emit()
 			elif Global.player_health >= 1:
 				position = take_damage_respos
 			break
 	
 	if Input.is_action_just_pressed("TorchToggle"):
-		if $PointLight2D.enabled:
-			$PointLight2D.enabled = false
+		if $AngularLight.enabled:
+			$AngularLight.enabled = false
 		else:
-			$PointLight2D.enabled = true
+			$AngularLight.enabled = true
 	
 
-	$PointLight2D.offset = Vector2(45.5 * (5 * torch_level) - 32, 0)
-	$PointLight2D.texture_scale = 5 * torch_level
+	$AngularLight.offset = Vector2(45.5 * (5 * torch_level) - 32, 0)
+	$AngularLight.texture_scale = 5 * torch_level
+	
+	$RadialLight.texture_scale = 2 * torch_level
 
 func _on_res_pos_timer_timeout():
 	if (is_on_floor() and gravity > 0.0) or (is_on_ceiling() and gravity < 0.0):
@@ -186,3 +194,9 @@ func pad_launch():
 
 func pad_delaunch():
 	on_pad = false
+
+
+func _on_spawn_immunity_timeout():
+	var tween = get_tree().create_tween()
+	tween.tween_property($Sprite2D, "modulate", Color(1.0, 1.0, 1.0, 1.0), 1.0)
+	can_move = true

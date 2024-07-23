@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://k6q106c05g5l"]
+[gd_scene load_steps=8 format=3 uid="uid://k6q106c05g5l"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_o3pfn"]
 [ext_resource type="Texture2D" uid="uid://bvdoh4rix857d" path="res://Art/PlayerTemp.png" id="2_uh2fv"]
 [ext_resource type="Texture2D" uid="uid://dtvvx8bg6id0g" path="res://Art/PlayerTemp2.png" id="3_vbqre"]
-[ext_resource type="Texture2D" uid="uid://c0pqg6ccmku2o" path="res://Art/Light.png" id="4_tlauu"]
+[ext_resource type="Texture2D" uid="uid://byn063c4udv7s" path="res://Art/RadialLight.png" id="4_j3s5g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c03ud"]
 animations = [{
@@ -26,6 +26,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ic70q"]
 size = Vector2(63.5, 63.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eqejr"]
+load_path = "res://.godot/imported/Light.png-d2a75277c3d245367c882dae628488a7.ctex"
 
 [node name="Player" type="CharacterBody2D"]
 floor_stop_on_slope = false
@@ -55,13 +58,24 @@ editor_draw_limits = true
 wait_time = 2.0
 autostart = true
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="AngularLight" type="PointLight2D" parent="."]
 editor_description = "Formula: offset.x = 45.5 * texture_scale - 32"
-texture = ExtResource("4_tlauu")
+enabled = false
+texture = SubResource("CompressedTexture2D_eqejr")
 offset = Vector2(650.5, 0)
 texture_scale = 15.0
+
+[node name="RadialLight" type="PointLight2D" parent="."]
+editor_description = "Formula: offset.x = 45.5 * texture_scale - 32"
+texture = ExtResource("4_j3s5g")
+texture_scale = 10.0
 
 [node name="LinearDirection" type="Marker2D" parent="."]
 gizmo_extents = 69.0
 
+[node name="SpawnImmunity" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="ResPosTimer" to="." method="_on_res_pos_timer_timeout"]
+[connection signal="timeout" from="SpawnImmunity" to="." method="_on_spawn_immunity_timeout"]
