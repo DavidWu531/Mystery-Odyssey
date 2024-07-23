@@ -4,3 +4,4 @@ res://Resources/obstacles.tres
 res://Scripts/Global.gd
 res://Scripts/SignalBus.gd
 res://Scripts/AchievementBanner.gd
+res://Scenes/ui_manager.tscn
