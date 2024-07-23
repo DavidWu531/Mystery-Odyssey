@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://byn063c4udv7s"
+=======
+uid="uid://b61pstoniaaii"
+>>>>>>> ebb2ca42b9a9402cc47830b528eb578b2d549884
 path="res://.godot/imported/RadialLight.png-c984c17c699ee3879c8cc786e4109b3d.ctex"
 metadata={
 "vram_texture": false

@@ -18,7 +18,7 @@ var jump_count = 1
 var can_move = true
 var linear_moving = false
 var on_ice = false
-var torch_level = 6
+var torch_level = 2
 var on_pad = false
 
 var current_mode = "Default"
