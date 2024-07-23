@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_o3pfn"]
 [ext_resource type="Texture2D" uid="uid://bvdoh4rix857d" path="res://Art/PlayerTemp.png" id="2_uh2fv"]
 [ext_resource type="Texture2D" uid="uid://dtvvx8bg6id0g" path="res://Art/PlayerTemp2.png" id="3_vbqre"]
-[ext_resource type="Texture2D" uid="uid://byn063c4udv7s" path="res://Art/RadialLight.png" id="4_j3s5g"]
+[ext_resource type="Texture2D" uid="uid://dgtg2cvyqihd5" path="res://Art/RadialLight.png" id="4_nool5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c03ud"]
 animations = [{
@@ -67,7 +67,7 @@ texture_scale = 15.0
 
 [node name="RadialLight" type="PointLight2D" parent="."]
 editor_description = "Formula: offset.x = 45.5 * texture_scale - 32"
-texture = ExtResource("4_j3s5g")
+texture = ExtResource("4_nool5")
 texture_scale = 10.0
 
 [node name="LinearDirection" type="Marker2D" parent="."]

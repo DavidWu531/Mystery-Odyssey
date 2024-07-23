@@ -88,8 +88,7 @@ func _physics_process(delta):
 		if can_move:
 			if current_mode == "LinearMotion":
 				linear_moving = true
-				velocity.x = cos($LinearDirection.rotation) * speed
-				velocity.y = sin($LinearDirection.rotation) * speed
+				velocity = Vector2(cos($LinearDirection.rotation) * speed, sin($LinearDirection.rotation) * speed)
 		else:
 			velocity = Vector2(0,0)
 	
@@ -140,12 +139,6 @@ func _process(_delta):
 		can_move = false
 		$SpawnImmunity.start(2.0)
 		$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
-		if Global.player_health <= 0:
-			position = respawn_pos
-			Global.player_health = Global.player_maxhealth
-			SignalBus.player_died.emit()
-		elif Global.player_health >= 1:
-			position = take_damage_respos
 		
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -156,6 +149,7 @@ func _process(_delta):
 			can_move = false
 			$SpawnImmunity.start(2.0)
 			$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
+			Global.no_stopping_now_progress += 1
 			if Global.player_health <= 0:
 				position = respawn_pos
 				take_damage_respos = respawn_pos

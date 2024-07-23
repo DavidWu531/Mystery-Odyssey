@@ -146,7 +146,7 @@ func _process(_delta):
 	if social_expert_progress == 12 and not social_expert_iii:
 		social_expert_iii = true
 		achievement_completed += 1
-		
+
 
 func _physics_process(_delta):
 	player_maxhealth = achievement_completed + 3

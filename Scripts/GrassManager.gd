@@ -178,13 +178,3 @@ func _on_npciv_body_exited(body):
 func _on_door_body_entered(body):
 	if "Player" in body.name:
 		get_tree().change_scene_to_file("res://Scenes/won.tscn")
-
-
-func _on_pad_i_body_entered(body):
-	if "Player" in body.name:
-		body.pad_launch()
-
-
-func _on_pad_i_body_exited(body):
-	if "Player" in body.name:
-		body.pad_delaunch()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvdcl15vsqy0v"]
+[gd_scene load_steps=23 format=3 uid="uid://bvdcl15vsqy0v"]
 
 [ext_resource type="Script" path="res://Scripts/UIManager.gd" id="1_aajpp"]
 [ext_resource type="Texture2D" uid="uid://j5bqpsh1t2qt" path="res://Art/Health.png" id="2_ajn7e"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://rcww6b5hkcyw" path="res://Art/GravityFlipSilhouette.png" id="5_egrq5"]
 [ext_resource type="Material" uid="uid://dwffojaycyc6x" path="res://Resources/darkness_immune.tres" id="5_emty2"]
 [ext_resource type="Texture2D" uid="uid://cccp47o04jf0n" path="res://Art/LinearMotionSilhouette.png" id="6_2e8di"]
+[ext_resource type="Texture2D" uid="uid://mqp2kfhh0n7s" path="res://Art/AchievementBanner.png" id="10_8q5h8"]
+[ext_resource type="Texture2D" uid="uid://gjdi0j382lrp" path="res://Art/AchievementIconShiny.png" id="11_hycfy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0jo67"]
 animations = [{
@@ -67,6 +69,22 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_ugd5s"]
 Button/font_sizes/font_size = 42
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_04rmm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_hycfy")
+}],
+"loop": true,
+"name": &"Shiny",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_ap2rf"]
+RichTextLabel/font_sizes/bold_font_size = 20
+RichTextLabel/font_sizes/italics_font_size = 14
+RichTextLabel/font_sizes/normal_font_size = 18
 
 [sub_resource type="LabelSettings" id="LabelSettings_fw5wo"]
 font_size = 69
@@ -170,6 +188,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Tutorial" type="Control" parent="MainScreen"]
+visible = false
 material = ExtResource("5_emty2")
 layout_mode = 3
 anchors_preset = 0
@@ -224,6 +243,39 @@ offset_right = 1920.0
 offset_bottom = 1024.0
 theme = SubResource("Theme_ugd5s")
 text = "OKAY"
+
+[node name="AchievementBanner" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 836.0
+offset_right = 512.0
+offset_bottom = 948.0
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="AchievementBanner"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("10_8q5h8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AchievementBanner"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Shiny"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="AchievementBanner"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=green]Achievement Unlocked![/color][/b]
+[color=gold]Ooh, shiny! Mine![/color]
+[i]Collect 25 Coins[/i]"
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3

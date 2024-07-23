@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgtg2cvyqihd5"
-path="res://.godot/imported/RadialLight.png-c984c17c699ee3879c8cc786e4109b3d.ctex"
+uid="uid://mqp2kfhh0n7s"
+path="res://.godot/imported/AchievementBanner.png-dc690616325e9a204ef35d71e997db2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/RadialLight.png"
-dest_files=["res://.godot/imported/RadialLight.png-c984c17c699ee3879c8cc786e4109b3d.ctex"]
+source_file="res://Art/AchievementBanner.png"
+dest_files=["res://.godot/imported/AchievementBanner.png-dc690616325e9a204ef35d71e997db2f.ctex"]
 
 [params]
 
