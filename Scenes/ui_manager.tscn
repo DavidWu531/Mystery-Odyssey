@@ -245,6 +245,7 @@ theme = SubResource("Theme_ugd5s")
 text = "OKAY"
 
 [node name="AchievementBanner" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 64.0
