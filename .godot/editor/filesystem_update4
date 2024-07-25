@@ -1,12 +1,9 @@
-res://Scenes/ui_manager.tscn
 res://Scenes/main_menu.tscn
-res://Scenes/achievement_banner.tscn
-res://Scripts/AchievementBanner.gd
-res://Scripts/UIManager.gd
-res://Scripts/Global.gd
-res://Scripts/GrassManager.gd
-res://Scripts/Player.gd
-res://Scenes/main.tscn
 res://Resources/platforms.tres
 res://Resources/obstacles.tres
+res://Scenes/ui_manager.tscn
+res://Scenes/achievement_banner.tscn
 res://Scenes/player.tscn
+res://Scenes/main.tscn
+res://Scenes/section_grass.tscn
+res://Scripts/UIManager.gd
