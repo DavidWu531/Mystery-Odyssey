@@ -8,6 +8,7 @@ signal sign_movement_touch
 signal npc_talked
 signal coin_collected
 signal npci_dialogue
+signal achievement_completed
 
 signal default_silhouette
 signal double_jump_silhouette

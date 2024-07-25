@@ -67,6 +67,7 @@ texture_scale = 15.0
 
 [node name="RadialLight" type="PointLight2D" parent="."]
 editor_description = "Formula: offset.x = 45.5 * texture_scale - 32"
+enabled = false
 texture = ExtResource("4_nool5")
 texture_scale = 10.0
 

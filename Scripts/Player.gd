@@ -193,4 +193,5 @@ func pad_delaunch():
 func _on_spawn_immunity_timeout():
 	var tween = get_tree().create_tween()
 	tween.tween_property($Sprite2D, "modulate", Color(1.0, 1.0, 1.0, 1.0), 1.0)
+	await get_tree().create_timer(1.0).timeout
 	can_move = true

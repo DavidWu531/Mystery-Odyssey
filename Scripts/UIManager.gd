@@ -8,6 +8,8 @@ var quests = {
 	#"Escape the maze": 1,
 }
 
+var banner = preload("res://Scenes/achievement_banner.tscn")
+
 var npci_dialogue_id = 0
 
 var quests_completed = 0
@@ -18,6 +20,7 @@ var current_quest_progress = 0
 func _ready():
 	SignalBus.npc_talked.connect(npc_talked)
 	SignalBus.coin_collected.connect(coin_collected)
+	SignalBus.achievement_completed.connect(achievement_completed)
 	
 	SignalBus.default_silhouette.connect(default_silhouette)
 	SignalBus.double_jump_silhouette.connect(double_jump_silhouette)
@@ -96,3 +99,8 @@ func double_jump_silhouette():
 func linear_motion_silhouette():
 	$MainScreen/PlayerFrame/AnimatedSprite2D.play("linearmotion")
 	
+
+func achievement_completed():
+	var new_banner = banner.instantiate()
+	new_banner.position = Vector2(36,774)
+	add_child(new_banner)

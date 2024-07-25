@@ -144,6 +144,7 @@ value = 100.0
 show_percentage = false
 
 [node name="Quest" type="Control" parent="MainScreen"]
+visible = false
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -170,7 +171,6 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Tutorial" type="Control" parent="MainScreen"]
-visible = false
 material = ExtResource("5_emty2")
 layout_mode = 3
 anchors_preset = 0
@@ -224,7 +224,8 @@ offset_top = 960.0
 offset_right = 1920.0
 offset_bottom = 1024.0
 theme = SubResource("Theme_ugd5s")
-text = "OKAY"
+text = "OKAY
+(This whole UI will be subject to modification)"
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3

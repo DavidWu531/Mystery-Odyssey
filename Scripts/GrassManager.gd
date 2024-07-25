@@ -66,16 +66,16 @@ func _process(_delta):
 				Global.social_expert_progress += 1
 				
 		if $NPCs/NPCV/Interactable.visible:
-			if npciv_dialogue_id == 0:
-				$NPCs/NPCV/Dialogue.text = "Jump pads make you jump higher"
-			elif npciv_dialogue_id == 1:
-				$NPCs/NPCV/Dialogue.text = "but here you wan't to avoid them"
+			if npcv_dialogue_id == 0:
+				$NPCs/NPCV/Dialogue.text = "These pads look useful..."
+			elif npcv_dialogue_id == 1:
+				$NPCs/NPCV/Dialogue.text = "Or not..."
 			else:
-				$NPCs/NPCIV/Dialogue.text = ""
-				$NPCs/NPCIV/Interactable.hide()
+				$NPCs/NPCV/Dialogue.text = ""
+				$NPCs/NPCV/Interactable.hide()
 			npcv_dialogue_id += 1
 			if not npcv_talked:
-				npciv_talked = true
+				npcv_talked = true
 				SignalBus.npc_talked.emit()
 				Global.social_expert_progress += 1
 
