@@ -101,7 +101,6 @@ func linear_motion_silhouette():
 	
 
 func achievement_completed():
-	pass  # To Be Reinstated Soon
-	#var new_banner = banner.instantiate()
-	#new_banner.position = Vector2(36,774)
-	#add_child(new_banner)
+	var new_banner = banner.instantiate()
+	new_banner.position = Vector2(36,774)
+	add_child(new_banner)

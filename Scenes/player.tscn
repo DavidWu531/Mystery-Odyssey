@@ -78,5 +78,9 @@ gizmo_extents = 69.0
 wait_time = 2.0
 one_shot = true
 
+[node name="KeysHold" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="ResPosTimer" to="." method="_on_res_pos_timer_timeout"]
 [connection signal="timeout" from="SpawnImmunity" to="." method="_on_spawn_immunity_timeout"]
+[connection signal="timeout" from="KeysHold" to="." method="_on_keys_hold_timeout"]

@@ -6,6 +6,7 @@ const JUMP_VELOCITY = 625.0 * 1.4
 var respawn_pos = Vector2(0,0)
 var take_damage_respos = Vector2(0,0)
 var respawn_gravity = 980.0 * 1.75
+var old_position = position
 
 const half_speed = 383.1
 const normal_speed = 475.0
@@ -18,7 +19,7 @@ var jump_count = 1
 var can_move = true
 var linear_moving = false
 var on_ice = false
-var torch_level = 2
+var torch_level = 5
 var on_pad = false
 
 var current_mode = "Default"
@@ -128,6 +129,9 @@ func _physics_process(delta):
 	if on_pad:
 		velocity.y = -JUMP_VELOCITY * 1.5
 	
+	
+	equal_movement_check()
+	
 	move_and_slide()
 
 
@@ -180,7 +184,7 @@ func _on_res_pos_timer_timeout():
 func checkpoint_ii_hit():
 	$Camera2D.enabled = true
 	current_mode = player_modes[0]
-	
+
 
 func pad_launch():
 	on_pad = true
@@ -195,3 +199,13 @@ func _on_spawn_immunity_timeout():
 	tween.tween_property($Sprite2D, "modulate", Color(1.0, 1.0, 1.0, 1.0), 1.0)
 	await get_tree().create_timer(1.0).timeout
 	can_move = true
+
+
+func equal_movement_check():
+	old_position = position
+	if old_position == position:
+		$KeysHold.start(10.0)
+		print("hi")
+
+func _on_keys_hold_timeout():
+	Global.cant_let_go_progress = 1

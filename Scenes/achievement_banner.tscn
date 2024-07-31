@@ -1,11 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://cih2b21usvryl"]
+[gd_scene load_steps=8 format=3 uid="uid://cih2b21usvryl"]
 
 [ext_resource type="Script" path="res://Scripts/AchievementBanner.gd" id="1_jbr4d"]
 [ext_resource type="Texture2D" uid="uid://mqp2kfhh0n7s" path="res://Art/AchievementBanner.png" id="1_nwbwj"]
 [ext_resource type="Texture2D" uid="uid://gjdi0j382lrp" path="res://Art/AchievementIconShiny.png" id="2_pyt5o"]
+[ext_resource type="Texture2D" uid="uid://cdhre4kp4otsa" path="res://Art/AchievementIconExploration.png" id="3_40kw7"]
+[ext_resource type="Texture2D" uid="uid://cljhh38dug6o0" path="res://Art/AchievementIconCombat.png" id="3_m73xl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_04rmm"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_m73xl")
+}],
+"loop": true,
+"name": &"Combat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_40kw7")
+}],
+"loop": true,
+"name": &"Exploration",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_pyt5o")
@@ -41,7 +59,7 @@ texture = ExtResource("1_nwbwj")
 position = Vector2(60, 56)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_04rmm")
-animation = &"Shiny"
+animation = &"Combat"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
