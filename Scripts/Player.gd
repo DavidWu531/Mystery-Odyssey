@@ -25,8 +25,6 @@ var on_pad = false
 var current_mode = "Default"
 var player_modes = ["Default", "DoubleJump", "GravityFlip", "LinearMotion"]
 
-var test = preload('res://test.tscn')
-
 func _ready():
 	speed = normal_speed
 	respawn_pos = position
@@ -64,9 +62,6 @@ func _physics_process(delta):
 				if jump_count > 0:
 					if is_on_floor() or is_on_ceiling():
 						take_damage_respos = position
-						var new_test = test.instantiate()
-						new_test.position = take_damage_respos
-						get_tree().root.add_child(new_test)
 					if gravity > 0.0:
 						velocity.y = -JUMP_VELOCITY
 					elif gravity < 0.0:
@@ -75,9 +70,6 @@ func _physics_process(delta):
 			elif current_mode == "Default":
 				if is_on_floor() or is_on_ceiling():
 					take_damage_respos = position
-					var new_test = test.instantiate()
-					new_test.position = take_damage_respos
-					get_tree().root.add_child(new_test)
 					if gravity > 0.0:
 						velocity.y = -JUMP_VELOCITY
 					elif gravity < 0.0:
@@ -85,9 +77,6 @@ func _physics_process(delta):
 			elif current_mode == "GravityFlip":
 				if is_on_floor() or is_on_ceiling():
 					take_damage_respos = position
-					var new_test = test.instantiate()
-					new_test.position = take_damage_respos
-					get_tree().root.add_child(new_test)
 					if gravity > 0.0:
 						velocity.y = -1000.0
 					elif gravity < 0.0:
@@ -154,6 +143,15 @@ func _process(_delta):
 		can_move = false
 		$SpawnImmunity.start(2.0)
 		$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
+		Global.no_stopping_now_progress += 1
+		if Global.player_health <= 0:
+			position = respawn_pos
+			take_damage_respos = respawn_pos
+			Global.player_health = Global.player_maxhealth
+			gravity = respawn_gravity
+			SignalBus.player_died.emit()
+		elif Global.player_health >= 1:
+			position = take_damage_respos
 		
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -190,9 +188,6 @@ func _process(_delta):
 func _on_res_pos_timer_timeout():
 	if (is_on_floor() and gravity > 0.0) or (is_on_ceiling() and gravity < 0.0):
 		take_damage_respos = position
-		var new_test = test.instantiate()
-		new_test.position = take_damage_respos
-		get_tree().root.add_child(new_test)
 
 
 func checkpoint_ii_hit():
@@ -208,12 +203,12 @@ func pad_delaunch():
 	on_pad = false
 
 
+func _on_keys_hold_timeout():
+	Global.cant_let_go_progress = 1
+
+
 func _on_spawn_immunity_timeout():
 	var tween = get_tree().create_tween()
 	tween.tween_property($Sprite2D, "modulate", Color(1.0, 1.0, 1.0, 1.0), 1.0)
 	await get_tree().create_timer(1.0).timeout
 	can_move = true
-
-
-func _on_keys_hold_timeout():
-	Global.cant_let_go_progress = 1
