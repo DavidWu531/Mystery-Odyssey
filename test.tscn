@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7tsfmgw6t6a2"]
+
+[ext_resource type="Texture2D" uid="uid://bam67d3f7tdl1" path="res://Art/NPC_Interact.png" id="1_8318w"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_8318w")

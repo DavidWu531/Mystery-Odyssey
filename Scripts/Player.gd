@@ -25,6 +25,8 @@ var on_pad = false
 var current_mode = "Default"
 var player_modes = ["Default", "DoubleJump", "GravityFlip", "LinearMotion"]
 
+var test = preload('res://test.tscn')
+
 func _ready():
 	speed = normal_speed
 	respawn_pos = position
@@ -62,6 +64,9 @@ func _physics_process(delta):
 				if jump_count > 0:
 					if is_on_floor() or is_on_ceiling():
 						take_damage_respos = position
+						var new_test = test.instantiate()
+						new_test.position = take_damage_respos
+						get_tree().root.add_child(new_test)
 					if gravity > 0.0:
 						velocity.y = -JUMP_VELOCITY
 					elif gravity < 0.0:
@@ -70,6 +75,9 @@ func _physics_process(delta):
 			elif current_mode == "Default":
 				if is_on_floor() or is_on_ceiling():
 					take_damage_respos = position
+					var new_test = test.instantiate()
+					new_test.position = take_damage_respos
+					get_tree().root.add_child(new_test)
 					if gravity > 0.0:
 						velocity.y = -JUMP_VELOCITY
 					elif gravity < 0.0:
@@ -77,6 +85,9 @@ func _physics_process(delta):
 			elif current_mode == "GravityFlip":
 				if is_on_floor() or is_on_ceiling():
 					take_damage_respos = position
+					var new_test = test.instantiate()
+					new_test.position = take_damage_respos
+					get_tree().root.add_child(new_test)
 					if gravity > 0.0:
 						velocity.y = -1000.0
 					elif gravity < 0.0:
@@ -129,8 +140,8 @@ func _physics_process(delta):
 	if on_pad:
 		velocity.y = -JUMP_VELOCITY * 1.5
 	
-	
-	equal_movement_check()
+	if velocity == Vector2(0, gravity * delta):
+		$KeysHold.start(10.0)
 	
 	move_and_slide()
 
@@ -179,6 +190,9 @@ func _process(_delta):
 func _on_res_pos_timer_timeout():
 	if (is_on_floor() and gravity > 0.0) or (is_on_ceiling() and gravity < 0.0):
 		take_damage_respos = position
+		var new_test = test.instantiate()
+		new_test.position = take_damage_respos
+		get_tree().root.add_child(new_test)
 
 
 func checkpoint_ii_hit():
@@ -200,12 +214,6 @@ func _on_spawn_immunity_timeout():
 	await get_tree().create_timer(1.0).timeout
 	can_move = true
 
-
-func equal_movement_check():
-	old_position = position
-	if old_position == position:
-		$KeysHold.start(10.0)
-		print("hi")
 
 func _on_keys_hold_timeout():
 	Global.cant_let_go_progress = 1
