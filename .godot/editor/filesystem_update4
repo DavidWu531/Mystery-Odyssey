@@ -1,10 +1,29 @@
+<<<<<<< HEAD
 res://Scenes/section_desert.tscn
 res://Resources/platforms.tres
 res://Resources/obstacles.tres
 res://Scenes/main_menu.tscn
+=======
+res://Scenes/main_menu.tscn
+res://Resources/platforms.tres
+res://Resources/obstacles.tres
+>>>>>>> 3dfc021899137f6534b6e6c7b0fd3cb8ef808e7a
 res://Scenes/ui_manager.tscn
 res://Scenes/achievement_banner.tscn
 res://Scenes/player.tscn
 res://Scenes/main.tscn
 res://Scenes/section_grass.tscn
 res://test.tscn
+<<<<<<< HEAD
+=======
+res://Scripts/DoubleJump.gd
+res://Scripts/GravityFlip.gd
+res://Scripts/AchievementBanner.gd
+res://Scripts/GameManager.gd
+res://Scripts/Global.gd
+res://Scripts/GrassManager.gd
+res://Scripts/MainMenu.gd
+res://Scripts/Player.gd
+res://Scripts/SignalBus.gd
+res://Scripts/UIManager.gd
+>>>>>>> 3dfc021899137f6534b6e6c7b0fd3cb8ef808e7a
