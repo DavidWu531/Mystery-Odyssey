@@ -1095,7 +1095,10 @@ position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_wy553")
 
 [node name="Door" type="Area2D" parent="."]
+visible = false
 position = Vector2(9416, -712)
+monitoring = false
+monitorable = false
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Door"]
@@ -1103,6 +1106,7 @@ texture = ExtResource("20_jsyin")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 shape = SubResource("RectangleShape2D_dbmt0")
+disabled = true
 
 [node name="Other" type="Node2D" parent="."]
 
