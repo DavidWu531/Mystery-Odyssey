@@ -65,7 +65,7 @@ fill_from = Vector2(0, 0.5)
 fill_to = Vector2(1, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6lrfc"]
-font_size = 24
+font_size = 20
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -191,7 +191,7 @@ offset_right = 576.0
 offset_bottom = 112.0
 text = "Welcome, Player!
 Press Esc to dismiss message
-Stuck? Press Tab"
+Stuck on something? Press Tab"
 label_settings = SubResource("LabelSettings_6lrfc")
 horizontal_alignment = 1
 vertical_alignment = 1
