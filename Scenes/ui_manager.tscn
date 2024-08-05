@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bvdcl15vsqy0v"]
+[gd_scene load_steps=19 format=3 uid="uid://bvdcl15vsqy0v"]
 
 [ext_resource type="Script" path="res://Scripts/UIManager.gd" id="1_aajpp"]
 [ext_resource type="Texture2D" uid="uid://j5bqpsh1t2qt" path="res://Art/Health.png" id="2_ajn7e"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dphmqqevangxu" path="res://Art/HealthOverlay.png" id="4_pvg0f"]
 [ext_resource type="Texture2D" uid="uid://rcww6b5hkcyw" path="res://Art/GravityFlipSilhouette.png" id="5_egrq5"]
 [ext_resource type="Texture2D" uid="uid://cccp47o04jf0n" path="res://Art/LinearMotionSilhouette.png" id="6_2e8di"]
+[ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="9_4lcen"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0jo67"]
 animations = [{
@@ -80,67 +81,6 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_h57yl"]
 Button/font_sizes/font_size = 69
-
-[sub_resource type="Animation" id="Animation_tw4ek"]
-resource_name = "tutorial"
-length = 20.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainScreen/TutorialDialogue/Label:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.3, 9.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": ["Welcome, Player!", "Let's start things small. Start moving using A and D, or arrow key equivalents", "You can jump onto higher platforms with W or Up Arrow"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MainScreen/TutorialDialogue/Label:visible_ratio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9, 1.4, 2.3, 4.8, 6.8, 9.3, 11.3, 12.8, 14.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_owm72"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainScreen/TutorialDialogue/Label:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["wewe"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MainScreen/TutorialDialogue/Label:visible_ratio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_53gbw"]
-_data = {
-"RESET": SubResource("Animation_owm72"),
-"tutorial": SubResource("Animation_tw4ek")
-}
 
 [node name="UIManager" type="CanvasLayer"]
 script = ExtResource("1_aajpp")
@@ -233,23 +173,25 @@ autowrap_mode = 2
 
 [node name="TutorialDialogue" type="Control" parent="MainScreen"]
 anchors_preset = 0
-offset_left = 696.0
-offset_top = 124.0
-offset_right = 1208.0
-offset_bottom = 196.0
+offset_left = 664.0
+offset_top = 104.0
+offset_right = 1240.0
+offset_bottom = 216.0
 metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="MainScreen/TutorialDialogue"]
 layout_mode = 0
-offset_right = 512.0
-offset_bottom = 72.0
+offset_right = 576.0
+offset_bottom = 112.0
 texture = SubResource("GradientTexture2D_800ft")
 
 [node name="Label" type="Label" parent="MainScreen/TutorialDialogue"]
 layout_mode = 0
-offset_right = 512.0
-offset_bottom = 72.0
-text = "wewe"
+offset_right = 576.0
+offset_bottom = 112.0
+text = "Welcome, Player!
+Press Esc to dismiss message
+Stuck? Press Tab"
 label_settings = SubResource("LabelSettings_6lrfc")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -262,6 +204,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("9_4lcen")
 
 [node name="BG" type="ColorRect" parent="PauseMenu"]
 layout_mode = 0
@@ -299,11 +242,5 @@ offset_right = 1088.0
 offset_bottom = 703.0
 theme = SubResource("Theme_h57yl")
 text = "Continue"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_53gbw")
-}
-autoplay = "tutorial"
 
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]

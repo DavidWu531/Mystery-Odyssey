@@ -1,23 +1,11 @@
-<<<<<<< HEAD
 res://Scenes/main_menu.tscn
 res://Resources/platforms.tres
 res://Resources/obstacles.tres
-res://Scripts/Player.gd
-res://Scripts/UIManager.gd
-=======
-res://Scenes/section_desert.tscn
-res://Resources/platforms.tres
-res://Resources/obstacles.tres
-res://Scenes/main_menu.tscn
->>>>>>> 2236b992e2ba45ed6a9e6b05a3419cc2c73711d1
 res://Scenes/ui_manager.tscn
 res://Scenes/achievement_banner.tscn
 res://Scenes/player.tscn
 res://Scenes/main.tscn
 res://Scenes/section_grass.tscn
-<<<<<<< HEAD
 res://Scenes/section_desert.tscn
-res://Scripts/Global.gd
-=======
-res://test.tscn
->>>>>>> 2236b992e2ba45ed6a9e6b05a3419cc2c73711d1
+res://Scripts/UIManager.gd
+res://Scripts/PauseMenu.gd

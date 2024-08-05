@@ -57,12 +57,6 @@ func _process(delta):
 	$MainScreen/PlayerEnergy.value = Global.player_energy
 
 
-func _physics_process(_delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().paused = true
-		$PauseMenu.show()
-
-
 func _on_continue_pressed():
 	$PauseMenu.hide()
 	get_tree().paused = false
@@ -102,3 +96,4 @@ func achievement_completed():
 	var new_banner = banner.instantiate()
 	new_banner.position = Vector2(36,774)
 	add_child(new_banner)
+
