@@ -49,14 +49,11 @@ func _process(delta):
 	$MainScreen/PlayerHealthOverlay.size = Vector2(Global.player_maxhealth * 38, 32)
 	$MainScreen/PlayerHealth.size = Vector2(Global.player_health * 38, 32)
 	
-	if not $MainScreen/Tutorial.visible:
-		Global.time_elapsed += delta
-	
 	$MainScreen/TimeElapsed.text = str(Global.time_elapsed).pad_decimals(2)
 	
-	Global.player_energy -= 0.01
+	Global.time_elapsed += delta
 	
-	$MainScreen/PlayerEnergy.max_value = 200
+	$MainScreen/PlayerEnergy.max_value = 20
 	$MainScreen/PlayerEnergy.value = Global.player_energy
 
 

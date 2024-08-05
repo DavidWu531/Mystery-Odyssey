@@ -19,7 +19,7 @@ var jump_count = 1
 var can_move = true
 var linear_moving = false
 var on_ice = false
-var torch_level = 5
+var torch_level = 1
 var on_pad = false
 
 var current_mode = "Default"
@@ -176,14 +176,27 @@ func _process(_delta):
 	if Input.is_action_just_pressed("TorchToggle"):
 		if $AngularLight.enabled:
 			$AngularLight.enabled = false
+			$RadialLight.enabled = true
+		elif $RadialLight.enabled:
+			$AngularLight.enabled = false
+			$RadialLight.enabled = false
 		else:
 			$AngularLight.enabled = true
+			$RadialLight.enabled = false
 	
+	if $AngularLight.enabled or $RadialLight.enabled:
+		Global.player_energy -= 0.01
+		if Global.player_energy <= 0.0:
+			$AngularLight.enabled = false
+			$RadialLight.enabled = false
+	elif not $AngularLight.enabled and not $RadialLight.enabled:
+		if Global.player_energy < 20.0:
+			Global.player_energy += 0.005
 
 	$AngularLight.offset = Vector2(45.5 * (5 * torch_level) - 32, 0)
 	$AngularLight.texture_scale = 5 * torch_level
 	
-	$RadialLight.texture_scale = 2 * torch_level
+	$RadialLight.texture_scale = 2.5 * torch_level
 
 func _on_res_pos_timer_timeout():
 	if (is_on_floor() and gravity > 0.0) or (is_on_ceiling() and gravity < 0.0):

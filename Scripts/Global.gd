@@ -53,7 +53,7 @@ var social_expert_progress = 0
 # Other Global
 var score = 0
 var player_health = 3
-var player_energy = 200
+var player_energy = 20
 var time_elapsed = 0.00
 var player_maxhealth = 3
 var achievement_completed = 0
