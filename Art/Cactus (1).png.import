@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< Updated upstream
-uid="uid://ucbeyxfchk12"
-=======
-uid="uid://dbxgtnx28f5db"
->>>>>>> Stashed changes
-path="res://.godot/imported/Prismdroidattackdriller.png-c9df26603ff3e3aac7548cb09d281514.ctex"
+uid="uid://drql364olqyfl"
+path="res://.godot/imported/Cactus (1).png-081a832c9c1ca485b0b06007a9db7ded.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Prismdroidattackdriller.png"
-dest_files=["res://.godot/imported/Prismdroidattackdriller.png-c9df26603ff3e3aac7548cb09d281514.ctex"]
+source_file="res://Art/Cactus (1).png"
+dest_files=["res://.godot/imported/Cactus (1).png-081a832c9c1ca485b0b06007a9db7ded.ctex"]
 
 [params]
 
