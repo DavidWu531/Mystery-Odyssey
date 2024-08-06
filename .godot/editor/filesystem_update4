@@ -7,3 +7,11 @@ res://Scenes/achievement_banner.tscn
 res://Scenes/main.tscn
 res://Scenes/section_grass.tscn
 res://Scenes/section_desert.tscn
+res://Scripts/UIManager.gd
+res://Scripts/Global.gd
+res://Scripts/Checkpoint.gd
+res://Scripts/SignalBus.gd
+res://Scripts/PauseMenu.gd
+res://Scripts/GrassManager.gd
+res://Scripts/DesertManager.gd
+res://Resources/interaction.tres

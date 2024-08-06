@@ -20,3 +20,7 @@ func _on_body_entered(body):
 		elif not SignalBus.checkpoint_ii_emitted and SignalBus.checkpoint_ii_available:
 			SignalBus.checkpoint_ii_hit.emit()
 			SignalBus.checkpoint_ii_emitted = true
+			SignalBus.checkpoint_iii_available = true
+		elif not SignalBus.checkpoint_iii_emitted and SignalBus.checkpoint_iii_available:
+			SignalBus.checkpoint_iii_hit.emit()
+			SignalBus.checkpoint_iii_emitted = true

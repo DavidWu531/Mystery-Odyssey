@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drql364olqyfl"
-path="res://.godot/imported/Cactus (1).png-081a832c9c1ca485b0b06007a9db7ded.ctex"
+uid="uid://cm3rcvdiy4tl3"
+path="res://.godot/imported/CactusTallDesert.png-99155a2e6208f4fae3806ce00b05104d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Cactus (1).png"
-dest_files=["res://.godot/imported/Cactus (1).png-081a832c9c1ca485b0b06007a9db7ded.ctex"]
+source_file="res://Art/CactusTallDesert.png"
+dest_files=["res://.godot/imported/CactusTallDesert.png-99155a2e6208f4fae3806ce00b05104d.ctex"]
 
 [params]
 

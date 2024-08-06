@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da6kptlqgokvk"
-path="res://.godot/imported/Cactus2.png-54dae98ae9c6b3eb489c5a37f84e8f44.ctex"
+uid="uid://cxis8f0h2fwba"
+path="res://.godot/imported/BlockSandSlope.png-a22d83403c337465c92883ec8053c16c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Cactus2.png"
-dest_files=["res://.godot/imported/Cactus2.png-54dae98ae9c6b3eb489c5a37f84e8f44.ctex"]
+source_file="res://Art/BlockSandSlope.png"
+dest_files=["res://.godot/imported/BlockSandSlope.png-a22d83403c337465c92883ec8053c16c.ctex"]
 
 [params]
 
