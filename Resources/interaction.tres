@@ -1,3 +1,10 @@
-[gd_resource type="Gradient" format=3 uid="uid://cam43kn3d8b74"]
+[gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://cam43kn3d8b74"]
+
+[sub_resource type="Gradient" id="Gradient_voav2"]
+offsets = PackedFloat32Array(0, 0.512987, 1)
+colors = PackedColorArray(0, 0.72549, 0.988235, 1, 0, 0.580392, 0.984314, 1, 0, 0.72549, 0.988235, 1)
 
 [resource]
+gradient = SubResource("Gradient_voav2")
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(1, 0.5)

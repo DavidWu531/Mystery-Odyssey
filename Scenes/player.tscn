@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://k6q106c05g5l"]
+[gd_scene load_steps=14 format=3 uid="uid://k6q106c05g5l"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_o3pfn"]
 [ext_resource type="Texture2D" uid="uid://bgdjpajr8q66b" path="res://Art/Prismdroidattackdriller.png" id="2_0s1hf"]
@@ -20,21 +20,17 @@ region = Rect2(5060, 0, 1265, 619)
 atlas = ExtResource("2_0s1hf")
 region = Rect2(6325, 0, 1265, 619)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u6ymi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxseu"]
 atlas = ExtResource("2_0s1hf")
 region = Rect2(7590, 0, 1265, 619)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w05ln"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc5gj"]
 atlas = ExtResource("2_0s1hf")
-region = Rect2(6325, 0, 1265, 619)
+region = Rect2(6325, 2476, 1265, 619)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_geler"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5237f"]
 atlas = ExtResource("2_0s1hf")
-region = Rect2(5060, 0, 1265, 619)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_expbc"]
-atlas = ExtResource("2_0s1hf")
-region = Rect2(3795, 0, 1265, 619)
+region = Rect2(7590, 2476, 1265, 619)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c03ud"]
 animations = [{
@@ -57,16 +53,13 @@ animations = [{
 "texture": SubResource("AtlasTexture_813ll")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u6ymi")
+"texture": SubResource("AtlasTexture_sxseu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w05ln")
+"texture": SubResource("AtlasTexture_vc5gj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_geler")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_expbc")
+"texture": SubResource("AtlasTexture_5237f")
 }],
 "loop": true,
 "name": &"walking",
@@ -87,7 +80,9 @@ metadata/_edit_group_ = true
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_c03ud")
-animation = &"walking"
+animation = &"static"
+autoplay = "static"
+frame_progress = 0.653507
 offset = Vector2(160, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

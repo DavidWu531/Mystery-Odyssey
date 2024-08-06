@@ -151,7 +151,10 @@ func _on_lily_timer_timeout():
 func checkpoint_ii_hit():
 	$Platforms.set_cell(0, Vector2i(294,-52), 0, Vector2i(0,0), 0)
 	$Platforms.set_cell(0, Vector2i(298,-52), 0, Vector2i(0,0), 0)
-
+	
+	$Checkpoints/CheckpointII.set_deferred("monitorable", false)
+	$Checkpoints/CheckpointII.set_deferred("monitoring", false)
+	$Checkpoints/CheckpointII/CollisionShape2D.set_deferred("disabled", true)
 
 func _on_npcii_body_entered(body):
 	if "Player" in body.name:

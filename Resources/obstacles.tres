@@ -3,8 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://b5qafojg7livy" path="res://Art/Spike.png" id="1_7flqf"]
 [ext_resource type="Texture2D" uid="uid://dvg35jrw48s2s" path="res://Art/SmallSpike.png" id="2_7jh1b"]
 [ext_resource type="Texture2D" uid="uid://pxmpa7y2kkor" path="res://Art/SpikeGrass.png" id="3_aljsr"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://drql364olqyfl" path="res://Art/Cactus (1).png" id="4_llj6s"]
 [ext_resource type="Texture2D" uid="uid://xpo4kb8l1o1f" path="res://Art/Cactus2 (1).png" id="5_lxtbm"]
+=======
+[ext_resource type="Texture2D" uid="uid://drql364olqyfl" path="res://Art/CactusDesert.png" id="4_llj6s"]
+>>>>>>> adf7b4691cfb7aac7b695d304e2c7edc3ea9e0bb
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mcwt5"]
 texture = ExtResource("1_7flqf")

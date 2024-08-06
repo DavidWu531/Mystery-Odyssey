@@ -54,7 +54,7 @@ func _process(delta):
 	
 	Global.time_elapsed += delta
 	
-	$MainScreen/PlayerEnergy.max_value = 20
+	$MainScreen/PlayerEnergy.max_value = 50
 	$MainScreen/PlayerEnergy.value = Global.player_energy
 	
 	if Input.is_action_just_pressed("ui_focus_next"):
