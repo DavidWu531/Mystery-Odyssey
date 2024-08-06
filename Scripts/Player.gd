@@ -85,6 +85,11 @@ func _physics_process(delta):
 		else:
 			velocity = Vector2(0,0)
 
+		if gravity > 0.0:
+			$Sprite2D.flip_v = false
+		elif gravity < 0.0:
+			$Sprite2D.flip_v = true
+		
 	if Input.is_action_pressed("Jump"):
 		if can_move:
 			if current_mode == "LinearMotion":
@@ -112,8 +117,16 @@ func _physics_process(delta):
 		if current_mode != "LinearMotion":
 			if direction:
 				velocity.x = direction * speed
+				$Sprite2D.play("walking")
+				if direction == 1:
+					$Sprite2D.offset.x = 160
+					$Sprite2D.flip_h = false
+				elif direction == -1:
+					$Sprite2D.offset.x = -160
+					$Sprite2D.flip_h = true
 			else:
 				velocity.x = move_toward(velocity.x, 0, speed)
+				$Sprite2D.play("static")
 	else:
 		velocity = Vector2(0,0)
 	

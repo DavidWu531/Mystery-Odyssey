@@ -60,22 +60,25 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_focus_next"):
 		$MainScreen/TutorialDialogue.show()
 		if scroll_tip_id == 0:
-			$MainScreen/TutorialDialogue/Label.text = "Falling too slow? Press S or Down Arrow to fall faster\n\
+			$MainScreen/TutorialDialogue/Label.text = "Falling too slow? Press S or Down Arrow to fall faster\n \
 			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
 		elif scroll_tip_id == 1:
-			$MainScreen/TutorialDialogue/Label.text = "Press E or LMB to interact with objects with (!)\n\
+			$MainScreen/TutorialDialogue/Label.text = "Press E or LMB to interact with objects with (!)\n \
 			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
 		elif scroll_tip_id == 2:
-			$MainScreen/TutorialDialogue/Label.text = "You can't go back down a solid grass block, only up\n\
+			$MainScreen/TutorialDialogue/Label.text = "You can't go back down a solid grass block, only up\n \
 			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
 		elif scroll_tip_id == 3:
-			$MainScreen/TutorialDialogue/Label.text = "Press 1 to toggle between different torch beams\n\
+			$MainScreen/TutorialDialogue/Label.text = "Press 1 to toggle between different torch beams\n \
 			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
 		elif scroll_tip_id == 4:
-			$MainScreen/TutorialDialogue/Label.text = "Torches will deplete your energy and shutoff upon running out\n\
+			$MainScreen/TutorialDialogue/Label.text = "Torches deplete your energy and shutoff when empty\n \
+			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+		elif scroll_tip_id == 5:
+			$MainScreen/TutorialDialogue/Label.text = "In gravity flip mode, jump to switch gravity\n \
 			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
 		
-		if scroll_tip_id < 3:
+		if scroll_tip_id < 5:
 			scroll_tip_id += 1
 		else:
 			scroll_tip_id = 0
