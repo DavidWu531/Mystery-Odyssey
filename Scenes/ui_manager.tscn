@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bl3berkqrbv5y" path="res://Art/DoubleJumpSilhoutte.png" id="4_5uqyk"]
 [ext_resource type="Texture2D" uid="uid://dphmqqevangxu" path="res://Art/HealthOverlay.png" id="4_pvg0f"]
 [ext_resource type="Texture2D" uid="uid://rcww6b5hkcyw" path="res://Art/GravityFlipSilhouette.png" id="5_egrq5"]
-[ext_resource type="Material" uid="uid://dwffojaycyc6x" path="res://Resources/darkness_immune.tres" id="5_emty2"]
 [ext_resource type="Texture2D" uid="uid://cccp47o04jf0n" path="res://Art/LinearMotionSilhouette.png" id="6_2e8di"]
+[ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="9_4lcen"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0jo67"]
 animations = [{
@@ -55,18 +55,19 @@ font_size = 40
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2ar46"]
-font_size = 52
+[sub_resource type="Gradient" id="Gradient_voav2"]
+offsets = PackedFloat32Array(0, 0.512987, 1)
+colors = PackedColorArray(0, 0.72549, 0.988235, 1, 0, 0.580392, 0.984314, 1, 0, 0.72549, 0.988235, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_800ft"]
+gradient = SubResource("Gradient_voav2")
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6lrfc"]
+font_size = 20
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_t0jrn"]
-font_size = 52
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Theme" id="Theme_ugd5s"]
-Button/font_sizes/font_size = 42
 
 [sub_resource type="LabelSettings" id="LabelSettings_fw5wo"]
 font_size = 69
@@ -170,63 +171,31 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Tutorial" type="Control" parent="MainScreen"]
-visible = false
-material = ExtResource("5_emty2")
-layout_mode = 3
+[node name="TutorialDialogue" type="Control" parent="MainScreen"]
 anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_left = 664.0
+offset_top = 104.0
+offset_right = 1240.0
+offset_bottom = 216.0
+metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="MainScreen/Tutorial"]
+[node name="TextureRect" type="TextureRect" parent="MainScreen/TutorialDialogue"]
 layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-color = Color(0.113725, 0.0470588, 0.00392157, 1)
+offset_right = 576.0
+offset_bottom = 112.0
+texture = SubResource("GradientTexture2D_800ft")
 
-[node name="Basic" type="Label" parent="MainScreen/Tutorial"]
+[node name="Label" type="Label" parent="MainScreen/TutorialDialogue"]
 layout_mode = 0
-offset_right = 896.0
-offset_bottom = 832.0
-text = "Basic
-Left - A, Left Arrow
-Right - D, Right Arrow
-Jump - W, Up Arrow
-Interact - E, Space, LMB
-Fast Drop - S, Down Arrow"
-label_settings = SubResource("LabelSettings_2ar46")
+offset_right = 576.0
+offset_bottom = 112.0
+text = "Welcome, Player!
+Press Esc to dismiss message
+Stuck on something? Press Tab"
+label_settings = SubResource("LabelSettings_6lrfc")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-
-[node name="Advanced" type="Label" parent="MainScreen/Tutorial"]
-layout_mode = 0
-offset_left = 1024.0
-offset_right = 1920.0
-offset_bottom = 832.0
-text = "Advanced
-Toggle Torch - 1 (TBC)
-Drill Attack - 2 (TBC)
-TBC - TBC
-
-Gamemodes
-Default - Jumps once
-Gravity Flip - Flips gravity
-Double Jump - Jumps twice
-Linear Motion - Travel on an angle linear"
-label_settings = SubResource("LabelSettings_t0jrn")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="OK" type="Button" parent="MainScreen/Tutorial"]
-layout_mode = 0
-offset_top = 960.0
-offset_right = 1920.0
-offset_bottom = 1024.0
-theme = SubResource("Theme_ugd5s")
-text = "OKAY
-(This whole UI will be subject to modification)"
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
@@ -235,6 +204,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("9_4lcen")
 
 [node name="BG" type="ColorRect" parent="PauseMenu"]
 layout_mode = 0
@@ -273,5 +243,4 @@ offset_bottom = 703.0
 theme = SubResource("Theme_h57yl")
 text = "Continue"
 
-[connection signal="pressed" from="MainScreen/Tutorial/OK" to="." method="_on_ok_pressed"]
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]

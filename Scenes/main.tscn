@@ -90,10 +90,10 @@ position = Vector2(8, -56)
 [node name="Section_Grass" parent="Layouts" instance=ExtResource("2_at4yo")]
 
 [node name="Section_Desert" parent="Layouts" instance=ExtResource("4_kmwog")]
-position = Vector2(3864, -3360)
+position = Vector2(9936, -560)
 
 [node name="Section_Frost" parent="Layouts" instance=ExtResource("5_lpywg")]
-position = Vector2(992, 1376)
+position = Vector2(11496, 1336)
 
 [node name="SceneCamera" type="Camera2D" parent="."]
 position = Vector2(3232, -1416)
@@ -105,5 +105,6 @@ editor_draw_limits = true
 libraries = {
 "": SubResource("AnimationLibrary_n58ot")
 }
+autoplay = "Cycle"
 
 [node name="UIManager" parent="." instance=ExtResource("4_kf2re")]

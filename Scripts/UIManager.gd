@@ -9,6 +9,7 @@ var quests = {
 }
 
 var banner = preload("res://Scenes/achievement_banner.tscn")
+var scroll_tip_id = 0
 
 var npci_dialogue_id = 0
 
@@ -49,21 +50,38 @@ func _process(delta):
 	$MainScreen/PlayerHealthOverlay.size = Vector2(Global.player_maxhealth * 38, 32)
 	$MainScreen/PlayerHealth.size = Vector2(Global.player_health * 38, 32)
 	
-	if not $MainScreen/Tutorial.visible:
-		Global.time_elapsed += delta
-	
 	$MainScreen/TimeElapsed.text = str(Global.time_elapsed).pad_decimals(2)
 	
-	Global.player_energy -= 0.01
+	Global.time_elapsed += delta
 	
-	$MainScreen/PlayerEnergy.max_value = 200
+	$MainScreen/PlayerEnergy.max_value = 50
 	$MainScreen/PlayerEnergy.value = Global.player_energy
-
-
-func _physics_process(_delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().paused = true
-		$PauseMenu.show()
+	
+	if Input.is_action_just_pressed("ui_focus_next"):
+		$MainScreen/TutorialDialogue.show()
+		if scroll_tip_id == 0:
+			$MainScreen/TutorialDialogue/Label.text = "Falling too slow? Press S or Down Arrow to fall faster\n \
+			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+		elif scroll_tip_id == 1:
+			$MainScreen/TutorialDialogue/Label.text = "Press E or LMB to interact with objects with (!)\n \
+			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+		elif scroll_tip_id == 2:
+			$MainScreen/TutorialDialogue/Label.text = "You can't go back down a solid grass block, only up\n \
+			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+		elif scroll_tip_id == 3:
+			$MainScreen/TutorialDialogue/Label.text = "Press 1 to toggle between different torch beams\n \
+			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+		elif scroll_tip_id == 4:
+			$MainScreen/TutorialDialogue/Label.text = "Torches deplete your energy and shutoff when empty\n \
+			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+		elif scroll_tip_id == 5:
+			$MainScreen/TutorialDialogue/Label.text = "In gravity flip mode, jump to switch gravity\n \
+			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+		
+		if scroll_tip_id < 5:
+			scroll_tip_id += 1
+		else:
+			scroll_tip_id = 0
 
 
 func _on_continue_pressed():
@@ -105,3 +123,4 @@ func achievement_completed():
 	var new_banner = banner.instantiate()
 	new_banner.position = Vector2(36,774)
 	add_child(new_banner)
+

@@ -8,7 +8,7 @@ func _process(_delta):
 				if "Player" in node.name:
 					if not $AnimatedSprite2D.is_playing():
 						var animation_tween = get_tree().create_tween()
-						animation_tween.tween_property(node, "position", position + Vector2(0, 50), 0.5)
+						animation_tween.tween_property(node, "position", position + Vector2(0, 50), 1.5).set_trans(Tween.TRANS_BOUNCE)
 						$AnimatedSprite2D.play("default")
 						node.can_move = false
 						await $AnimatedSprite2D.animation_finished

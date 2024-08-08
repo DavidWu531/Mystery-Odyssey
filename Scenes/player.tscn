@@ -1,31 +1,73 @@
-[gd_scene load_steps=8 format=3 uid="uid://k6q106c05g5l"]
+[gd_scene load_steps=14 format=3 uid="uid://k6q106c05g5l"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_o3pfn"]
-[ext_resource type="Texture2D" uid="uid://bkosicp6ba7it" path="res://Art/BlockRed.png" id="2_oxk6a"]
-[ext_resource type="Texture2D" uid="uid://dtvvx8bg6id0g" path="res://Art/PlayerTemp2.png" id="3_vbqre"]
+[ext_resource type="Texture2D" uid="uid://bgdjpajr8q66b" path="res://Art/Prismdroidattackdriller.png" id="2_0s1hf"]
 [ext_resource type="Texture2D" uid="uid://dgtg2cvyqihd5" path="res://Art/RadialLight.png" id="4_nool5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk5jt"]
+atlas = ExtResource("2_0s1hf")
+region = Rect2(0, 0, 1265, 619)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tha5q"]
+atlas = ExtResource("2_0s1hf")
+region = Rect2(3795, 0, 1265, 619)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vliph"]
+atlas = ExtResource("2_0s1hf")
+region = Rect2(5060, 0, 1265, 619)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_813ll"]
+atlas = ExtResource("2_0s1hf")
+region = Rect2(6325, 0, 1265, 619)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxseu"]
+atlas = ExtResource("2_0s1hf")
+region = Rect2(7590, 0, 1265, 619)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc5gj"]
+atlas = ExtResource("2_0s1hf")
+region = Rect2(6325, 2476, 1265, 619)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5237f"]
+atlas = ExtResource("2_0s1hf")
+region = Rect2(7590, 2476, 1265, 619)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c03ud"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_oxk6a")
+"texture": SubResource("AtlasTexture_gk5jt")
 }],
-"loop": false,
-"name": &"Temp1",
+"loop": true,
+"name": &"static",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_vbqre")
+"texture": SubResource("AtlasTexture_tha5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vliph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_813ll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxseu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc5gj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5237f")
 }],
 "loop": true,
-"name": &"Temp2",
-"speed": 5.0
+"name": &"walking",
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ic70q"]
-size = Vector2(63.5, 63.5)
+size = Vector2(52, 87)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eqejr"]
 load_path = "res://.godot/imported/Light.png-d2a75277c3d245367c882dae628488a7.ctex"
@@ -36,11 +78,15 @@ script = ExtResource("1_o3pfn")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_c03ud")
-animation = &"Temp1"
-autoplay = "Temp1"
+animation = &"static"
+autoplay = "static"
+frame_progress = 0.653507
+offset = Vector2(160, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_ic70q")
 
 [node name="Camera2D" type="Camera2D" parent="."]
