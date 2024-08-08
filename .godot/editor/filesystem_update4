@@ -1,3 +1,15 @@
+<<<<<<< HEAD
 res://Scenes/section_desert.tscn
+=======
+res://Scenes/main_menu.tscn
+res://Scenes/achievement_banner.tscn
+res://Scenes/enemy.tscn
+res://Scenes/keypad.tscn
+res://Scenes/player.tscn
+res://Scenes/loading_screen.tscn
+res://Scenes/ui_manager.tscn
+res://Scenes/won.tscn
+res://Scenes/main.tscn
+>>>>>>> a3db529cb3db24b4ac8490f187a6de51a2ce92b9
 res://Resources/platforms.tres
 res://Resources/obstacles.tres
