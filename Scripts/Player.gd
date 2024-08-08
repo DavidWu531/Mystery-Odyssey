@@ -13,6 +13,8 @@ const normal_speed = 475.0
 const double_speed = 590.7
 const triple_speed = 713.9
 const quadruple_speed = 878.2
+const PUSH_FORCE = 100
+const MAX_VELOCITY = 150
 
 var gravity = 980.0 * 1.75
 var jump_count = 1
@@ -168,6 +170,7 @@ func _process(_delta):
 		
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
+		var collision_block = collision.get_collider()
 		if "Obstacles" in collision.get_collider().name:
 			Global.player_health -= 1
 			gravity = respawn_gravity
@@ -185,6 +188,10 @@ func _process(_delta):
 			elif Global.player_health >= 1:
 				position = take_damage_respos
 			break
+		if collision_block.is_in_group("Blocks"):
+			if abs(collision_block.get_linear_velocity().x) < MAX_VELOCITY:
+				collision_block.apply_central_impulse(collision.get_normal() * -PUSH_FORCE)
+			
 	
 	if Input.is_action_just_pressed("TorchToggle"):
 		if $AngularLight.enabled:
