@@ -1,3 +1,4 @@
+res://Scenes/section_desert.tscn
 res://Scenes/main_menu.tscn
 res://Resources/platforms.tres
 res://Resources/obstacles.tres
@@ -13,3 +14,5 @@ res://Scenes/section_frost.tscn
 res://Scenes/section_desert.tscn
 res://Scenes/main.tscn
 res://Scripts/Player.gd
+res://Resources/platforms.tres
+res://Resources/obstacles.tres
