@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://bs0rjq8hecmbe"]
+[gd_scene load_steps=112 format=3 uid="uid://bs0rjq8hecmbe"]
 
 [ext_resource type="Script" path="res://Scripts/GrassManager.gd" id="1_ef5ps"]
 [ext_resource type="Script" path="res://Scripts/DoubleJump.gd" id="2_owohi"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://c0gicrfkarewv" path="res://Art/CaveDoor.png" id="20_jsyin"]
 [ext_resource type="Texture2D" uid="uid://bemkd0cm8xinw" path="res://Art/JumpPad1.png" id="21_5fw0t"]
 [ext_resource type="Script" path="res://Scripts/Pads.gd" id="21_tvhbx"]
+[ext_resource type="Texture2D" uid="uid://bkosicp6ba7it" path="res://Art/BlockRed.png" id="23_awilm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mccl"]
 atlas = ExtResource("3_xddn1")
@@ -590,6 +591,13 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyiqi"]
 size = Vector2(20, 6)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_soxff"]
+friction = 0.5
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bu6cm"]
+size = Vector2(64, 64)
+
 [node name="Section_Grass" type="Node2D"]
 script = ExtResource("1_ef5ps")
 
@@ -1146,6 +1154,18 @@ texture = ExtResource("21_5fw0t")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Other/PadIII"]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_dyiqi")
+
+[node name="MovableBlock" type="RigidBody2D" parent="." groups=["Blocks"]]
+position = Vector2(368, -664)
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_soxff")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MovableBlock"]
+texture = ExtResource("23_awilm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovableBlock"]
+shape = SubResource("RectangleShape2D_bu6cm")
 
 [connection signal="body_entered" from="DoubleJump" to="DoubleJump" method="_on_body_entered"]
 [connection signal="body_exited" from="DoubleJump" to="DoubleJump" method="_on_body_exited"]

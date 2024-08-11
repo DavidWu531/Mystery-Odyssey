@@ -62,21 +62,4 @@ position = Vector2(-64, -192)
 script = ExtResource("4_qb61t")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Checkpoints/CheckpointIII"]
 sprite_frames = SubResource("SpriteFrames_6ib41")
-animation = &"Default"
-autoplay = "Default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/CheckpointIII"]
-shape = SubResource("RectangleShape2D_4e7e8")
-
-[node name="Quicksand" type="Area2D" parent="."]
-position = Vector2(1792, 384)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Quicksand"]
-position = Vector2(0, -32)
-shape = SubResource("RectangleShape2D_fi6mw")
-
-[connection signal="body_entered" from="Checkpoints/CheckpointIII" to="Checkpoints/CheckpointIII" method="_on_body_entered"]
-[connection signal="body_entered" from="Quicksand" to="." method="_on_quicksand_body_entered"]
-[connection signal="body_exited" from="Quicksand" to="." method="_on_quicksand_body_exited"]
