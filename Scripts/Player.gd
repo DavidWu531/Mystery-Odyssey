@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed = 0
-const JUMP_VELOCITY = 625.0 * 1.4
+var jump_velocity = 625.0 * 1.4
 
 var respawn_pos = Vector2(0,0)
 var take_damage_respos = Vector2(0,0)
@@ -19,7 +19,6 @@ var jump_count = 1
 var can_move = true
 var linear_moving = false
 var on_ice = false
-var torch_level = 1.5
 var on_pad = false
 
 var current_mode = "Default"
@@ -63,17 +62,17 @@ func _physics_process(delta):
 					if is_on_floor() or is_on_ceiling():
 						take_damage_respos = position
 					if gravity > 0.0:
-						velocity.y = -JUMP_VELOCITY
+						velocity.y = -jump_velocity
 					elif gravity < 0.0:
-						velocity.y = JUMP_VELOCITY
+						velocity.y = jump_velocity
 					jump_count -= 1
 			elif current_mode == "Default":
 				if is_on_floor() or is_on_ceiling():
 					take_damage_respos = position
 					if gravity > 0.0:
-						velocity.y = -JUMP_VELOCITY
+						velocity.y = -jump_velocity
 					elif gravity < 0.0:
-						velocity.y = JUMP_VELOCITY
+						velocity.y = jump_velocity
 			elif current_mode == "GravityFlip":
 				if is_on_floor() or is_on_ceiling():
 					take_damage_respos = position
@@ -106,9 +105,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("FastDrop"):
 		if can_move:
 			if gravity > 0.0:
-				velocity.y = JUMP_VELOCITY * 5
+				velocity.y = jump_velocity * 5
 			elif gravity < 0.0:
-				velocity.y = -JUMP_VELOCITY * 5
+				velocity.y = -jump_velocity * 5
 		else:
 			velocity = Vector2(0,0)
 	
@@ -140,7 +139,7 @@ func _physics_process(delta):
 				jump_count = 1
 	
 	if on_pad:
-		velocity.y = -JUMP_VELOCITY * 1.5
+		velocity.y = -jump_velocity * 1.5
 	
 	if velocity == Vector2(0, gravity * delta):
 		$KeysHold.start(10.0)
@@ -185,6 +184,16 @@ func _process(_delta):
 			elif Global.player_health >= 1:
 				position = take_damage_respos
 			break
+		
+		elif "Platforms" in collision.get_collider().name:
+			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + Vector2i(0,1)) == 4:
+				if not Global.desert_explored and Global.desert_explored_progress == 0:
+					Global.desert_explored_progress += 1
+			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + Vector2i(0,1)) == 5:
+				if not Global.frostland_explored and Global.frostland_explored_progress == 0:
+					Global.frostland_explored_progress += 1
+			break
+				
 	
 	if Input.is_action_just_pressed("TorchToggle"):
 		if $AngularLight.enabled:
@@ -198,18 +207,18 @@ func _process(_delta):
 			$RadialLight.enabled = false
 	
 	if $AngularLight.enabled or $RadialLight.enabled:
-		Global.player_energy -= 0.01
+		Global.player_energy -= 0.025
 		if Global.player_energy <= 0.0:
 			$AngularLight.enabled = false
 			$RadialLight.enabled = false
 	elif not $AngularLight.enabled and not $RadialLight.enabled:
-		if Global.player_energy < 20.0:
-			Global.player_energy += 0.005
+		if Global.player_energy < 50.0:
+			Global.player_energy += 0.075
 
-	$AngularLight.offset = Vector2(45.5 * (5 * torch_level) - 32, 0)
-	$AngularLight.texture_scale = 5 * torch_level
+	$AngularLight.offset = Vector2(45.5 * (5 * Global.torch_level) - 32, 0)
+	$AngularLight.texture_scale = 5 * Global.torch_level
 	
-	$RadialLight.texture_scale = 2.5 * torch_level
+	$RadialLight.texture_scale = 2.5 * Global.torch_level
 
 func _on_res_pos_timer_timeout():
 	if (is_on_floor() and gravity > 0.0) or (is_on_ceiling() and gravity < 0.0):

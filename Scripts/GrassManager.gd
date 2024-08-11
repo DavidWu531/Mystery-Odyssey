@@ -92,12 +92,12 @@ func _on_npci_body_exited(body):
 		
 		
 func checkpoint_i_hit():
-	$Platforms.set_cell(0, Vector2i(102,-92), 0, Vector2i(0,0), 6)
-	$Platforms.set_cell(0, Vector2i(102,-88), 0, Vector2i(0,0), 6)
-	$Platforms.set_cell(0, Vector2i(102,-84), 0, Vector2i(0,0), 6)
-	$Platforms.set_cell(0, Vector2i(102,-80), 0, Vector2i(0,0), 6)
-	$Platforms.set_cell(0, Vector2i(102,-76), 0, Vector2i(0,0), 6)
-	$Platforms.set_cell(0, Vector2i(102,-72), 0, Vector2i(0,0), 6)
+	$Platforms.set_cell(0, Vector2i(25,-23), 0, Vector2i(0,0), 6)
+	$Platforms.set_cell(0, Vector2i(25,-22), 0, Vector2i(0,0), 6)
+	$Platforms.set_cell(0, Vector2i(25,-21), 0, Vector2i(0,0), 6)
+	$Platforms.set_cell(0, Vector2i(25,-20), 0, Vector2i(0,0), 6)
+	$Platforms.set_cell(0, Vector2i(25,-19), 0, Vector2i(0,0), 6)
+	$Platforms.set_cell(0, Vector2i(25,-18), 0, Vector2i(0,0), 6)
 	
 	$Checkpoints/CheckpointI.set_deferred("monitorable", false)
 	$Checkpoints/CheckpointI.set_deferred("monitoring", false)
@@ -144,13 +144,13 @@ func _on_lily_vanish_body_exited(body):
 
 
 func _on_lily_timer_timeout():
-	$Platforms.set_cell(0, Vector2i(294,-52), -1, Vector2i(0,0), -1)
-	$Platforms.set_cell(0, Vector2i(298,-52), -1, Vector2i(0,0), -1)
-
+	$Platforms.set_cell(0, Vector2i(73,-13), -1, Vector2i(0,0), -1)
+	$Platforms.set_cell(0, Vector2i(74,-13), -1, Vector2i(0,0), -1)
+	
 
 func checkpoint_ii_hit():
-	$Platforms.set_cell(0, Vector2i(294,-52), 0, Vector2i(0,0), 0)
-	$Platforms.set_cell(0, Vector2i(298,-52), 0, Vector2i(0,0), 0)
+	$Platforms.set_cell(0, Vector2i(73,-13), 0, Vector2i(0,0), 0)
+	$Platforms.set_cell(0, Vector2i(74,-13), 0, Vector2i(0,0), 0)
 	
 	$Checkpoints/CheckpointII.set_deferred("monitorable", false)
 	$Checkpoints/CheckpointII.set_deferred("monitoring", false)

@@ -57,6 +57,7 @@ var player_energy = 50
 var time_elapsed = 0.00
 var player_maxhealth = 3
 var achievement_completed = 0
+var torch_level = 2
 
 func _process(_delta):
 	if grassland_explored_progress == 1 and not grassland_explored:
@@ -206,3 +207,4 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	player_maxhealth = achievement_completed + 3
+	torch_level = floor(0.5 * achievement_completed + 2)

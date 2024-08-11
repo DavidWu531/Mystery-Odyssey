@@ -59,24 +59,34 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("ui_focus_next"):
 		$MainScreen/TutorialDialogue.show()
-		if scroll_tip_id == 0:
-			$MainScreen/TutorialDialogue/Label.text = "Falling too slow? Press S or Down Arrow to fall faster\n \
-			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
-		elif scroll_tip_id == 1:
-			$MainScreen/TutorialDialogue/Label.text = "Press E or LMB to interact with objects with (!)\n \
-			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
-		elif scroll_tip_id == 2:
-			$MainScreen/TutorialDialogue/Label.text = "You can't go back down a solid grass block, only up\n \
-			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
-		elif scroll_tip_id == 3:
-			$MainScreen/TutorialDialogue/Label.text = "Press 1 to toggle between different torch beams\n \
-			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
-		elif scroll_tip_id == 4:
-			$MainScreen/TutorialDialogue/Label.text = "Torches deplete your energy and shutoff when empty\n \
-			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
-		elif scroll_tip_id == 5:
-			$MainScreen/TutorialDialogue/Label.text = "In gravity flip mode, jump to switch gravity\n \
-			Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+		match scroll_tip_id:
+			0:
+				$MainScreen/TutorialDialogue/Label.text = "Falling too slow? Press S or Down Arrow to fall faster\n \
+				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+			1:
+				$MainScreen/TutorialDialogue/Label.text = "Press E or LMB to interact with objects with (!)\n \
+				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+			2:
+				$MainScreen/TutorialDialogue/Label.text = "Leaf blocks are only passable from below\n \
+				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+			3:
+				$MainScreen/TutorialDialogue/Label.text = "Press 1 to toggle between different torch beams\n \
+				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+			4:
+				$MainScreen/TutorialDialogue/Label.text = "Torches deplete your energy and shutoff when empty\n \
+				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+			5:
+				$MainScreen/TutorialDialogue/Label.text = "In gravity flip mode, jump to switch gravity\n \
+				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+			6:
+				$MainScreen/TutorialDialogue/Label.text = "Quicksand slows your movement upon falling into it\n \
+				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+			7:
+				$MainScreen/TutorialDialogue/Label.text = "Torch level increases by 1 every 2 achievements completed\n \
+				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+			8:
+				$MainScreen/TutorialDialogue/Label.text = "You get 1 extra heart for every achievement completed\n \
+				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
 		
 		if scroll_tip_id < 5:
 			scroll_tip_id += 1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgw1il4otj64d"
-path="res://.godot/imported/CactusTallDesert.png-99155a2e6208f4fae3806ce00b05104d.ctex"
+uid="uid://5e4wefui5udf"
+path="res://.godot/imported/BlockSandParallel.png-b6b26d9199be24e8ef903287586d3ef5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/CactusTallDesert.png"
-dest_files=["res://.godot/imported/CactusTallDesert.png-99155a2e6208f4fae3806ce00b05104d.ctex"]
+source_file="res://Art/BlockSandParallel.png"
+dest_files=["res://.godot/imported/BlockSandParallel.png-b6b26d9199be24e8ef903287586d3ef5.ctex"]
 
 [params]
 

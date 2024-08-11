@@ -1,7 +1,9 @@
-TextureRect
-Sprite2D
+CollisionShape2D
 Area2D
 Node2D
+TileMap
+TextureRect
+Sprite2D
 AnimationPlayer
 TextureButton
 ColorRect
@@ -10,5 +12,3 @@ Control
 Timer
 RichTextLabel
 AnimatedSprite2D
-CollisionShape2D
-Button
