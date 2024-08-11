@@ -51,16 +51,19 @@ func frostland_explored():
 	
 func enter_cave():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Anyone got a torch?[/color]\n[i]Enter the cave[/i]"
+	$AnimatedSprite2D.play("Exploration")
 	
-	
+
 func escape_cave():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]My brain hurts[/color]\n[i]Escape the cave[/i]"
+	$AnimatedSprite2D.play("Exploration")
 	
 	
 func one_heart_escape():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Unbreakable[/color]\n[i]Survive at 1 heart until next checkpoint[/i]"
 	$AnimatedSprite2D.play("Combat")
 	
+
 func u_cant_c_me():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]U Can't C Me[/color]\n[i]Deplete all of your health via one hit on full health[/i]"
 	
@@ -76,7 +79,8 @@ func cant_let_go():
 func ultra_insticto():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Untouchable[/color]\n[i]Take no damage until next checkpoint[/i]"
 	$AnimatedSprite2D.play("Combat")
-	
+
+
 func fire_my_laser():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]MY EYES!![/color]\n[i]Turn on flashlight[/i]"
 	

@@ -88,7 +88,7 @@ func _process(delta):
 				$MainScreen/TutorialDialogue/Label.text = "You get 1 extra heart for every achievement completed\n \
 				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
 		
-		if scroll_tip_id < 5:
+		if scroll_tip_id < 8:
 			scroll_tip_id += 1
 		else:
 			scroll_tip_id = 0

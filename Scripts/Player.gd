@@ -169,9 +169,15 @@ func _process(_delta):
 		
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		var collision_block = collision.get_collider()
 		if "Obstacles" in collision.get_collider().name:
-			Global.player_health -= 1
+			var tiles = collision.get_collider().get_surrounding_cells(collision.get_collider().local_to_map(position))
+			for tile in tiles:
+				if collision.get_collider().get_cell_source_id(0, tile) == 2:
+					Global.player_health -= 1
+				elif collision.get_collider().get_cell_source_id(0, tile) == 3 \
+				or (collision.get_collider().get_cell_source_id(0, tile) == 4 \
+				or collision.get_collider().get_cell_source_id(0, tile) == 5):
+					Global.player_health -= 3
 			gravity = respawn_gravity
 			velocity = Vector2(0,0)
 			can_move = false
@@ -196,6 +202,10 @@ func _process(_delta):
 				if not Global.frostland_explored and Global.frostland_explored_progress == 0:
 					Global.frostland_explored_progress += 1
 			break
+		
+		elif "MovableBlock" in collision.get_collider().name:
+			if abs(collision.get_collider().get_linear_velocity().x) < MAX_VELOCITY:
+				collision.get_collider().apply_central_impulse(collision.get_normal() * -PUSH_FORCE)
 				
 	
 	if Input.is_action_just_pressed("TorchToggle"):

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/GrassManager.gd" id="1_ef5ps"]
 [ext_resource type="Script" path="res://Scripts/DoubleJump.gd" id="2_owohi"]
-[ext_resource type="TileSet" uid="uid://cke0j4e6ax2a" path="res://Resources/obstacles.tres" id="2_tgpft"]
+[ext_resource type="TileSet" uid="uid://dqj7cg6vm786t" path="res://Resources/obstacles.tres" id="2_tgpft"]
 [ext_resource type="Texture2D" uid="uid://cag1ogr278or1" path="res://Art/GravityFlipGate.png" id="3_pwreo"]
 [ext_resource type="Script" path="res://Scripts/Coins.gd" id="3_unk3e"]
 [ext_resource type="Texture2D" uid="uid://bm5vw7761cl8u" path="res://Art/DoubleJumpPress.png" id="3_xddn1"]
@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Scripts/HiddenCoins.gd" id="9_0um8k"]
 [ext_resource type="Texture2D" uid="uid://bam67d3f7tdl1" path="res://Art/NPC_Interact.png" id="9_m4d8i"]
 [ext_resource type="Texture2D" uid="uid://csmnnts78ka2c" path="res://Art/HiddenCoin.png" id="10_6h3uo"]
-[ext_resource type="TileSet" uid="uid://btiwgk48c4xtf" path="res://Resources/platforms.tres" id="10_6pb76"]
+[ext_resource type="TileSet" uid="uid://by7wu55cjrnhd" path="res://Resources/platforms.tres" id="10_6pb76"]
 [ext_resource type="Script" path="res://Scripts/GravityFlip.gd" id="10_vhfgw"]
 [ext_resource type="Texture2D" uid="uid://duwkuyjcpor8s" path="res://Art/Sign.png" id="12_we44c"]
 [ext_resource type="Texture2D" uid="uid://bi1y4111wbwb6" path="res://Art/GravityFlipTip.png" id="18_noydr"]
@@ -592,8 +592,7 @@ size = Vector2(128, 128)
 size = Vector2(20, 6)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_soxff"]
-friction = 0.5
-bounce = 1.0
+friction = 0.35
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bu6cm"]
 size = Vector2(64, 64)
@@ -1155,9 +1154,9 @@ texture = ExtResource("21_5fw0t")
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_dyiqi")
 
-[node name="MovableBlock" type="RigidBody2D" parent="." groups=["Blocks"]]
+[node name="MovableBlock" type="RigidBody2D" parent="."]
 position = Vector2(368, -664)
-mass = 10.0
+mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_soxff")
 metadata/_edit_group_ = true
 
