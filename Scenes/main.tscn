@@ -105,6 +105,5 @@ editor_draw_limits = true
 libraries = {
 "": SubResource("AnimationLibrary_n58ot")
 }
-autoplay = "Cycle"
 
 [node name="UIManager" parent="." instance=ExtResource("4_kf2re")]

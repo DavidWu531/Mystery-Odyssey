@@ -170,14 +170,16 @@ func _process(_delta):
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if "Obstacles" in collision.get_collider().name:
-			var tiles = collision.get_collider().get_surrounding_cells(collision.get_collider().local_to_map(position))
+			var tiles = collision.get_collider().get_surrounding_cells(collision.get_collider().local_to_map(position) + Vector2i(0,1))
 			for tile in tiles:
+				print(collision.get_collider().get_cell_source_id(0, tile))
 				if collision.get_collider().get_cell_source_id(0, tile) == 2:
 					Global.player_health -= 1
 				elif collision.get_collider().get_cell_source_id(0, tile) == 3 \
 				or (collision.get_collider().get_cell_source_id(0, tile) == 4 \
 				or collision.get_collider().get_cell_source_id(0, tile) == 5):
 					Global.player_health -= 3
+					break
 			gravity = respawn_gravity
 			velocity = Vector2(0,0)
 			can_move = false
@@ -220,7 +222,7 @@ func _process(_delta):
 			$RadialLight.enabled = false
 	
 	if $AngularLight.enabled or $RadialLight.enabled:
-		Global.player_energy -= 0.025
+		Global.player_energy -= 0.0001
 		if Global.player_energy <= 0.0:
 			$AngularLight.enabled = false
 			$RadialLight.enabled = false

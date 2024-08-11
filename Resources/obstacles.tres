@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvg35jrw48s2s" path="res://Art/SmallSpike.png" id="2_xhm0d"]
 [ext_resource type="Texture2D" uid="uid://pxmpa7y2kkor" path="res://Art/SpikeGrass.png" id="3_jwy64"]
 [ext_resource type="Texture2D" uid="uid://drql364olqyfl" path="res://Art/CactusDesert.png" id="4_y104h"]
-[ext_resource type="Texture2D" uid="uid://cm3rcvdiy4tl3" path="res://Art/CactusTallDesert.png" id="5_mw668"]
+[ext_resource type="Texture2D" uid="uid://dgw1il4otj64d" path="res://Art/CactusTallDesert.png" id="5_mw668"]
 [ext_resource type="Texture2D" uid="uid://bm85w71qi4tuo" path="res://Art/Coin.png" id="6_l2xne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mcwt5"]
@@ -62,7 +62,7 @@ texture = ExtResource("5_mw668")
 texture = ExtResource("6_l2xne")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
-0:0/0/modulate = Color(1, 1, 1, 0)
+0:0/0/modulate = Color(1, 1, 1, 0.0705882)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 

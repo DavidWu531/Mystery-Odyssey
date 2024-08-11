@@ -3,8 +3,10 @@ extends Node2D
 
 func _ready():
 	SignalBus.checkpoint_i_hit.connect(checkpoint_i_hit)
-	SignalBus.player_died.connect(player_died)
 	SignalBus.checkpoint_ii_hit.connect(checkpoint_ii_hit)
+	SignalBus.checkpoint_iii_hit.connect(checkpoint_iii_hit)
+	
+	SignalBus.player_died.connect(player_died)
 	
 	$SceneCamera.position = Vector2(1032, -648)
 	$SceneCamera.zoom = Vector2(0.7, 0.7)
@@ -22,6 +24,10 @@ func checkpoint_i_hit():
 
 func checkpoint_ii_hit():
 	$SceneCamera.enabled = false
+	Global.player_health = Global.player_maxhealth
+
+
+func checkpoint_iii_hit():
 	Global.player_health = Global.player_maxhealth
 
 

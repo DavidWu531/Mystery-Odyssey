@@ -20,8 +20,8 @@ var checkpoint_i_available = true
 var checkpoint_i_emitted = false
 var checkpoint_ii_available = false
 var checkpoint_ii_emitted = false
-var checkpoint_iii_available = true
-var checkpoint_iii_emitted = true
+var checkpoint_iii_available = false
+var checkpoint_iii_emitted = false
 
 
 signal grassland_explored
