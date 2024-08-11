@@ -19,6 +19,7 @@ func checkpoint_iii_hit():
 
 func _on_quicksand_body_entered(body):
 	if "Player" in body.name:
+		body.velocity = Vector2(0,0)
 		body.speed = 98.3
 		body.gravity = 10.0
 		body.jump_velocity = 210.0
