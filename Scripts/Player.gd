@@ -23,6 +23,7 @@ var linear_moving = false
 var on_ice = false
 var on_pad = false
 var direction_normalised
+var direction_x
 var tile_vector : Vector2i
 
 var current_mode = "Default"
@@ -85,8 +86,7 @@ func _physics_process(delta):
 					elif gravity < 0.0:
 						velocity.y = 1000.0
 					gravity = -gravity
-		else:
-			velocity = Vector2(0,0)
+
 
 		if gravity > 0.0:
 			$Sprite2D.flip_v = false
@@ -98,8 +98,6 @@ func _physics_process(delta):
 			if current_mode == "LinearMotion":
 				linear_moving = true
 				velocity = Vector2(cos($LinearDirection.rotation) * speed, sin($LinearDirection.rotation) * speed)
-		else:
-			velocity = Vector2(0,0)
 	
 	if Input.is_action_just_released("Jump"):
 		if current_mode == "LinearMotion":
@@ -112,10 +110,8 @@ func _physics_process(delta):
 				velocity.y = jump_velocity * 5
 			elif gravity < 0.0:
 				velocity.y = -jump_velocity * 5
-		else:
-			velocity = Vector2(0,0)
 	
-	var direction_x = Input.get_axis("Left", "Right")
+	direction_x = Input.get_axis("Left", "Right")
 	if can_move:
 		if current_mode != "LinearMotion":
 			if direction_x:
@@ -153,18 +149,25 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(_delta):
-	#if direction_normalised.x != 0.0:
-		#tile_vector = direction_normalised
-	#elif direction_normalised.x == 0.0:
-		#pass
-	tile_vector = direction_normalised
-	print(tile_vector)
+	if direction_normalised.x > 0.0:
+		tile_vector.x = 1
+		tile_vector.y = 0
+	elif direction_normalised.x < 0.0:
+		tile_vector.x = -1
+		tile_vector.y = 0
+	elif direction_normalised.y > 0.0:
+		tile_vector.y = 1
+		tile_vector.x = 0
+	elif direction_normalised.y < 0.0:
+		tile_vector.y = -1
+		tile_vector.x = 0
+	#print(direction_normalised, tile_vector)
 
 	if position.y > 10000 or position.y < -10000:
 		Global.player_health -= 1
 		death_engine()
 		
-	for i in get_slide_collision_count():
+	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		if "Obstacles" in collision.get_collider().name:
 			var tile = collision.get_collider().local_to_map(position) + tile_vector

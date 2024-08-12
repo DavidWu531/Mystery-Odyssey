@@ -66,8 +66,9 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ic70q"]
-size = Vector2(52, 87)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6kky1"]
+radius = 25.0
+height = 85.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eqejr"]
 load_path = "res://.godot/imported/Light.png-d2a75277c3d245367c882dae628488a7.ctex"
@@ -87,7 +88,7 @@ offset = Vector2(160, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.5)
-shape = SubResource("RectangleShape2D_ic70q")
+shape = SubResource("CapsuleShape2D_6kky1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
