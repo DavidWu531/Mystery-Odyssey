@@ -1,28 +1,15 @@
 res://Scenes/main_menu.tscn
-res://Resources/platforms.tres
 res://Resources/obstacles.tres
+res://Resources/platforms.tres
+res://Scripts/Player.gd
+res://Scenes/achievement_banner.tscn
+res://Scenes/enemy.tscn
+res://Scenes/keypad.tscn
+res://Scenes/loading_screen.tscn
+res://Scenes/main.tscn
+res://Scenes/player.tscn
+res://Scenes/section_desert.tscn
+res://Scenes/section_frost.tscn
+res://Scenes/section_grass.tscn
 res://Scenes/ui_manager.tscn
 res://Scenes/won.tscn
-res://Scenes/section_frost.tscn
-<<<<<<< HEAD
-=======
-res://Scenes/section_grass.tscn
-res://Scenes/section_desert.tscn
->>>>>>> 75514a73d814be00e0c612b3d923d87074881d16
-res://Scenes/player.tscn
-res://Scenes/loading_screen.tscn
-<<<<<<< HEAD
-res://Scenes/section_grass.tscn
-res://Scenes/keypad.tscn
-res://Scenes/enemy.tscn
-res://Scenes/achievement_banner.tscn
-res://Scenes/main.tscn
-res://Scripts/Checkpoint.gd
-res://Scripts/GameManager.gd
-res://Scripts/SignalBus.gd
-res://Scripts/DesertManager.gd
-res://Scripts/Player.gd
-=======
-res://Scenes/achievement_banner.tscn
-res://Scripts/DesertManager.gd
->>>>>>> 75514a73d814be00e0c612b3d923d87074881d16

@@ -22,6 +22,8 @@ var can_move = true
 var linear_moving = false
 var on_ice = false
 var on_pad = false
+var direction_normalised
+var tile_vector : Vector2i
 
 var current_mode = "Default"
 var player_modes = ["Default", "DoubleJump", "GravityFlip", "LinearMotion"]
@@ -113,16 +115,16 @@ func _physics_process(delta):
 		else:
 			velocity = Vector2(0,0)
 	
-	var direction = Input.get_axis("Left", "Right")
+	var direction_x = Input.get_axis("Left", "Right")
 	if can_move:
 		if current_mode != "LinearMotion":
-			if direction:
-				velocity.x = direction * speed
+			if direction_x:
+				velocity.x = direction_x * speed
 				$Sprite2D.play("walking")
-				if direction == 1:
+				if direction_x == 1:
 					$Sprite2D.offset.x = 160
 					$Sprite2D.flip_h = false
-				elif direction == -1:
+				elif direction_x == -1:
 					$Sprite2D.offset.x = -160
 					$Sprite2D.flip_h = true
 			else:
@@ -146,40 +148,35 @@ func _physics_process(delta):
 	if velocity == Vector2(0, gravity * delta):
 		$KeysHold.start(10.0)
 	
+	direction_normalised = velocity.normalized()
+
 	move_and_slide()
 
-
 func _process(_delta):
+	#if direction_normalised.x != 0.0:
+		#tile_vector = direction_normalised
+	#elif direction_normalised.x == 0.0:
+		#pass
+	tile_vector = direction_normalised
+	print(tile_vector)
+
 	if position.y > 10000 or position.y < -10000:
 		Global.player_health -= 1
-		gravity = respawn_gravity
-		velocity = Vector2(0,0)
-		can_move = false
-		$SpawnImmunity.start(2.0)
-		$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
-		Global.no_stopping_now_progress += 1
-		if Global.player_health <= 0:
-			position = respawn_pos
-			take_damage_respos = respawn_pos
-			Global.player_health = Global.player_maxhealth
-			gravity = respawn_gravity
-			SignalBus.player_died.emit()
-		elif Global.player_health >= 1:
-			position = take_damage_respos
+		death_engine()
 		
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if "Obstacles" in collision.get_collider().name:
-			var tiles = collision.get_collider().get_surrounding_cells(collision.get_collider().local_to_map(position) + Vector2i(0,1))
-			for tile in tiles:
-				print(collision.get_collider().get_cell_source_id(0, tile))
-				if collision.get_collider().get_cell_source_id(0, tile) == 2:
-					Global.player_health -= 1
-				elif collision.get_collider().get_cell_source_id(0, tile) == 3 \
-				or (collision.get_collider().get_cell_source_id(0, tile) == 4 \
-				or collision.get_collider().get_cell_source_id(0, tile) == 5):
-					Global.player_health -= 3
-					break
+			var tile = collision.get_collider().local_to_map(position) + tile_vector
+			"""- (Vector2(52,87) / 2) + (Vector2(64,64) / 2)"""
+			print(tile)
+			if collision.get_collider().get_cell_source_id(0, tile) == 2:
+				Global.player_health -= 1
+			elif collision.get_collider().get_cell_source_id(0, tile) == 3 \
+			or (collision.get_collider().get_cell_source_id(0, tile) == 4 \
+			or collision.get_collider().get_cell_source_id(0, tile) == 5):
+				Global.player_health -= 3
+				break
 			gravity = respawn_gravity
 			velocity = Vector2(0,0)
 			can_move = false
@@ -234,6 +231,23 @@ func _process(_delta):
 	$AngularLight.texture_scale = 5 * Global.torch_level
 	
 	$RadialLight.texture_scale = 2.5 * Global.torch_level
+
+
+func death_engine():
+	gravity = respawn_gravity
+	velocity = Vector2(0,0)
+	can_move = false
+	$SpawnImmunity.start(2.0)
+	$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
+	Global.no_stopping_now_progress += 1
+	if Global.player_health <= 0:
+		position = respawn_pos
+		take_damage_respos = respawn_pos
+		Global.player_health = Global.player_maxhealth
+		gravity = respawn_gravity
+		SignalBus.player_died.emit()
+	elif Global.player_health >= 1:
+		position = take_damage_respos
 
 func _on_res_pos_timer_timeout():
 	if (is_on_floor() and gravity > 0.0) or (is_on_ceiling() and gravity < 0.0):
