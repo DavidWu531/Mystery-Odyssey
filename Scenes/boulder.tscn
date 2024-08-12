@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://u0rnbporjoyr"]
+
+[ext_resource type="Script" path="res://Scripts/Boulder.gd" id="1_300n0"]
+[ext_resource type="Texture2D" uid="uid://b7rk7ikqdxlbn" path="res://Art/meteorGrey_med2.png" id="2_qc0ip"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ptcf8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kk4tn"]
+radius = 24.0
+
+[node name="Boulder" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_ptcf8")
+inertia = 1.0
+script = ExtResource("1_300n0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qc0ip")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kk4tn")
