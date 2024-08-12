@@ -93,7 +93,7 @@ position = Vector2(8, -56)
 position = Vector2(9920, -576)
 
 [node name="Section_Frost" parent="Layouts" instance=ExtResource("5_lpywg")]
-position = Vector2(12608, -896)
+position = Vector2(832, 704)
 
 [node name="SceneCamera" type="Camera2D" parent="."]
 position = Vector2(3232, -1416)
