@@ -206,5 +206,5 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
-	player_maxhealth = achievement_completed + 3
+	player_maxhealth = achievement_completed + 10
 	torch_level = floor(0.5 * achievement_completed + 2)

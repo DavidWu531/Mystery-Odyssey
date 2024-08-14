@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ui82n25x4j8g"
-path="res://.godot/imported/meteorGrey_small1.png-2c469d39d2f84a6b1d4385c31ffa501f.ctex"
+uid="uid://bdgaf66h6b7vr"
+path="res://.godot/imported/BoulderMedium.png-8b303d888a779b4637d178cef1d0ee84.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/meteorGrey_small1.png"
-dest_files=["res://.godot/imported/meteorGrey_small1.png-2c469d39d2f84a6b1d4385c31ffa501f.ctex"]
+source_file="res://Art/BoulderMedium.png"
+dest_files=["res://.godot/imported/BoulderMedium.png-8b303d888a779b4637d178cef1d0ee84.ctex"]
 
 [params]
 

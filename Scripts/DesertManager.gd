@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var boulder = preload("res://Scenes/boulder.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalBus.checkpoint_iii_hit.connect(checkpoint_iii_hit)
@@ -30,3 +30,12 @@ func _on_quicksand_body_exited(body):
 		body.speed = body.normal_speed
 		body.gravity = 980.0 * 1.75
 		body.jump_velocity = 625.0 * 1.4
+
+
+func _on_boulder_timer_timeout():
+	var new_boulder = boulder.instantiate()
+	#if randf() >= 0.5:
+	new_boulder.position = Vector2(14024, -1712)
+	#else:
+		#new_boulder.position = Vector2(2472, -616)
+	add_child(new_boulder)

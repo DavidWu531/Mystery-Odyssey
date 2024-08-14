@@ -1,20 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://u0rnbporjoyr"]
+[gd_scene load_steps=10 format=3 uid="uid://u0rnbporjoyr"]
 
 [ext_resource type="Script" path="res://Scripts/Boulder.gd" id="1_300n0"]
-[ext_resource type="Texture2D" uid="uid://b7rk7ikqdxlbn" path="res://Art/meteorGrey_med2.png" id="2_qc0ip"]
+[ext_resource type="Texture2D" uid="uid://c1i60l3anjcxk" path="res://Art/BoulderBig.png" id="2_1p41f"]
+[ext_resource type="Texture2D" uid="uid://bdgaf66h6b7vr" path="res://Art/BoulderMedium.png" id="3_xhuhq"]
+[ext_resource type="Texture2D" uid="uid://bhdhb8oynuxxm" path="res://Art/BoulderSmall.png" id="4_rck2n"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ptcf8"]
+friction = 0.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kk4tn"]
-radius = 24.0
+[sub_resource type="SpriteFrames" id="SpriteFrames_5e0a6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1p41f")
+}],
+"loop": true,
+"name": &"big",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xhuhq")
+}],
+"loop": true,
+"name": &"med",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rck2n")
+}],
+"loop": true,
+"name": &"small",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gu4j6"]
+radius = 21.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_45jtu"]
+radius = 37.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7773n"]
+radius = 54.0
 
 [node name="Boulder" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_ptcf8")
-inertia = 1.0
+max_contacts_reported = 2
+contact_monitor = true
 script = ExtResource("1_300n0")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_qc0ip")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5e0a6")
+animation = &"big"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_kk4tn")
+[node name="SmallCollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gu4j6")
+
+[node name="MediumCollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_45jtu")
+
+[node name="BigCollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7773n")

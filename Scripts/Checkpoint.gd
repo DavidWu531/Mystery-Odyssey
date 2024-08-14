@@ -11,8 +11,8 @@ func _process(_delta):
 func _on_body_entered(body):
 	if "Player" in body.name:
 		$AnimatedSprite2D.play("Hit")
-		body.respawn_pos = position
-		body.take_damage_respos = position
+		body.respawn_pos = body.position
+		body.take_damage_respos = body.position
 		if not SignalBus.checkpoint_i_emitted and SignalBus.checkpoint_i_available:
 			SignalBus.checkpoint_i_hit.emit()
 			SignalBus.checkpoint_i_emitted = true

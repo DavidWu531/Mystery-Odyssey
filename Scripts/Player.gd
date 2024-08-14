@@ -25,6 +25,8 @@ var on_pad = false
 var direction_normalised
 var direction_x
 var tile_vector : Vector2i
+var tile = null
+var min_distance = INF
 
 var current_mode = "Default"
 var player_modes = ["Default", "DoubleJump", "GravityFlip", "LinearMotion"]
@@ -115,8 +117,15 @@ func _physics_process(delta):
 	if can_move:
 		if current_mode != "LinearMotion":
 			if direction_x:
-				velocity.x = direction_x * speed
+				if on_ice:
+					if direction_x != 0:
+						velocity.x += direction_x * delta * speed
+					else:
+						velocity.x *= 0.95
+				else:
+					velocity.x = direction_x * speed
 				$Sprite2D.play("walking")
+				
 				if direction_x == 1:
 					$Sprite2D.offset.x = 160
 					$Sprite2D.flip_h = false
@@ -149,20 +158,30 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(_delta):
-	if direction_normalised.x > 0.0:
-		tile_vector.x = 1
-		tile_vector.y = 0
-	elif direction_normalised.x < 0.0:
-		tile_vector.x = -1
-		tile_vector.y = 0
-	elif direction_normalised.y > 0.0:
-		tile_vector.y = 1
-		tile_vector.x = 0
-	elif direction_normalised.y < 0.0:
-		tile_vector.y = -1
-		tile_vector.x = 0
-	#print(direction_normalised, tile_vector)
+	#if direction_normalised.x > 0.0:
+		#if is_on_wall():
+			#tile_vector.x = 1
+			#tile_vector.y = 0
+		#elif not is_on_wall():
+			#tile_vector.x = 1
+			#tile_vector.y = 1
+	#elif direction_normalised.x < 0.0:
+		#if is_on_wall():
+			#tile_vector.x = -1
+			#tile_vector.y = 0
+		#elif not is_on_wall():
+			#tile_vector.x = -1
+			#tile_vector.y = 1
+		#tile_vector.y = 0
+	#elif direction_normalised.y > 0.0:
+		#tile_vector.y = 1
+		#tile_vector.x = 0
+	#elif direction_normalised.y < 0.0:
+		#tile_vector.y = -1
+		#tile_vector.x = 0
+	
 
+	
 	if position.y > 10000 or position.y < -10000:
 		Global.player_health -= 1
 		death_engine()
@@ -170,31 +189,35 @@ func _process(_delta):
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		if "Obstacles" in collision.get_collider().name:
-			var tile = collision.get_collider().local_to_map(position) + tile_vector
-			"""- (Vector2(52,87) / 2) + (Vector2(64,64) / 2)"""
-			print(tile)
-			if collision.get_collider().get_cell_source_id(0, tile) == 2:
-				Global.player_health -= 1
-			elif collision.get_collider().get_cell_source_id(0, tile) == 3 \
-			or (collision.get_collider().get_cell_source_id(0, tile) == 4 \
-			or collision.get_collider().get_cell_source_id(0, tile) == 5):
-				Global.player_health -= 3
-				break
-			gravity = respawn_gravity
-			velocity = Vector2(0,0)
-			can_move = false
-			$SpawnImmunity.start(2.0)
-			$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
-			Global.no_stopping_now_progress += 1
-			if Global.player_health <= 0:
-				position = respawn_pos
-				take_damage_respos = respawn_pos
-				Global.player_health = Global.player_maxhealth
-				gravity = respawn_gravity
-				SignalBus.player_died.emit()
-			elif Global.player_health >= 1:
-				position = take_damage_respos
-			break
+			min_distance = INF
+			tile = null
+			var tile_damage_taken = false
+			var map_pos = collision.get_collider().local_to_map(position)
+			for y in range(-50, 50):
+				for x in range(-50, 50):
+					var cell_id = collision.get_collider().get_cell_source_id(\
+					0, map_pos + Vector2i(x, y))
+					if cell_id != -1:
+						var temp_local_coord = collision.get_collider().map_to_local(map_pos + Vector2i(x, y))
+						var distance = position.distance_to(temp_local_coord)
+						
+						if distance < min_distance:
+							min_distance = distance
+							tile = map_pos + Vector2i(x, y)
+						$Label.text = str(tile)
+			
+			if tile and not tile_damage_taken:
+				if collision.get_collider().get_cell_source_id(0, tile) == 2:
+					Global.player_health -= 1
+					tile_damage_taken = true
+				elif collision.get_collider().get_cell_source_id(0, tile) == 3 \
+				or collision.get_collider().get_cell_source_id(0, tile) == 4:
+					Global.player_health -= 3
+					tile_damage_taken = true
+				
+				if tile_damage_taken:
+					death_engine()
+					break
 		
 		elif "Platforms" in collision.get_collider().name:
 			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + Vector2i(0,1)) == 4:
@@ -203,6 +226,10 @@ func _process(_delta):
 			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + Vector2i(0,1)) == 5:
 				if not Global.frostland_explored and Global.frostland_explored_progress == 0:
 					Global.frostland_explored_progress += 1
+			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + Vector2i(0,1)) == 19:
+				on_ice = true
+			else:
+				on_ice = false
 			break
 		
 		elif "MovableBlock" in collision.get_collider().name:
@@ -241,6 +268,7 @@ func death_engine():
 	velocity = Vector2(0,0)
 	can_move = false
 	$SpawnImmunity.start(2.0)
+	$CollisionShape2D.disabled = true
 	$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	Global.no_stopping_now_progress += 1
 	if Global.player_health <= 0:
@@ -278,4 +306,5 @@ func _on_spawn_immunity_timeout():
 	var tween = get_tree().create_tween()
 	tween.tween_property($Sprite2D, "modulate", Color(1.0, 1.0, 1.0, 1.0), 1.0)
 	await get_tree().create_timer(1.0).timeout
+	$CollisionShape2D.disabled = false
 	can_move = true

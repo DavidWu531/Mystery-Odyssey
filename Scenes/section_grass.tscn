@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://bs0rjq8hecmbe"]
+[gd_scene load_steps=109 format=3 uid="uid://bs0rjq8hecmbe"]
 
 [ext_resource type="Script" path="res://Scripts/GrassManager.gd" id="1_ef5ps"]
 [ext_resource type="Script" path="res://Scripts/DoubleJump.gd" id="2_owohi"]
@@ -22,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://c0gicrfkarewv" path="res://Art/CaveDoor.png" id="20_jsyin"]
 [ext_resource type="Texture2D" uid="uid://bemkd0cm8xinw" path="res://Art/JumpPad1.png" id="21_5fw0t"]
 [ext_resource type="Script" path="res://Scripts/Pads.gd" id="21_tvhbx"]
-[ext_resource type="Texture2D" uid="uid://bkosicp6ba7it" path="res://Art/BlockRed.png" id="23_awilm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mccl"]
 atlas = ExtResource("3_xddn1")
@@ -591,12 +590,6 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyiqi"]
 size = Vector2(20, 6)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_soxff"]
-friction = 0.35
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bu6cm"]
-size = Vector2(64, 64)
-
 [node name="Section_Grass" type="Node2D"]
 script = ExtResource("1_ef5ps")
 
@@ -654,7 +647,7 @@ layer_0/tile_data = PackedInt32Array(65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0
 [node name="Obstacles" type="TileMap" parent="."]
 tile_set = ExtResource("2_tgpft")
 format = 2
-layer_0/tile_data = PackedInt32Array(-327651, 2, 0, -327652, 2, 0, -458744, 2, 0, -983028, 2, 0, -983029, 2, 0, -1048557, 2, 0, -1048558, 2, 0, -1179612, 2, 0, -1638366, 2, 0, -2031580, 2, 0, -2031579, 2, 0, -2031568, 2, 0, -2097094, 2, 0, -2097093, 2, 0, -1834942, 2, 0, -1572803, 2, 0, -917442, 2, 0, -917439, 2, 0, -917434, 2, 0, -1179593, 2, 0, -1703885, 2, 0, 65588, 2, 0, 65580, 2, 0, -196510, 2, 0, -196509, 2, 0, -196508, 2, 0, -393097, 2, 0, -393096, 2, 0, -393095, 2, 0, -917449, 2, 1342177280, -982985, 2, 1342177280, -1376187, 2, 805306368, -1376195, 2, 805306368, -1245129, 2, 805306368, -2293717, 2, 805306368, -2293718, 2, 805306368, -2293719, 2, 805306368, -2293727, 2, 805306368, -1900504, 2, 805306368, -2228153, 2, 65536, -2228152, 2, 65536, -2293689, 2, 805371904, -2293688, 2, 805371904, -1507275, 2, 805371904, -1507274, 2, 805371904, -1441739, 2, 65536, -1441738, 2, 65536, -393094, 3, 0, -720754, 3, 0, -720752, 3, 0, -65489, 2, 805306368, -65481, 2, 805306368, -65530, 4, 0, -65532, 3, 0)
+layer_0/tile_data = PackedInt32Array(-327651, 2, 0, -327652, 2, 0, -458744, 2, 0, -983028, 2, 0, -983029, 2, 0, -1048557, 2, 0, -1048558, 2, 0, -1179612, 2, 0, -1638366, 2, 0, -2031580, 2, 0, -2031579, 2, 0, -2031568, 2, 0, -2097094, 2, 0, -2097093, 2, 0, -1834942, 2, 0, -1572803, 2, 0, -917442, 2, 0, -917439, 2, 0, -917434, 2, 0, -1179593, 2, 0, -1703885, 2, 0, 65588, 2, 0, 65580, 2, 0, -196510, 2, 0, -196509, 2, 0, -196508, 2, 0, -393097, 2, 0, -393096, 2, 0, -393095, 2, 0, -917449, 2, 1342177280, -982985, 2, 1342177280, -1376187, 2, 805306368, -1376195, 2, 805306368, -1245129, 2, 805306368, -2293717, 2, 805306368, -2293718, 2, 805306368, -2293719, 2, 805306368, -2293727, 2, 805306368, -1900504, 2, 805306368, -2228153, 2, 65536, -2228152, 2, 65536, -2293689, 2, 805371904, -2293688, 2, 805371904, -1507275, 2, 805371904, -1507274, 2, 805371904, -1441739, 2, 65536, -1441738, 2, 65536, -393094, 3, 0, -720754, 3, 0, -720752, 3, 0, -65489, 2, 805306368, -65481, 2, 805306368, -720753, 3, 0)
 
 [node name="Coins" type="Node2D" parent="."]
 
@@ -1153,18 +1146,6 @@ texture = ExtResource("21_5fw0t")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Other/PadIII"]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_dyiqi")
-
-[node name="MovableBlock" type="RigidBody2D" parent="."]
-position = Vector2(368, -664)
-mass = 5.0
-physics_material_override = SubResource("PhysicsMaterial_soxff")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="MovableBlock"]
-texture = ExtResource("23_awilm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MovableBlock"]
-shape = SubResource("RectangleShape2D_bu6cm")
 
 [connection signal="body_entered" from="DoubleJump" to="DoubleJump" method="_on_body_entered"]
 [connection signal="body_exited" from="DoubleJump" to="DoubleJump" method="_on_body_exited"]

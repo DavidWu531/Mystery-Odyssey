@@ -1,3 +1,8 @@
+Marker2D
+Camera2D
+Timer
+AnimatedSprite2D
+Label
 RigidBody2D
 CollisionShape2D
 Sprite2D
@@ -8,8 +13,3 @@ TileMap
 TextureRect
 AnimationPlayer
 TextureButton
-ColorRect
-Label
-Control
-Timer
-RichTextLabel

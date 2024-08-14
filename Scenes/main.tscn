@@ -90,7 +90,6 @@ position = Vector2(8, -56)
 [node name="Section_Grass" parent="Layouts" instance=ExtResource("2_at4yo")]
 
 [node name="Section_Desert" parent="Layouts" instance=ExtResource("4_kmwog")]
-position = Vector2(9920, -576)
 
 [node name="Section_Frost" parent="Layouts" instance=ExtResource("5_lpywg")]
 position = Vector2(832, 704)
