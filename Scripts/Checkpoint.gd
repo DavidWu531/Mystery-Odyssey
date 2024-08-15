@@ -13,6 +13,7 @@ func _on_body_entered(body):
 		$AnimatedSprite2D.play("Hit")
 		body.respawn_pos = body.position
 		body.take_damage_respos = body.position
+		
 		if not SignalBus.checkpoint_i_emitted and SignalBus.checkpoint_i_available:
 			SignalBus.checkpoint_i_hit.emit()
 			SignalBus.checkpoint_i_emitted = true
@@ -24,3 +25,10 @@ func _on_body_entered(body):
 		elif not SignalBus.checkpoint_iii_emitted and SignalBus.checkpoint_iii_available:
 			SignalBus.checkpoint_iii_hit.emit()
 			SignalBus.checkpoint_iii_emitted = true
+		
+		if not Global.ultra_insticto and Global.ultra_insticto_progress == 0:
+			if not body.heart_lost:
+				Global.ultra_insticto_progress += 1
+			else:
+				body.heart_lost = false
+		

@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cwilutgcv1x2c" path="res://Art/BlockSnow.png" id="12_a3ld2"]
 [ext_resource type="Texture2D" uid="uid://sjuxfsadjwxo" path="res://Art/BlockGrassAltI.png" id="13_62hyi"]
 [ext_resource type="Texture2D" uid="uid://cmwswya1m22gt" path="res://Art/BlockGrassAltII.png" id="14_qcfib"]
-[ext_resource type="Texture2D" uid="uid://bual6mkwcfc11" path="res://Art/BlockSandSlope2.png" id="14_x0dt2"]
+[ext_resource type="Texture2D" uid="uid://bual6mkwcfc11" path="res://Art/BlockSandSlopeWide.png" id="14_v4xbb"]
 [ext_resource type="Texture2D" uid="uid://dyj2km6kbgakn" path="res://Art/BlockGrassSlant.png" id="15_4mhc4"]
 [ext_resource type="Texture2D" uid="uid://bpgcl1tuqvtv4" path="res://Art/BlockSandUnder.png" id="16_dl4qv"]
 
@@ -249,14 +249,34 @@ texture = ExtResource("9_qjkyp")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -64, 64, 64, -64, 64, 64, -64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wd74"]
-texture = ExtResource("14_x0dt2")
+texture = ExtResource("14_v4xbb")
 texture_region_size = Vector2i(64, 64)
 0:0/size_in_atlas = Vector2i(2, 1)
+0:0/next_alternative_id = 8
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(-32, 0)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(96, -32, 96, 32, -32, 32)
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/1/texture_origin = Vector2i(-32, 0)
+0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/1/physics_layer_0/angular_velocity = 0.0
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, -32, 32, 96, 32)
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/2/texture_origin = Vector2i(-32, 0)
+0:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/2/physics_layer_0/angular_velocity = 0.0
+0:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 96, -32, 96, 32)
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/3/texture_origin = Vector2i(-32, 0)
+0:0/3/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/3/physics_layer_0/angular_velocity = 0.0
+0:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 32, -32, -32, 96, -32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgtw0"]
 texture = ExtResource("10_a2uyh")

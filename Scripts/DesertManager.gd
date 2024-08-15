@@ -34,8 +34,11 @@ func _on_quicksand_body_exited(body):
 
 func _on_boulder_timer_timeout():
 	var new_boulder = boulder.instantiate()
-	#if randf() >= 0.5:
-	new_boulder.position = Vector2(14010, -1968)
-	#else:
-		#new_boulder.position = Vector2(2472, -616)
+	new_boulder.position = Vector2(14368, -1968)
 	add_child(new_boulder)
+
+
+func _on_boulder_wreck_body_entered(body):
+	if "Boulder" in body.name:
+		await get_tree().create_timer(0.75).timeout
+		body.queue_free()

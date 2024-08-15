@@ -60,17 +60,17 @@ var achievement_completed = 0
 var torch_level = 2
 
 func _process(_delta):
-	if grassland_explored_progress == 1 and not grassland_explored:
+	if grassland_explored_progress == 200 and not grassland_explored:
 		grassland_explored = true
 		SignalBus.achievement_completed.emit()
 		SignalBus.grassland_explored.emit()
 		achievement_completed += 1
-	if desert_explored_progress == 1 and not desert_explored:
+	if desert_explored_progress == 200 and not desert_explored:
 		desert_explored = true
 		SignalBus.achievement_completed.emit()
 		SignalBus.desert_explored.emit()
 		achievement_completed += 1
-	if frostland_explored_progress == 1 and not frostland_explored:
+	if frostland_explored_progress == 200 and not frostland_explored:
 		frostland_explored = true
 		SignalBus.achievement_completed.emit()
 		SignalBus.frostland_explored.emit()
@@ -206,5 +206,5 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
-	player_maxhealth = achievement_completed + 10
+	player_maxhealth = achievement_completed + 3
 	torch_level = floor(0.5 * achievement_completed + 2)

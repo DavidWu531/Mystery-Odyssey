@@ -35,17 +35,17 @@ func _ready():
 
 
 func grassland_explored():
-	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]New Planet, Who Dis?[/color]\n[i]Explore the grasslands[/i]"
+	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]New Planet, Who Dis?[/color]\n[i]Travel 100 blocks in the grasslands[/i]"
 	$AnimatedSprite2D.play("Exploration")
 	
 
 func desert_explored():
-	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]MORE POWER!![/color]\n[i]Explore the desert[/i]"
+	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]MORE POWER!![/color]\n[i]Travel 100 blocks in the desert[/i]"
 	$AnimatedSprite2D.play("Exploration")
 	
 	
 func frostland_explored():
-	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't slide off![/color]\n[i]Explore the frostlands[/i]"
+	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't slide off![/color]\n[i]Travel 100 blocks in the frostlands[/i]"
 	$AnimatedSprite2D.play("Exploration")
 	
 	
@@ -71,6 +71,7 @@ func u_cant_c_me():
 	
 func eagle_eye():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Eagle Eye[/color]\n[i]You found a secret![/i]"
+	$AnimatedSprite2D.play("Surprise")
 	
 	
 func cant_let_go():
@@ -95,20 +96,23 @@ func no_cheese():
 	
 func i_c_u():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Access Granted[/color]\n[i]Unlock the locked door[/i]"
-	$AnimatedSprite2D.play()
+	$AnimatedSprite2D.play("Surprise")
 	
 
 func no_stopping_now_i():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't give up hope I[/color]\n[i]Die 1 time[/i]"
 	$AnimatedSprite2D.play("Death")
 	
+	
 func no_stopping_now_ii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't give up hope II[/color]\n[i]Die 10 times[/i]"
 	$AnimatedSprite2D.play("Death")
 	
+	
 func no_stopping_now_iii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't give up hope III[/color]\n[i]Die 20 times[/i]"
 	$AnimatedSprite2D.play("Death")
+	
 	
 func killing_machine_i():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless I[/color]\n[i]Slay 1 enemy[/i]"

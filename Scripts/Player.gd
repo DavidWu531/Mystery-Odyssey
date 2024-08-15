@@ -7,6 +7,7 @@ var respawn_pos = Vector2(0,0)
 var take_damage_respos = Vector2(0,0)
 var respawn_gravity = 980.0 * 1.75
 var old_position = position
+var heart_lost = false
 
 const half_speed = 383.1
 const normal_speed = 475.0
@@ -24,9 +25,18 @@ var on_ice = false
 var on_pad = false
 var direction_normalised
 var direction_x
+
 var tile_vector : Vector2i
 var tile = null
 var min_distance = INF
+var platform_tile_vector : Vector2i
+var grass_plat_tiles = [0, 3, 6, 7, 8, 11, 12, 13, 14]
+var desert_plat_tiles = [4, 9, 15, 16, 17, 18, 20]
+var frost_plat_tiles = [5, 10, 19]
+var grass_obst_tiles = [2]
+var desert_obst_tiles = [3, 4]
+var frost_obst_tiles = []
+
 
 var current_mode = "Default"
 var player_modes = ["Default", "DoubleJump", "GravityFlip", "LinearMotion"]
@@ -89,11 +99,12 @@ func _physics_process(delta):
 						velocity.y = 1000.0
 					gravity = -gravity
 
-
 		if gravity > 0.0:
 			$Sprite2D.flip_v = false
+			platform_tile_vector = Vector2i(0,1)
 		elif gravity < 0.0:
 			$Sprite2D.flip_v = true
+			platform_tile_vector = Vector2i(0,-1)
 		
 	if Input.is_action_pressed("Jump"):
 		if can_move:
@@ -157,7 +168,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func _process(_delta):
+func _process(delta):
 	#if direction_normalised.x > 0.0:
 		#if is_on_wall():
 			#tile_vector.x = 1
@@ -180,7 +191,6 @@ func _process(_delta):
 		#tile_vector.y = -1
 		#tile_vector.x = 0
 	
-
 	
 	if position.y > 10000 or position.y < -10000:
 		Global.player_health -= 1
@@ -207,11 +217,10 @@ func _process(_delta):
 						$Label.text = str(tile)
 			
 			if tile and not tile_damage_taken:
-				if collision.get_collider().get_cell_source_id(0, tile) == 2:
+				if collision.get_collider().get_cell_source_id(0, tile) in grass_obst_tiles:
 					Global.player_health -= 1
 					tile_damage_taken = true
-				elif collision.get_collider().get_cell_source_id(0, tile) == 3 \
-				or collision.get_collider().get_cell_source_id(0, tile) == 4:
+				elif collision.get_collider().get_cell_source_id(0, tile) in desert_obst_tiles:
 					Global.player_health -= 3
 					tile_damage_taken = true
 				
@@ -220,12 +229,19 @@ func _process(_delta):
 					break
 		
 		elif "Platforms" in collision.get_collider().name:
-			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + Vector2i(0,1)) == 4:
+			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + platform_tile_vector) in grass_plat_tiles:
+				if not Global.grassland_explored and Global.grassland_explored_progress == 0:
+					if velocity != Vector2(0, gravity * delta):
+						Global.grassland_explored_progress += 1
+			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + platform_tile_vector) in desert_plat_tiles:
 				if not Global.desert_explored and Global.desert_explored_progress == 0:
-					Global.desert_explored_progress += 1
-			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + Vector2i(0,1)) == 5:
+					if velocity != Vector2(0, gravity * delta):
+						Global.desert_explored_progress += 1
+			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + platform_tile_vector) in frost_plat_tiles:
 				if not Global.frostland_explored and Global.frostland_explored_progress == 0:
-					Global.frostland_explored_progress += 1
+					if velocity != Vector2(0, gravity * delta):
+						Global.frostland_explored_progress += 1
+			
 			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + Vector2i(0,1)) == 19:
 				on_ice = true
 			else:
@@ -271,6 +287,7 @@ func death_engine():
 	$CollisionShape2D.disabled = true
 	$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	Global.no_stopping_now_progress += 1
+	heart_lost = true
 	if Global.player_health <= 0:
 		position = respawn_pos
 		take_damage_respos = respawn_pos

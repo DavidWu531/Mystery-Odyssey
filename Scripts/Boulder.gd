@@ -27,7 +27,6 @@ func _process(_delta):
 		if "Player" in body.name:
 			Global.player_health -= damage
 			body.death_engine()
-			print("hi")
 			break
 
 
