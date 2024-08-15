@@ -35,7 +35,7 @@ func _on_quicksand_body_exited(body):
 func _on_boulder_timer_timeout():
 	var new_boulder = boulder.instantiate()
 	#if randf() >= 0.5:
-	new_boulder.position = Vector2(14024, -1712)
+	new_boulder.position = Vector2(14010, -1968)
 	#else:
 		#new_boulder.position = Vector2(2472, -616)
 	add_child(new_boulder)

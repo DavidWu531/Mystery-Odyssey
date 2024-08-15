@@ -66,6 +66,7 @@ func one_heart_escape():
 
 func u_cant_c_me():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]U Can't C Me[/color]\n[i]Deplete all of your health via one hit on full health[/i]"
+	$AnimatedSprite2D.play("Death")
 	
 	
 func eagle_eye():
@@ -74,8 +75,9 @@ func eagle_eye():
 	
 func cant_let_go():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Can't let go[/color]\n[i]Keep moving for 10 seconds consecutively[/i]"
-	
-	
+	$AnimatedSprite2D.play("Exploration")
+
+
 func ultra_insticto():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Untouchable[/color]\n[i]Take no damage until next checkpoint[/i]"
 	$AnimatedSprite2D.play("Combat")
@@ -83,75 +85,90 @@ func ultra_insticto():
 
 func fire_my_laser():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]MY EYES!![/color]\n[i]Turn on flashlight[/i]"
+	$AnimatedSprite2D.play("Exploration")
 	
-	
+
 func no_cheese():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]This isn't cheese[/color]\n[i]Die to lava[/i]"
+	$AnimatedSprite2D.play("Death")
 	
 	
 func i_c_u():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Access Granted[/color]\n[i]Unlock the locked door[/i]"
+	$AnimatedSprite2D.play()
 	
 
 func no_stopping_now_i():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't give up hope I[/color]\n[i]Die 1 time[/i]"
-	
+	$AnimatedSprite2D.play("Death")
 	
 func no_stopping_now_ii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't give up hope II[/color]\n[i]Die 10 times[/i]"
-	
+	$AnimatedSprite2D.play("Death")
 	
 func no_stopping_now_iii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't give up hope III[/color]\n[i]Die 20 times[/i]"
-	
+	$AnimatedSprite2D.play("Death")
 	
 func killing_machine_i():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless I[/color]\n[i]Slay 1 enemy[/i]"
 	$AnimatedSprite2D.play("Combat")
 	
+
 func killing_machine_ii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless II[/color]\n[i]Slay 20 enemies[/i]"
 	$AnimatedSprite2D.play("Combat")
 	
+
 func killing_machine_iii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless III[/color]\n[i]Slay 50 enemies[/i]"
 	$AnimatedSprite2D.play("Combat")
 	
+
 func ooh_shiny_mine_i():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Ooh, Shiny! Mine! I[/color]\n[i]Pick up 1 collectibles[/i]"
 	$AnimatedSprite2D.play("Shiny")
 	
+
 func ooh_shiny_mine_ii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Ooh, Shiny! Mine! II[/color]\n[i]Pick up 25 collectibles[/i]"
 	$AnimatedSprite2D.play("Shiny")
 	
+
 func ooh_shiny_mine_iii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Ooh, Shiny! Mine! III[/color]\n[i]Pick up 60 collectibles[/i]"
 	$AnimatedSprite2D.play("Shiny")
 	
+
 func quest_hunter_i():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Gotta complete those side missions I[/color]\n[i]Complete 2 quests[/i]"
+	$AnimatedSprite2D.play("Combat")
 	
-	
+
 func quest_hunter_ii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Gotta complete those side missions II[/color]\n[i]Complete 5 quests[/i]"
+	$AnimatedSprite2D.play("Combat")
 	
-	
+
 func quest_hunter_iii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Gotta complete those side missions III[/color]\n[i]Complete 10 quests[/i]"
+	$AnimatedSprite2D.play("Combat")
 	
-	
+
 func social_expert_i():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Heavy Extrovert I[/color]\n[i]Talk to 2 NPCs[/i]"
+	$AnimatedSprite2D.play("Communication")
 	
-	
+
 func social_expert_ii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Heavy Extrovert II[/color]\n[i]Talk to 6 NPCs[/i]"
+	$AnimatedSprite2D.play("Communication")
 	
-	
+
 func social_expert_iii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Heavy Extrovert III[/color]\n[i]Talk to 12 NPCs[/i]"
+	$AnimatedSprite2D.play("Communication")
 	
-	
+
 func _on_duration_timer_timeout():
 	queue_free()

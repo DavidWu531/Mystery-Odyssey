@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvdcl15vsqy0v"]
+[gd_scene load_steps=20 format=3 uid="uid://bvdcl15vsqy0v"]
 
 [ext_resource type="Script" path="res://Scripts/UIManager.gd" id="1_aajpp"]
 [ext_resource type="Texture2D" uid="uid://j5bqpsh1t2qt" path="res://Art/Health.png" id="2_ajn7e"]
@@ -47,6 +47,11 @@ animations = [{
 
 [sub_resource type="LabelSettings" id="LabelSettings_veqy4"]
 font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ooumm"]
+font_size = 28
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -118,7 +123,7 @@ vertical_alignment = 1
 layout_mode = 0
 offset_left = 64.0
 offset_right = 254.0
-offset_bottom = 32.0
+offset_bottom = 31.6
 scale = Vector2(1.684, 2)
 texture = ExtResource("4_pvg0f")
 expand_mode = 1
@@ -128,13 +133,25 @@ stretch_mode = 1
 layout_mode = 0
 offset_left = 64.0
 offset_right = 254.0
-offset_bottom = 32.0
+offset_bottom = 31.6
 scale = Vector2(1.684, 2)
 texture = ExtResource("2_ajn7e")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="PlayerHealthText" type="Label" parent="MainScreen"]
+visible = false
+layout_mode = 0
+offset_left = 128.0
+offset_right = 192.0
+offset_bottom = 64.0
+text = "x12"
+label_settings = SubResource("LabelSettings_ooumm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PlayerEnergy" type="ProgressBar" parent="MainScreen"]
+visible = false
 modulate = Color(0, 1, 0, 1)
 layout_mode = 0
 offset_left = 64.0

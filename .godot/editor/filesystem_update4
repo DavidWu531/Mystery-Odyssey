@@ -1,8 +1,7 @@
-res://Scenes/boulder.tscn
+res://Scenes/main_menu.tscn
 res://Scripts/Boulder.gd
 res://Resources/obstacles.tres
 res://Resources/platforms.tres
-res://Scenes/main_menu.tscn
 res://Scenes/achievement_banner.tscn
 res://Scenes/enemy.tscn
 res://Scenes/keypad.tscn
@@ -14,6 +13,8 @@ res://Scenes/section_desert.tscn
 res://Scenes/section_frost.tscn
 res://Scenes/ui_manager.tscn
 res://Scenes/won.tscn
+res://Scenes/boulder.tscn
 res://Scripts/DesertManager.gd
-res://Scripts/Player.gd
 res://Scripts/Global.gd
+res://Scripts/UIManager.gd
+res://Scripts/AchievementBanner.gd

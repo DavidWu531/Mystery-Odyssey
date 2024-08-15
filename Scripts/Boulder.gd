@@ -17,7 +17,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	apply_torque_impulse(-150.0 * delta)
+	apply_torque_impulse(-150.0 * delta * mass)
 	if position.y > 10000 or position.y < -10000:
 		queue_free()
 	
@@ -27,6 +27,8 @@ func _process(_delta):
 		if "Player" in body.name:
 			Global.player_health -= damage
 			body.death_engine()
+			print("hi")
+			break
 
 
 func big():

@@ -47,8 +47,19 @@ func _process(delta):
 	
 	$PauseMenu/Score.text = "Score: " + str(Global.score)
 	
-	$MainScreen/PlayerHealthOverlay.size = Vector2(Global.player_maxhealth * 38, 32)
-	$MainScreen/PlayerHealth.size = Vector2(Global.player_health * 38, 32)
+	if Global.player_health <= 5:
+		if Global.player_maxhealth <= 5:
+			$MainScreen/PlayerHealthOverlay.size = Vector2(Global.player_maxhealth * 38, 31.6)
+		else:
+			$MainScreen/PlayerHealthOverlay.size = Vector2(190, 31.6)
+		$MainScreen/PlayerHealth.size = Vector2(Global.player_health * 38, 31.6)
+		$MainScreen/PlayerHealthText.hide()
+	else:
+		$MainScreen/PlayerHealthOverlay.size = Vector2(38, 31.6)
+		$MainScreen/PlayerHealth.size = Vector2(38, 31.6)
+		$MainScreen/PlayerHealthText.show()
+	
+	$MainScreen/PlayerHealthText.text = "x" + str(Global.player_health)
 	
 	$MainScreen/TimeElapsed.text = str(Global.time_elapsed).pad_decimals(2)
 	

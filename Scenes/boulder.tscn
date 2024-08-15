@@ -36,23 +36,24 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu4j6"]
-radius = 21.0
+radius = 23.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_45jtu"]
-radius = 37.0
+radius = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7773n"]
-radius = 54.0
+radius = 73.0
 
 [node name="Boulder" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_ptcf8")
-max_contacts_reported = 2
+inertia = 1.0
+max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_300n0")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5e0a6")
-animation = &"big"
+animation = &"med"
 
 [node name="SmallCollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gu4j6")
