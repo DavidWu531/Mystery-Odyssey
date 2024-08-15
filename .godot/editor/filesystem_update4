@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 res://Scenes/main_menu.tscn
+=======
+res://Scenes/section_desert.tscn
+>>>>>>> 59150745e650bc46e2307661d092ef4feba8bd4a
 res://Scripts/Boulder.gd
 res://Resources/obstacles.tres
 res://Resources/platforms.tres
@@ -9,12 +13,14 @@ res://Scenes/loading_screen.tscn
 res://Scenes/main.tscn
 res://Scenes/player.tscn
 res://Scenes/section_grass.tscn
-res://Scenes/section_desert.tscn
 res://Scenes/section_frost.tscn
 res://Scenes/ui_manager.tscn
 res://Scenes/won.tscn
 res://Scenes/boulder.tscn
+<<<<<<< HEAD
 res://Scripts/DesertManager.gd
 res://Scripts/Global.gd
 res://Scripts/UIManager.gd
 res://Scripts/AchievementBanner.gd
+=======
+>>>>>>> 59150745e650bc46e2307661d092ef4feba8bd4a
