@@ -206,7 +206,7 @@ func _process(delta):
 			for y in range(-50, 50):
 				for x in range(-50, 50):
 					var cell_id = collision.get_collider().get_cell_source_id(\
-					0, map_pos + Vector2i(x, y))
+					map_pos + Vector2i(x, y))
 					if cell_id != -1:
 						var temp_local_coord = collision.get_collider().map_to_local(map_pos + Vector2i(x, y))
 						var distance = position.distance_to(temp_local_coord)
@@ -217,10 +217,10 @@ func _process(delta):
 						$Label.text = str(tile)
 			
 			if tile and not tile_damage_taken:
-				if collision.get_collider().get_cell_source_id(0, tile) in grass_obst_tiles:
+				if collision.get_collider().get_cell_source_id(tile) in grass_obst_tiles:
 					Global.player_health -= 1
 					tile_damage_taken = true
-				elif collision.get_collider().get_cell_source_id(0, tile) in desert_obst_tiles:
+				elif collision.get_collider().get_cell_source_id(tile) in desert_obst_tiles:
 					Global.player_health -= 3
 					tile_damage_taken = true
 				
@@ -229,20 +229,20 @@ func _process(delta):
 					break
 		
 		elif "Platforms" in collision.get_collider().name:
-			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + platform_tile_vector) in grass_plat_tiles:
+			if collision.get_collider().get_cell_source_id(collision.get_collider().local_to_map(position) + platform_tile_vector) in grass_plat_tiles:
 				if not Global.grassland_explored and Global.grassland_explored_progress == 0:
 					if velocity != Vector2(0, gravity * delta):
 						Global.grassland_explored_progress += 1
-			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + platform_tile_vector) in desert_plat_tiles:
+			if collision.get_collider().get_cell_source_id(collision.get_collider().local_to_map(position) + platform_tile_vector) in desert_plat_tiles:
 				if not Global.desert_explored and Global.desert_explored_progress == 0:
 					if velocity != Vector2(0, gravity * delta):
 						Global.desert_explored_progress += 1
-			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + platform_tile_vector) in frost_plat_tiles:
+			if collision.get_collider().get_cell_source_id(collision.get_collider().local_to_map(position) + platform_tile_vector) in frost_plat_tiles:
 				if not Global.frostland_explored and Global.frostland_explored_progress == 0:
 					if velocity != Vector2(0, gravity * delta):
 						Global.frostland_explored_progress += 1
 			
-			if collision.get_collider().get_cell_source_id(0, collision.get_collider().local_to_map(position) + Vector2i(0,1)) == 19:
+			if collision.get_collider().get_cell_source_id(collision.get_collider().local_to_map(position) + Vector2i(0,1)) == 19:
 				on_ice = true
 			else:
 				on_ice = false
