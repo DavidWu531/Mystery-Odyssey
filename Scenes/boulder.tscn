@@ -47,8 +47,12 @@ radius = 73.0
 [node name="Boulder" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_ptcf8")
 inertia = 1.0
-max_contacts_reported = 1
 contact_monitor = true
+<<<<<<< HEAD
+max_contacts_reported = 2
+=======
+max_contacts_reported = 1
+>>>>>>> b07d6bb8efae6d895acf65b25dd81a3503cd184a
 script = ExtResource("1_300n0")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
