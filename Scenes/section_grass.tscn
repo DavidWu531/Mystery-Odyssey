@@ -885,7 +885,7 @@ shape = SubResource("CircleShape2D_qdo5f")
 [node name="Checkpoints" type="Node2D" parent="."]
 
 [node name="CheckpointI" type="Area2D" parent="Checkpoints"]
-position = Vector2(1992, -1152)
+position = Vector2(1992, -1240)
 script = ExtResource("5_8wgrw")
 metadata/_edit_group_ = true
 
