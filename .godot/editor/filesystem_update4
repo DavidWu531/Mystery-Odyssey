@@ -1,9 +1,16 @@
 res://Scenes/section_desert.tscn
+<<<<<<< HEAD
 res://Resources/obstacles.tres
 res://Resources/platforms.tres
 res://Scripts/Boulder.gd
 res://Scripts/UIManager.gd
 res://Scripts/DesertManager.gd
+=======
+res://Scripts/Boulder.gd
+res://Resources/obstacles.tres
+res://Resources/platforms.tres
+res://Scripts/UIManager.gd
+>>>>>>> b07d6bb8efae6d895acf65b25dd81a3503cd184a
 res://Scenes/main_menu.tscn
 res://Scenes/achievement_banner.tscn
 res://Scenes/enemy.tscn
@@ -16,4 +23,7 @@ res://Scenes/section_frost.tscn
 res://Scenes/ui_manager.tscn
 res://Scenes/won.tscn
 res://Scenes/boulder.tscn
+<<<<<<< HEAD
 res://Scripts/Player.gd
+=======
+>>>>>>> b07d6bb8efae6d895acf65b25dd81a3503cd184a

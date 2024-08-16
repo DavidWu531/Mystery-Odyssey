@@ -76,10 +76,10 @@ script = ExtResource("1_2e46h")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1168.0
-offset_top = -6160.0
-offset_right = 18032.0
-offset_bottom = 4640.0
+offset_left = -1376.0
+offset_top = -8640.0
+offset_right = 17824.0
+offset_bottom = 2160.0
 color = Color(0.443137, 0.737255, 0.882353, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_r8fqo")]
