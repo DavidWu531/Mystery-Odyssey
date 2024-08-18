@@ -1,11 +1,13 @@
 extends RigidBody2D
 
 var damage = 0
+var x = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$SmallCollisionShape2D.disabled = true
 	$MediumCollisionShape2D.disabled = true
 	$BigCollisionShape2D.disabled = true
+	x += 1
 	var n = randi_range(1,3)
 	match n:
 		1:
@@ -18,6 +20,7 @@ func _ready():
 
 func _physics_process(delta):
 	apply_torque_impulse(-150.0 * delta * mass)
+	name = "Boulder" + str(x)
 	if position.y > 10000 or position.y < -10000:
 		queue_free()
 	

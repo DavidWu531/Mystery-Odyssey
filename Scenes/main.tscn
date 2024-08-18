@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpwqsclckjman"]
+[gd_scene load_steps=11 format=3 uid="uid://dpwqsclckjman"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_2e46h"]
 [ext_resource type="PackedScene" uid="uid://bs0rjq8hecmbe" path="res://Scenes/section_grass.tscn" id="2_at4yo"]
@@ -70,20 +70,20 @@ _data = {
 "RESET": SubResource("Animation_3ynj0")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kuiht"]
+size = Vector2(16256, 864)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2e46h")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1376.0
-offset_top = -8640.0
-offset_right = 17824.0
-offset_bottom = 2160.0
+offset_left = -888.0
+offset_top = -4744.0
+offset_right = 18312.0
+offset_bottom = 6056.0
 color = Color(0.443137, 0.737255, 0.882353, 1)
-
-[node name="Player" parent="." instance=ExtResource("3_r8fqo")]
-position = Vector2(8, -56)
 
 [node name="Layouts" type="Node2D" parent="."]
 
@@ -93,6 +93,9 @@ position = Vector2(8, -56)
 
 [node name="Section_Frost" parent="Layouts" instance=ExtResource("5_lpywg")]
 position = Vector2(832, 704)
+
+[node name="Player" parent="." instance=ExtResource("3_r8fqo")]
+position = Vector2(8, -56)
 
 [node name="SceneCamera" type="Camera2D" parent="."]
 position = Vector2(3232, -1416)
@@ -104,5 +107,19 @@ editor_draw_limits = true
 libraries = {
 "": SubResource("AnimationLibrary_n58ot")
 }
+autoplay = "Cycle"
 
 [node name="UIManager" parent="." instance=ExtResource("4_kf2re")]
+
+[node name="DeathBarrier" type="Area2D" parent="."]
+position = Vector2(7488, -648)
+
+[node name="Bottom" type="CollisionShape2D" parent="DeathBarrier"]
+position = Vector2(0, 3000)
+shape = SubResource("RectangleShape2D_kuiht")
+
+[node name="Top" type="CollisionShape2D" parent="DeathBarrier"]
+position = Vector2(0, -3000)
+shape = SubResource("RectangleShape2D_kuiht")
+
+[connection signal="body_entered" from="DeathBarrier" to="." method="_on_death_barrier_body_entered"]

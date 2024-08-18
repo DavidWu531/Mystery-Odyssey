@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://k6q106c05g5l"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_o3pfn"]
-[ext_resource type="Texture2D" uid="uid://bgdjpajr8q66b" path="res://Art/Prismdroidattackdriller.png" id="2_0s1hf"]
+[ext_resource type="Texture2D" uid="uid://2wyrvl1cg84c" path="res://Art/Prismdroidattackdriller.png" id="2_0s1hf"]
 [ext_resource type="Texture2D" uid="uid://dgtg2cvyqihd5" path="res://Art/RadialLight.png" id="4_nool5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gk5jt"]

@@ -169,33 +169,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(delta):
-	#if direction_normalised.x > 0.0:
-		#if is_on_wall():
-			#tile_vector.x = 1
-			#tile_vector.y = 0
-		#elif not is_on_wall():
-			#tile_vector.x = 1
-			#tile_vector.y = 1
-	#elif direction_normalised.x < 0.0:
-		#if is_on_wall():
-			#tile_vector.x = -1
-			#tile_vector.y = 0
-		#elif not is_on_wall():
-			#tile_vector.x = -1
-			#tile_vector.y = 1
-		#tile_vector.y = 0
-	#elif direction_normalised.y > 0.0:
-		#tile_vector.y = 1
-		#tile_vector.x = 0
-	#elif direction_normalised.y < 0.0:
-		#tile_vector.y = -1
-		#tile_vector.x = 0
-	
-	
-	if position.y > 10000 or position.y < -10000:
-		Global.player_health -= 1
-		death_engine()
-		
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		if "Obstacles" in collision.get_collider().name:
@@ -230,16 +203,16 @@ func _process(delta):
 		
 		elif "Platforms" in collision.get_collider().name:
 			if collision.get_collider().get_cell_source_id(collision.get_collider().local_to_map(position) + platform_tile_vector) in grass_plat_tiles:
-				if not Global.grassland_explored and Global.grassland_explored_progress == 0:
-					if velocity != Vector2(0, gravity * delta):
+				if not Global.grassland_explored:
+					if velocity != Vector2(0, 0):
 						Global.grassland_explored_progress += 1
 			if collision.get_collider().get_cell_source_id(collision.get_collider().local_to_map(position) + platform_tile_vector) in desert_plat_tiles:
-				if not Global.desert_explored and Global.desert_explored_progress == 0:
-					if velocity != Vector2(0, gravity * delta):
+				if not Global.desert_explored:
+					if velocity != Vector2(0, 0):
 						Global.desert_explored_progress += 1
 			if collision.get_collider().get_cell_source_id(collision.get_collider().local_to_map(position) + platform_tile_vector) in frost_plat_tiles:
-				if not Global.frostland_explored and Global.frostland_explored_progress == 0:
-					if velocity != Vector2(0, gravity * delta):
+				if not Global.frostland_explored:
+					if velocity != Vector2(0, 0):
 						Global.frostland_explored_progress += 1
 			
 			if collision.get_collider().get_cell_source_id(collision.get_collider().local_to_map(position) + Vector2i(0,1)) == 19:
@@ -251,7 +224,6 @@ func _process(delta):
 		elif "MovableBlock" in collision.get_collider().name:
 			if abs(collision.get_collider().get_linear_velocity().x) < MAX_VELOCITY:
 				collision.get_collider().apply_central_impulse(collision.get_normal() * -PUSH_FORCE)
-				
 	
 	if Input.is_action_just_pressed("TorchToggle"):
 		if $AngularLight.enabled:
@@ -284,7 +256,7 @@ func death_engine():
 	velocity = Vector2(0,0)
 	can_move = false
 	$SpawnImmunity.start(2.0)
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred("disabled", true)
 	$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	Global.no_stopping_now_progress += 1
 	heart_lost = true
@@ -323,5 +295,5 @@ func _on_spawn_immunity_timeout():
 	var tween = get_tree().create_tween()
 	tween.tween_property($Sprite2D, "modulate", Color(1.0, 1.0, 1.0, 1.0), 1.0)
 	await get_tree().create_timer(1.0).timeout
-	$CollisionShape2D.disabled = false
+	$CollisionShape2D.set_deferred("disabled", false)
 	can_move = true

@@ -1,26 +1,33 @@
 extends Node2D
 
 var boulder = preload("res://Scenes/boulder.tscn")
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	SignalBus.checkpoint_iii_hit.connect(checkpoint_iii_hit)
+	SignalBus.checkpoint_iv_hit.connect(checkpoint_iv_hit)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("Interact"):
 		if $PyramidAccess/Interactable.visible:
-			print("Teleport Player")
-			
-	for node in $BoulderWreck.get_overlapping_bodies():
-		if "Boulder" in node.name:
-			node.queue_free()
+			for node in $PyramidAccess.get_overlapping_bodies():
+				if "Player" in node.name:
+					$AnimationPlayer.play("blackfadein")
+					await get_tree().create_timer(1.05).timeout
+					node.position = Vector2(96, 3744)
+					break
 
 
 func checkpoint_iii_hit():
 	$Checkpoints/CheckpointIII.set_deferred("monitorable", false)
 	$Checkpoints/CheckpointIII.set_deferred("monitoring", false)
 	$Checkpoints/CheckpointIII/CollisionShape2D.set_deferred("disabled", true)
+
+
+func checkpoint_iv_hit():
+	$Checkpoints/CheckpointIV.set_deferred("monitorable", false)
+	$Checkpoints/CheckpointIV.set_deferred("monitoring", false)
+	$Checkpoints/CheckpointIV/CollisionShape2D.set_deferred("disabled", true)
 
 
 func _on_quicksand_body_entered(body):
@@ -46,10 +53,10 @@ func _on_boulder_timer_timeout():
 
 func _on_hidden_key_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
-		hide()
-		set_deferred("monitorable", false)
-		set_deferred("monitoring", false)
-		$CollisionShape2D.set_deferred("disabled", true)
+		$Other/HiddenKey.hide()
+		$Other/HiddenKey.set_deferred("monitorable", false)
+		$Other/HiddenKey.set_deferred("monitoring", false)
+		$Other/HiddenKey/CollisionShape2D.set_deferred("disabled", true)
 		Global.score += 1
 
 
@@ -65,3 +72,15 @@ func _on_pyramid_access_body_exited(body: Node2D) -> void:
 	if "Player" in body.name:
 		$PyramidAccess/Interactable.hide()
 		$PyramidAccess/Error.hide()
+
+
+func _on_boulder_wreck_body_entered(body: Node2D) -> void:
+	if "Boulder" in body.name:
+		await get_tree().create_timer(1.25).timeout
+		body.queue_free()
+
+
+func _on_spiky_ball_body_entered(body: Node2D) -> void:
+	if "Player" in body.name:
+		Global.player_health -= 2
+		body.death_engine()

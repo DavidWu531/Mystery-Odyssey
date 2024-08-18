@@ -32,8 +32,19 @@ func checkpoint_iii_hit():
 
 
 func player_died():
-	if SignalBus.checkpoint_i_emitted and SignalBus.checkpoint_i_available:
+	if SignalBus.checkpoint_i_emitted:
 		for node in get_children():
 			if "Player" in node.name:
 				node.current_mode = node.player_modes[0]
 				break
+	if SignalBus.checkpoint_iii_emitted:
+		for node in get_children():
+			if "Player" in node.name:
+				node.current_mode = node.player_modes[1]
+				break
+
+
+func _on_death_barrier_body_entered(body: Node2D) -> void:
+	if "Player" in body.name:
+		Global.player_health -= 1
+		body.death_engine()

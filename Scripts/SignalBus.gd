@@ -1,8 +1,10 @@
 extends Node
 
+
 signal checkpoint_i_hit
 signal checkpoint_ii_hit
 signal checkpoint_iii_hit
+signal checkpoint_iv_hit
 
 signal player_died
 signal sign_movement_touch
@@ -22,7 +24,8 @@ var checkpoint_ii_available = false
 var checkpoint_ii_emitted = false
 var checkpoint_iii_available = false
 var checkpoint_iii_emitted = false
-
+var checkpoint_iv_available = false
+var checkpoint_iv_emitted = false
 
 signal grassland_explored
 signal desert_explored
