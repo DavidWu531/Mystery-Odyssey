@@ -255,7 +255,7 @@ func death_engine():
 	gravity = respawn_gravity
 	velocity = Vector2(0,0)
 	can_move = false
-	$SpawnImmunity.start(2.0)
+	$SpawnImmunity.start(1.0)
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	Global.no_stopping_now_progress += 1
@@ -294,6 +294,6 @@ func _on_keys_hold_timeout():
 func _on_spawn_immunity_timeout():
 	var tween = get_tree().create_tween()
 	tween.tween_property($Sprite2D, "modulate", Color(1.0, 1.0, 1.0, 1.0), 1.0)
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	$CollisionShape2D.set_deferred("disabled", false)
 	can_move = true

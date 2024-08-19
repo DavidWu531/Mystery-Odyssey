@@ -1,12 +1,12 @@
-[gd_scene load_steps=34 format=4 uid="uid://dmpp7c4u2ikui"]
+[gd_scene load_steps=35 format=4 uid="uid://dmpp7c4u2ikui"]
 
 [ext_resource type="Script" path="res://Scripts/DesertManager.gd" id="1_ugj6b"]
 [ext_resource type="TileSet" uid="uid://dqj7cg6vm786t" path="res://Resources/obstacles.tres" id="2_1sx2f"]
 [ext_resource type="TileSet" uid="uid://by7wu55cjrnhd" path="res://Resources/platforms.tres" id="4_1yd57"]
-[ext_resource type="Texture2D" uid="uid://ccn4onwir55ip" path="res://Art/Checkpoint.png" id="4_6ldl2"]
+[ext_resource type="Texture2D" uid="uid://bu4273q2tcrhf" path="res://Art/Checkpoint.png" id="4_6ldl2"]
 [ext_resource type="Script" path="res://Scripts/Checkpoint.gd" id="4_qb61t"]
 [ext_resource type="Script" path="res://Scripts/Coins.gd" id="6_jp1e0"]
-[ext_resource type="Texture2D" uid="uid://c5vpavu3dmga8" path="res://Art/Coin.png" id="7_l7pjo"]
+[ext_resource type="Texture2D" uid="uid://bm85w71qi4tuo" path="res://Art/Coin.png" id="7_l7pjo"]
 [ext_resource type="Script" path="res://Scripts/HiddenCoins.gd" id="8_4glmd"]
 [ext_resource type="Texture2D" uid="uid://csmnnts78ka2c" path="res://Art/HiddenCoin.png" id="9_7hqc3"]
 [ext_resource type="Texture2D" uid="uid://bw7nkj4evv6kg" path="res://Art/SecretKeyYellow.png" id="10_mgv6d"]
@@ -196,6 +196,9 @@ _data = {
 "RESET": SubResource("Animation_t566h"),
 "blackfadein": SubResource("Animation_1y8ch")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxie"]
+size = Vector2(960, 384)
 
 [node name="Section_Desert" type="Node2D"]
 script = ExtResource("1_ugj6b")
@@ -460,6 +463,16 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_gri5k")
 }
+
+[node name="FallingSpikesDetection" type="Area2D" parent="."]
+position = Vector2(4960, 5440)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection"]
+shape = SubResource("RectangleShape2D_4kxie")
+
+[node name="Spikes" type="Area2D" parent="FallingSpikesDetection"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/Spikes"]
 
 [connection signal="body_entered" from="Checkpoints/CheckpointIII" to="Checkpoints/CheckpointIII" method="_on_body_entered"]
 [connection signal="body_entered" from="Checkpoints/CheckpointIV" to="Checkpoints/CheckpointIV" method="_on_body_entered"]

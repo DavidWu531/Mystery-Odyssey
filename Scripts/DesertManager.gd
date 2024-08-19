@@ -76,7 +76,7 @@ func _on_pyramid_access_body_exited(body: Node2D) -> void:
 
 func _on_boulder_wreck_body_entered(body: Node2D) -> void:
 	if "Boulder" in body.name:
-		await get_tree().create_timer(1.25).timeout
+		await get_tree().create_timer(0.5).timeout
 		body.queue_free()
 
 
