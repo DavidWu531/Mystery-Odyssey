@@ -2,16 +2,15 @@ res://Scenes/section_desert.tscn
 res://Resources/obstacles.tres
 res://Resources/platforms.tres
 res://Scripts/Boulder.gd
+res://Scenes/section_grass.tscn
 res://Scenes/main_menu.tscn
 res://Scenes/achievement_banner.tscn
 res://Scenes/enemy.tscn
 res://Scenes/keypad.tscn
 res://Scenes/loading_screen.tscn
 res://Scenes/player.tscn
-res://Scenes/section_grass.tscn
 res://Scenes/section_frost.tscn
 res://Scenes/ui_manager.tscn
 res://Scenes/won.tscn
 res://Scenes/boulder.tscn
 res://Scenes/main.tscn
-res://Scripts/DesertManager.gd

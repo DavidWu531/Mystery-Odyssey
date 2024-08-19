@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b46k16y3h0l4" path="res://Art/BlockGrass.png" id="1_efl6n"]
 [ext_resource type="Texture2D" uid="uid://booqy52fdij8m" path="res://Art/BlockGrassCave.png" id="2_tr1p3"]
-[ext_resource type="Texture2D" uid="uid://cwqi6klde2i4g" path="res://Art/BlockSnowUnder.png" id="3_bpfn7"]
+[ext_resource type="Texture2D" uid="uid://b2i74deafsa22" path="res://Art/BlockSnowUnder.png" id="3_bpfn7"]
 [ext_resource type="Texture2D" uid="uid://bfnr7sgdlonv5" path="res://Art/BlockGrassCorner.png" id="4_l374a"]
 [ext_resource type="Texture2D" uid="uid://bk8sj62sk0iq7" path="res://Art/BlockGrassParallel.png" id="5_wlojg"]
 [ext_resource type="Texture2D" uid="uid://v87a8xmd1jt5" path="res://Art/BlockGrassLily.png" id="6_yfmrs"]
@@ -14,14 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://5e4wefui5udf" path="res://Art/BlockSandParallel.png" id="11_fpknx"]
 [ext_resource type="Texture2D" uid="uid://m4spi74qg3q0" path="res://Art/BlockSand.png" id="11_tygky"]
 [ext_resource type="Texture2D" uid="uid://dojdpu6ml87c5" path="res://Art/BlockSnowIce.png" id="12_43oas"]
-[ext_resource type="Texture2D" uid="uid://cisgi7lrptuvo" path="res://Art/BlockSnow.png" id="12_a3ld2"]
+[ext_resource type="Texture2D" uid="uid://cwilutgcv1x2c" path="res://Art/BlockSnow.png" id="12_a3ld2"]
 [ext_resource type="Texture2D" uid="uid://c44w04v3ngg6h" path="res://Art/BlockSandCave.png" id="13_5wh36"]
 [ext_resource type="Texture2D" uid="uid://sjuxfsadjwxo" path="res://Art/BlockGrassAltI.png" id="13_62hyi"]
 [ext_resource type="Texture2D" uid="uid://cmwswya1m22gt" path="res://Art/BlockGrassAltII.png" id="14_qcfib"]
 [ext_resource type="Texture2D" uid="uid://bual6mkwcfc11" path="res://Art/BlockSandSlopeWide.png" id="14_v4xbb"]
 [ext_resource type="Texture2D" uid="uid://dyj2km6kbgakn" path="res://Art/BlockGrassSlant.png" id="15_4mhc4"]
 [ext_resource type="Texture2D" uid="uid://bkosicp6ba7it" path="res://Art/BlockRed.png" id="15_5cteh"]
-[ext_resource type="Texture2D" uid="uid://dfeoxix804lbk" path="res://Art/BlockSandUnder.png" id="16_dl4qv"]
+[ext_resource type="Texture2D" uid="uid://bpgcl1tuqvtv4" path="res://Art/BlockSandUnder.png" id="16_dl4qv"]
 [ext_resource type="Texture2D" uid="uid://48vqwbx8exfw" path="res://Art/BlockSnowCave.png" id="16_rjrp3"]
 [ext_resource type="Texture2D" uid="uid://po87eo8dcx58" path="res://Art/BlockSnowParallel.png" id="17_48nr6"]
 [ext_resource type="Texture2D" uid="uid://boa8l5n8qq4yj" path="res://Art/BlockGrassCaveAltI.png" id="18_gxyv4"]
@@ -198,7 +198,7 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e1nsf"]
 texture = ExtResource("13_5wh36")
 texture_region_size = Vector2i(64, 64)
-0:0/next_alternative_id = 4
+0:0/next_alternative_id = 5
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 0:0/1 = 1
@@ -211,6 +211,10 @@ texture_region_size = Vector2i(64, 64)
 0:0/3/flip_h = true
 0:0/3/transpose = true
 0:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:0/4 = 4
+0:0/4/modulate = Color(0.718316, 0.697547, 0.827658, 1)
+0:0/4/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 0, 32, 0, 32, -32, -32, -32)
+0:0/4/physics_layer_0/polygon_0/one_way = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wd74"]
 texture = ExtResource("14_v4xbb")
