@@ -198,7 +198,7 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e1nsf"]
 texture = ExtResource("13_5wh36")
 texture_region_size = Vector2i(64, 64)
-0:0/next_alternative_id = 4
+0:0/next_alternative_id = 5
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 0:0/1 = 1
@@ -211,6 +211,10 @@ texture_region_size = Vector2i(64, 64)
 0:0/3/flip_h = true
 0:0/3/transpose = true
 0:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:0/4 = 4
+0:0/4/modulate = Color(0.718316, 0.697547, 0.827658, 1)
+0:0/4/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 0, 32, 0, 32, -32, -32, -32)
+0:0/4/physics_layer_0/polygon_0/one_way = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wd74"]
 texture = ExtResource("14_v4xbb")
