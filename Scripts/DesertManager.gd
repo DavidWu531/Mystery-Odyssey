@@ -84,3 +84,19 @@ func _on_spiky_ball_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
 		Global.player_health -= 2
 		body.death_engine()
+
+
+func _on_dripstone_body_entered(body: Node2D) -> void:
+	if "Player" in body.name:
+		Global.player_health -= 3
+		body.death_engine()
+
+
+func _on_spikes_section_i_body_entered(body: Node2D) -> void:
+	if "Player" in body.name:
+		$FallingSpikesDetection/SpikesSectionI/AnimationPlayer.play("spikessection1")
+
+
+func _on_spikes_section_ii_body_entered(body: Node2D) -> void:
+	if "Player" in body.name:
+		$FallingSpikesDetection/SpikesSectionII/AnimationPlayer.play("spikessection2")

@@ -1,23 +1,20 @@
-res://Scenes/main.tscn
+res://Scenes/ui_manager.tscn
 res://Resources/obstacles.tres
 res://Resources/platforms.tres
 res://Scripts/Boulder.gd
-res://Scenes/section_grass.tscn
+res://Scripts/PauseMenu.gd
 res://Scenes/main_menu.tscn
 res://Scenes/achievement_banner.tscn
 res://Scenes/enemy.tscn
 res://Scenes/keypad.tscn
 res://Scenes/loading_screen.tscn
 res://Scenes/player.tscn
+res://Scenes/section_grass.tscn
 res://Scenes/section_frost.tscn
 res://Scenes/section_desert.tscn
-res://Scenes/ui_manager.tscn
 res://Scenes/won.tscn
 res://Scenes/boulder.tscn
-<<<<<<< HEAD
-res://Scripts/DesertManager.gd
-res://Scripts/Player.gd
-res://Scripts/PauseMenu.gd
-=======
 res://Scenes/main.tscn
->>>>>>> d3f844bbccd6d7354a570ca19152b2b42eb68c0c
+res://Scripts/AchievementBanner.gd
+res://temp.txt
+res://Scripts/DesertManager.gd

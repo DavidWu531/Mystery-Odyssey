@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://rcww6b5hkcyw" path="res://Art/GravityFlipSilhouette.png" id="5_egrq5"]
 [ext_resource type="Texture2D" uid="uid://cccp47o04jf0n" path="res://Art/LinearMotionSilhouette.png" id="6_2e8di"]
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="9_4lcen"]
-[ext_resource type="Script" path="res://Scripts/AchievementBanner.gd" id="10_ur2s8"]
 [ext_resource type="Texture2D" uid="uid://mqp2kfhh0n7s" path="res://Art/AchievementBanner.png" id="11_yn2dj"]
 [ext_resource type="Texture2D" uid="uid://cljhh38dug6o0" path="res://Art/AchievementIconCombat.png" id="12_4y3t2"]
 [ext_resource type="Texture2D" uid="uid://bmn8gr7dauqm1" path="res://Art/AchievementIconCommunicate.png" id="13_v3tnx"]
@@ -102,6 +101,10 @@ Button/font_sizes/font_size = 69
 font_size = 40
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_4sd3i"]
+GridContainer/constants/h_separation = 506
+GridContainer/constants/v_separation = 172
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_04rmm"]
 animations = [{
@@ -288,6 +291,7 @@ autowrap_mode = 2
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -341,6 +345,7 @@ theme = SubResource("Theme_f5a0s")
 text = "Achievements"
 
 [node name="Achievements" type="Control" parent="PauseMenu"]
+visible = false
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -379,32 +384,38 @@ layout_mode = 0
 offset_left = 256.0
 offset_top = 320.0
 offset_right = 1664.0
-offset_bottom = 896.0
+offset_bottom = 944.0
+horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Achievements/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="PauseMenu/Achievements/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_4sd3i")
+columns = 2
 
-[node name="AchID1" type="Control" parent="PauseMenu/Achievements/ScrollContainer/VBoxContainer"]
+[node name="AchID1" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
 editor_description = "448,112
 
 64,836"
 layout_mode = 2
-script = ExtResource("10_ur2s8")
+size_flags_horizontal = 3
+size_flags_vertical = 3
 metadata/_edit_group_ = true
 
-[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/VBoxContainer/AchID1"]
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID1"]
 layout_mode = 0
 offset_right = 448.0
 offset_bottom = 112.0
 texture = ExtResource("11_yn2dj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/VBoxContainer/AchID1"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID1"]
 position = Vector2(60, 56)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_04rmm")
-animation = &"Surprise"
+animation = &"Exploration"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/VBoxContainer/AchID1"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID1"]
 layout_mode = 0
 offset_left = 130.0
 offset_top = 18.0
@@ -412,6 +423,900 @@ offset_right = 430.0
 offset_bottom = 94.0
 theme = SubResource("Theme_ap2rf")
 bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]New Planet, Who Dis?[/color]
+[i]Travel 100 blocks in the grasslands[/i]"
+
+[node name="AchID2" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID2"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID2"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID2"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID3" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID3"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID3"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID3"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Don't slide off![/color]
+[i]Travel 100 blocks in the frostlands[/i]"
+
+[node name="AchID4" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID4"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID4"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID4"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Anyone got a torch?[/color]
+[i]Enter the cave[/i]"
+
+[node name="AchID5" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID5"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID5"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID5"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]My brain hurts[/color]
+[i]Escape the cave[/i]"
+
+[node name="AchID6" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID6"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID6"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Combat"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID6"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Unbreakable[/color]
+[i]Survive at 1 heart until next checkpoint[/i]"
+
+[node name="AchID7" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID7"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID7"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Death"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID7"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]U Can't C Me[/color]
+[i]Deplete all of your health in one hit on full health[/i]"
+
+[node name="AchID8" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID8"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID8"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Surprise"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID8"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Can't let go[/color]
+[i]Keep moving for 10 seconds consecutively[/i]"
+
+[node name="AchID9" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID9"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID9"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID9"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Untouchable[/color]
+[i]Take no damage until next checkpoint[/i]"
+
+[node name="AchID10" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID10"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID10"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Combat"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID10"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]This isn't cheese[/color]
+[i]Die to lava[/i]"
+
+[node name="AchID11" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID11"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID11"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID11"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Access Granted[/color]
+[i]Unlock the locked door[/i]"
+
+[node name="AchID12" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID12"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID12"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Death"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID12"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID13" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID13"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID13"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Surprise"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID13"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID14" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID14"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID14"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Death"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID14"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID15" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID15"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID15"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Death"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID15"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID16" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID16"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID16"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Death"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID16"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID17" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID17"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID17"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Combat"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID17"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID18" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID18"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID18"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Combat"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID18"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID19" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID19"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID19"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Combat"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID19"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID20" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID20"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID20"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Shiny"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID20"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID21" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID21"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID21"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Shiny"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID21"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID22" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID22"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID22"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Shiny"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID22"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID23" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID23"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID23"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Combat"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID23"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID24" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID24"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID24"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Combat"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID24"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID25" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID25"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID25"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Combat"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID25"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID26" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID26"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID26"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Communication"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID26"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID27" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID27"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID27"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Communication"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID27"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID28" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID28"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID28"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Communication"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID28"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
 
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/Achievement" to="PauseMenu" method="_on_achievement_pressed"]

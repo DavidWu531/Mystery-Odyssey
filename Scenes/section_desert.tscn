@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dmpp7c4u2ikui"]
+[gd_scene load_steps=45 format=4 uid="uid://dmpp7c4u2ikui"]
 
 [ext_resource type="Script" path="res://Scripts/DesertManager.gd" id="1_ugj6b"]
 [ext_resource type="TileSet" uid="uid://dqj7cg6vm786t" path="res://Resources/obstacles.tres" id="2_1sx2f"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Scripts/Pads.gd" id="11_plsik"]
 [ext_resource type="Texture2D" uid="uid://bemkd0cm8xinw" path="res://Art/JumpPad1.png" id="12_0t84s"]
 [ext_resource type="Texture2D" uid="uid://b1mjmkn66ky2i" path="res://Art/SpikyBall.png" id="14_na1up"]
+[ext_resource type="Texture2D" uid="uid://b5nv83p1gcnbg" path="res://Art/Dripstone.png" id="15_ppfsg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bjy4x"]
 atlas = ExtResource("4_6ldl2")
@@ -198,7 +199,260 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxie"]
-size = Vector2(960, 384)
+size = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nsor"]
+size = Vector2(20, 64)
+
+[sub_resource type="Animation" id="Animation_rvk2p"]
+resource_name = "spikessection1"
+length = 0.65
+step = 0.0001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dripstone3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(64, -160), Vector2(64, 160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dripstone2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.125, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -160), Vector2(0, 160)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dripstone:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-64, -160), Vector2(-64, 160)]
+}
+
+[sub_resource type="Animation" id="Animation_iikky"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dripstone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-64, 160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dripstone2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 160)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dripstone3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 160)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qegxa"]
+_data = {
+"RESET": SubResource("Animation_iikky"),
+"spikessection1": SubResource("Animation_rvk2p")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vad7f"]
+size = Vector2(192, 384)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7x8cp"]
+size = Vector2(384, 384)
+
+[sub_resource type="Animation" id="Animation_r5wfq"]
+resource_name = "spikessection2"
+length = 0.65
+step = 0.0001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dripstone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-160, -160), Vector2(-160, 160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dripstone2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1625, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-96, -160), Vector2(-96, 160)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dripstone3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.325, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-32, -160), Vector2(-32, 160)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Dripstone4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4063, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, -160), Vector2(32, 160)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Dripstone5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2438, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(96, -160), Vector2(96, 160)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Dripstone6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0813, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(160, -160), Vector2(160, 160)]
+}
+
+[sub_resource type="Animation" id="Animation_evcaf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dripstone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-160, -160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dripstone6:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, -160)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dripstone3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -160)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Dripstone4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, -160)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Dripstone5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, -160)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Dripstone2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-96, -160)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nsj5y"]
+_data = {
+"RESET": SubResource("Animation_evcaf"),
+"spikessection2": SubResource("Animation_r5wfq")
+}
 
 [node name="Section_Desert" type="Node2D"]
 script = ExtResource("1_ugj6b")
@@ -721,9 +975,108 @@ position = Vector2(4960, 5440)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection"]
 shape = SubResource("RectangleShape2D_4kxie")
 
-[node name="Spikes" type="Area2D" parent="FallingSpikesDetection"]
+[node name="SpikesSectionI" type="Area2D" parent="FallingSpikesDetection"]
+position = Vector2(-384, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/Spikes"]
+[node name="Dripstone" type="Area2D" parent="FallingSpikesDetection/SpikesSectionI"]
+position = Vector2(-64, 160)
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingSpikesDetection/SpikesSectionI/Dripstone"]
+texture = ExtResource("15_ppfsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/SpikesSectionI/Dripstone"]
+shape = SubResource("RectangleShape2D_4nsor")
+
+[node name="Dripstone2" type="Area2D" parent="FallingSpikesDetection/SpikesSectionI"]
+position = Vector2(0, 160)
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingSpikesDetection/SpikesSectionI/Dripstone2"]
+texture = ExtResource("15_ppfsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/SpikesSectionI/Dripstone2"]
+shape = SubResource("RectangleShape2D_4nsor")
+
+[node name="Dripstone3" type="Area2D" parent="FallingSpikesDetection/SpikesSectionI"]
+position = Vector2(64, 160)
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingSpikesDetection/SpikesSectionI/Dripstone3"]
+texture = ExtResource("15_ppfsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/SpikesSectionI/Dripstone3"]
+shape = SubResource("RectangleShape2D_4nsor")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FallingSpikesDetection/SpikesSectionI"]
+libraries = {
+"": SubResource("AnimationLibrary_qegxa")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/SpikesSectionI"]
+shape = SubResource("RectangleShape2D_vad7f")
+
+[node name="SpikesSectionII" type="Area2D" parent="FallingSpikesDetection"]
+position = Vector2(160, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/SpikesSectionII"]
+shape = SubResource("RectangleShape2D_7x8cp")
+
+[node name="Dripstone" type="Area2D" parent="FallingSpikesDetection/SpikesSectionII"]
+position = Vector2(-160, -160)
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone"]
+texture = ExtResource("15_ppfsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone"]
+shape = SubResource("RectangleShape2D_4nsor")
+
+[node name="Dripstone2" type="Area2D" parent="FallingSpikesDetection/SpikesSectionII"]
+position = Vector2(-96, -160)
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone2"]
+texture = ExtResource("15_ppfsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone2"]
+shape = SubResource("RectangleShape2D_4nsor")
+
+[node name="Dripstone3" type="Area2D" parent="FallingSpikesDetection/SpikesSectionII"]
+position = Vector2(-32, -160)
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone3"]
+texture = ExtResource("15_ppfsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone3"]
+shape = SubResource("RectangleShape2D_4nsor")
+
+[node name="Dripstone4" type="Area2D" parent="FallingSpikesDetection/SpikesSectionII"]
+position = Vector2(32, -160)
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone4"]
+texture = ExtResource("15_ppfsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone4"]
+shape = SubResource("RectangleShape2D_4nsor")
+
+[node name="Dripstone5" type="Area2D" parent="FallingSpikesDetection/SpikesSectionII"]
+position = Vector2(96, -160)
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone5"]
+texture = ExtResource("15_ppfsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone5"]
+shape = SubResource("RectangleShape2D_4nsor")
+
+[node name="Dripstone6" type="Area2D" parent="FallingSpikesDetection/SpikesSectionII"]
+position = Vector2(160, -160)
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone6"]
+texture = ExtResource("15_ppfsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallingSpikesDetection/SpikesSectionII/Dripstone6"]
+shape = SubResource("RectangleShape2D_4nsor")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FallingSpikesDetection/SpikesSectionII"]
+libraries = {
+"": SubResource("AnimationLibrary_nsj5y")
+}
 
 [connection signal="body_entered" from="Checkpoints/CheckpointIII" to="Checkpoints/CheckpointIII" method="_on_body_entered"]
 [connection signal="body_entered" from="Checkpoints/CheckpointIV" to="Checkpoints/CheckpointIV" method="_on_body_entered"]
@@ -783,3 +1136,14 @@ shape = SubResource("RectangleShape2D_4kxie")
 [connection signal="body_entered" from="PyramidAccess" to="." method="_on_pyramid_access_body_entered"]
 [connection signal="body_exited" from="PyramidAccess" to="." method="_on_pyramid_access_body_exited"]
 [connection signal="body_entered" from="SpikyBall" to="." method="_on_spiky_ball_body_entered"]
+[connection signal="body_entered" from="FallingSpikesDetection/SpikesSectionI" to="." method="_on_spikes_section_i_body_entered"]
+[connection signal="body_entered" from="FallingSpikesDetection/SpikesSectionI/Dripstone" to="." method="_on_dripstone_body_entered"]
+[connection signal="body_entered" from="FallingSpikesDetection/SpikesSectionI/Dripstone2" to="." method="_on_dripstone_body_entered"]
+[connection signal="body_entered" from="FallingSpikesDetection/SpikesSectionI/Dripstone3" to="." method="_on_dripstone_body_entered"]
+[connection signal="body_entered" from="FallingSpikesDetection/SpikesSectionII" to="." method="_on_spikes_section_ii_body_entered"]
+[connection signal="body_entered" from="FallingSpikesDetection/SpikesSectionII/Dripstone" to="." method="_on_dripstone_body_entered"]
+[connection signal="body_entered" from="FallingSpikesDetection/SpikesSectionII/Dripstone2" to="." method="_on_dripstone_body_entered"]
+[connection signal="body_entered" from="FallingSpikesDetection/SpikesSectionII/Dripstone3" to="." method="_on_dripstone_body_entered"]
+[connection signal="body_entered" from="FallingSpikesDetection/SpikesSectionII/Dripstone4" to="." method="_on_dripstone_body_entered"]
+[connection signal="body_entered" from="FallingSpikesDetection/SpikesSectionII/Dripstone5" to="." method="_on_dripstone_body_entered"]
+[connection signal="body_entered" from="FallingSpikesDetection/SpikesSectionII/Dripstone6" to="." method="_on_dripstone_body_entered"]
