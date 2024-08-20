@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://k6q106c05g5l"]
+[gd_scene load_steps=16 format=3 uid="uid://k6q106c05g5l"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_o3pfn"]
 [ext_resource type="Texture2D" uid="uid://2wyrvl1cg84c" path="res://Art/Prismdroidattackdriller.png" id="2_0s1hf"]
@@ -69,13 +69,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jsrgf"]
 size = Vector2(52, 88)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_coqkb"]
+radius = 455.0
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eqejr"]
 load_path = "res://.godot/imported/Light.png-d2a75277c3d245367c882dae628488a7.ctex"
 
-[sub_resource type="LabelSettings" id="LabelSettings_5qxta"]
-font_size = 20
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ts5op"]
+size = Vector2(1365, 1365)
 
 [node name="Player" type="CharacterBody2D"]
 floor_stop_on_slope = false
@@ -109,18 +110,29 @@ editor_draw_limits = true
 wait_time = 2.0
 autostart = true
 
-[node name="AngularLight" type="PointLight2D" parent="."]
+[node name="LightAttackRadial" type="Area2D" parent="."]
+
+[node name="RadialLight" type="PointLight2D" parent="LightAttackRadial"]
+editor_description = "Formula: offset.x = 45.5 * texture_scale - 32"
+enabled = false
+texture = ExtResource("4_nool5")
+texture_scale = 10.0
+
+[node name="RadialCollisionShape2D" type="CollisionShape2D" parent="LightAttackRadial"]
+shape = SubResource("CircleShape2D_coqkb")
+
+[node name="LightAttackAngular" type="Area2D" parent="."]
+
+[node name="AngularLight" type="PointLight2D" parent="LightAttackAngular"]
 editor_description = "Formula: offset.x = 45.5 * texture_scale - 32"
 enabled = false
 texture = SubResource("CompressedTexture2D_eqejr")
 offset = Vector2(650.5, 0)
 texture_scale = 15.0
 
-[node name="RadialLight" type="PointLight2D" parent="."]
-editor_description = "Formula: offset.x = 45.5 * texture_scale - 32"
-enabled = false
-texture = ExtResource("4_nool5")
-texture_scale = 10.0
+[node name="AngularCollisionShape2D" type="CollisionShape2D" parent="LightAttackAngular"]
+position = Vector2(650.5, 0)
+shape = SubResource("RectangleShape2D_ts5op")
 
 [node name="LinearDirection" type="Marker2D" parent="."]
 gizmo_extents = 69.0
@@ -133,16 +145,10 @@ one_shot = true
 one_shot = true
 autostart = true
 
-[node name="Label" type="Label" parent="."]
-offset_left = -136.0
-offset_top = -87.0
-offset_right = 145.0
-offset_bottom = -46.0
-label_settings = SubResource("LabelSettings_5qxta")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
 [connection signal="timeout" from="ResPosTimer" to="." method="_on_res_pos_timer_timeout"]
+[connection signal="body_entered" from="LightAttackRadial" to="." method="_on_light_attack_radial_body_entered"]
+[connection signal="body_exited" from="LightAttackRadial" to="." method="_on_light_attack_radial_body_exited"]
+[connection signal="body_entered" from="LightAttackAngular" to="." method="_on_light_attack_angular_body_entered"]
+[connection signal="body_exited" from="LightAttackAngular" to="." method="_on_light_attack_angular_body_exited"]
 [connection signal="timeout" from="SpawnImmunity" to="." method="_on_spawn_immunity_timeout"]
 [connection signal="timeout" from="KeysHold" to="." method="_on_keys_hold_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=4 uid="uid://bs0rjq8hecmbe"]
+[gd_scene load_steps=109 format=4 uid="uid://bs0rjq8hecmbe"]
 
 [ext_resource type="Script" path="res://Scripts/GrassManager.gd" id="1_ef5ps"]
 [ext_resource type="Script" path="res://Scripts/DoubleJump.gd" id="2_owohi"]
@@ -22,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://c0gicrfkarewv" path="res://Art/CaveDoor.png" id="20_jsyin"]
 [ext_resource type="Texture2D" uid="uid://bemkd0cm8xinw" path="res://Art/JumpPad1.png" id="21_5fw0t"]
 [ext_resource type="Script" path="res://Scripts/Pads.gd" id="21_tvhbx"]
-[ext_resource type="PackedScene" uid="uid://cn1jalkre7nt6" path="res://Scenes/enemy.tscn" id="23_uvwxq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mccl"]
 atlas = ExtResource("3_xddn1")
@@ -1147,9 +1146,6 @@ texture = ExtResource("21_5fw0t")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Other/PadIII"]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_dyiqi")
-
-[node name="Enemy" parent="." instance=ExtResource("23_uvwxq")]
-position = Vector2(680, -408)
 
 [connection signal="body_entered" from="DoubleJump" to="DoubleJump" method="_on_body_entered"]
 [connection signal="body_exited" from="DoubleJump" to="DoubleJump" method="_on_body_exited"]

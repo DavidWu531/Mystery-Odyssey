@@ -22,7 +22,7 @@ animations = [{
 size = Vector2(60, 102)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jyfm6"]
-radius = 200.0
+radius = 400.0
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_m7gip")
@@ -36,6 +36,7 @@ offset = Vector2(-148, 0)
 shape = SubResource("RectangleShape2D_0q0ks")
 
 [node name="MovingTimer" type="Timer" parent="."]
+one_shot = true
 autostart = true
 
 [node name="DirectionTimer" type="Timer" parent="."]

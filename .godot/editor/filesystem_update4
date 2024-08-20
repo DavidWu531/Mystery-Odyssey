@@ -14,6 +14,5 @@ res://Scenes/ui_manager.tscn
 res://Scenes/won.tscn
 res://Scenes/boulder.tscn
 res://Scenes/main.tscn
-res://Scripts/DesertManager.gd
 res://Scripts/Enemy.gd
-res://README.md
+res://Scripts/Player.gd

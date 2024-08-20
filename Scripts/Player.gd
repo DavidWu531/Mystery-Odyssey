@@ -47,6 +47,7 @@ func _ready():
 	take_damage_respos = position
 	
 	SignalBus.checkpoint_ii_hit.connect(checkpoint_ii_hit)
+	SignalBus.achievement_completed.connect(achievement_completed)
 
 
 func _physics_process(delta):
@@ -54,7 +55,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		$LinearDirection.look_at(get_global_mouse_position())
 	
-	$AngularLight.look_at(get_global_mouse_position())
+	$LightAttackAngular.look_at(get_global_mouse_position())
 
 	if Input.is_anything_pressed():
 		if not Global.grassland_explored and Global.grassland_explored_progress == 0:
@@ -187,7 +188,6 @@ func _process(delta):
 						if distance < min_distance:
 							min_distance = distance
 							tile = map_pos + Vector2i(x, y)
-						$Label.text = str(tile)
 			
 			if tile and not tile_damage_taken:
 				if collision.get_collider().get_cell_source_id(tile) in grass_obst_tiles:
@@ -226,29 +226,60 @@ func _process(delta):
 				collision.get_collider().apply_central_impulse(collision.get_normal() * -PUSH_FORCE)
 	
 	if Input.is_action_just_pressed("TorchToggle"):
-		if $AngularLight.enabled:
-			$AngularLight.enabled = false
-			$RadialLight.enabled = true
-		elif $RadialLight.enabled:
-			$AngularLight.enabled = false
-			$RadialLight.enabled = false
+		if $LightAttackAngular/AngularLight.enabled:
+			$LightAttackAngular.set_deferred("monitoring", false)
+			$LightAttackAngular.set_deferred("monitorable", false)
+			$LightAttackAngular/AngularCollisionShape2D.set_deferred("disabled", true)
+			$LightAttackAngular/AngularLight.enabled = false
+			
+			$LightAttackRadial.set_deferred("monitoring", true)
+			$LightAttackRadial.set_deferred("monitorable", true)
+			$LightAttackRadial/RadialCollisionShape2D.set_deferred("disabled", false)
+			$LightAttackRadial/RadialLight.enabled = true
+			
+		elif $LightAttackRadial/RadialLight.enabled:
+			$LightAttackAngular.set_deferred("monitoring", false)
+			$LightAttackAngular.set_deferred("monitorable", false)
+			$LightAttackAngular/AngularCollisionShape2D.set_deferred("disabled", true)
+			$LightAttackAngular/AngularLight.enabled = false
+			
+			$LightAttackRadial.set_deferred("monitoring", false)
+			$LightAttackRadial.set_deferred("monitorable", false)
+			$LightAttackRadial/RadialCollisionShape2D.set_deferred("disabled", true)
+			$LightAttackRadial/RadialLight.enabled = false
 		else:
-			$AngularLight.enabled = true
-			$RadialLight.enabled = false
+			$LightAttackAngular.set_deferred("monitoring", true)
+			$LightAttackAngular.set_deferred("monitorable", true)
+			$LightAttackAngular/AngularCollisionShape2D.set_deferred("disabled", false)
+			$LightAttackAngular/AngularLight.enabled = true
+			
+			$LightAttackRadial.set_deferred("monitoring", false)
+			$LightAttackRadial.set_deferred("monitorable", false)
+			$LightAttackRadial/RadialCollisionShape2D.set_deferred("disabled", true)
+			$LightAttackRadial/RadialLight.enabled = false
 	
-	if $AngularLight.enabled or $RadialLight.enabled:
+	if $LightAttackAngular/AngularLight.enabled or $LightAttackRadial/RadialLight.enabled:
 		Global.player_energy -= 0.0001
 		if Global.player_energy <= 0.0:
-			$AngularLight.enabled = false
-			$RadialLight.enabled = false
-	elif not $AngularLight.enabled and not $RadialLight.enabled:
+			$LightAttackAngular.set_deferred("monitoring", false)
+			$LightAttackAngular.set_deferred("monitorable", false)
+			$LightAttackAngular/AngularCollisionShape2D.set_deferred("disabled", true)
+			$LightAttackAngular/AngularLight.enabled = false
+			
+			$LightAttackRadial.set_deferred("monitoring", false)
+			$LightAttackRadial.set_deferred("monitorable", false)
+			$LightAttackRadial/RadialCollisionShape2D.set_deferred("disabled", true)
+			$LightAttackRadial/RadialLight.enabled = false
+	elif not $LightAttackAngular/AngularLight.enabled and not $LightAttackRadial/RadialLight.enabled:
 		if Global.player_energy < 50.0:
 			Global.player_energy += 0.075
 
-	$AngularLight.offset = Vector2(45.5 * (5 * Global.torch_level) - 32, 0)
-	$AngularLight.texture_scale = 5 * Global.torch_level
-	
-	$RadialLight.texture_scale = 2.5 * Global.torch_level
+	for node in range(get_slide_collision_count()):
+		var collision = get_slide_collision(node)
+		if "Enemy" in collision.get_collder().name:
+			Global.player_health -= 3
+			death_engine()
+			break
 
 
 func death_engine():
@@ -297,3 +328,33 @@ func _on_spawn_immunity_timeout():
 	await get_tree().create_timer(0.5).timeout
 	$CollisionShape2D.set_deferred("disabled", false)
 	can_move = true
+
+
+func achievement_completed():
+	$LightAttackAngular/AngularLight.offset = Vector2(45.5 * (5 * Global.torch_level) - 32, 0)
+	$LightAttackAngular/AngularLight.texture_scale = 5 * Global.torch_level
+	$LightAttackAngular/AngularCollisionShape2D.shape.extents = Vector2(91 * $LightAttackAngular/AngularLight.texture_scale, 91 * $LightAttackAngular/AngularLight.texture_scale)
+	$LightAttackAngular/AngularCollisionShape2D.position = $LightAttackAngular/AngularLight.offset
+	
+	$LightAttackRadial/RadialLight.texture_scale = 2.5 * Global.torch_level
+	$LightAttackRadial/RadialCollisionShape2D.shape.radius = (91 * $LightAttackRadial/RadialLight.texture_scale)/2
+
+
+func _on_light_attack_radial_body_entered(body: Node2D) -> void:
+	if "Enemy" in body.name:
+		body.touching_light = true
+
+
+func _on_light_attack_radial_body_exited(body: Node2D) -> void:
+	if "Enemy" in body.name:
+		body.touching_light = false
+
+
+func _on_light_attack_angular_body_entered(body: Node2D) -> void:
+	if "Enemy" in body.name:
+		body.touching_light = true
+
+
+func _on_light_attack_angular_body_exited(body: Node2D) -> void:
+	if "Enemy" in body.name:
+		body.touching_light = false
