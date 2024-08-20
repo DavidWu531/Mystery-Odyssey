@@ -1,3 +1,4 @@
+ProgressBar
 Node2D
 Area2D
 CollisionShape2D
@@ -11,5 +12,3 @@ BoxContainer
 VBoxContainer
 ScrollContainer
 Button
-ProgressBar
-Label

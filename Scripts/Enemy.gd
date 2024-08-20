@@ -15,6 +15,7 @@ var touching_light = false
 
 func _ready():
 	n += 1
+	$Healthbar.max_value = health
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
@@ -29,9 +30,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 	elif target == null:
 		if movable:
-			velocity.x = direction * speed
+			velocity = direction * speed
 		else:
-			velocity.x = 0
+			velocity = Vector2.ZERO
 	
 	if is_on_wall():
 		velocity.y = -jump_velocity
@@ -46,7 +47,9 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	if touching_light:
-		health -= 0.01
+		health -= 0.05
+	
+	$Healthbar.value = health
 
 
 func _on_range_body_entered(body: Node2D) -> void:

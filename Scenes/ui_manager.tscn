@@ -226,7 +226,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlayerEnergy" type="ProgressBar" parent="MainScreen"]
-visible = false
 modulate = Color(0, 1, 0, 1)
 layout_mode = 0
 offset_left = 64.0

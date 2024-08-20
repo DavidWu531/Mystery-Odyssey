@@ -276,9 +276,10 @@ func _process(delta):
 
 	for node in range(get_slide_collision_count()):
 		var collision = get_slide_collision(node)
-		if "Enemy" in collision.get_collder().name:
+		if "Enemy" in collision.get_collider().name:
 			Global.player_health -= 3
 			death_engine()
+			#collision.get_collider().knockback()
 			break
 
 

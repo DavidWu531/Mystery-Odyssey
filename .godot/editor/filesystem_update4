@@ -2,6 +2,7 @@ res://Scenes/main_menu.tscn
 res://Resources/obstacles.tres
 res://Resources/platforms.tres
 res://Scripts/Boulder.gd
+res://Scripts/Player.gd
 res://Scenes/achievement_banner.tscn
 res://Scenes/enemy.tscn
 res://Scenes/keypad.tscn
@@ -14,5 +15,10 @@ res://Scenes/ui_manager.tscn
 res://Scenes/won.tscn
 res://Scenes/boulder.tscn
 res://Scenes/main.tscn
+res://Scripts/UIManager.gd
 res://Scripts/Enemy.gd
-res://Scripts/Player.gd
+res://Scripts/AchievementBanner.gd
+res://Scripts/Checkpoint.gd
+res://Scripts/Coins.gd
+res://Scripts/DesertManager.gd
+res://desktop.ini
