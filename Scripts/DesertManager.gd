@@ -95,8 +95,14 @@ func _on_dripstone_body_entered(body: Node2D) -> void:
 func _on_spikes_section_i_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
 		$FallingSpikesDetection/SpikesSectionI/AnimationPlayer.play("spikessection1")
+		$FallingSpikesDetection/SpikesSectionI.set_deferred("monitoring", false)
+		$FallingSpikesDetection/SpikesSectionI.set_deferred("monitorable", false)
+		$FallingSpikesDetection/SpikesSectionI/CollisionShape2D.set_deferred("disabled", true)
 
 
 func _on_spikes_section_ii_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
 		$FallingSpikesDetection/SpikesSectionII/AnimationPlayer.play("spikessection2")
+		$FallingSpikesDetection/SpikesSectionII.set_deferred("monitoring", false)
+		$FallingSpikesDetection/SpikesSectionII.set_deferred("monitorable", false)
+		$FallingSpikesDetection/SpikesSectionII/CollisionShape2D.set_deferred("disabled", true)

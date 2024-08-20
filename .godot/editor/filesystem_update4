@@ -1,9 +1,7 @@
-res://Scenes/ui_manager.tscn
+res://Scenes/main_menu.tscn
 res://Resources/obstacles.tres
 res://Resources/platforms.tres
 res://Scripts/Boulder.gd
-res://Scripts/PauseMenu.gd
-res://Scenes/main_menu.tscn
 res://Scenes/achievement_banner.tscn
 res://Scenes/enemy.tscn
 res://Scenes/keypad.tscn
@@ -12,9 +10,10 @@ res://Scenes/player.tscn
 res://Scenes/section_grass.tscn
 res://Scenes/section_frost.tscn
 res://Scenes/section_desert.tscn
+res://Scenes/ui_manager.tscn
 res://Scenes/won.tscn
 res://Scenes/boulder.tscn
 res://Scenes/main.tscn
-res://Scripts/AchievementBanner.gd
-res://temp.txt
 res://Scripts/DesertManager.gd
+res://Scripts/Enemy.gd
+res://README.md

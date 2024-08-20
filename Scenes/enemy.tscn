@@ -1,16 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn1jalkre7nt6"]
+[gd_scene load_steps=7 format=3 uid="uid://cn1jalkre7nt6"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_m7gip"]
-[ext_resource type="Texture2D" uid="uid://c8l247xjc3icb" path="res://Art/Enemy.png" id="2_njeft"]
+[ext_resource type="Texture2D" uid="uid://ertghkek2mv" path="res://Art/Prismdroiddrillattack.png" id="2_1eati"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hhpw"]
+atlas = ExtResource("2_1eati")
+region = Rect2(0, 0, 1201, 1063)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ts366"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hhpw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0q0ks"]
-size = Vector2(76, 52)
+size = Vector2(60, 102)
 
-[node name="Enemy" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jyfm6"]
+radius = 200.0
+
+[node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_m7gip")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_njeft")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_ts366")
+offset = Vector2(-148, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0q0ks")
+
+[node name="MovingTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="DirectionTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_jyfm6")
+
+[connection signal="timeout" from="MovingTimer" to="." method="_on_moving_timer_timeout"]
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
