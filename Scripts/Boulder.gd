@@ -18,8 +18,7 @@ func _ready():
 			big()
 
 
-func _physics_process(delta):
-	apply_torque_impulse(-150.0 * delta * mass)
+func _physics_process(_delta):
 	name = "Boulder" + str(x)
 	if position.y > 10000 or position.y < -10000:
 		queue_free()

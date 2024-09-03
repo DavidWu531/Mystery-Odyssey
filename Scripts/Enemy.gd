@@ -9,6 +9,7 @@ var speed = 200.0
 var jump_velocity = 625.0
 var value = randi_range(-1, 1)
 var movable = true
+var knocked_back = false
 var direction = Vector2(value, value).normalized()
 
 var touching_light = false
@@ -45,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if touching_light:
 		health -= 0.05
 	

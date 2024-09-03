@@ -1,10 +1,13 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://dqj7cg6vm786t"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://dqj7cg6vm786t"]
 
 [ext_resource type="Texture2D" uid="uid://b5qafojg7livy" path="res://Art/Spike.png" id="1_q50ye"]
 [ext_resource type="Texture2D" uid="uid://dvg35jrw48s2s" path="res://Art/SmallSpike.png" id="2_xhm0d"]
 [ext_resource type="Texture2D" uid="uid://pxmpa7y2kkor" path="res://Art/SpikeGrass.png" id="3_jwy64"]
 [ext_resource type="Texture2D" uid="uid://drql364olqyfl" path="res://Art/CactusDesert.png" id="4_y104h"]
 [ext_resource type="Texture2D" uid="uid://dgw1il4otj64d" path="res://Art/CactusTallDesert.png" id="5_mw668"]
+[ext_resource type="Texture2D" uid="uid://b8ig5hllaokn6" path="res://Art/LavaBlock.png" id="6_ymg2e"]
+[ext_resource type="Texture2D" uid="uid://dpkotuqnsieoc" path="res://Art/WaterBlock.png" id="7_eghqk"]
+[ext_resource type="Texture2D" uid="uid://cp60f3hkvl82" path="res://Art/IceSpike.png" id="8_nvtch"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mcwt5"]
 texture = ExtResource("1_q50ye")
@@ -47,6 +50,24 @@ texture = ExtResource("5_mw668")
 0:0/0/physics_layer_0/polygon_2/points = PackedVector2Array(8, -80, 32, -80, 32, -40, 8, -40)
 0:0/0/physics_layer_0/polygon_3/points = PackedVector2Array(-16, 32, -16, -96, 16, -96, 16, 32)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aop02"]
+texture = ExtResource("6_ymg2e")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w4s51"]
+texture = ExtResource("7_eghqk")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3xbr"]
+texture = ExtResource("8_nvtch")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-28, 32, 0, -32, 28, 32)
+
 [resource]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
@@ -55,3 +76,6 @@ sources/1 = SubResource("TileSetAtlasSource_52wjp")
 sources/2 = SubResource("TileSetAtlasSource_dhik4")
 sources/3 = SubResource("TileSetAtlasSource_jrkje")
 sources/4 = SubResource("TileSetAtlasSource_s3ec4")
+sources/5 = SubResource("TileSetAtlasSource_aop02")
+sources/6 = SubResource("TileSetAtlasSource_w4s51")
+sources/7 = SubResource("TileSetAtlasSource_l3xbr")

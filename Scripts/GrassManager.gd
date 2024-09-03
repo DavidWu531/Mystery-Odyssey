@@ -35,11 +35,11 @@ func _process(_delta):
 		
 		if $NPCs/NPCII/Interactable.visible:
 			if npcii_dialogue_id == 0:
-				$NPCs/NPCII/Dialogue.text = "I wonder how you get up there"
-			elif npcii_dialogue_id == 1:
-				$NPCs/NPCII/Dialogue.text = "Maybe there's something in that crater?"
-			elif npcii_dialogue_id == 2:
 				$NPCs/NPCII/Dialogue.text = "You never know what might be lurking around..."
+			elif npcii_dialogue_id == 1:
+				$NPCs/NPCII/Dialogue.text = "That's why you have a torch, radial or angular just press 1"
+			elif npcii_dialogue_id == 2:
+				$NPCs/NPCII/Dialogue.text = "Or if you're confident, you can punch it with LMB"
 			else:
 				$NPCs/NPCII/Dialogue.text = ""
 				$NPCs/NPCII/Interactable.hide()
@@ -209,3 +209,27 @@ func _on_npcv_body_exited(body):
 		$NPCs/NPCV/Interactable.hide()
 		npcv_dialogue_id = 0
 		$NPCs/NPCV/Dialogue.text = ""
+
+
+func _on_block_i_body_entered(body: Node2D) -> void:
+	if "Player" in body.name:
+		$HelpfulBlocks/BlockI/Label.text = "You can press Tab to show amd scroll through tips"
+
+
+func _on_block_ii_body_entered(body: Node2D) -> void:
+	if "Player" in body.name:
+		$HelpfulBlocks/BlockII/Label.text = "Watch out for patrolling enemies"
+
+
+func _on_block_iii_body_entered(body: Node2D) -> void:
+	if "Player" in body.name:
+		$HelpfulBlocks/BlockIII/Label.text = "Jump down the crater and press E. Hover your mouse over the top left"
+
+func _on_block_iv_body_entered(body: Node2D) -> void:
+	if "Player" in body.name:
+		$HelpfulBlocks/BlockIV/Label.text = "Jump down and wait... unless you're not ready yet"
+
+
+func _on_block_v_body_entered(body: Node2D) -> void:
+	if "Player" in body.name:
+		$HelpfulBlocks/BlockV/Label.text = "Walk through the press and press E. Hover your mouse over the top left"

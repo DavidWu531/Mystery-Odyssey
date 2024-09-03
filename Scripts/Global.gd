@@ -8,12 +8,14 @@ var enter_cave = false  # Anyone got a torch?
 var escape_cave = false  # My brain hurts
 var one_heart_escape = false  # Unbreakable
 var u_cant_c_me = false  # U Can’t C Me
-var eagle_eye = false  # Nice vision
+var eagle_eye = false  # Eagle Eye
 var cant_let_go = false  # Can’t let go
-var ultra_insticto = false  # Autonomous Movements
-var fire_my_laser = false  # Burst stream of destruction
+var ultra_insticto = false  # Untouchable
+var fire_my_laser = false  # MY EYES!!
 var no_cheese = false  # This isn’t cheese
 var i_c_u = false  # Security first
+var not_safe = false  # I thought this was safe...
+var weeee = false  # Yaahoohoohoo!
 
 var no_stopping_now_i = false
 var no_stopping_now_ii = false
@@ -44,16 +46,19 @@ var ultra_insticto_progress = 0
 var fire_my_laser_progress = 0
 var no_cheese_progress = 0
 var i_c_u_progress = 0
+var weeee_progress = 0
+var not_safe_progress = 0
 var no_stopping_now_progress = 0
 var killing_machine_progress = 0
 var ooh_shiny_mine_progress = 0
 var quest_hunter_progress = 0
 var social_expert_progress = 0
 
-# Other Global
+# Other variables
 var score = 0
 var player_health = 3
 var player_energy = 50
+var player_speed = 0
 var time_elapsed = 0.00
 var player_maxhealth = 3
 var achievement_completed = 0
@@ -124,6 +129,16 @@ func _process(_delta):
 		i_c_u = true
 		SignalBus.achievement_completed.emit()
 		SignalBus.i_c_u.emit()
+		achievement_completed += 1
+	if not_safe_progress == 1 and not not_safe:
+		not_safe = true
+		SignalBus.achievement_completed.emit()
+		SignalBus.not_safe.emit()
+		achievement_completed += 1
+	if weeee_progress == 1 and not weeee:
+		weeee = true
+		SignalBus.achievement_completed.emit()
+		SignalBus.weeee.emit()
 		achievement_completed += 1
 
 	if no_stopping_now_progress == 1 and not no_stopping_now_i:
@@ -207,4 +222,4 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	player_maxhealth = achievement_completed + 3
-	torch_level = floor(0.5 * achievement_completed + 2)
+	torch_level = int(0.5 * achievement_completed + 2)

@@ -29,6 +29,14 @@ func _on_body_entered(body):
 		elif not SignalBus.checkpoint_iv_emitted and SignalBus.checkpoint_iv_available:
 			SignalBus.checkpoint_iv_hit.emit()
 			SignalBus.checkpoint_iv_emitted = true
+			SignalBus.checkpoint_v_available = true
+		elif not SignalBus.checkpoint_v_emitted and SignalBus.checkpoint_v_available:
+			SignalBus.checkpoint_v_hit.emit()
+			SignalBus.checkpoint_v_emitted = true
+			SignalBus.checkpoint_vi_available = true
+		elif not SignalBus.checkpoint_vi_emitted and SignalBus.checkpoint_vi_available:
+			SignalBus.checkpoint_vi_hit.emit()
+			SignalBus.checkpoint_vi_emitted = true
 		
 		if not Global.ultra_insticto and Global.ultra_insticto_progress == 0:
 			if not body.heart_lost:

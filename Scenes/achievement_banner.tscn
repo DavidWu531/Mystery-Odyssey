@@ -86,7 +86,7 @@ texture = ExtResource("1_nwbwj")
 position = Vector2(60, 56)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_04rmm")
-animation = &"Surprise"
+animation = &"Communication"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0

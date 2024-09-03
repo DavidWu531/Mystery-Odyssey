@@ -16,6 +16,8 @@ func _ready():
 	SignalBus.fire_my_laser.connect(fire_my_laser)
 	SignalBus.no_cheese.connect(no_cheese)
 	SignalBus.i_c_u.connect(i_c_u)
+	SignalBus.not_safe.connect(not_safe)
+	SignalBus.weeee.connect(weeee)
 
 	SignalBus.no_stopping_now_i.connect(no_stopping_now_i)
 	SignalBus.no_stopping_now_ii.connect(no_stopping_now_ii)
@@ -99,6 +101,16 @@ func i_c_u():
 	$AnimatedSprite2D.play("Surprise")
 	
 
+func not_safe():
+	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]I thought this was safe...[/color]\n[i]Die to water[/i]"
+	$AnimatedSprite2D.play("Death")
+	
+	
+func weeee():
+	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Yaahoohoohoo![/color]\n[i]Slide on ice[/i]"
+	$AnimatedSprite2D.play("Exploration")
+	
+	
 func no_stopping_now_i():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't give up hope I[/color]\n[i]Die 1 time[/i]"
 	$AnimatedSprite2D.play("Death")
@@ -147,12 +159,12 @@ func ooh_shiny_mine_iii():
 func quest_hunter_i():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Gotta complete those side missions I[/color]\n[i]Complete 2 quests[/i]"
 	$AnimatedSprite2D.play("Combat")
-	
+
 
 func quest_hunter_ii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Gotta complete those side missions II[/color]\n[i]Complete 5 quests[/i]"
 	$AnimatedSprite2D.play("Combat")
-	
+
 
 func quest_hunter_iii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Gotta complete those side missions III[/color]\n[i]Complete 10 quests[/i]"
@@ -171,7 +183,9 @@ func social_expert_ii():
 
 func social_expert_iii():
 	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Heavy Extrovert III[/color]\n[i]Talk to 12 NPCs[/i]"
-	$AnimatedSprite2D.play("Communication")
+	$AnimatedSprite2D.play("Death")
+
+
 
 
 func _on_duration_timer_timeout():

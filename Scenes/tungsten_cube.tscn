@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://clw8mxfjuq3ho"]
+
+[ext_resource type="Texture2D" uid="uid://dfo3d0xfhar57" path="res://Art/TungstenCube.png" id="1_hy2cu"]
+[ext_resource type="Script" path="res://Scripts/TungstenCube.gd" id="1_xgc3h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e47kv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8tmn"]
+size = Vector2(64, 64)
+
+[node name="TungstenCube" type="RigidBody2D"]
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_e47kv")
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_xgc3h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hy2cu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g8tmn")

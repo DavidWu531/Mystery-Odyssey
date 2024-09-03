@@ -22,7 +22,7 @@ func _process(_delta):
 				show()
 	
 	$Achievements/Progress.value = Global.achievement_completed
-	$Achievements/Label.text = "Achievements Completed: " + str(Global.achievement_completed) + "/28"
+	$Achievements/Label.text = "Achievements Completed: " + str(Global.achievement_completed) + "/30"
 
 	if Global.grassland_explored:
 		$Achievements/ScrollContainer/GridContainer/AchID1/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]New Planet, Who Dis?[/color]\n[i]Travel 100 blocks in the grasslands[/i]"
@@ -163,6 +163,16 @@ func _process(_delta):
 		$Achievements/ScrollContainer/GridContainer/AchID28/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Heavy Extrovert III[/color]\n[i]Talk to 12 NPCs[/i]"
 	else:
 		$Achievements/ScrollContainer/GridContainer/AchID28/RichTextLabel.text = "[b][color=gray]Achievement Locked![/color][/b]\n[color=gold]Heavy Extrovert III[/color]\n[i]Talk to 12 NPCs[/i]"
+	
+	if Global.not_safe:
+		$Achievements/ScrollContainer/GridContainer/AchID29/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]I thought this was safe...[/color]\n[i]Die to water[/i]"
+	else:
+		$Achievements/ScrollContainer/GridContainer/AchID29/RichTextLabel.text = "[b][color=gray]Achievement Locked![/color][/b]\n[color=gold]I thought this was safe...[/color]\n[i]Die to water[/i]"
+
+	if Global.weeee:
+		$Achievements/ScrollContainer/GridContainer/AchID30/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Yaahoohoohoo![/color]\n[i]Slide on ice[/i]"
+	else:
+		$Achievements/ScrollContainer/GridContainer/AchID30/RichTextLabel.text = "[b][color=gray]Achievement Locked![/color][/b]\n[color=gold]Yaahoohoohoo![/color]\n[i]Slide on ice[/i]"
 
 
 func _on_achievement_pressed():

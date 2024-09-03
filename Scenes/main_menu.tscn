@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct5ekpjb28mih"]
+[gd_scene load_steps=5 format=3 uid="uid://ct5ekpjb28mih"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_2dulc"]
+[ext_resource type="Texture2D" uid="uid://d2hxpsvdei4c6" path="res://Cover.png" id="2_krjej"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pak4q"]
 font_size = 69
@@ -18,7 +19,14 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_krjej")
+expand_mode = 1
+
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 672.0
 offset_top = 64.0
 offset_right = 1248.0
@@ -29,10 +37,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Play" type="Button" parent="."]
-offset_left = 704.0
-offset_top = 408.0
-offset_right = 1202.0
-offset_bottom = 553.0
+offset_left = 712.0
+offset_top = 120.0
+offset_right = 1210.0
+offset_bottom = 265.0
 theme = SubResource("Theme_ja0y5")
 text = "Play"
 

@@ -25,6 +25,7 @@ size = Vector2(60, 102)
 radius = 400.0
 
 [node name="Enemy" type="CharacterBody2D"]
+floor_stop_on_slope = false
 script = ExtResource("1_m7gip")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
@@ -56,6 +57,7 @@ offset_right = 72.0
 offset_bottom = -53.0
 max_value = 10.0
 value = 10.0
+show_percentage = false
 
 [connection signal="timeout" from="MovingTimer" to="." method="_on_moving_timer_timeout"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

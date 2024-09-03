@@ -79,11 +79,14 @@ script = ExtResource("1_2e46h")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -888.0
-offset_top = -4744.0
-offset_right = 18312.0
-offset_bottom = 6056.0
+offset_left = -1656.0
+offset_top = -13672.0
+offset_right = 17544.0
+offset_bottom = 9616.0
 color = Color(0.443137, 0.737255, 0.882353, 1)
+
+[node name="Player" parent="." instance=ExtResource("3_r8fqo")]
+position = Vector2(8, -128)
 
 [node name="Layouts" type="Node2D" parent="."]
 
@@ -92,14 +95,10 @@ color = Color(0.443137, 0.737255, 0.882353, 1)
 [node name="Section_Desert" parent="Layouts" instance=ExtResource("4_kmwog")]
 
 [node name="Section_Frost" parent="Layouts" instance=ExtResource("5_lpywg")]
-position = Vector2(832, 704)
-
-[node name="Player" parent="." instance=ExtResource("3_r8fqo")]
-position = Vector2(8, -56)
 
 [node name="SceneCamera" type="Camera2D" parent="."]
-position = Vector2(3232, -1416)
-zoom = Vector2(0.58, 0.58)
+position = Vector2(1032, -648)
+zoom = Vector2(0.7, 0.7)
 position_smoothing_enabled = true
 editor_draw_limits = true
 

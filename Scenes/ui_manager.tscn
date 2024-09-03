@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bvdcl15vsqy0v"]
+[gd_scene load_steps=36 format=3 uid="uid://bvdcl15vsqy0v"]
 
 [ext_resource type="Script" path="res://Scripts/UIManager.gd" id="1_aajpp"]
 [ext_resource type="Texture2D" uid="uid://j5bqpsh1t2qt" path="res://Art/Health.png" id="2_ajn7e"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://rcww6b5hkcyw" path="res://Art/GravityFlipSilhouette.png" id="5_egrq5"]
 [ext_resource type="Texture2D" uid="uid://cccp47o04jf0n" path="res://Art/LinearMotionSilhouette.png" id="6_2e8di"]
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="9_4lcen"]
+[ext_resource type="Texture2D" uid="uid://dlovpcjrleib1" path="res://Art/Progressbar.png" id="9_qm80x"]
+[ext_resource type="Texture2D" uid="uid://doi5wbt8wg8ck" path="res://Art/Charge.png" id="10_v0qd7"]
+[ext_resource type="Texture2D" uid="uid://0cdg1ans4i45" path="res://Art/Speedometer.png" id="11_16lk5"]
 [ext_resource type="Texture2D" uid="uid://mqp2kfhh0n7s" path="res://Art/AchievementBanner.png" id="11_yn2dj"]
 [ext_resource type="Texture2D" uid="uid://cljhh38dug6o0" path="res://Art/AchievementIconCombat.png" id="12_4y3t2"]
 [ext_resource type="Texture2D" uid="uid://bmn8gr7dauqm1" path="res://Art/AchievementIconCommunicate.png" id="13_v3tnx"]
@@ -62,6 +65,11 @@ font_size = 28
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_lw6fv"]
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_mp2y6"]
 font_size = 40
 outline_size = 10
@@ -104,7 +112,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_4sd3i"]
 GridContainer/constants/h_separation = 506
-GridContainer/constants/v_separation = 172
+GridContainer/constants/v_separation = 48
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_04rmm"]
 animations = [{
@@ -168,8 +176,8 @@ script = ExtResource("1_aajpp")
 [node name="MainScreen" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1920.0
+offset_bottom = 184.0
 
 [node name="PlayerFrame" type="TextureRect" parent="MainScreen"]
 layout_mode = 0
@@ -225,15 +233,71 @@ label_settings = SubResource("LabelSettings_ooumm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerEnergy" type="ProgressBar" parent="MainScreen"]
-modulate = Color(0, 1, 0, 1)
+[node name="Energy" type="Control" parent="MainScreen"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EnergyFrame" type="Sprite2D" parent="MainScreen/Energy"]
+position = Vector2(192, 96)
+scale = Vector2(7.38462, 9.14286)
+texture = ExtResource("9_qm80x")
+
+[node name="EnergyIcon" type="Sprite2D" parent="MainScreen/Energy"]
+position = Vector2(32, 96)
+scale = Vector2(0.208333, 0.25)
+texture = ExtResource("10_v0qd7")
+region_enabled = true
+region_rect = Rect2(80, 24, 96, 216)
+
+[node name="PlayerEnergy" type="ProgressBar" parent="MainScreen/Energy"]
+modulate = Color(100, 100, 0, 1)
 layout_mode = 0
 offset_left = 64.0
-offset_top = 64.0
-offset_right = 320.0
-offset_bottom = 128.0
+offset_top = 79.0
+offset_right = 370.0
+offset_bottom = 112.0
 value = 100.0
 show_percentage = false
+
+[node name="Speed" type="Control" parent="MainScreen"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpeedFrame" type="Sprite2D" parent="MainScreen/Speed"]
+position = Vector2(192, 160)
+scale = Vector2(7.38462, 9.14286)
+texture = ExtResource("9_qm80x")
+
+[node name="SpeedIcon" type="Sprite2D" parent="MainScreen/Speed"]
+position = Vector2(32, 160)
+texture = ExtResource("11_16lk5")
+region_rect = Rect2(80, 24, 96, 216)
+
+[node name="PlayerSpeed" type="ProgressBar" parent="MainScreen/Speed"]
+modulate = Color(0, 100, 100, 1)
+layout_mode = 0
+offset_left = 64.0
+offset_top = 143.0
+offset_right = 370.0
+offset_bottom = 176.0
+min_value = 383.1
+max_value = 878.2
+value = 475.0
+show_percentage = false
+
+[node name="ShowTipsKey" type="Label" parent="MainScreen"]
+layout_mode = 0
+offset_top = 192.0
+offset_right = 384.0
+offset_bottom = 256.0
+text = "Tab Key: Show Tips"
+label_settings = SubResource("LabelSettings_lw6fv")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Quest" type="Control" parent="MainScreen"]
 visible = false
@@ -272,14 +336,18 @@ metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="MainScreen/TutorialDialogue"]
 layout_mode = 0
-offset_right = 576.0
-offset_bottom = 112.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 608.0
+offset_bottom = 144.0
 texture = SubResource("GradientTexture2D_800ft")
 
 [node name="Label" type="Label" parent="MainScreen/TutorialDialogue"]
 layout_mode = 0
-offset_right = 576.0
-offset_bottom = 112.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 608.0
+offset_bottom = 144.0
 text = "Welcome, Player!
 Press Esc to dismiss message
 Stuck on something? Press Tab"
@@ -364,7 +432,7 @@ offset_left = 512.0
 offset_top = 192.0
 offset_right = 1408.0
 offset_bottom = 256.0
-max_value = 28.0
+max_value = 30.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="PauseMenu/Achievements"]
@@ -381,12 +449,13 @@ vertical_alignment = 1
 [node name="ScrollContainer" type="ScrollContainer" parent="PauseMenu/Achievements"]
 layout_mode = 0
 offset_left = 256.0
-offset_top = 320.0
+offset_top = 312.0
 offset_right = 1664.0
 offset_bottom = 944.0
 horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="PauseMenu/Achievements/ScrollContainer"]
+custom_minimum_size = Vector2(0, 2376)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1317,5 +1386,73 @@ text = "[b][color=gray]Achievement Locked![/color][/b]
 [color=gold]MORE POWER!![/color]
 [i]Travel 100 blocks in the desert[/i]"
 
+[node name="AchID29" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID29"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID29"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Death"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID29"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="AchID30" type="Control" parent="PauseMenu/Achievements/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID30"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID30"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Achievements/ScrollContainer/GridContainer/AchID30"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[connection signal="mouse_entered" from="MainScreen/PlayerFrame" to="." method="_on_player_frame_mouse_entered"]
+[connection signal="mouse_exited" from="MainScreen/PlayerFrame" to="." method="_on_player_frame_mouse_exited"]
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/Achievement" to="PauseMenu" method="_on_achievement_pressed"]
