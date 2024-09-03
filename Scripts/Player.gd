@@ -164,7 +164,7 @@ func _physics_process(delta):
 						if direction_x != 0:
 							velocity.x += direction_x * delta * Global.player_speed
 						else:
-							velocity.x *= 0.95
+							velocity.x = lerp(velocity.x, 0.0, 0.1)
 					else:
 						velocity.x = direction_x * Global.player_speed
 					$Sprite2D.play("walking")
@@ -402,7 +402,6 @@ func _process(_delta):
 		if "Enemy" in collision.get_collider().name:
 			Global.player_health -= 3
 			death_engine()
-			#collision.get_collider().knockback()
 			break
 
 
@@ -564,6 +563,7 @@ func spectator_mode():
 func _on_fist_attack_body_entered(body: Node2D) -> void:
 	if "Enemy" in body.name:
 		body.health -= 4
+		body.temp_stunned()
 		
 
 func _on_fist_attack_area_entered(area: Area2D) -> void:

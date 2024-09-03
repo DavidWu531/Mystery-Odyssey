@@ -202,6 +202,10 @@ func doomed():
 	$Other/Hidden/PinII.position = Vector2(11264, 3968)
 	$Other/Hidden/PinIII.position = Vector2(11264, 5632)
 	$Other/Hidden/PinIV.position = Vector2(11264, 6464)
+	$Other/Hidden/PinI.modulate = Color(1, 1, 1, 1)
+	$Other/Hidden/PinII.modulate = Color(1, 1, 1, 1)
+	$Other/Hidden/PinIII.modulate = Color(1, 1, 1, 1)
+	$Other/Hidden/PinIV.modulate = Color(1, 1, 1, 1)
 	pass  # Fool! You have doomed us all!
 
 

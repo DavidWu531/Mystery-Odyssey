@@ -59,7 +59,11 @@ max_value = 10.0
 value = 10.0
 show_percentage = false
 
+[node name="StunTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="MovingTimer" to="." method="_on_moving_timer_timeout"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

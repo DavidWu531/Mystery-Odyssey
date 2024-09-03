@@ -9,7 +9,7 @@ var speed = 200.0
 var jump_velocity = 625.0
 var value = randi_range(-1, 1)
 var movable = true
-var knocked_back = false
+var stunned = false
 var direction = Vector2(value, value).normalized()
 
 var touching_light = false
@@ -19,21 +19,23 @@ func _ready():
 	$Healthbar.max_value = health
 
 func _physics_process(delta: float) -> void:
-	velocity.y += gravity * delta
+	if not is_on_floor():
+		velocity.y += gravity * delta
 	
 	name = "Enemy" + str(n)
 	if health <= 0:
 		Global.killing_machine_progress += 1
 		queue_free()
 	
-	if target:
-		velocity = (target.position - position).normalized() * speed
-		velocity.y += gravity * delta
-	elif target == null:
-		if movable:
-			velocity = direction * speed
-		else:
-			velocity = Vector2.ZERO
+	if not stunned:
+		if target:
+			velocity = (target.position - position).normalized() * speed
+			velocity.y += gravity * delta
+		elif target == null:
+			if movable:
+				velocity = direction * speed
+			else:
+				velocity = Vector2.ZERO
 	
 	if is_on_wall():
 		velocity.y = -jump_velocity
@@ -70,6 +72,15 @@ func _on_moving_timer_timeout() -> void:
 func _on_direction_timer_timeout() -> void:
 	value = randi_range(-1, 1)
 	velocity = Vector2.ZERO
-	direction = Vector2(value, 0).normalized()
+	direction = Vector2(value, direction.y).normalized()
 	movable = true
 	$MovingTimer.start()
+
+
+func _on_stun_timer_timeout() -> void:
+	stunned = false
+
+
+func temp_stunned():
+	stunned = true
+	$StunTimer.start(1.75)
