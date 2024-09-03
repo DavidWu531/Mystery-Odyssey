@@ -223,7 +223,7 @@ func _physics_process(delta):
 	
 	
 	if Input.is_action_just_pressed("Retry"):
-		if not hardcore:
+		if (not hardcore or not spectator) and not quick_retry:
 			Global.player_health -= 1
 			quick_retry = true
 			death_engine()

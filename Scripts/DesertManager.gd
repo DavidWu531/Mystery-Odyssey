@@ -198,6 +198,10 @@ func doomed():
 	for tile in range(106,178):
 		$Platforms.set_cell(Vector2i(tile, 99), -1, Vector2i(-1,-1), -1)
 	$DoomedLavaRise.start(2.142857143)
+	$Other/Hidden/PinI.position = Vector2(11264, 3264)
+	$Other/Hidden/PinII.position = Vector2(11264, 3968)
+	$Other/Hidden/PinIII.position = Vector2(11264, 5632)
+	$Other/Hidden/PinIV.position = Vector2(11264, 6464)
 	pass  # Fool! You have doomed us all!
 
 
@@ -266,3 +270,8 @@ func _on_block_vii_body_entered(body: Node2D) -> void:
 func _on_block_viii_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
 		$HelpfulBlocks/BlockVIII/Label.text = "Push the tungsten cube into lava, you're not progressing until then"
+
+
+func _on_gravity_flip_instant_body_entered(body: Node2D) -> void:
+	if "Player" in body.name:
+		body.current_mode = body.player_modes[2]

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://dqj7cg6vm786t"]
+[gd_resource type="TileSet" load_steps=19 format=3 uid="uid://dqj7cg6vm786t"]
 
 [ext_resource type="Texture2D" uid="uid://b5qafojg7livy" path="res://Art/Spike.png" id="1_q50ye"]
 [ext_resource type="Texture2D" uid="uid://dvg35jrw48s2s" path="res://Art/SmallSpike.png" id="2_xhm0d"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b8ig5hllaokn6" path="res://Art/LavaBlock.png" id="6_ymg2e"]
 [ext_resource type="Texture2D" uid="uid://dpkotuqnsieoc" path="res://Art/WaterBlock.png" id="7_eghqk"]
 [ext_resource type="Texture2D" uid="uid://cp60f3hkvl82" path="res://Art/IceSpike.png" id="8_nvtch"]
+[ext_resource type="Texture2D" uid="uid://b5nv83p1gcnbg" path="res://Art/Dripstone.png" id="9_su5mc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mcwt5"]
 texture = ExtResource("1_q50ye")
@@ -68,6 +69,12 @@ texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-28, 32, 0, -32, 28, 32)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ylrl7"]
+texture = ExtResource("9_su5mc")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 0, 32)
+
 [resource]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
@@ -79,3 +86,4 @@ sources/4 = SubResource("TileSetAtlasSource_s3ec4")
 sources/5 = SubResource("TileSetAtlasSource_aop02")
 sources/6 = SubResource("TileSetAtlasSource_w4s51")
 sources/7 = SubResource("TileSetAtlasSource_l3xbr")
+sources/8 = SubResource("TileSetAtlasSource_ylrl7")
