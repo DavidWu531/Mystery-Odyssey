@@ -38,7 +38,8 @@ var min_distance = INF
 var platform_tile_vector : Vector2i
 var grass_plat_tiles = [0, 3, 6, 7, 8, 11, 12, 13, 14]
 var desert_plat_tiles = [4, 9, 15, 16, 17, 18, 20]
-var frost_plat_tiles = [5, 10, 19]
+var frost_plat_tiles = [5, 10, 19, 23, 30, 31, 37]
+var ice_tiles = [19, 37]
 var grass_obst_tiles = [2]
 var desert_obst_tiles = [3, 4]
 var frost_obst_tiles = [7]
@@ -96,31 +97,32 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Jump"):
 		if not spectator:
 			if can_move:
-				respawn_gravity = gravity
-				if current_mode == "DoubleJump":
-					if jump_count > 0:
+				if not is_attacking:
+					respawn_gravity = gravity
+					if current_mode == "DoubleJump":
+						if jump_count > 0:
+							if is_on_floor() or is_on_ceiling():
+								take_damage_respos = position
+							if gravity > 0.0:
+								velocity.y = -jump_velocity
+							elif gravity < 0.0:
+								velocity.y = jump_velocity
+							jump_count -= 1
+					elif current_mode == "Default":
 						if is_on_floor() or is_on_ceiling():
 							take_damage_respos = position
-						if gravity > 0.0:
-							velocity.y = -jump_velocity
-						elif gravity < 0.0:
-							velocity.y = jump_velocity
-						jump_count -= 1
-				elif current_mode == "Default":
-					if is_on_floor() or is_on_ceiling():
-						take_damage_respos = position
-						if gravity > 0.0:
-							velocity.y = -jump_velocity
-						elif gravity < 0.0:
-							velocity.y = jump_velocity
-				elif current_mode == "GravityFlip":
-					if is_on_floor() or is_on_ceiling():
-						take_damage_respos = position
-						if gravity > 0.0:
-							velocity.y = -1000.0
-						elif gravity < 0.0:
-							velocity.y = 1000.0
-						gravity = -gravity
+							if gravity > 0.0:
+								velocity.y = -jump_velocity
+							elif gravity < 0.0:
+								velocity.y = jump_velocity
+					elif current_mode == "GravityFlip":
+						if is_on_floor() or is_on_ceiling():
+							take_damage_respos = position
+							if gravity > 0.0:
+								velocity.y = -1000.0
+							elif gravity < 0.0:
+								velocity.y = 1000.0
+							gravity = -gravity
 
 		if gravity > 0.0:
 			$Sprite2D.flip_v = false
@@ -156,29 +158,31 @@ func _physics_process(delta):
 			position.y += Global.player_speed * delta
 	
 	direction_x = Input.get_axis("Left", "Right")
-	if not spectator:
-		if can_move:
-			if current_mode != "LinearMotion":
-				if direction_x:
-					if on_ice:
-						if direction_x != 0:
+	if spectator:
+		position.x += direction_x * 10
+	else:
+		if current_mode != "LinearMotion":
+			if can_move:
+				if not is_attacking:
+					if direction_x:
+						if on_ice:
 							velocity.x += direction_x * delta * Global.player_speed
 						else:
-							velocity.x = lerp(velocity.x, 0.0, 0.1)
+							velocity.x = direction_x * Global.player_speed
+						$Sprite2D.play("walking")
+						if Global.player_speed > NORMAL_SPEED:
+							Global.player_energy -= (Global.player_speed / NORMAL_SPEED) / 20.0
 					else:
-						velocity.x = direction_x * Global.player_speed
-					$Sprite2D.play("walking")
-					if Global.player_speed > NORMAL_SPEED:
-						Global.player_energy -= (Global.player_speed / NORMAL_SPEED) / 15.0
-				else:
-					velocity.x = move_toward(velocity.x, 0, Global.player_speed)
-					if not is_attacking:
+						if on_ice:
+							velocity.x = lerp(velocity.x, 0.0, 0.05)
+						else:
+							velocity.x = move_toward(velocity.x, 0, Global.player_speed)
 						$Sprite2D.play("static")
-		else:
-			velocity = Vector2(0,0)
-	else:
-		position.x += direction_x * 10
-	
+				else:
+					velocity.x = 0
+			else:
+				velocity = Vector2(0,0)
+
 	if Global.player_energy <= 0:
 		Global.player_speed = NORMAL_SPEED
 	
@@ -208,8 +212,8 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("Attack"):
 		if can_attack:
-			is_attacking = true
 			$Sprite2D.play("attack")
+			is_attacking = true
 			$AttackCooldown.start(1 / attack_speed)
 			can_attack = false
 			if $Sprite2D.offset.x == 160:
@@ -333,7 +337,7 @@ func _process(_delta):
 					if velocity != Vector2(0, 0):
 						Global.frostland_explored_progress += 1
 			
-			if collision.get_collider().get_cell_source_id(collision.get_collider().local_to_map(position) + platform_tile_vector) == 19:
+			if collision.get_collider().get_cell_source_id(collision.get_collider().local_to_map(position) + platform_tile_vector) in ice_tiles:
 				on_ice = true
 				if not Global.weeee:
 					Global.weeee_progress = 1
@@ -569,6 +573,8 @@ func _on_fist_attack_body_entered(body: Node2D) -> void:
 func _on_fist_attack_area_entered(area: Area2D) -> void:
 	if "BreakableBlocks" in area.name:
 		area.get_parent().get_parent().breakable_health -= 1
+	elif "Boss" in area.name:
+		area.health -= 8
 
 
 func _on_attack_cooldown_timeout() -> void:
@@ -590,3 +596,23 @@ func undoomed():
 	$Camera2D.limit_top = 4224
 	$Camera2D.limit_right = 16768
 	$Camera2D.limit_bottom = 5696
+
+
+func _on_light_attack_radial_area_entered(area: Area2D) -> void:
+	if "Boss" in area.name:
+		area.touching_light = true
+
+
+func _on_light_attack_radial_area_exited(area: Area2D) -> void:
+	if "Boss" in area.name:
+		area.touching_light = false
+
+
+func _on_light_attack_angular_area_entered(area: Area2D) -> void:
+	if "Boss" in area.name:
+		area.touching_light = true
+
+
+func _on_light_attack_angular_area_exited(area: Area2D) -> void:
+	if "Boss" in area.name:
+		area.touching_light = false

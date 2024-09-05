@@ -531,8 +531,12 @@ libraries = {
 [node name="AttackCooldown" type="Timer" parent="."]
 
 [connection signal="timeout" from="ResPosTimer" to="." method="_on_res_pos_timer_timeout"]
+[connection signal="area_entered" from="LightAttackRadial" to="." method="_on_light_attack_radial_area_entered"]
+[connection signal="area_exited" from="LightAttackRadial" to="." method="_on_light_attack_radial_area_exited"]
 [connection signal="body_entered" from="LightAttackRadial" to="." method="_on_light_attack_radial_body_entered"]
 [connection signal="body_exited" from="LightAttackRadial" to="." method="_on_light_attack_radial_body_exited"]
+[connection signal="area_entered" from="LightAttackAngular" to="." method="_on_light_attack_angular_area_entered"]
+[connection signal="area_exited" from="LightAttackAngular" to="." method="_on_light_attack_angular_area_exited"]
 [connection signal="body_entered" from="LightAttackAngular" to="." method="_on_light_attack_angular_body_entered"]
 [connection signal="body_exited" from="LightAttackAngular" to="." method="_on_light_attack_angular_body_exited"]
 [connection signal="timeout" from="SpawnImmunity" to="." method="_on_spawn_immunity_timeout"]

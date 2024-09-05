@@ -198,14 +198,14 @@ func doomed():
 	for tile in range(106,178):
 		$Platforms.set_cell(Vector2i(tile, 99), -1, Vector2i(-1,-1), -1)
 	$DoomedLavaRise.start(2.142857143)
-	$Other/Hidden/PinI.position = Vector2(11264, 3264)
-	$Other/Hidden/PinII.position = Vector2(11264, 3968)
-	$Other/Hidden/PinIII.position = Vector2(11264, 5632)
-	$Other/Hidden/PinIV.position = Vector2(11264, 6464)
-	$Other/Hidden/PinI.modulate = Color(1, 1, 1, 1)
-	$Other/Hidden/PinII.modulate = Color(1, 1, 1, 1)
-	$Other/Hidden/PinIII.modulate = Color(1, 1, 1, 1)
-	$Other/Hidden/PinIV.modulate = Color(1, 1, 1, 1)
+	$Other/Hidden/PinI.position = Vector2(2112, -4472)
+	$Other/Hidden/PinII.position = Vector2(2112, -3768)
+	$Other/Hidden/PinIII.position = Vector2(2112, -2104)
+	$Other/Hidden/PinIV.position = Vector2(2112, -1272)
+	$Other/Hidden/PinI.modulate = Color("ffffff", 1.0)
+	$Other/Hidden/PinII.modulate = Color("ffffff", 1.0)
+	$Other/Hidden/PinIII.modulate = Color("ffffff", 1.0)
+	$Other/Hidden/PinIV.modulate = Color("ffffff", 1.0)
 	pass  # Fool! You have doomed us all!
 
 
