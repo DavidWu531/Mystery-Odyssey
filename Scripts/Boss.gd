@@ -1,6 +1,6 @@
 extends Area2D
 
-var health = 500
+var health = 1000
 
 var touching_light = false
 
@@ -14,13 +14,13 @@ func _process(delta: float) -> void:
 		health -= 0.1
 
 
-func meteor():
-	pass
+func projectile_shot():
+	pass  # Fires projectiles every few seconds
 
 
 func reinforcements():
-	pass
+	pass  # Summons small enemies to help fight
 	
 
-func fire():
-	pass
+func laser_attack():
+	pass  # Summons lasers 

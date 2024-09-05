@@ -88,7 +88,7 @@ autoplay = "Default"
 shape = SubResource("RectangleShape2D_8ny5a")
 
 [node name="Boss" parent="." instance=ExtResource("7_8mgu3")]
-position = Vector2(8944, -12200)
+position = Vector2(10984, -12168)
 
 [node name="Coins" type="Node2D" parent="."]
 
