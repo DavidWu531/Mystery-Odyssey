@@ -106,21 +106,6 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbbko"]
 size = Vector2(128, 128)
 
-[sub_resource type="LabelSettings" id="LabelSettings_v0myw"]
-font_size = 40
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_8xcl6"]
-font_size = 38
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_os13b"]
-font_size = 10
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82ljf"]
 size = Vector2(96, 192)
 
@@ -417,6 +402,21 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cb3ww"]
 font_size = 30
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v0myw"]
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8xcl6"]
+font_size = 38
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_os13b"]
+font_size = 10
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -1131,78 +1131,6 @@ position = Vector2(0, -104)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("11_gehs5")
 
-[node name="Keypad" type="Control" parent="Other/Door"]
-visible = false
-z_index = 1
-use_parent_material = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2424.0
-offset_top = 1384.0
-offset_right = -2424.0
-offset_bottom = 1384.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(16, 16)
-script = ExtResource("16_6l4rl")
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="Other/Door/Keypad"]
-use_parent_material = true
-layout_mode = 0
-offset_left = -152.0
-offset_top = -192.0
-offset_right = 152.0
-offset_bottom = 64.0
-color = Color(0.619608, 0.568627, 0, 1)
-
-[node name="Summary" type="Label" parent="Other/Door/Keypad"]
-use_parent_material = true
-layout_mode = 0
-offset_left = -112.0
-offset_top = -192.0
-offset_right = 112.0
-offset_bottom = -128.0
-text = "Enter Code"
-label_settings = SubResource("LabelSettings_v0myw")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Text" type="LineEdit" parent="Other/Door/Keypad"]
-use_parent_material = true
-layout_mode = 0
-offset_left = -144.0
-offset_top = -112.0
-offset_right = 144.0
-offset_bottom = -81.0
-placeholder_text = "Enter Code Here"
-max_length = 4
-
-[node name="Result" type="Label" parent="Other/Door/Keypad"]
-use_parent_material = true
-layout_mode = 0
-offset_left = -152.0
-offset_top = -64.0
-offset_right = 152.0
-text = "Access Denied!"
-label_settings = SubResource("LabelSettings_8xcl6")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Hint" type="Label" parent="Other/Door/Keypad"]
-use_parent_material = true
-layout_mode = 0
-offset_left = -152.0
-offset_right = 152.0
-offset_bottom = 64.0
-text = "Tip: The code can be found near the initial surface of the lava in order from left to right. If you missed that, the codes have moved so the order is from top to bottom"
-label_settings = SubResource("LabelSettings_os13b")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
 [node name="Code" type="Node2D" parent="Other/Door"]
 use_parent_material = true
 
@@ -1600,7 +1528,6 @@ layout_mode = 0
 offset_left = -256.0
 offset_right = 768.0
 offset_bottom = 120.0
-text = "There's nothing down there..."
 label_settings = SubResource("LabelSettings_cb3ww")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1628,6 +1555,7 @@ layout_mode = 0
 offset_left = -256.0
 offset_right = 768.0
 offset_bottom = 120.0
+text = "There's nothing down there..."
 label_settings = SubResource("LabelSettings_cb3ww")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1656,6 +1584,78 @@ offset_left = -256.0
 offset_right = 768.0
 offset_bottom = 120.0
 label_settings = SubResource("LabelSettings_cb3ww")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Keypad" type="Control" parent="CanvasLayer"]
+visible = false
+z_index = 1
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.5, 2.5)
+script = ExtResource("16_6l4rl")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Keypad"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 153.6
+offset_top = -6.4
+offset_right = 609.6
+offset_bottom = 441.6
+color = Color(0.619608, 0.568627, 0, 1)
+
+[node name="Summary" type="Label" parent="CanvasLayer/Keypad"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 257.6
+offset_top = 57.6
+offset_right = 481.6
+offset_bottom = 121.6
+text = "Enter Code"
+label_settings = SubResource("LabelSettings_v0myw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="LineEdit" parent="CanvasLayer/Keypad"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 225.6
+offset_top = 185.6
+offset_right = 513.6
+offset_bottom = 216.6
+placeholder_text = "Enter Code Here"
+max_length = 4
+
+[node name="Result" type="Label" parent="CanvasLayer/Keypad"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 225.6
+offset_top = 249.6
+offset_right = 529.6
+offset_bottom = 313.6
+text = "Access Denied!"
+label_settings = SubResource("LabelSettings_8xcl6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Label" parent="CanvasLayer/Keypad"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 225.6
+offset_top = 313.6
+offset_right = 529.6
+offset_bottom = 377.6
+text = "Tip: The code can be found near the initial surface of the lava in order from left to right. If you missed that, the codes have moved so the order is from top to bottom"
+label_settings = SubResource("LabelSettings_os13b")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -1719,7 +1719,6 @@ autowrap_mode = 2
 [connection signal="body_exited" from="Other/PadI" to="Other/PadI" method="_on_body_exited"]
 [connection signal="body_entered" from="Other/Door" to="." method="_on_door_body_entered"]
 [connection signal="body_exited" from="Other/Door" to="." method="_on_door_body_exited"]
-[connection signal="text_submitted" from="Other/Door/Keypad/Text" to="Other/Door/Keypad" method="_on_text_text_submitted"]
 [connection signal="body_entered" from="Other/GravityFlipInstant" to="." method="_on_gravity_flip_instant_body_entered"]
 [connection signal="body_entered" from="PyramidAccess" to="." method="_on_pyramid_access_body_entered"]
 [connection signal="body_exited" from="PyramidAccess" to="." method="_on_pyramid_access_body_exited"]
@@ -1746,3 +1745,4 @@ autowrap_mode = 2
 [connection signal="body_entered" from="HelpfulBlocks/BlockVI" to="." method="_on_block_vi_body_entered"]
 [connection signal="body_entered" from="HelpfulBlocks/BlockVII" to="." method="_on_block_vii_body_entered"]
 [connection signal="body_entered" from="HelpfulBlocks/BlockVIII" to="." method="_on_block_viii_body_entered"]
+[connection signal="text_submitted" from="CanvasLayer/Keypad/Text" to="CanvasLayer/Keypad" method="_on_text_text_submitted"]

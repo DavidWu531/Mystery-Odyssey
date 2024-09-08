@@ -37,7 +37,7 @@ func _process(_delta: float) -> void:
 			elif boss_dialogue_id == 2:
 				$CanvasLayer/BossAltar/Dialogue.text = "There's no going back for you..."
 			elif boss_dialogue_id == 3:
-				$CanvasLayer/BossAltar/Dialogue.text = "Prepare to die!"
+				$CanvasLayer/BossAltar/Dialogue.text = "Prepare to suffer!"
 			else:
 				$CanvasLayer/BossAltar/Dialogue.text = ""
 				for node in $BossAltar/PlayerDetection.get_overlapping_bodies():
@@ -114,8 +114,6 @@ func _process(_delta: float) -> void:
 				SignalBus.npc_talked.emit()
 				Global.social_expert_progress += 1
 		
-		
-	
 	if $BossAltar.position == Vector2(15072,-8984) and not boss_mode:
 		boss_mode = true
 		SignalBus.boss_spawned.emit()
@@ -165,7 +163,7 @@ func _on_player_detection_body_exited(body: Node2D) -> void:
 	if "Player" in body.name:
 		$BossAltar/Interactable.hide()
 		boss_dialogue_id = 0
-		$BossAltar/Dialogue.text = ""
+		$CanvasLayer/BossAltar/Dialogue.text = ""
 
 
 func _on_npcix_body_entered(body: Node2D) -> void:

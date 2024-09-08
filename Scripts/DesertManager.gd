@@ -34,7 +34,7 @@ func _process(_delta):
 					break
 		
 		if $Other/Door/Interactable.visible:
-			$Other/Door/Keypad.show()
+			$CanvasLayer/Keypad.show()
 			for node in $Other/Door.get_overlapping_bodies():
 				if "Player" in node.name:
 					node.can_move = false
@@ -99,8 +99,6 @@ func _process(_delta):
 		$Platforms.set_cell(Vector2i(178,75), -1, Vector2i(-1,-1), -1)
 		$Platforms.set_cell(Vector2i(178,76), -1, Vector2i(-1,-1), -1)
 		$Platforms.set_cell(Vector2i(178,77), -1, Vector2i(-1,-1), -1)
-	
-	$Other/Door/Keypad.position = get_viewport_rect().size / 2
 
 
 func checkpoint_iii_hit():
@@ -255,7 +253,7 @@ func _on_npcvi_body_exited(body: Node2D) -> void:
 	if "Player" in body.name:
 		$NPCs/NPCVI/Interactable.hide()
 		npcvi_dialogue_id = 0
-		$NPCs/NPCVI/Dialogue.text = ""
+		$CanvasLayer/NPCVI/Dialogue.text = ""
 
 
 func _on_npcvii_body_entered(body: Node2D) -> void:

@@ -5,8 +5,8 @@ var code
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().create_timer(get_process_delta_time()).timeout
-	code = str($"../../Hidden/PinI".text) + str($"../../Hidden/PinII".text)\
- + str($"../../Hidden/PinIII".text) + str($"../../Hidden/PinIV".text)
+	code = str($"../../Other/Hidden/PinI".text) + str($"../../Other/Hidden/PinII".text)\
+ + str($"../../Other/Hidden/PinIII".text) + str($"../../Other/Hidden/PinIV".text)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -25,7 +25,7 @@ func _on_text_text_submitted(new_text):
 		$Result.text = "Access Granted!"
 		await get_tree().create_timer(1.0).timeout
 		hide()
-		for node in $"..".get_overlapping_bodies():
+		for node in $"../../Other/Door".get_overlapping_bodies():
 			if "Player" in node.name:
 				SignalBus.undoomed.emit()
 	else:

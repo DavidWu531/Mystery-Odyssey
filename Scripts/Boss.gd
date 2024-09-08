@@ -3,7 +3,7 @@ extends Area2D
 var touching_light = false
 var attack_id = 1
 var target = null
-var timer_multiplier
+var timer_multiplier = 1.0
 
 var ice_shot = preload("res://Scenes/ice_shot.tscn")
 var fire_ball = preload("res://Scenes/fire_ball.tscn")
@@ -31,6 +31,8 @@ func _process(_delta: float) -> void:
 		timer_multiplier = 0.6
 	elif Global.boss_health <= 800:
 		timer_multiplier = 0.8
+	else:
+		timer_multiplier = 1.0
 
 
 func _on_attack_timer_timeout() -> void:
