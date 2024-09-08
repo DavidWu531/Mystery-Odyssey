@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=4 uid="uid://bs0rjq8hecmbe"]
+[gd_scene load_steps=114 format=4 uid="uid://bs0rjq8hecmbe"]
 
 [ext_resource type="Script" path="res://Scripts/GrassManager.gd" id="1_ef5ps"]
 [ext_resource type="Script" path="res://Scripts/DoubleJump.gd" id="2_owohi"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://Scripts/Pads.gd" id="21_tvhbx"]
 [ext_resource type="PackedScene" uid="uid://cn1jalkre7nt6" path="res://Scenes/enemy.tscn" id="23_3ilrb"]
 [ext_resource type="Texture2D" uid="uid://ccucohel1pk46" path="res://Art/BlockHelp.png" id="24_3gc3j"]
+[ext_resource type="Texture2D" uid="uid://cql55dg1gcgnf" path="res://Resources/npc.tres" id="25_upocj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mccl"]
 atlas = ExtResource("3_xddn1")
@@ -576,10 +577,6 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4jobg"]
 size = Vector2(32, 32)
 
-[sub_resource type="LabelSettings" id="LabelSettings_jwcme"]
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3mgm"]
 size = Vector2(64, 64)
 
@@ -597,6 +594,11 @@ size = Vector2(72, 72)
 
 [sub_resource type="LabelSettings" id="LabelSettings_h1sxm"]
 font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jwcme"]
+font_size = 30
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -939,17 +941,6 @@ material = ExtResource("4_kbac1")
 position = Vector2(0, -28)
 texture = ExtResource("9_m4d8i")
 
-[node name="Dialogue" type="Label" parent="NPCs/NPCI"]
-material = ExtResource("4_kbac1")
-offset_left = -129.0
-offset_top = -45.0
-offset_right = 132.0
-offset_bottom = -22.0
-label_settings = SubResource("LabelSettings_jwcme")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
 [node name="NPCII" type="Area2D" parent="NPCs"]
 position = Vector2(2128, -1128)
 scale = Vector2(2.5, 2.5)
@@ -967,17 +958,6 @@ material = ExtResource("4_kbac1")
 position = Vector2(0, -28)
 texture = ExtResource("9_m4d8i")
 
-[node name="Dialogue" type="Label" parent="NPCs/NPCII"]
-material = ExtResource("4_kbac1")
-offset_left = -129.0
-offset_top = -45.0
-offset_right = 132.0
-offset_bottom = -22.0
-label_settings = SubResource("LabelSettings_jwcme")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
 [node name="NPCIII" type="Area2D" parent="NPCs"]
 position = Vector2(1648, -296)
 scale = Vector2(2.5, 2.5)
@@ -988,19 +968,6 @@ texture = ExtResource("7_anl2d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPCIII"]
 shape = SubResource("RectangleShape2D_4jobg")
-
-[node name="Dialogue" type="Label" parent="NPCs/NPCIII"]
-visible = false
-material = ExtResource("4_kbac1")
-offset_left = -129.0
-offset_top = -45.0
-offset_right = 132.0
-offset_bottom = -22.0
-text = "Go left for shiny, go right for death"
-label_settings = SubResource("LabelSettings_jwcme")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="NPCIV" type="Area2D" parent="NPCs"]
 position = Vector2(5096, 88)
@@ -1019,17 +986,6 @@ material = ExtResource("4_kbac1")
 position = Vector2(0, -28)
 texture = ExtResource("9_m4d8i")
 
-[node name="Dialogue" type="Label" parent="NPCs/NPCIV"]
-material = ExtResource("4_kbac1")
-offset_left = -129.0
-offset_top = -45.0
-offset_right = 132.0
-offset_bottom = -22.0
-label_settings = SubResource("LabelSettings_jwcme")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
 [node name="NPCV" type="Area2D" parent="NPCs"]
 position = Vector2(4008, 88)
 scale = Vector2(2.5, 2.5)
@@ -1046,17 +1002,6 @@ visible = false
 material = ExtResource("4_kbac1")
 position = Vector2(0, -28)
 texture = ExtResource("9_m4d8i")
-
-[node name="Dialogue" type="Label" parent="NPCs/NPCV"]
-material = ExtResource("4_kbac1")
-offset_left = -129.0
-offset_top = -45.0
-offset_right = 132.0
-offset_bottom = -22.0
-label_settings = SubResource("LabelSettings_jwcme")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="GravityFlipTip" type="Area2D" parent="."]
 position = Vector2(2488, -888)
@@ -1269,6 +1214,144 @@ offset_right = 160.0
 offset_bottom = -33.0
 text = "HIT ME!!!"
 label_settings = SubResource("LabelSettings_h1sxm")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="NPCI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 704.0
+offset_top = 960.0
+offset_right = 744.0
+offset_bottom = 1000.0
+
+[node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCI"]
+layout_mode = 0
+offset_left = -704.0
+offset_right = 1216.0
+offset_bottom = 120.0
+texture = ExtResource("25_upocj")
+
+[node name="Dialogue" type="Label" parent="CanvasLayer/NPCI"]
+material = ExtResource("4_kbac1")
+layout_mode = 0
+offset_left = -256.0
+offset_right = 768.0
+offset_bottom = 120.0
+label_settings = SubResource("LabelSettings_jwcme")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NPCII" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 704.0
+offset_top = 960.0
+offset_right = 744.0
+offset_bottom = 1000.0
+
+[node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCII"]
+layout_mode = 0
+offset_left = -704.0
+offset_right = 1216.0
+offset_bottom = 120.0
+texture = ExtResource("25_upocj")
+
+[node name="Dialogue" type="Label" parent="CanvasLayer/NPCII"]
+material = ExtResource("4_kbac1")
+layout_mode = 0
+offset_left = -256.0
+offset_right = 768.0
+offset_bottom = 120.0
+label_settings = SubResource("LabelSettings_jwcme")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NPCIII" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 704.0
+offset_top = 960.0
+offset_right = 744.0
+offset_bottom = 1000.0
+
+[node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCIII"]
+layout_mode = 0
+offset_left = -704.0
+offset_right = 1216.0
+offset_bottom = 120.0
+texture = ExtResource("25_upocj")
+
+[node name="Dialogue" type="Label" parent="CanvasLayer/NPCIII"]
+material = ExtResource("4_kbac1")
+layout_mode = 0
+offset_left = -256.0
+offset_right = 768.0
+offset_bottom = 120.0
+text = "Coins... everywhere..."
+label_settings = SubResource("LabelSettings_jwcme")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NPCIV" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 704.0
+offset_top = 960.0
+offset_right = 744.0
+offset_bottom = 1000.0
+
+[node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCIV"]
+layout_mode = 0
+offset_left = -704.0
+offset_right = 1216.0
+offset_bottom = 120.0
+texture = ExtResource("25_upocj")
+
+[node name="Dialogue" type="Label" parent="CanvasLayer/NPCIV"]
+material = ExtResource("4_kbac1")
+layout_mode = 0
+offset_left = -256.0
+offset_right = 768.0
+offset_bottom = 120.0
+label_settings = SubResource("LabelSettings_jwcme")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NPCV" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 704.0
+offset_top = 960.0
+offset_right = 744.0
+offset_bottom = 1000.0
+
+[node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCV"]
+layout_mode = 0
+offset_left = -704.0
+offset_right = 1216.0
+offset_bottom = 120.0
+texture = ExtResource("25_upocj")
+
+[node name="Dialogue" type="Label" parent="CanvasLayer/NPCV"]
+material = ExtResource("4_kbac1")
+layout_mode = 0
+offset_left = -256.0
+offset_right = 768.0
+offset_bottom = 120.0
+label_settings = SubResource("LabelSettings_jwcme")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

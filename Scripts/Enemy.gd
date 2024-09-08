@@ -29,13 +29,17 @@ func _physics_process(delta: float) -> void:
 	
 	if not stunned:
 		if target:
-			velocity = (target.position - position).normalized() * speed
-			velocity.y += gravity * delta
+			velocity.x = (target.position - position).normalized().x * speed
 		elif target == null:
 			if movable:
-				velocity = direction * speed
+				velocity.x = direction.x * speed
 			else:
 				velocity = Vector2.ZERO
+	
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	else:
+		velocity.y = 0
 	
 	if is_on_wall():
 		velocity.y = -jump_velocity

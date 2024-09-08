@@ -18,15 +18,23 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("Interact"):
 		if $NPCs/NPCI/Interactable.visible:
+			for node in $NPCs/NPCI.get_overlapping_bodies():
+				if "Player" in node.name:
+					node.can_move = false
+			$CanvasLayer/NPCI.show()
 			if npci_dialogue_id == 0:
-				$NPCs/NPCI/Dialogue.text = "Greetings, traveller"
+				$CanvasLayer/NPCI/Dialogue.text = "Greetings, traveller"
 			elif npci_dialogue_id == 1:
-				$NPCs/NPCI/Dialogue.text = "I see you're wandering around this wild realm"
+				$CanvasLayer/NPCI/Dialogue.text = "I see you're wandering around this wild realm"
 			elif npci_dialogue_id == 2:
-				$NPCs/NPCI/Dialogue.text = "See those spiky grass over there? Yeah, you don't want to touch them"
+				$CanvasLayer/NPCI/Dialogue.text = "See those spiky grass over there? Yeah, you don't want to touch them"
 			else:
-				$NPCs/NPCI/Dialogue.text = ""
+				$CanvasLayer/NPCI/Dialogue.text = ""
+				$CanvasLayer/NPCI.hide()
 				$NPCs/NPCI/Interactable.hide()
+				for node in $NPCs/NPCI.get_overlapping_bodies():
+					if "Player" in node.name:
+						node.can_move = true
 			npci_dialogue_id += 1
 			if not npci_talked:
 				npci_talked = true
@@ -34,15 +42,23 @@ func _process(_delta):
 				Global.social_expert_progress += 1
 		
 		if $NPCs/NPCII/Interactable.visible:
+			for node in $NPCs/NPCII.get_overlapping_bodies():
+				if "Player" in node.name:
+					node.can_move = false
+			$CanvasLayer/NPCII.show()
 			if npcii_dialogue_id == 0:
-				$NPCs/NPCII/Dialogue.text = "You never know what might be lurking around..."
+				$CanvasLayer/NPCII/Dialogue.text = "You never know what might be lurking around..."
 			elif npcii_dialogue_id == 1:
-				$NPCs/NPCII/Dialogue.text = "That's why you have a torch, radial or angular just press 1"
+				$CanvasLayer/NPCII/Dialogue.text = "That's why you have a torch, radial or angular just press 1"
 			elif npcii_dialogue_id == 2:
-				$NPCs/NPCII/Dialogue.text = "Or if you're confident, you can punch it with LMB"
+				$CanvasLayer/NPCII/Dialogue.text = "Or if you're confident, you can punch it with LMB"
 			else:
-				$NPCs/NPCII/Dialogue.text = ""
+				$CanvasLayer/NPCII/Dialogue.text = ""
 				$NPCs/NPCII/Interactable.hide()
+				for node in $NPCs/NPCII.get_overlapping_bodies():
+					if "Player" in node.name:
+						node.can_move = true
+				$CanvasLayer/NPCII.hide()
 			npcii_dialogue_id += 1
 			if not npcii_talked:
 				npcii_talked = true
@@ -50,15 +66,24 @@ func _process(_delta):
 				Global.social_expert_progress += 1
 	
 		if $NPCs/NPCIV/Interactable.visible:
+			for node in $NPCs/NPCIV.get_overlapping_bodies():
+				if "Player" in node.name:
+					node.can_move = false
+			$CanvasLayer/NPCIV.show()
+
 			if npciv_dialogue_id == 0:
-				$NPCs/NPCIV/Dialogue.text = "You can't traverse like this"
+				$CanvasLayer/NPCIV/Dialogue.text = "You can't traverse like this"
 			elif npciv_dialogue_id == 1:
-				$NPCs/NPCIV/Dialogue.text = "Even if you can jump, the gap is too large"
+				$CanvasLayer/NPCIV/Dialogue.text = "Even if you can jump, the gap is too large"
 			elif npciv_dialogue_id == 2:
-				$NPCs/NPCIV/Dialogue.text = "Hey, what's over on the left?"
+				$CanvasLayer/NPCIV/Dialogue.text = "Hey, what's over on the left?"
 			else:
-				$NPCs/NPCIV/Dialogue.text = ""
+				$CanvasLayer/NPCIV/Dialogue.text = ""
 				$NPCs/NPCIV/Interactable.hide()
+				for node in $NPCs/NPCIV.get_overlapping_bodies():
+					if "Player" in node.name:
+						node.can_move = true
+				$CanvasLayer/NPCIV.hide()
 			npciv_dialogue_id += 1
 			if not npciv_talked:
 				npciv_talked = true
@@ -66,18 +91,31 @@ func _process(_delta):
 				Global.social_expert_progress += 1
 				
 		if $NPCs/NPCV/Interactable.visible:
+			for node in $NPCs/NPCV.get_overlapping_bodies():
+				if "Player" in node.name:
+					node.can_move = false
+			$CanvasLayer/NPCV.show()
+				
 			if npcv_dialogue_id == 0:
-				$NPCs/NPCV/Dialogue.text = "These pads look useful..."
+				$CanvasLayer/NPCV/Dialogue.text = "These pads look useful..."
 			elif npcv_dialogue_id == 1:
-				$NPCs/NPCV/Dialogue.text = "Or not..."
+				$CanvasLayer/NPCV/Dialogue.text = "Or not..."
 			else:
-				$NPCs/NPCV/Dialogue.text = ""
+				$CanvasLayer/NPCV/Dialogue.text = ""
 				$NPCs/NPCV/Interactable.hide()
+				for node in $NPCs/NPCV.get_overlapping_bodies():
+					if "Player" in node.name:
+						node.can_move = true
+				$CanvasLayer/NPCV.hide()
 			npcv_dialogue_id += 1
 			if not npcv_talked:
 				npcv_talked = true
 				SignalBus.npc_talked.emit()
 				Global.social_expert_progress += 1
+
+
+func _physics_process(_delta: float) -> void:
+	pass
 
 func _on_npci_body_entered(body):
 	if "Player" in body.name:
@@ -88,7 +126,7 @@ func _on_npci_body_exited(body):
 	if "Player" in body.name:
 		$NPCs/NPCI/Interactable.hide()
 		npci_dialogue_id = 0
-		$NPCs/NPCI/Dialogue.text = ""
+		$CanvasLayer/NPCI/Dialogue.text = ""
 		
 		
 func checkpoint_i_hit():
@@ -165,12 +203,12 @@ func _on_npcii_body_exited(body):
 	if "Player" in body.name:
 		$NPCs/NPCII/Interactable.hide()
 		npcii_dialogue_id = 0
-		$NPCs/NPCII/Dialogue.text = ""
+		$CanvasLayer/NPCII/Dialogue.text = ""
 
 
 func _on_npciii_body_entered(body):
 	if "Player" in body.name:
-		$NPCs/NPCIII/Dialogue.show()
+		$CanvasLayer/NPCIII.show()
 		if not npciii_talked:
 			npciii_talked = true
 			SignalBus.npc_talked.emit()
@@ -179,7 +217,7 @@ func _on_npciii_body_entered(body):
 
 func _on_npciii_body_exited(body):
 	if "Player" in body.name:
-		$NPCs/NPCIII/Dialogue.hide()
+		$CanvasLayer/NPCIII.hide()
 
 
 func _on_npciv_body_entered(body):
@@ -191,7 +229,7 @@ func _on_npciv_body_exited(body):
 	if "Player" in body.name:
 		$NPCs/NPCIV/Interactable.hide()
 		npciv_dialogue_id = 0
-		$NPCs/NPCIV/Dialogue.text = ""
+		$CanvasLayer/NPCIV/Dialogue.text = ""
 
 
 func _on_door_body_entered(body):
@@ -208,12 +246,12 @@ func _on_npcv_body_exited(body):
 	if "Player" in body.name:
 		$NPCs/NPCV/Interactable.hide()
 		npcv_dialogue_id = 0
-		$NPCs/NPCV/Dialogue.text = ""
+		$CanvasLayer/NPCV/Dialogue.text = ""
 
 
 func _on_block_i_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
-		$HelpfulBlocks/BlockI/Label.text = "You can press Tab to show amd scroll through tips"
+		$HelpfulBlocks/BlockI/Label.text = "You can press Tab to show and scroll through tips"
 
 
 func _on_block_ii_body_entered(body: Node2D) -> void:

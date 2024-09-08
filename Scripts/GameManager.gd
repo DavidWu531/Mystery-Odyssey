@@ -7,6 +7,7 @@ func _ready():
 	SignalBus.checkpoint_iii_hit.connect(checkpoint_iii_hit)
 	SignalBus.checkpoint_iv_hit.connect(checkpoint_iv_hit)
 	SignalBus.checkpoint_v_hit.connect(checkpoint_v_hit)
+	SignalBus.checkpoint_vi_hit.connect(checkpoint_vi_hit)
 	
 	SignalBus.player_died.connect(player_died)
 	
@@ -48,7 +49,7 @@ func checkpoint_iv_hit():
 			Global.one_heart_escape_progress = 1
 	Global.player_health = Global.player_maxhealth
 	$AnimationPlayer.seek(75.0)
-	$AnimationPlayer.stop()
+	$AnimationPlayer.pause()
 
 
 func checkpoint_v_hit():
@@ -65,6 +66,13 @@ func checkpoint_vi_hit():
 	Global.player_health = Global.player_maxhealth
 	if not Global.escape_cave:
 		Global.escape_cave_progress = 1
+
+
+func checkpoint_vii_hit():
+	if Global.player_health == 1:
+		if not Global.one_heart_escape:
+			Global.one_heart_escape_progress = 1
+	Global.player_health = Global.player_maxhealth
 
 
 func player_died():

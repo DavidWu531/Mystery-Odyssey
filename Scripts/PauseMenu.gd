@@ -100,9 +100,9 @@ func _process(_delta):
 		$Achievements/ScrollContainer/GridContainer/AchID15/RichTextLabel.text = "[b][color=gray]Achievement Locked![/color][/b]\n[color=gold]Don't give up hope II[/color]\n[i]Die 10 times[/i]"
 
 	if Global.no_stopping_now_iii:
-		$Achievements/ScrollContainer/GridContainer/AchID16/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't give up hope III[/color]\n[i]Die 20 times[/i]"
+		$Achievements/ScrollContainer/GridContainer/AchID16/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't give up hope III[/color]\n[i]Die 30 times[/i]"
 	else:
-		$Achievements/ScrollContainer/GridContainer/AchID16/RichTextLabel.text = "[b][color=gray]Achievement Locked![/color][/b]\n[color=gold]Don't give up hope III[/color]\n[i]Die 20 times[/i]"
+		$Achievements/ScrollContainer/GridContainer/AchID16/RichTextLabel.text = "[b][color=gray]Achievement Locked![/color][/b]\n[color=gold]Don't give up hope III[/color]\n[i]Die 30 times[/i]"
 		
 	if Global.killing_machine_i:
 		$Achievements/ScrollContainer/GridContainer/AchID17/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless I[/color]\n[i]Slay 1 enemy[/i]"
@@ -110,14 +110,14 @@ func _process(_delta):
 		$Achievements/ScrollContainer/GridContainer/AchID17/RichTextLabel.text = "[b][color=gray]Achievement Locked![/color][/b]\n[color=gold]Fragile but fearless I[/color]\n[i]Slay 1 enemy[/i]"
 
 	if Global.killing_machine_ii:
-		$Achievements/ScrollContainer/GridContainer/AchID18/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless II[/color]\n[i]Slay 20 enemies[/i]"
+		$Achievements/ScrollContainer/GridContainer/AchID18/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless II[/color]\n[i]Slay 10 enemies[/i]"
 	else:
-		$Achievements/ScrollContainer/GridContainer/AchID18/RichTextLabel.text = "[b][color=gray]Achievement Locked![/color][/b]\n[color=gold]Fragile but fearless II[/color]\n[i]Slay 20 enemies[/i]"
+		$Achievements/ScrollContainer/GridContainer/AchID18/RichTextLabel.text = "[b][color=gray]Achievement Locked![/color][/b]\n[color=gold]Fragile but fearless II[/color]\n[i]Slay 10 enemies[/i]"
 
 	if Global.killing_machine_iii:
-		$Achievements/ScrollContainer/GridContainer/AchID19/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless III[/color]\n[i]Slay 50 enemies[/i]"
+		$Achievements/ScrollContainer/GridContainer/AchID19/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless III[/color]\n[i]Slay 20 enemies[/i]"
 	else:
-		$Achievements/ScrollContainer/GridContainer/AchID19/RichTextLabel.text = "[b][color=gray]Achievement Locked![/color][/b]\n[color=gold]Fragile but fearless III[/color]\n[i]Slay 50 enemies[/i]"
+		$Achievements/ScrollContainer/GridContainer/AchID19/RichTextLabel.text = "[b][color=gray]Achievement Locked![/color][/b]\n[color=gold]Fragile but fearless III[/color]\n[i]Slay 20 enemies[/i]"
 
 	if Global.ooh_shiny_mine_i:
 		$Achievements/ScrollContainer/GridContainer/AchID20/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Ooh, Shiny! Mine! I[/color]\n[i]Pick up 1 collectibles[/i]"

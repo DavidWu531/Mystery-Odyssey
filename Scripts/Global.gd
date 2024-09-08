@@ -59,10 +59,12 @@ var score = 0
 var player_health = 3
 var player_energy = 50
 var player_speed = 0
-var time_elapsed = 0.00
+var time_elapsed = 0.0
+var time_left = 180.0
 var player_maxhealth = 3
 var achievement_completed = 0
 var torch_level = 2
+var boss_health = 1000
 
 func _process(_delta):
 	if grassland_explored_progress == 200 and not grassland_explored:
@@ -172,7 +174,7 @@ func _process(_delta):
 		SignalBus.achievement_completed.emit()
 		SignalBus.no_stopping_now_ii.emit()
 		achievement_completed += 1
-	if killing_machine_progress == 20 and not killing_machine_ii:
+	if killing_machine_progress == 10 and not killing_machine_ii:
 		killing_machine_ii = true
 		SignalBus.achievement_completed.emit()
 		SignalBus.killing_machine_ii.emit()
@@ -193,12 +195,12 @@ func _process(_delta):
 		SignalBus.social_expert_ii.emit()
 		achievement_completed += 1
 	
-	if no_stopping_now_progress == 20 and not no_stopping_now_iii:
+	if no_stopping_now_progress == 30 and not no_stopping_now_iii:
 		no_stopping_now_iii = true
 		SignalBus.achievement_completed.emit()
 		SignalBus.no_stopping_now_iii.emit()
 		achievement_completed += 1
-	if killing_machine_progress == 50 and not killing_machine_iii:
+	if killing_machine_progress == 20 and not killing_machine_iii:
 		killing_machine_iii = true
 		SignalBus.achievement_completed.emit()
 		SignalBus.killing_machine_iii.emit()

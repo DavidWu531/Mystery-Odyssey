@@ -27,11 +27,14 @@ func _ready():
 	SignalBus.achievement_completed.connect(achievement_completed)
 	SignalBus.doomed.connect(doomed)
 	SignalBus.undoomed.connect(undoomed)
+	SignalBus.boss_spawned.connect(boss_spawned)
 	
 	SignalBus.default_silhouette.connect(default_silhouette)
 	SignalBus.double_jump_silhouette.connect(double_jump_silhouette)
 	SignalBus.gravity_flip_silhouette.connect(gravity_flip_silhouette)
 	SignalBus.linear_motion_silhouette.connect(linear_motion_silhouette)
+	
+	$MainScreen/BossHealth/BossHealthbar.max_value = Global.boss_health
 
 
 func _process(delta):
@@ -75,6 +78,10 @@ func _process(delta):
 	
 	$MainScreen/Speed/PlayerSpeed.value = Global.player_speed
 	
+	$MainScreen/BossHealth/BossHealthbar.value = Global.boss_health
+	
+	
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_focus_next"):
 		$MainScreen/TutorialDialogue.show()
 		match scroll_tip_id:
@@ -125,6 +132,8 @@ func _process(delta):
 			scroll_tip_id += 1
 		else:
 			scroll_tip_id = 0
+		
+	$MainScreen/AlternateTime.text = "Lava is rising, escape in " + str($MainScreen/LavaTimer.time_left).pad_decimals(2) + "s"
 
 
 func _on_continue_pressed():
@@ -189,6 +198,8 @@ func doomed():
 	$MainScreen/TutorialDialogue.show()
 	$MainScreen/TutorialDialogue/Label.text = "Fool! You have doomed us all! That's it, no more respawns for you! No-Respawn Mode Enabled!\n \
 	Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+	$MainScreen/LavaTimer.start(180.0)
+	$MainScreen/AlternateTime.show()
 
 
 func undoomed():
@@ -196,3 +207,13 @@ func undoomed():
 	$MainScreen/TutorialDialogue.show()
 	$MainScreen/TutorialDialogue/Label.text = "Holy, you went through hell... let's lift the curse, shall we?\n \
 	Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+	$MainScreen/LavaTimer.start(180.0)
+	$MainScreen/AlternateTime.hide()
+
+
+func boss_spawned():
+	$MainScreen/BossHealth.show()
+
+
+func _on_lava_timer_timeout() -> void:
+	$MainScreen/AlternateTime.hide()

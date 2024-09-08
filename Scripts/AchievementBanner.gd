@@ -122,7 +122,7 @@ func no_stopping_now_ii():
 	
 
 func no_stopping_now_iii():
-	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't give up hope III[/color]\n[i]Die 20 times[/i]"
+	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Don't give up hope III[/color]\n[i]Die 30 times[/i]"
 	$AnimatedSprite2D.play("Death")
 	
 
@@ -132,12 +132,12 @@ func killing_machine_i():
 	
 
 func killing_machine_ii():
-	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless II[/color]\n[i]Slay 20 enemies[/i]"
+	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless II[/color]\n[i]Slay 10 enemies[/i]"
 	$AnimatedSprite2D.play("Combat")
 	
 
 func killing_machine_iii():
-	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless III[/color]\n[i]Slay 50 enemies[/i]"
+	$RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]Fragile but fearless III[/color]\n[i]Slay 20 enemies[/i]"
 	$AnimatedSprite2D.play("Combat")
 	
 

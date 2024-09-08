@@ -1,12 +1,12 @@
 extends Control
 
-var code : int 
+var code
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().create_timer(get_process_delta_time()).timeout
-	code = int(str($"../../Hidden/PinI".text) + str($"../../Hidden/PinII".text)\
- + str($"../../Hidden/PinIII".text) + str($"../../Hidden/PinIV".text))
+	code = str($"../../Hidden/PinI".text) + str($"../../Hidden/PinII".text)\
+ + str($"../../Hidden/PinIII".text) + str($"../../Hidden/PinIV".text)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

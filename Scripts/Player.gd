@@ -10,7 +10,9 @@ var heart_lost = false
 var old_health
 var original_polygon : PackedVector2Array
 var attack_speed = 1 / 1.5
+var coyote_time_left = 0.0
 
+const COYOTE_TIME = 0.2
 const HALF_SPEED = 383.1
 const NORMAL_SPEED = 475.0
 const DOUBLE_SPEED = 590.7
@@ -31,6 +33,7 @@ var on_quicksand = false
 var direction_x
 var hardcore = false
 var quick_retry = false
+var touching_laser = false
 
 var tile_vector : Vector2i
 var tile = null
@@ -62,6 +65,7 @@ func _ready():
 	
 	SignalBus.doomed.connect(doomed)
 	SignalBus.undoomed.connect(undoomed)
+	SignalBus.boss_spawned.connect(boss_spawned)
 	
 	$LightAttackAngular/AngularLight.offset = Vector2(45.5 * (5 * Global.torch_level) - 32, 0)
 	$LightAttackAngular/AngularLight.texture_scale = 5 * Global.torch_level
@@ -84,6 +88,11 @@ func _physics_process(delta):
 	
 	$LightAttackAngular.look_at(get_global_mouse_position())
 	
+	if is_on_floor():
+		coyote_time_left = COYOTE_TIME
+	else:
+		coyote_time_left -= delta
+	
 	if Input.is_action_just_pressed("ui_filedialog_show_hidden"):
 		if current_mode == player_modes[0]:
 			current_mode = player_modes[1]
@@ -101,7 +110,7 @@ func _physics_process(delta):
 					respawn_gravity = gravity
 					if current_mode == "DoubleJump":
 						if jump_count > 0:
-							if is_on_floor() or is_on_ceiling():
+							if is_on_floor() or is_on_ceiling() or coyote_time_left > 0:
 								take_damage_respos = position
 							if gravity > 0.0:
 								velocity.y = -jump_velocity
@@ -109,14 +118,14 @@ func _physics_process(delta):
 								velocity.y = jump_velocity
 							jump_count -= 1
 					elif current_mode == "Default":
-						if is_on_floor() or is_on_ceiling():
+						if is_on_floor() or is_on_ceiling() or coyote_time_left > 0:
 							take_damage_respos = position
 							if gravity > 0.0:
 								velocity.y = -jump_velocity
 							elif gravity < 0.0:
 								velocity.y = jump_velocity
 					elif current_mode == "GravityFlip":
-						if is_on_floor() or is_on_ceiling():
+						if is_on_floor() or is_on_ceiling() or coyote_time_left > 0:
 							take_damage_respos = position
 							if gravity > 0.0:
 								velocity.y = -1000.0
@@ -299,8 +308,6 @@ func _process(_delta):
 						Global.player_health -= 0.25
 						on_pad = true
 						$LavaBounce.start(get_process_delta_time())
-						if Global.player_health <= 0:
-							spectator_mode()
 					tile_damage_taken = true
 					if not Global.no_cheese:
 						Global.no_cheese_progress = 1
@@ -311,6 +318,17 @@ func _process(_delta):
 				elif collision.get_collider().get_cell_source_id(tile) == 6:
 					old_health = Global.player_health
 					Global.player_health -= 6
+					tile_damage_taken = true
+					if not Global.not_safe:
+						Global.not_safe_progress = 1
+					if old_health == Global.player_maxhealth and old_health - Global.player_health >= Global.player_maxhealth:
+						if not Global.u_cant_c_me:
+							Global.u_cant_c_me_progress = 1
+							
+				elif collision.get_collider().get_cell_source_id(tile) == 8:
+					old_health = Global.player_health
+					Global.player_health -= 1.5
+					death_engine()
 					tile_damage_taken = true
 					if not Global.not_safe:
 						Global.not_safe_progress = 1
@@ -407,6 +425,9 @@ func _process(_delta):
 			Global.player_health -= 3
 			death_engine()
 			break
+	
+	if touching_laser:
+		Global.player_health -= 0.5 / (1.0 / get_process_delta_time())
 
 
 func death_engine():
@@ -425,11 +446,14 @@ func death_engine():
 		SignalBus.player_died.emit()
 		quick_retry = false
 	if Global.player_health <= 0:
-		position = respawn_pos
-		take_damage_respos = respawn_pos
-		Global.player_health = Global.player_maxhealth
-		gravity = 980.0 * 1.75
-		SignalBus.player_died.emit()
+		if not hardcore:
+			position = respawn_pos
+			take_damage_respos = respawn_pos
+			Global.player_health = Global.player_maxhealth
+			gravity = 980.0 * 1.75
+			SignalBus.player_died.emit()
+		else:
+			spectator_mode()
 	elif Global.player_health >= 1:
 		position = take_damage_respos
 		gravity = respawn_gravity
@@ -463,12 +487,12 @@ func checkpoint_v_hit():
 
 
 func checkpoint_vi_hit():
-	current_mode = player_modes[0]
+	current_mode = player_modes[1]
 	$Camera2D.zoom = Vector2(1, 1)
 	$Camera2D.limit_left = 2304
-	$Camera2D.limit_top = -10000000000
-	$Camera2D.limit_right = 10000000000
-	$Camera2D.limit_bottom = -9920
+	$Camera2D.limit_top = -15360
+	$Camera2D.limit_right = 17408
+	$Camera2D.limit_bottom = -9792
 
 func pad_launch():
 	on_pad = true
@@ -574,7 +598,7 @@ func _on_fist_attack_area_entered(area: Area2D) -> void:
 	if "BreakableBlocks" in area.name:
 		area.get_parent().get_parent().breakable_health -= 1
 	elif "Boss" in area.name:
-		area.health -= 8
+		Global.boss_health -= 8
 
 
 func _on_attack_cooldown_timeout() -> void:
@@ -587,6 +611,7 @@ func _on_attack_cooldown_timeout() -> void:
 func undoomed():
 	can_move = true
 	z_index = 1
+	current_mode = player_modes[1]
 	hardcore = false
 	position = Vector2(12640, 4992)
 	respawn_pos = position
@@ -616,3 +641,11 @@ func _on_light_attack_angular_area_entered(area: Area2D) -> void:
 func _on_light_attack_angular_area_exited(area: Area2D) -> void:
 	if "Boss" in area.name:
 		area.touching_light = false
+
+
+func boss_spawned():
+	$Camera2D.zoom = Vector2(0.8,0.8)
+	$Camera2D.limit_left = 13952
+	$Camera2D.limit_top = -15360
+	$Camera2D.limit_right = 17408
+	$Camera2D.limit_bottom = -13248

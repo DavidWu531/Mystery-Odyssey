@@ -193,11 +193,22 @@ autoplay = "default"
 
 [node name="TimeElapsed" type="Label" parent="MainScreen"]
 layout_mode = 0
-offset_left = 928.0
-offset_top = 8.0
-offset_right = 974.0
-offset_bottom = 63.0
+offset_left = 936.0
+offset_right = 984.0
+offset_bottom = 64.0
 text = "10"
+label_settings = SubResource("LabelSettings_veqy4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AlternateTime" type="Label" parent="MainScreen"]
+visible = false
+layout_mode = 0
+offset_left = 680.0
+offset_top = 64.0
+offset_right = 1238.0
+offset_bottom = 128.0
+text = "Lava is rising, escape in: 180s"
 label_settings = SubResource("LabelSettings_veqy4")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -327,6 +338,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="TutorialDialogue" type="Control" parent="MainScreen"]
+visible = false
 anchors_preset = 0
 offset_left = 664.0
 offset_top = 104.0
@@ -355,6 +367,35 @@ label_settings = SubResource("LabelSettings_6lrfc")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="BossHealth" type="Control" parent="MainScreen"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthFrame" type="Sprite2D" parent="MainScreen/BossHealth"]
+position = Vector2(1728, 96)
+scale = Vector2(7.38462, 9.14286)
+texture = ExtResource("9_qm80x")
+
+[node name="HealthIcon" type="Sprite2D" parent="MainScreen/BossHealth"]
+position = Vector2(1888, 96)
+texture = ExtResource("14_mr3nd")
+region_rect = Rect2(80, 24, 96, 216)
+
+[node name="BossHealthbar" type="ProgressBar" parent="MainScreen/BossHealth"]
+modulate = Color(100, 0, 0, 1)
+layout_mode = 0
+offset_left = 1552.0
+offset_top = 80.0
+offset_right = 1856.0
+offset_bottom = 112.0
+fill_mode = 1
+show_percentage = false
+
+[node name="LavaTimer" type="Timer" parent="MainScreen"]
+one_shot = true
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
@@ -1454,5 +1495,6 @@ text = "[b][color=gray]Achievement Locked![/color][/b]
 
 [connection signal="mouse_entered" from="MainScreen/PlayerFrame" to="." method="_on_player_frame_mouse_entered"]
 [connection signal="mouse_exited" from="MainScreen/PlayerFrame" to="." method="_on_player_frame_mouse_exited"]
+[connection signal="timeout" from="MainScreen/LavaTimer" to="." method="_on_lava_timer_timeout"]
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/Achievement" to="PauseMenu" method="_on_achievement_pressed"]

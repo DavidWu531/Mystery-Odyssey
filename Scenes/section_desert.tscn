@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://dmpp7c4u2ikui"]
+[gd_scene load_steps=67 format=4 uid="uid://dmpp7c4u2ikui"]
 
 [ext_resource type="Script" path="res://Scripts/DesertManager.gd" id="1_ugj6b"]
 [ext_resource type="TileSet" uid="uid://dqj7cg6vm786t" path="res://Resources/obstacles.tres" id="2_1sx2f"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://d3mn8l1jrdceo" path="res://Art/NPC.png" id="21_2vgih"]
 [ext_resource type="Material" uid="uid://dwffojaycyc6x" path="res://Resources/darkness_immune.tres" id="22_7ig0i"]
 [ext_resource type="Texture2D" uid="uid://ccucohel1pk46" path="res://Art/BlockHelp.png" id="23_8afcy"]
+[ext_resource type="Texture2D" uid="uid://cql55dg1gcgnf" path="res://Resources/npc.tres" id="24_00p4u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bjy4x"]
 atlas = ExtResource("4_6ldl2")
@@ -406,15 +407,16 @@ size = Vector2(4736, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1h0hu"]
 size = Vector2(32, 32)
 
-[sub_resource type="LabelSettings" id="LabelSettings_cb3ww"]
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipt8y"]
 size = Vector2(72, 72)
 
 [sub_resource type="LabelSettings" id="LabelSettings_06swo"]
 font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cb3ww"]
+font_size = 30
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -1050,6 +1052,7 @@ libraries = {
 autoplay = "moving"
 
 [node name="Hidden" type="Control" parent="Other"]
+material = ExtResource("22_7ig0i")
 layout_mode = 3
 anchors_preset = 0
 offset_left = 9152.0
@@ -1059,6 +1062,7 @@ offset_bottom = 7736.0
 
 [node name="PinI" type="Label" parent="Other/Hidden"]
 modulate = Color(1, 1, 1, 0.196078)
+use_parent_material = true
 layout_mode = 0
 offset_left = -768.0
 offset_top = 328.0
@@ -1071,6 +1075,7 @@ vertical_alignment = 1
 
 [node name="PinII" type="Label" parent="Other/Hidden"]
 modulate = Color(1, 1, 1, 0.196078)
+use_parent_material = true
 layout_mode = 0
 offset_left = 320.0
 offset_top = 256.0
@@ -1083,6 +1088,7 @@ vertical_alignment = 1
 
 [node name="PinIII" type="Label" parent="Other/Hidden"]
 modulate = Color(1, 1, 1, 0.196078)
+use_parent_material = true
 layout_mode = 0
 offset_left = 1400.0
 offset_top = -320.0
@@ -1095,6 +1101,7 @@ vertical_alignment = 1
 
 [node name="PinIV" type="Label" parent="Other/Hidden"]
 modulate = Color(1, 1, 1, 0.196078)
+use_parent_material = true
 layout_mode = 0
 offset_left = 1728.0
 offset_top = 128.0
@@ -1106,16 +1113,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Door" type="Area2D" parent="Other"]
+material = ExtResource("22_7ig0i")
 position = Vector2(11520, 4928)
 
 [node name="Sprite2D" type="Sprite2D" parent="Other/Door"]
+use_parent_material = true
 texture = ExtResource("14_1eq6b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Other/Door"]
+use_parent_material = true
 shape = SubResource("RectangleShape2D_jbbko")
 
 [node name="Interactable" type="Sprite2D" parent="Other/Door"]
 visible = false
+use_parent_material = true
 position = Vector2(0, -104)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("11_gehs5")
@@ -1123,6 +1134,7 @@ texture = ExtResource("11_gehs5")
 [node name="Keypad" type="Control" parent="Other/Door"]
 visible = false
 z_index = 1
+use_parent_material = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1138,6 +1150,7 @@ script = ExtResource("16_6l4rl")
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Other/Door/Keypad"]
+use_parent_material = true
 layout_mode = 0
 offset_left = -152.0
 offset_top = -192.0
@@ -1146,6 +1159,7 @@ offset_bottom = 64.0
 color = Color(0.619608, 0.568627, 0, 1)
 
 [node name="Summary" type="Label" parent="Other/Door/Keypad"]
+use_parent_material = true
 layout_mode = 0
 offset_left = -112.0
 offset_top = -192.0
@@ -1157,6 +1171,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Text" type="LineEdit" parent="Other/Door/Keypad"]
+use_parent_material = true
 layout_mode = 0
 offset_left = -144.0
 offset_top = -112.0
@@ -1166,6 +1181,7 @@ placeholder_text = "Enter Code Here"
 max_length = 4
 
 [node name="Result" type="Label" parent="Other/Door/Keypad"]
+use_parent_material = true
 layout_mode = 0
 offset_left = -152.0
 offset_top = -64.0
@@ -1176,6 +1192,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Hint" type="Label" parent="Other/Door/Keypad"]
+use_parent_material = true
 layout_mode = 0
 offset_left = -152.0
 offset_right = 152.0
@@ -1187,20 +1204,25 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Code" type="Node2D" parent="Other/Door"]
+use_parent_material = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Other/Door/Code"]
+use_parent_material = true
 position = Vector2(0, -1664)
 texture = ExtResource("14_1eq6b")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Other/Door/Code"]
+use_parent_material = true
 position = Vector2(0, -960)
 texture = ExtResource("14_1eq6b")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Other/Door/Code"]
+use_parent_material = true
 position = Vector2(0, 704)
 texture = ExtResource("14_1eq6b")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Other/Door/Code"]
+use_parent_material = true
 position = Vector2(0, 1536)
 texture = ExtResource("14_1eq6b")
 
@@ -1464,17 +1486,6 @@ material = ExtResource("22_7ig0i")
 position = Vector2(0, -28)
 texture = ExtResource("11_gehs5")
 
-[node name="Dialogue" type="Label" parent="NPCs/NPCVI"]
-material = ExtResource("22_7ig0i")
-offset_left = -129.0
-offset_top = -45.0
-offset_right = 132.0
-offset_bottom = -22.0
-label_settings = SubResource("LabelSettings_cb3ww")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
 [node name="NPCVII" type="Area2D" parent="NPCs"]
 position = Vector2(12824, -808)
 scale = Vector2(2.5, 2.5)
@@ -1485,19 +1496,6 @@ texture = ExtResource("21_2vgih")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPCVII"]
 shape = SubResource("RectangleShape2D_1h0hu")
-
-[node name="Dialogue" type="Label" parent="NPCs/NPCVII"]
-visible = false
-material = ExtResource("22_7ig0i")
-offset_left = -129.0
-offset_top = -45.0
-offset_right = 132.0
-offset_bottom = -22.0
-text = "There's nothing down there..."
-label_settings = SubResource("LabelSettings_cb3ww")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="NPCVIII" type="Area2D" parent="NPCs"]
 position = Vector2(6496, 8088)
@@ -1515,17 +1513,6 @@ visible = false
 material = ExtResource("22_7ig0i")
 position = Vector2(0, -28)
 texture = ExtResource("11_gehs5")
-
-[node name="Dialogue" type="Label" parent="NPCs/NPCVIII"]
-material = ExtResource("22_7ig0i")
-offset_left = -129.0
-offset_top = -45.0
-offset_right = 132.0
-offset_bottom = -22.0
-label_settings = SubResource("LabelSettings_cb3ww")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="HelpfulBlocks" type="Node2D" parent="."]
 
@@ -1585,6 +1572,90 @@ offset_right = 160.0
 offset_bottom = -33.0
 text = "HIT ME!!!"
 label_settings = SubResource("LabelSettings_06swo")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="NPCVI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 704.0
+offset_top = 960.0
+offset_right = 744.0
+offset_bottom = 1000.0
+
+[node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCVI"]
+layout_mode = 0
+offset_left = -704.0
+offset_right = 1216.0
+offset_bottom = 120.0
+texture = ExtResource("24_00p4u")
+
+[node name="Dialogue" type="Label" parent="CanvasLayer/NPCVI"]
+material = ExtResource("22_7ig0i")
+layout_mode = 0
+offset_left = -256.0
+offset_right = 768.0
+offset_bottom = 120.0
+text = "There's nothing down there..."
+label_settings = SubResource("LabelSettings_cb3ww")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NPCVII" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 704.0
+offset_top = 960.0
+offset_right = 744.0
+offset_bottom = 1000.0
+
+[node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCVII"]
+layout_mode = 0
+offset_left = -704.0
+offset_right = 1216.0
+offset_bottom = 120.0
+texture = ExtResource("24_00p4u")
+
+[node name="Dialogue" type="Label" parent="CanvasLayer/NPCVII"]
+material = ExtResource("22_7ig0i")
+layout_mode = 0
+offset_left = -256.0
+offset_right = 768.0
+offset_bottom = 120.0
+label_settings = SubResource("LabelSettings_cb3ww")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NPCVIII" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 704.0
+offset_top = 960.0
+offset_right = 744.0
+offset_bottom = 1000.0
+
+[node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCVIII"]
+layout_mode = 0
+offset_left = -704.0
+offset_right = 1216.0
+offset_bottom = 120.0
+texture = ExtResource("24_00p4u")
+
+[node name="Dialogue" type="Label" parent="CanvasLayer/NPCVIII"]
+material = ExtResource("22_7ig0i")
+layout_mode = 0
+offset_left = -256.0
+offset_right = 768.0
+offset_bottom = 120.0
+label_settings = SubResource("LabelSettings_cb3ww")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

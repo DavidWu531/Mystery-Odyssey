@@ -41,15 +41,27 @@ func _process(_delta):
 					node.z_index = -1
 		
 		if $NPCs/NPCVI/Interactable.visible:
+			for node in $NPCs/NPCVI.get_overlapping_bodies():
+				if "Player" in node.name:
+					node.can_move = false
+			$CanvasLayer/NPCVI.show()
 			if npcvi_dialogue_id == 0:
-				$NPCs/NPCVI/Dialogue.text = "Watch out for quicksand. You'll sink in them..."
+				$CanvasLayer/NPCVI/Dialogue.text = "Watch out for quicksand. You'll sink in them..."
 			elif npcvi_dialogue_id == 1:
-				$NPCs/NPCVI/Dialogue.text = "And rolling boulders too"
+				$CanvasLayer/NPCVI/Dialogue.text = "And rolling boulders too"
 			elif npcvi_dialogue_id == 2:
-				$NPCs/NPCVI/Dialogue.text = "Jeez... this place is hazardous..."
+				$CanvasLayer/NPCVI/Dialogue.text = "Jeez... this place is hazardous..."
+			elif npcvi_dialogue_id == 3:
+				$CanvasLayer/NPCVI/Dialogue.text = "Also, some random guy called Andona began terrorizing this realm..."
+			elif npcvi_dialogue_id == 4:
+				$CanvasLayer/NPCVI/Dialogue.text = "He is pretty strong... but I'm sure you can handle it"
 			else:
-				$NPCs/NPCVI/Dialogue.text = ""
+				$CanvasLayer/NPCVI/Dialogue.text = ""
 				$NPCs/NPCVI/Interactable.hide()
+				for node in $NPCs/NPCVI.get_overlapping_bodies():
+					if "Player" in node.name:
+						node.can_move = true
+				$CanvasLayer/NPCVI.hide()
 			npcvi_dialogue_id += 1
 			if not npcvi_talked:
 				npcvi_talked = true
@@ -57,17 +69,26 @@ func _process(_delta):
 				Global.social_expert_progress += 1
 		
 		if $NPCs/NPCVIII/Interactable.visible:
+			for node in $NPCs/NPCVIII.get_overlapping_bodies():
+				if "Player" in node.name:
+					node.can_move = false
+			$CanvasLayer/NPCVIII.show()
+
 			if npcviii_dialogue_id == 0:
-				$NPCs/NPCVIII/Dialogue.text = "Getting hot in here..."
+				$CanvasLayer/NPCVIII/Dialogue.text = "Getting hot in here..."
 			elif npcviii_dialogue_id == 1:
-				$NPCs/NPCVIII/Dialogue.text = "Well, you can't go back so..."
+				$CanvasLayer/NPCVIII/Dialogue.text = "Well, you can't go back so..."
 			elif npcviii_dialogue_id == 2:
-				$NPCs/NPCVIII/Dialogue.text = "Find a way to escape..."
+				$CanvasLayer/NPCVIII/Dialogue.text = "Find a way to escape..."
 			elif npcviii_dialogue_id == 3:
-				$NPCs/NPCVIII/Dialogue.text = "And don't touch the tungsten cube!!"
+				$CanvasLayer/NPCVIII/Dialogue.text = "And don't touch the tungsten cube!!"
 			else:
-				$NPCs/NPCVIII/Dialogue.text = ""
+				$CanvasLayer/NPCVIII/Dialogue.text = ""
 				$NPCs/NPCVIII/Interactable.hide()
+				for node in $NPCs/NPCVIII.get_overlapping_bodies():
+					if "Player" in node.name:
+						node.can_move = true
+				$CanvasLayer/NPCVIII.hide()
 			npcviii_dialogue_id += 1
 			if not npcviii_talked:
 				npcvi_talked = true
@@ -78,6 +99,8 @@ func _process(_delta):
 		$Platforms.set_cell(Vector2i(178,75), -1, Vector2i(-1,-1), -1)
 		$Platforms.set_cell(Vector2i(178,76), -1, Vector2i(-1,-1), -1)
 		$Platforms.set_cell(Vector2i(178,77), -1, Vector2i(-1,-1), -1)
+	
+	$Other/Door/Keypad.position = get_viewport_rect().size / 2
 
 
 func checkpoint_iii_hit():
@@ -232,12 +255,12 @@ func _on_npcvi_body_exited(body: Node2D) -> void:
 	if "Player" in body.name:
 		$NPCs/NPCVI/Interactable.hide()
 		npcvi_dialogue_id = 0
-		$NPCs/NPCVIII/Dialogue.text = ""
+		$NPCs/NPCVI/Dialogue.text = ""
 
 
 func _on_npcvii_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
-		$NPCs/NPCVII/Dialogue.show()
+		$CanvasLayer/NPCVII.show()
 		if not npcvii_talked:
 			npcvii_talked = true
 			SignalBus.npc_talked.emit()
@@ -246,7 +269,7 @@ func _on_npcvii_body_entered(body: Node2D) -> void:
 
 func _on_npcvii_body_exited(body: Node2D) -> void:
 	if "Player" in body.name:
-		$NPCs/NPCVII/Dialogue.hide()
+		$CanvasLayer/NPCVII.hide()
 
 
 func _on_npcviii_body_entered(body: Node2D) -> void:
@@ -258,7 +281,7 @@ func _on_npcviii_body_exited(body: Node2D) -> void:
 	if "Player" in body.name:
 		$NPCs/NPCVIII/Interactable.hide()
 		npcviii_dialogue_id = 0
-		$NPCs/NPCVIII/Dialogue.text = ""
+		$CanvasLayer/NPCVIII/Dialogue.text = ""
 
 
 func _on_block_vi_body_entered(body: Node2D) -> void:

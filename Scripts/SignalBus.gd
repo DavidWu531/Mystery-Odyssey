@@ -7,6 +7,7 @@ signal checkpoint_iii_hit
 signal checkpoint_iv_hit
 signal checkpoint_v_hit
 signal checkpoint_vi_hit
+signal checkpoint_vii_hit
 
 signal player_died
 signal sign_movement_touch
@@ -32,6 +33,8 @@ var checkpoint_v_available = false
 var checkpoint_v_emitted = false
 var checkpoint_vi_available = false
 var checkpoint_vi_emitted = false
+var checkpoint_vii_available = false
+var checkpoint_vii_emitted = false
 
 signal grassland_explored
 signal desert_explored
@@ -67,6 +70,7 @@ signal social_expert_iii
 
 signal doomed
 signal undoomed
+signal boss_spawned
 
 func _ready():
 	checkpoint_i_hit.connect(e)
@@ -75,6 +79,7 @@ func _ready():
 	checkpoint_iv_hit.connect(e)
 	checkpoint_v_hit.connect(e)
 	checkpoint_vi_hit.connect(e)
+	checkpoint_vii_hit.connect(e)
 	
 	player_died.connect(e)
 	sign_movement_touch.connect(e)
@@ -122,6 +127,7 @@ func _ready():
 	
 	doomed.connect(e)
 	undoomed.connect(e)
+	boss_spawned.connect(e)
 	
 
 func _process(_delta):

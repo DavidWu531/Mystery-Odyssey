@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://csccev04n5i4e"]
+[gd_scene load_steps=34 format=3 uid="uid://csccev04n5i4e"]
 
 [ext_resource type="Texture2D" uid="uid://ertghkek2mv" path="res://Art/Prismdroiddrillattack.png" id="1_pv6vu"]
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_ravor"]
@@ -199,7 +199,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_67vhh")
 }],
-"loop": true,
+"loop": false,
 "name": &"attacking",
 "speed": 12.0
 }, {
@@ -215,15 +215,38 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_semxa"]
 size = Vector2(608, 1032)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lvj5h"]
+radius = 10000.0
+
 [node name="Boss" type="Area2D"]
 script = ExtResource("1_ravor")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_uidf1")
-animation = &"static"
+animation = &"attacking"
 autoplay = "static"
+frame = 26
+frame_progress = 1.0
 offset = Vector2(-160, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_semxa")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.25
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-480, -448)
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("CircleShape2D_lvj5h")
+disabled = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
