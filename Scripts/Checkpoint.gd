@@ -13,6 +13,7 @@ func _on_body_entered(body):
 		$AnimatedSprite2D.play("Hit")
 		body.respawn_pos = body.position
 		body.take_damage_respos = body.position
+		$"../CheckpointHit".play()
 		
 		if not SignalBus.checkpoint_i_emitted and SignalBus.checkpoint_i_available:
 			SignalBus.checkpoint_i_hit.emit()

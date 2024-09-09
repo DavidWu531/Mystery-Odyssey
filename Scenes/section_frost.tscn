@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dc5kpmgtm7i7k"]
+[gd_scene load_steps=35 format=4 uid="uid://dc5kpmgtm7i7k"]
 
 [ext_resource type="Script" path="res://Scripts/FrostManager.gd" id="1_0s8sj"]
 [ext_resource type="TileSet" uid="uid://by7wu55cjrnhd" path="res://Resources/platforms.tres" id="1_qgxo7"]
@@ -10,12 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://bu4273q2tcrhf" path="res://Art/Checkpoint.png" id="6_mwlt6"]
 [ext_resource type="Script" path="res://Scripts/HiddenCoins.gd" id="8_5pby6"]
 [ext_resource type="Script" path="res://Scripts/Coins.gd" id="8_xfvav"]
+[ext_resource type="AudioStream" uid="uid://daf0exb3udxbf" path="res://Audio/SFX/glass-breaking-99389.mp3" id="9_0rsvr"]
 [ext_resource type="Texture2D" uid="uid://bm85w71qi4tuo" path="res://Art/Coin.png" id="9_k5yr2"]
 [ext_resource type="Texture2D" uid="uid://csmnnts78ka2c" path="res://Art/HiddenCoin.png" id="9_swcbb"]
 [ext_resource type="Texture2D" uid="uid://dfo3d0xfhar57" path="res://Art/TungstenCube.png" id="12_apavg"]
 [ext_resource type="Texture2D" uid="uid://bqvwg3ys8o0ah" path="res://Art/MovingPlatform.png" id="13_f84ex"]
+[ext_resource type="AudioStream" uid="uid://dlq0acp6qglar" path="res://Audio/SFX/retro-coin-1-236677.mp3" id="13_io0up"]
 [ext_resource type="Texture2D" uid="uid://cql55dg1gcgnf" path="res://Resources/npc.tres" id="13_mdun8"]
-[ext_resource type="AudioStream" uid="uid://c7i2uftu4c0uu" path="res://Audio/sunflower-gaze-151009.mp3" id="16_8j325"]
+[ext_resource type="AudioStream" uid="uid://dbqy37bfwifmw" path="res://Audio/SFX/hiddencollectcoin-6075.mp3" id="14_3ow3a"]
+[ext_resource type="AudioStream" uid="uid://c7i2uftu4c0uu" path="res://Audio/BGM/sunflower-gaze-151009.mp3" id="16_8j325"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfexn"]
 size = Vector2(32, 32)
@@ -212,6 +215,9 @@ autoplay = "Default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/CheckpointVII"]
 shape = SubResource("RectangleShape2D_8ny5a")
 
+[node name="CheckpointHit" type="AudioStreamPlayer" parent="Checkpoints"]
+stream = ExtResource("9_0rsvr")
+
 [node name="Coins" type="Node2D" parent="."]
 
 [node name="CoinI" type="Area2D" parent="Coins" groups=["SectionsICoins"]]
@@ -291,6 +297,12 @@ texture = ExtResource("9_swcbb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/HiddenCoinI"]
 shape = SubResource("CircleShape2D_uowpc")
+
+[node name="NormalCoin" type="AudioStreamPlayer" parent="Coins"]
+stream = ExtResource("13_io0up")
+
+[node name="HiddenCoin" type="AudioStreamPlayer" parent="Coins"]
+stream = ExtResource("14_3ow3a")
 
 [node name="BossAltar" type="StaticBody2D" parent="."]
 show_behind_parent = true

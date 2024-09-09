@@ -150,6 +150,7 @@ func _on_hidden_key_body_entered(body: Node2D) -> void:
 		$Other/HiddenKey.set_deferred("monitorable", false)
 		$Other/HiddenKey.set_deferred("monitoring", false)
 		$Other/HiddenKey/CollisionShape2D.set_deferred("disabled", true)
+		$Other/HiddenKey/HiddenCoin.play()
 		Global.score += 1
 
 
@@ -253,7 +254,7 @@ func _on_npcvi_body_exited(body: Node2D) -> void:
 	if "Player" in body.name:
 		$NPCs/NPCVI/Interactable.hide()
 		npcvi_dialogue_id = 0
-		$CanvasLayer/NPCVI/Dialogue.text = ""
+		$CanvasLayer/NPCVI.hide()
 
 
 func _on_npcvii_body_entered(body: Node2D) -> void:
@@ -279,7 +280,7 @@ func _on_npcviii_body_exited(body: Node2D) -> void:
 	if "Player" in body.name:
 		$NPCs/NPCVIII/Interactable.hide()
 		npcviii_dialogue_id = 0
-		$CanvasLayer/NPCVIII/Dialogue.text = ""
+		$CanvasLayer/NPCVIII.hide()
 
 
 func _on_block_vi_body_entered(body: Node2D) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://diu8f7en41r61"]
+[gd_scene load_steps=10 format=3 uid="uid://diu8f7en41r61"]
 
 [ext_resource type="Script" path="res://Scripts/LaserPoison.gd" id="1_622nm"]
 [ext_resource type="Texture2D" uid="uid://bmicm77bupuv1" path="res://Art/LaserPoison.png" id="1_dghvr"]
@@ -6,8 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmdio"]
 size = Vector2(64, 4)
 
-[sub_resource type="Animation" id="Animation_won8x"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_5rtho"]
+length = 1.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -15,10 +15,55 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.45, 0.9, 1.35, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [1.5708]
+"values": [1.5708, 3.14159, 1.5708, 0.0, 1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_so0pj"]
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.225, 0.45, 0.675, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.5708, 3.14159, 1.5708, 0.0, 1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_10bwa"]
+length = 2.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.675, 1.35, 2.025, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.5708, 3.14159, 1.5708, 0.0, 1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_3lr7v"]
+length = 3.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.8, 2.7, 3.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.5708, 3.14159, 1.5708, 0.0, 1.5708]
 }
 
 [sub_resource type="Animation" id="Animation_vc3t7"]
@@ -39,8 +84,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_64kiq"]
 _data = {
-"RESET": SubResource("Animation_won8x"),
-"rotate": SubResource("Animation_vc3t7")
+"rotate_fast": SubResource("Animation_5rtho"),
+"rotate_fast+": SubResource("Animation_so0pj"),
+"rotate_med": SubResource("Animation_10bwa"),
+"rotate_slow": SubResource("Animation_3lr7v"),
+"rotate_slow+": SubResource("Animation_vc3t7")
 }
 
 [node name="Laser" type="Area2D"]
@@ -60,7 +108,6 @@ shape = SubResource("RectangleShape2D_cmdio")
 libraries = {
 "": SubResource("AnimationLibrary_64kiq")
 }
-autoplay = "rotate"
 
 [node name="DespawnTimer" type="Timer" parent="."]
 one_shot = true

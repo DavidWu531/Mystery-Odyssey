@@ -1,12 +1,13 @@
-res://Scenes/main_menu.tscn
+res://Scenes/player.tscn
 res://Resources/obstacles.tres
 res://Resources/platforms.tres
 res://Resources/npc.tres
 res://Scripts/Boulder.gd
+res://Scripts/Player.gd
+res://Scenes/main_menu.tscn
 res://Scenes/achievement_banner.tscn
 res://Scenes/enemy.tscn
 res://Scenes/loading_screen.tscn
-res://Scenes/player.tscn
 res://Scenes/tungsten_cube.tscn
 res://Scenes/section_grass.tscn
 res://Scenes/section_frost.tscn
@@ -19,7 +20,5 @@ res://Scenes/boss.tscn
 res://Scenes/laser_poison.tscn
 res://Scenes/ice_shot.tscn
 res://Scenes/fire_ball.tscn
-res://Scripts/DesertManager.gd
-res://Scripts/FrostManager.gd
-res://Scripts/Boss.gd
-res://Scripts/Keypad.gd
+res://Scripts/GravityFlip.gd
+res://Scripts/DoubleJump.gd

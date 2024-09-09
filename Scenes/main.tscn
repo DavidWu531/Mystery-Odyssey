@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpwqsclckjman"]
+[gd_scene load_steps=12 format=3 uid="uid://dpwqsclckjman"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_2e46h"]
 [ext_resource type="PackedScene" uid="uid://bs0rjq8hecmbe" path="res://Scenes/section_grass.tscn" id="2_at4yo"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bvdcl15vsqy0v" path="res://Scenes/ui_manager.tscn" id="4_kf2re"]
 [ext_resource type="PackedScene" uid="uid://dmpp7c4u2ikui" path="res://Scenes/section_desert.tscn" id="4_kmwog"]
 [ext_resource type="PackedScene" uid="uid://dc5kpmgtm7i7k" path="res://Scenes/section_frost.tscn" id="5_lpywg"]
+[ext_resource type="AudioStream" uid="uid://c4isheeirxjve" path="res://Audio/BGM/little-slimex27s-adventure-151007.mp3" id="7_d1ghr"]
 
 [sub_resource type="Animation" id="Animation_p2h8b"]
 resource_name = "Cycle"
@@ -120,5 +121,9 @@ shape = SubResource("RectangleShape2D_kuiht")
 [node name="Top" type="CollisionShape2D" parent="DeathBarrier"]
 position = Vector2(0, -3000)
 shape = SubResource("RectangleShape2D_kuiht")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_d1ghr")
+autoplay = true
 
 [connection signal="body_entered" from="DeathBarrier" to="." method="_on_death_barrier_body_entered"]

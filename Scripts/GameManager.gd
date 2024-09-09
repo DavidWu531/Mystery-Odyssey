@@ -10,6 +10,9 @@ func _ready():
 	SignalBus.checkpoint_vi_hit.connect(checkpoint_vi_hit)
 	
 	SignalBus.player_died.connect(player_died)
+	SignalBus.doomed.connect(doomed)
+	SignalBus.undoomed.connect(undoomed)
+	SignalBus.boss_spawned.connect(boss_spawned)
 	
 	$SceneCamera.position = Vector2(1032, -648)
 	$SceneCamera.zoom = Vector2(0.7, 0.7)
@@ -50,6 +53,8 @@ func checkpoint_iv_hit():
 	Global.player_health = Global.player_maxhealth
 	$AnimationPlayer.seek(75.0)
 	$AnimationPlayer.pause()
+	$AudioStreamPlayer.stream = load("res://Audio/BGM/sunflower-gaze-151009.mp3")
+	$AudioStreamPlayer.play()
 
 
 func checkpoint_v_hit():
@@ -94,3 +99,18 @@ func _on_death_barrier_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
 		Global.player_health -= 1
 		body.death_engine()
+
+
+func doomed():
+	$AudioStreamPlayer.stream = load("res://Audio/BGM/fight-slapping-intense-strong-adventure-determine-music-22017.mp3")
+	$AudioStreamPlayer.play()
+
+
+func undoomed():
+	$AudioStreamPlayer.stream = load("res://Audio/BGM/sunflower-gaze-151009.mp3")
+	$AudioStreamPlayer.play()
+
+
+func boss_spawned():
+	$AudioStreamPlayer.stream = load("res://Audio/BGM/fight-slapping-intense-strong-adventure-determine-music-22017.mp3")
+	$AudioStreamPlayer.play()

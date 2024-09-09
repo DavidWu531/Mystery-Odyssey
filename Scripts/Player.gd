@@ -117,6 +117,7 @@ func _physics_process(delta):
 							elif gravity < 0.0:
 								velocity.y = jump_velocity
 							jump_count -= 1
+							$JumpSFX.play()
 					elif current_mode == "Default":
 						if is_on_floor() or is_on_ceiling() or coyote_time_left > 0:
 							take_damage_respos = position
@@ -124,6 +125,7 @@ func _physics_process(delta):
 								velocity.y = -jump_velocity
 							elif gravity < 0.0:
 								velocity.y = jump_velocity
+							$JumpSFX.play()
 					elif current_mode == "GravityFlip":
 						if is_on_floor() or is_on_ceiling() or coyote_time_left > 0:
 							take_damage_respos = position
@@ -132,6 +134,7 @@ func _physics_process(delta):
 							elif gravity < 0.0:
 								velocity.y = 1000.0
 							gravity = -gravity
+							$JumpSFX.play()
 
 		if gravity > 0.0:
 			$Sprite2D.flip_v = false
@@ -431,10 +434,11 @@ func _process(_delta):
 
 
 func death_engine():
+	$DeathSFX.play()
 	gravity = respawn_gravity
 	velocity = Vector2(0,0)
 	can_move = false
-	$SpawnImmunity.start(1.0)
+	$SpawnImmunity.start(1.1)
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	Global.no_stopping_now_progress += 1

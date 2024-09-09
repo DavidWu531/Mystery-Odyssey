@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ct5ekpjb28mih"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_2dulc"]
-[ext_resource type="Texture2D" uid="uid://d2hxpsvdei4c6" path="res://Cover.png" id="2_krjej"]
+[ext_resource type="Texture2D" uid="uid://d2hxpsvdei4c6" path="res://Art/Cover.png" id="2_krjej"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pak4q"]
 font_size = 69

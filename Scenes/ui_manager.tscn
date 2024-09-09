@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bvdcl15vsqy0v"]
+[gd_scene load_steps=39 format=3 uid="uid://bvdcl15vsqy0v"]
 
 [ext_resource type="Script" path="res://Scripts/UIManager.gd" id="1_aajpp"]
 [ext_resource type="Texture2D" uid="uid://j5bqpsh1t2qt" path="res://Art/Health.png" id="2_ajn7e"]
@@ -14,8 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://0cdg1ans4i45" path="res://Art/Speedometer.png" id="11_16lk5"]
 [ext_resource type="Texture2D" uid="uid://mqp2kfhh0n7s" path="res://Art/AchievementBanner.png" id="11_yn2dj"]
 [ext_resource type="Texture2D" uid="uid://cljhh38dug6o0" path="res://Art/AchievementIconCombat.png" id="12_4y3t2"]
+[ext_resource type="Texture2D" uid="uid://cql55dg1gcgnf" path="res://Resources/npc.tres" id="13_qcdf4"]
 [ext_resource type="Texture2D" uid="uid://bmn8gr7dauqm1" path="res://Art/AchievementIconCommunicate.png" id="13_v3tnx"]
 [ext_resource type="Texture2D" uid="uid://cg4ksx2o6nq3k" path="res://Art/AchievementIconDeath.png" id="14_mr3nd"]
+[ext_resource type="Material" uid="uid://dwffojaycyc6x" path="res://Resources/darkness_immune.tres" id="14_sscf0"]
 [ext_resource type="Texture2D" uid="uid://cdhre4kp4otsa" path="res://Art/AchievementIconExploration.png" id="15_rpew3"]
 [ext_resource type="Texture2D" uid="uid://gjdi0j382lrp" path="res://Art/AchievementIconShiny.png" id="16_104kt"]
 [ext_resource type="Texture2D" uid="uid://hx8bi6l3k1gq" path="res://Art/AchievementIconSurprise.png" id="17_ouk37"]
@@ -86,6 +88,11 @@ fill_to = Vector2(1, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6lrfc"]
 font_size = 20
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p0ogc"]
+font_size = 30
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -395,6 +402,36 @@ fill_mode = 1
 show_percentage = false
 
 [node name="LavaTimer" type="Timer" parent="MainScreen"]
+one_shot = true
+
+[node name="Dialogue" type="Control" parent="MainScreen"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DialogueBackground" type="TextureRect" parent="MainScreen/Dialogue"]
+layout_mode = 0
+offset_top = 960.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("13_qcdf4")
+
+[node name="Dialogue" type="Label" parent="MainScreen/Dialogue"]
+material = ExtResource("14_sscf0")
+layout_mode = 0
+offset_left = 448.0
+offset_top = 960.0
+offset_right = 1472.0
+offset_bottom = 1080.0
+label_settings = SubResource("LabelSettings_p0ogc")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="DialogueTimer" type="Timer" parent="MainScreen/Dialogue"]
+wait_time = 10.0
 one_shot = true
 
 [node name="PauseMenu" type="Control" parent="."]
@@ -1496,5 +1533,6 @@ text = "[b][color=gray]Achievement Locked![/color][/b]
 [connection signal="mouse_entered" from="MainScreen/PlayerFrame" to="." method="_on_player_frame_mouse_entered"]
 [connection signal="mouse_exited" from="MainScreen/PlayerFrame" to="." method="_on_player_frame_mouse_exited"]
 [connection signal="timeout" from="MainScreen/LavaTimer" to="." method="_on_lava_timer_timeout"]
+[connection signal="timeout" from="MainScreen/Dialogue/DialogueTimer" to="." method="_on_dialogue_timer_timeout"]
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/Achievement" to="PauseMenu" method="_on_achievement_pressed"]

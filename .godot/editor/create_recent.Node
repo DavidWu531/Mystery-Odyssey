@@ -1,9 +1,10 @@
 AudioStreamPlayer
-Node2D
+Timer
 Control
+RayCast2D
+Node2D
 CanvasLayer
 TextureRect
-Timer
 AnimatableBody2D
 AnimationPlayer
 CollisionShape2D
@@ -11,5 +12,3 @@ Sprite2D
 StaticBody2D
 Marker2D
 Label
-Area2D
-AnimatedSprite2D

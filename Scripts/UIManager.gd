@@ -195,19 +195,19 @@ func _on_player_frame_mouse_exited() -> void:
 
 func doomed():
 	$MainScreen/PlayerHealth.modulate = Color(0, 1, 1)
-	$MainScreen/TutorialDialogue.show()
-	$MainScreen/TutorialDialogue/Label.text = "Fool! You have doomed us all! That's it, no more respawns for you! No-Respawn Mode Enabled!\n \
-	Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+	$MainScreen/Dialogue.show()
+	$MainScreen/Dialogue/Dialogue.text = "Fool! I told you not to touch the tungsten cube! I will not let you respawn as your punishment for making the lava rise!"
 	$MainScreen/LavaTimer.start(180.0)
+	$MainScreen/Dialogue/Timer.start(10.0)
 	$MainScreen/AlternateTime.show()
 
 
 func undoomed():
 	$MainScreen/PlayerHealth.modulate = Color(1, 1, 1)
-	$MainScreen/TutorialDialogue.show()
-	$MainScreen/TutorialDialogue/Label.text = "Holy, you went through hell... let's lift the curse, shall we?\n \
-	Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+	$MainScreen/Dialogue.show()
+	$MainScreen/Dialogue/Dialogue.text = "Huh, so you did escape... I underestimated you... your punishment has been lifted"
 	$MainScreen/LavaTimer.start(180.0)
+	$MainScreen/Dialogue/Timer.start(10.0)
 	$MainScreen/AlternateTime.hide()
 
 
@@ -217,3 +217,7 @@ func boss_spawned():
 
 func _on_lava_timer_timeout() -> void:
 	$MainScreen/AlternateTime.hide()
+
+
+func _on_dialogue_timer_timeout() -> void:
+	$MainScreen/Dialogue.hide()

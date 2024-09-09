@@ -126,7 +126,7 @@ func _on_npci_body_exited(body):
 	if "Player" in body.name:
 		$NPCs/NPCI/Interactable.hide()
 		npci_dialogue_id = 0
-		$CanvasLayer/NPCI/Dialogue.text = ""
+		$CanvasLayer/NPCI.hide()
 		
 		
 func checkpoint_i_hit():
@@ -203,7 +203,7 @@ func _on_npcii_body_exited(body):
 	if "Player" in body.name:
 		$NPCs/NPCII/Interactable.hide()
 		npcii_dialogue_id = 0
-		$CanvasLayer/NPCII/Dialogue.text = ""
+		$CanvasLayer/NPCII.hide()
 
 
 func _on_npciii_body_entered(body):
@@ -229,7 +229,7 @@ func _on_npciv_body_exited(body):
 	if "Player" in body.name:
 		$NPCs/NPCIV/Interactable.hide()
 		npciv_dialogue_id = 0
-		$CanvasLayer/NPCIV/Dialogue.text = ""
+		$CanvasLayer/NPCIV.hide()
 
 
 func _on_door_body_entered(body):
@@ -246,7 +246,7 @@ func _on_npcv_body_exited(body):
 	if "Player" in body.name:
 		$NPCs/NPCV/Interactable.hide()
 		npcv_dialogue_id = 0
-		$CanvasLayer/NPCV/Dialogue.text = ""
+		$CanvasLayer/NPCV.hide()
 
 
 func _on_block_i_body_entered(body: Node2D) -> void:

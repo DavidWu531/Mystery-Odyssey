@@ -175,7 +175,7 @@ func _on_npcix_body_exited(body: Node2D) -> void:
 	if "Player" in body.name:
 		$NPCs/NPCIX/Interactable.hide()
 		npcix_dialogue_id = 0
-		$CanvasLayer/NPCIX/Dialogue.text = ""
+		$CanvasLayer/NPCIX.hide()
 
 
 func _on_npcx_body_entered(body: Node2D) -> void:
@@ -187,4 +187,4 @@ func _on_npcx_body_exited(body: Node2D) -> void:
 	if "Player" in body.name:
 		$NPCs/NPCX/Interactable.hide()
 		npcx_dialogue_id = 0
-		$CanvasLayer/NPCX/Dialogue.text = ""
+		$CanvasLayer/NPCX.hide()

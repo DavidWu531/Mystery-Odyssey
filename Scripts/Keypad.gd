@@ -14,7 +14,7 @@ func _process(_delta):
 		$Text.focus_mode = FOCUS_NONE
 		$Text.focus_mode = FOCUS_ALL
 		hide()
-		for node in $"..".get_overlapping_bodies():
+		for node in $"../../Other/Door".get_overlapping_bodies():
 			if "Player" in node.name:
 				node.can_move = true
 				node.z_index = 1
