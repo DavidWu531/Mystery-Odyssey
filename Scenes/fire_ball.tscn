@@ -36,7 +36,7 @@ animations = [{
 size = Vector2(113, 78)
 
 [node name="FireBall" type="Area2D"]
-scale = Vector2(4, 4)
+scale = Vector2(5, 5)
 script = ExtResource("1_24u5o")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]

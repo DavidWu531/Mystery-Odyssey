@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 res://Scenes/ui_manager.tscn
 res://Scripts/Boulder.gd
 res://Resources/obstacles.tres
 res://Resources/platforms.tres
 res://Resources/npc.tres
 res://Scripts/UIManager.gd
+=======
+res://Scenes/section_frost.tscn
+res://Resources/obstacles.tres
+res://Resources/platforms.tres
+res://Resources/npc.tres
+res://Scripts/Boulder.gd
+>>>>>>> 6109cc9e2a014e146e61b890c9feaff9b9a95aa6
 res://Scenes/main_menu.tscn
 res://Scenes/achievement_banner.tscn
 res://Scenes/enemy.tscn
@@ -11,7 +19,6 @@ res://Scenes/loading_screen.tscn
 res://Scenes/player.tscn
 res://Scenes/tungsten_cube.tscn
 res://Scenes/section_grass.tscn
-res://Scenes/section_frost.tscn
 res://Scenes/section_desert.tscn
 res://Scenes/won.tscn
 res://Scenes/boulder.tscn
