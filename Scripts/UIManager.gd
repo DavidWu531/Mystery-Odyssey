@@ -67,12 +67,6 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_end"):
-		if $MainScreen/Quest.visible:
-			$MainScreen/Quest.hide()
-		else:
-			$MainScreen/Quest.show()
-	
 	$PauseMenu/Score.text = "Score: " + str(Global.score)
 	
 	if Global.spectator:
@@ -178,6 +172,9 @@ func _physics_process(_delta: float) -> void:
 				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
 			13:
 				$MainScreen/TutorialDialogue/Label.text = "Hold LMB to damage enemies or cracked blocks with an attack cooldown\n \
+				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
+			14: 
+				$MainScreen/TutorialDialogue/Label.text = "Check the list of achievements or quests in the pause menu\n \
 				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
 		
 		if scroll_tip_id < 13:

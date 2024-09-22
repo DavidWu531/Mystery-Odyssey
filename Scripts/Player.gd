@@ -677,6 +677,8 @@ func _on_fist_attack_area_entered(area: Area2D) -> void:
 		area.get_parent().get_parent().breakable_health -= 1
 	elif "Boss" in area.name:
 		Global.boss_health -= 8
+	elif "Head" in area.name:
+		Global.boss_health -= 16
 
 
 func _on_attack_cooldown_timeout() -> void:

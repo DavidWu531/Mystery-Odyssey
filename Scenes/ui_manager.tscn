@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bvdcl15vsqy0v"]
+[gd_scene load_steps=39 format=3 uid="uid://bvdcl15vsqy0v"]
 
 [ext_resource type="Script" path="res://Scripts/UIManager.gd" id="1_aajpp"]
 [ext_resource type="Texture2D" uid="uid://j5bqpsh1t2qt" path="res://Art/Health.png" id="2_ajn7e"]
@@ -68,11 +68,6 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lw6fv"]
-font_size = 40
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_mp2y6"]
 font_size = 40
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
@@ -377,37 +372,10 @@ layout_mode = 0
 offset_top = 192.0
 offset_right = 384.0
 offset_bottom = 256.0
-text = "Tab Key: Show Tips"
+text = "Show Tips [Tab]"
 label_settings = SubResource("LabelSettings_lw6fv")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Quest" type="Control" parent="MainScreen"]
-visible = false
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-
-[node name="ColorRect" type="ColorRect" parent="MainScreen/Quest"]
-layout_mode = 0
-offset_left = 1536.0
-offset_top = 8.0
-offset_right = 1912.0
-offset_bottom = 200.0
-color = Color(0.588235, 0.294118, 0, 0.396078)
-
-[node name="Label" type="Label" parent="MainScreen/Quest"]
-layout_mode = 0
-offset_left = 1536.0
-offset_top = 8.0
-offset_right = 1912.0
-offset_bottom = 200.0
-text = "Quest: 
-Collect Coins (10/10)"
-label_settings = SubResource("LabelSettings_mp2y6")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="TutorialDialogue" type="Control" parent="MainScreen"]
 anchors_preset = 0
@@ -530,6 +498,12 @@ autowrap_mode = 2
 [node name="DialogueTimer" type="Timer" parent="MainScreen/Dialogue"]
 wait_time = 10.0
 one_shot = true
+
+[node name="Notification" type="Control" parent="MainScreen"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3

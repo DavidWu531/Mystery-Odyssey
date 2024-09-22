@@ -3,7 +3,10 @@ extends Area2D
 var speed = 400
 
 func _ready() -> void:
-	pass # Replace with function body.
+	if randf() >= 0.5:
+		big()
+	else:
+		small()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,3 +22,13 @@ func _on_body_entered(body: Node2D) -> void:
 			Global.player_health -= 0.75 * Settings.difficulty_amplifier
 			body.death_engine()
 			queue_free()
+			
+
+func small():
+	speed = 800
+	scale = Vector2(2,2)
+	
+	
+func big():
+	speed = 400
+	scale = Vector2(4,4)
