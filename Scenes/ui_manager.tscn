@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bvdcl15vsqy0v"]
+[gd_scene load_steps=40 format=3 uid="uid://bvdcl15vsqy0v"]
 
 [ext_resource type="Script" path="res://Scripts/UIManager.gd" id="1_aajpp"]
 [ext_resource type="Texture2D" uid="uid://j5bqpsh1t2qt" path="res://Art/Health.png" id="2_ajn7e"]
@@ -177,6 +177,10 @@ RichTextLabel/font_sizes/bold_font_size = 20
 RichTextLabel/font_sizes/italics_font_size = 14
 RichTextLabel/font_sizes/normal_font_size = 18
 
+[sub_resource type="Theme" id="Theme_4w7yt"]
+GridContainer/constants/h_separation = 506
+GridContainer/constants/v_separation = 151
+
 [node name="UIManager" type="CanvasLayer"]
 script = ExtResource("1_aajpp")
 
@@ -199,6 +203,7 @@ sprite_frames = SubResource("SpriteFrames_0jo67")
 autoplay = "default"
 
 [node name="TimeElapsed" type="Label" parent="MainScreen"]
+visible = false
 layout_mode = 0
 offset_left = 936.0
 offset_right = 984.0
@@ -220,7 +225,17 @@ label_settings = SubResource("LabelSettings_veqy4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerHealthOverlay" type="TextureRect" parent="MainScreen"]
+[node name="Health" type="Control" parent="MainScreen"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Base" type="Control" parent="MainScreen/Health"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerHealthOverlay" type="TextureRect" parent="MainScreen/Health/Base"]
 layout_mode = 0
 offset_left = 64.0
 offset_right = 254.0
@@ -230,7 +245,7 @@ texture = ExtResource("4_pvg0f")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="PlayerHealth" type="TextureRect" parent="MainScreen"]
+[node name="PlayerHealth" type="TextureRect" parent="MainScreen/Health/Base"]
 layout_mode = 0
 offset_left = 64.0
 offset_right = 254.0
@@ -240,11 +255,49 @@ texture = ExtResource("2_ajn7e")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="PlayerHealthText" type="Label" parent="MainScreen"]
+[node name="PlayerHealthText" type="Label" parent="MainScreen/Health/Base"]
 visible = false
 layout_mode = 0
-offset_left = 128.0
-offset_right = 192.0
+offset_left = 64.0
+offset_right = 128.0
+offset_bottom = 64.0
+text = "x12"
+label_settings = SubResource("LabelSettings_ooumm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Boss" type="Control" parent="MainScreen/Health"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthFrame" type="Sprite2D" parent="MainScreen/Health/Boss"]
+position = Vector2(192, 32)
+scale = Vector2(7.38462, 9.14286)
+texture = ExtResource("9_qm80x")
+
+[node name="HealthIcon" type="Sprite2D" parent="MainScreen/Health/Boss"]
+position = Vector2(32.0001, 32)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_ajn7e")
+region_rect = Rect2(80, 24, 96, 216)
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="MainScreen/Health/Boss"]
+modulate = Color(0, 100, 0, 1)
+layout_mode = 0
+offset_left = 64.0001
+offset_top = 15.0
+offset_right = 370.0
+offset_bottom = 48.0
+value = 100.0
+show_percentage = false
+
+[node name="PlayerHealthText" type="Label" parent="MainScreen/Health/Boss"]
+visible = false
+layout_mode = 0
+offset_left = 64.0
+offset_right = 370.0
 offset_bottom = 64.0
 text = "x12"
 label_settings = SubResource("LabelSettings_ooumm")
@@ -278,6 +331,18 @@ offset_right = 370.0
 offset_bottom = 112.0
 value = 100.0
 show_percentage = false
+
+[node name="PlayerEnergyText" type="Label" parent="MainScreen/Energy"]
+visible = false
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 370.0
+offset_bottom = 128.0
+text = "x12"
+label_settings = SubResource("LabelSettings_ooumm")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Speed" type="Control" parent="MainScreen"]
 layout_mode = 3
@@ -345,7 +410,6 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="TutorialDialogue" type="Control" parent="MainScreen"]
-visible = false
 anchors_preset = 0
 offset_left = 664.0
 offset_top = 104.0
@@ -382,12 +446,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="HealthFrame" type="Sprite2D" parent="MainScreen/BossHealth"]
-position = Vector2(1728, 96)
+position = Vector2(1728, 32)
 scale = Vector2(7.38462, 9.14286)
 texture = ExtResource("9_qm80x")
 
 [node name="HealthIcon" type="Sprite2D" parent="MainScreen/BossHealth"]
-position = Vector2(1888, 96)
+position = Vector2(1888, 32)
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("14_mr3nd")
 region_rect = Rect2(80, 24, 96, 216)
 
@@ -395,17 +460,49 @@ region_rect = Rect2(80, 24, 96, 216)
 modulate = Color(100, 0, 0, 1)
 layout_mode = 0
 offset_left = 1552.0
-offset_top = 80.0
+offset_top = 16.0
 offset_right = 1856.0
-offset_bottom = 112.0
+offset_bottom = 48.0
+value = 100.0
 fill_mode = 1
 show_percentage = false
+
+[node name="BossHealthText" type="Label" parent="MainScreen/BossHealth"]
+layout_mode = 0
+offset_left = 1552.0
+offset_right = 1856.0
+offset_bottom = 64.0
+label_settings = SubResource("LabelSettings_ooumm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BossStrengthText" type="Label" parent="MainScreen/BossHealth"]
+visible = false
+layout_mode = 0
+offset_left = 1536.0
+offset_top = 64.0
+offset_right = 1920.0
+offset_bottom = 103.0
+text = "Andona attacks 25% faster"
+label_settings = SubResource("LabelSettings_ooumm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthbarLeft" type="Label" parent="MainScreen/BossHealth"]
+layout_mode = 0
+offset_left = 1880.0
+offset_top = 32.0
+offset_right = 1928.0
+offset_bottom = 71.0
+text = "x4"
+label_settings = SubResource("LabelSettings_ooumm")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LavaTimer" type="Timer" parent="MainScreen"]
 one_shot = true
 
 [node name="Dialogue" type="Control" parent="MainScreen"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -452,9 +549,9 @@ color = Color(0, 0, 0, 0.784314)
 [node name="Summary" type="Label" parent="PauseMenu"]
 layout_mode = 0
 offset_left = 712.0
-offset_top = 152.0
+offset_top = 120.0
 offset_right = 1169.0
-offset_bottom = 247.0
+offset_bottom = 215.0
 text = "Game Paused"
 label_settings = SubResource("LabelSettings_fw5wo")
 horizontal_alignment = 1
@@ -463,9 +560,9 @@ vertical_alignment = 1
 [node name="Score" type="Label" parent="PauseMenu"]
 layout_mode = 0
 offset_left = 704.0
-offset_top = 344.0
+offset_top = 288.0
 offset_right = 1161.0
-offset_bottom = 439.0
+offset_bottom = 383.0
 text = "Score: "
 label_settings = SubResource("LabelSettings_loj3b")
 horizontal_alignment = 1
@@ -474,20 +571,29 @@ vertical_alignment = 1
 [node name="Continue" type="Button" parent="PauseMenu"]
 layout_mode = 0
 offset_left = 768.0
-offset_top = 520.0
+offset_top = 448.0
 offset_right = 1088.0
-offset_bottom = 647.0
+offset_bottom = 575.0
 theme = SubResource("Theme_h57yl")
 text = "Continue"
 
 [node name="Achievement" type="Button" parent="PauseMenu"]
 layout_mode = 0
 offset_left = 696.0
-offset_top = 736.0
+offset_top = 640.0
 offset_right = 1173.0
-offset_bottom = 839.0
+offset_bottom = 743.0
 theme = SubResource("Theme_f5a0s")
 text = "Achievements"
+
+[node name="Quest" type="Button" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 808.0
+offset_right = 1173.0
+offset_bottom = 911.0
+theme = SubResource("Theme_f5a0s")
+text = "Quests"
 
 [node name="Achievements" type="Control" parent="PauseMenu"]
 visible = false
@@ -1530,9 +1636,542 @@ text = "[b][color=gray]Achievement Locked![/color][/b]
 [color=gold]MORE POWER!![/color]
 [i]Travel 100 blocks in the desert[/i]"
 
+[node name="Quests" type="Control" parent="PauseMenu"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu/Quests"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 135.0
+offset_right = 1680.0
+offset_bottom = 945.0
+color = Color(0.129558, 0.129558, 0.129558, 1)
+
+[node name="Progress" type="ProgressBar" parent="PauseMenu/Quests"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 512.0
+offset_top = 192.0
+offset_right = 1408.0
+offset_bottom = 256.0
+max_value = 14.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="PauseMenu/Quests"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 192.0
+offset_right = 1408.0
+offset_bottom = 256.0
+text = "Quests Completed: 0/13"
+label_settings = SubResource("LabelSettings_l1rh5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PauseMenu/Quests"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 312.0
+offset_right = 1664.0
+offset_bottom = 944.0
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="PauseMenu/Quests/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_4w7yt")
+columns = 2
+
+[node name="QuestID1" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID1"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID1"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Communication"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID1"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Quest Uncompleted![/color][/b]
+[color=gold]Talk to an NPC[/color]
+[i](0/1)[/i]"
+
+[node name="QuestID2" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID2"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID2"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Shiny"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID2"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Quest Uncompleted![/color][/b]
+[color=gold]Collect Coins[/color]
+[i](0/5)[/i]"
+
+[node name="QuestID3" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID3"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID3"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Shiny"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID3"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Don't slide off![/color]
+[i]Travel 100 blocks in the frostlands[/i]"
+
+[node name="QuestID4" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID4"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID4"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Surprise"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID4"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Anyone got a torch?[/color]
+[i]Enter the cave[/i]"
+
+[node name="QuestID5" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID5"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID5"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Combat"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID5"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]My brain hurts[/color]
+[i]Escape the cave[/i]"
+
+[node name="QuestID6" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID6"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID6"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID6"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Unbreakable[/color]
+[i]Survive at 1 heart until next checkpoint[/i]"
+
+[node name="QuestID7" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID7"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID7"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID7"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]U Can't C Me[/color]
+[i]Deplete all of your health in one hit on full health[/i]"
+
+[node name="QuestID8" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID8"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID8"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID8"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Can't let go[/color]
+[i]Keep moving for 10 seconds consecutively[/i]"
+
+[node name="QuestID9" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID9"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID9"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID9"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Untouchable[/color]
+[i]Take no damage until next checkpoint[/i]"
+
+[node name="QuestID10" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID10"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID10"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Exploration"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID10"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]This isn't cheese[/color]
+[i]Die to lava[/i]"
+
+[node name="QuestID11" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID11"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID11"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Surprise"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID11"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]Access Granted[/color]
+[i]Unlock the locked door[/i]"
+
+[node name="QuestID12" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID12"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID12"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Surprise"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID12"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="QuestID13" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID13"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID13"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Surprise"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID13"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="QuestID14" type="Control" parent="PauseMenu/Quests/ScrollContainer/GridContainer"]
+editor_description = "448,112
+
+64,836"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID14"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("11_yn2dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID14"]
+position = Vector2(60, 56)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_04rmm")
+animation = &"Combat"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/Quests/ScrollContainer/GridContainer/QuestID14"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 94.0
+theme = SubResource("Theme_ap2rf")
+bbcode_enabled = true
+text = "[b][color=gray]Achievement Locked![/color][/b]
+[color=gold]MORE POWER!![/color]
+[i]Travel 100 blocks in the desert[/i]"
+
+[node name="UpdateAchievementTimer" type="Timer" parent="PauseMenu"]
+wait_time = 3.0
+autostart = true
+
+[node name="UpdateQuestTimer" type="Timer" parent="PauseMenu"]
+wait_time = 3.0
+autostart = true
+
 [connection signal="mouse_entered" from="MainScreen/PlayerFrame" to="." method="_on_player_frame_mouse_entered"]
 [connection signal="mouse_exited" from="MainScreen/PlayerFrame" to="." method="_on_player_frame_mouse_exited"]
+[connection signal="mouse_entered" from="MainScreen/Health/Base/PlayerHealthOverlay" to="." method="_on_player_health_overlay_mouse_entered"]
+[connection signal="mouse_exited" from="MainScreen/Health/Base/PlayerHealthOverlay" to="." method="_on_player_health_overlay_mouse_exited"]
+[connection signal="mouse_entered" from="MainScreen/Health/Base/PlayerHealth" to="." method="_on_player_health_mouse_entered"]
+[connection signal="mouse_exited" from="MainScreen/Health/Base/PlayerHealth" to="." method="_on_player_health_mouse_exited"]
+[connection signal="mouse_entered" from="MainScreen/Health/Boss/PlayerHealthBar" to="." method="_on_player_health_bar_mouse_entered"]
+[connection signal="mouse_exited" from="MainScreen/Health/Boss/PlayerHealthBar" to="." method="_on_player_health_bar_mouse_exited"]
+[connection signal="mouse_entered" from="MainScreen/Energy/PlayerEnergy" to="." method="_on_player_energy_mouse_entered"]
+[connection signal="mouse_exited" from="MainScreen/Energy/PlayerEnergy" to="." method="_on_player_energy_mouse_exited"]
+[connection signal="mouse_entered" from="MainScreen/BossHealth/BossHealthbar" to="." method="_on_boss_healthbar_mouse_entered"]
+[connection signal="mouse_exited" from="MainScreen/BossHealth/BossHealthbar" to="." method="_on_boss_healthbar_mouse_exited"]
 [connection signal="timeout" from="MainScreen/LavaTimer" to="." method="_on_lava_timer_timeout"]
 [connection signal="timeout" from="MainScreen/Dialogue/DialogueTimer" to="." method="_on_dialogue_timer_timeout"]
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/Achievement" to="PauseMenu" method="_on_achievement_pressed"]
+[connection signal="pressed" from="PauseMenu/Quest" to="PauseMenu" method="_on_quest_pressed"]
+[connection signal="timeout" from="PauseMenu/UpdateAchievementTimer" to="PauseMenu" method="_on_update_achievement_timer_timeout"]
+[connection signal="timeout" from="PauseMenu/UpdateQuestTimer" to="." method="_on_update_quest_timer_timeout"]

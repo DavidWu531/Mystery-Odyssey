@@ -26,6 +26,7 @@ func _process(_delta):
 		if $PyramidAccess/Interactable.visible:
 			for node in $PyramidAccess.get_overlapping_bodies():
 				if "Player" in node.name:
+					node.z_index = -1
 					$AnimationPlayer.play("blackfadein")
 					await get_tree().create_timer(1.05).timeout
 					node.position = Vector2(88, 6256)
@@ -65,7 +66,7 @@ func _process(_delta):
 			npcvi_dialogue_id += 1
 			if not npcvi_talked:
 				npcvi_talked = true
-				SignalBus.npc_talked.emit()
+				SignalBus.npc_talked_to.emit()
 				Global.social_expert_progress += 1
 		
 		if $NPCs/NPCVIII/Interactable.visible:
@@ -92,7 +93,7 @@ func _process(_delta):
 			npcviii_dialogue_id += 1
 			if not npcviii_talked:
 				npcvi_talked = true
-				SignalBus.npc_talked.emit()
+				SignalBus.npc_talked_to.emit()
 				Global.social_expert_progress += 1
 	
 	if breakable_health <= 0:
@@ -152,6 +153,7 @@ func _on_hidden_key_body_entered(body: Node2D) -> void:
 		$Other/HiddenKey/CollisionShape2D.set_deferred("disabled", true)
 		$Other/HiddenKey/HiddenCoin.play()
 		Global.score += 1
+		SignalBus.hidden_key_found.emit()
 
 
 func _on_pyramid_access_body_entered(body: Node2D) -> void:
@@ -219,6 +221,8 @@ func doomed():
 		$Platforms.set_cell(Vector2i(104, tile), 35, Vector2i(0,0), 0)
 	for tile in range(106,178):
 		$Platforms.set_cell(Vector2i(tile, 99), -1, Vector2i(-1,-1), -1)
+	SignalBus.tungsten_cube_dropped.emit()
+	
 	$DoomedLavaRise.start(2.142857143)
 	$Other/Hidden/PinI.position = Vector2(2112, -4472)
 	$Other/Hidden/PinII.position = Vector2(2112, -3768)
@@ -228,7 +232,6 @@ func doomed():
 	$Other/Hidden/PinII.modulate = Color("ffffff", 1.0)
 	$Other/Hidden/PinIII.modulate = Color("ffffff", 1.0)
 	$Other/Hidden/PinIV.modulate = Color("ffffff", 1.0)
-	pass  # Fool! You have doomed us all!
 
 
 func _on_doomed_lava_rise_timeout() -> void:
@@ -243,6 +246,7 @@ func _on_doomed_lava_rise_timeout() -> void:
 func _on_doomed_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
 		Global.player_health -= 1.5
+		body.gravity = 980 * 1.75
 
 
 func _on_npcvi_body_entered(body: Node2D) -> void:
@@ -262,7 +266,7 @@ func _on_npcvii_body_entered(body: Node2D) -> void:
 		$CanvasLayer/NPCVII.show()
 		if not npcvii_talked:
 			npcvii_talked = true
-			SignalBus.npc_talked.emit()
+			SignalBus.npc_talked_to.emit()
 			Global.social_expert_progress += 1
 
 
@@ -301,3 +305,4 @@ func _on_block_viii_body_entered(body: Node2D) -> void:
 func _on_gravity_flip_instant_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
 		body.current_mode = body.player_modes[2]
+		SignalBus.gravity_flip_silhouette.emit()

@@ -5,7 +5,7 @@ var attack_id = 1
 var target = null
 var timer_multiplier = 1.0
 
-var speed = 10
+var speed = 50
 var velocity = Vector2.ZERO
 var is_on_floor = false
 
@@ -41,21 +41,26 @@ func _process(_delta: float) -> void:
 	
 	if Global.boss_health <= 200:
 		timer_multiplier = 0.2
+		$AnimatedSprite2D.speed_scale = 1.0 / timer_multiplier
 	elif Global.boss_health <= 400:
 		timer_multiplier = 0.4
+		$AnimatedSprite2D.speed_scale = 1.0 / timer_multiplier
 	elif Global.boss_health <= 600:
 		timer_multiplier = 0.6
+		$AnimatedSprite2D.speed_scale = 1.0 / timer_multiplier
 	elif Global.boss_health <= 800:
 		timer_multiplier = 0.8
+		$AnimatedSprite2D.speed_scale = 1.0 / timer_multiplier
 	else:
 		timer_multiplier = 1.0
+		$AnimatedSprite2D.speed_scale = 1.0 / timer_multiplier
 
 
 func _on_attack_timer_timeout() -> void:
 	$AnimatedSprite2D.stop()
 	attack_id += 1
 	$AnimatedSprite2D.play("attacking")
-	await get_tree().create_timer(1.25).timeout
+	await get_tree().create_timer(1.25 * timer_multiplier).timeout
 	$AnimatedSprite2D.pause()
 	if attack_id % 8 == 0:
 		$AttackTimer.start(4.5 * timer_multiplier)
@@ -81,6 +86,8 @@ func _on_attack_timer_timeout() -> void:
 		new_iceshot.global_position = $Marker2D.global_position
 		new_iceshot.global_rotation = $Marker2D.global_rotation
 		get_tree().root.add_child(new_iceshot)
+	if attack_id % 8 == 0:
+		await get_tree().create_timer(4.5 * timer_multiplier + 0.1).timeout
 	await get_tree().create_timer(0.25).timeout
 	$AnimatedSprite2D.stop()
 	
@@ -92,3 +99,8 @@ func _on_player_detection_body_entered(body: Node2D) -> void:
 
 func boss_spawned():
 	$AttackTimer.start(2.25)
+
+
+func _on_player_detection_body_exited(body: Node2D) -> void:
+	if "Player" in body.name:
+		target = null

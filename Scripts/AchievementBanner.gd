@@ -186,7 +186,5 @@ func social_expert_iii():
 	$AnimatedSprite2D.play("Death")
 
 
-
-
 func _on_duration_timer_timeout():
 	queue_free()

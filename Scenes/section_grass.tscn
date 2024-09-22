@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=4 uid="uid://bs0rjq8hecmbe"]
+[gd_scene load_steps=119 format=4 uid="uid://bs0rjq8hecmbe"]
 
 [ext_resource type="Script" path="res://Scripts/GrassManager.gd" id="1_ef5ps"]
 [ext_resource type="Script" path="res://Scripts/DoubleJump.gd" id="2_owohi"]
@@ -603,6 +603,12 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jwcme"]
 font_size = 30
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oe6u0"]
+font_size = 24
+font_color = Color(1, 1, 1, 0.4)
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -1266,6 +1272,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="Continue" type="Label" parent="CanvasLayer/NPCI"]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 43.0
+offset_right = 1123.0
+offset_bottom = 77.0
+text = "Press [E] or [Space] to continue"
+label_settings = SubResource("LabelSettings_oe6u0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="NPCII" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
@@ -1292,6 +1309,17 @@ label_settings = SubResource("LabelSettings_jwcme")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Continue" type="Label" parent="CanvasLayer/NPCII"]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 43.0
+offset_right = 1123.0
+offset_bottom = 77.0
+text = "Press [E] or [Space] to continue"
+label_settings = SubResource("LabelSettings_oe6u0")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NPCIII" type="Control" parent="CanvasLayer"]
 visible = false
@@ -1348,6 +1376,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="Continue" type="Label" parent="CanvasLayer/NPCIV"]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 43.0
+offset_right = 1123.0
+offset_bottom = 77.0
+text = "Press [E] or [Space] to continue"
+label_settings = SubResource("LabelSettings_oe6u0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="NPCV" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
@@ -1374,6 +1413,17 @@ label_settings = SubResource("LabelSettings_jwcme")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Continue" type="Label" parent="CanvasLayer/NPCV"]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 43.0
+offset_right = 1123.0
+offset_bottom = 77.0
+text = "Press [E] or [Space] to continue"
+label_settings = SubResource("LabelSettings_oe6u0")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="DoubleJump" to="DoubleJump" method="_on_body_entered"]
 [connection signal="body_exited" from="DoubleJump" to="DoubleJump" method="_on_body_exited"]

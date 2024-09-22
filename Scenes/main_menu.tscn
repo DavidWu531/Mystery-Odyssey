@@ -1,15 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct5ekpjb28mih"]
+[gd_scene load_steps=10 format=3 uid="uid://ct5ekpjb28mih"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_2dulc"]
 [ext_resource type="Texture2D" uid="uid://d2hxpsvdei4c6" path="res://Art/Cover.png" id="2_krjej"]
+[ext_resource type="Texture2D" uid="uid://bb6kdgqv5sdj3" path="res://Art/GUI.png" id="3_ttai5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fv4pt"]
+texture = ExtResource("3_ttai5")
+region_rect = Rect2(145, 98, 46, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kns06"]
+texture = ExtResource("3_ttai5")
+region_rect = Rect2(145, 81, 46, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_if6dn"]
+texture = ExtResource("3_ttai5")
+region_rect = Rect2(145, 113, 46, 14)
+
+[sub_resource type="Theme" id="Theme_ja0y5"]
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 100
+Button/styles/hover = SubResource("StyleBoxTexture_fv4pt")
+Button/styles/normal = SubResource("StyleBoxTexture_kns06")
+Button/styles/pressed = SubResource("StyleBoxTexture_if6dn")
+
+[sub_resource type="Theme" id="Theme_lcjx8"]
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 60
+Button/styles/hover = SubResource("StyleBoxTexture_fv4pt")
+Button/styles/normal = SubResource("StyleBoxTexture_kns06")
+Button/styles/pressed = SubResource("StyleBoxTexture_if6dn")
 
 [sub_resource type="LabelSettings" id="LabelSettings_pak4q"]
 font_size = 69
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Theme" id="Theme_ja0y5"]
-Button/font_sizes/font_size = 100
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_2dulc")
@@ -25,23 +51,54 @@ offset_bottom = 1080.0
 texture = ExtResource("2_krjej")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="Play" type="Button" parent="."]
+offset_left = 728.0
+offset_top = 88.0
+offset_right = 1226.0
+offset_bottom = 233.0
+theme = SubResource("Theme_ja0y5")
+text = "Play"
+
+[node name="Difficulty" type="Button" parent="."]
+offset_left = 1272.0
+offset_top = 360.0
+offset_right = 1880.0
+offset_bottom = 456.0
+theme = SubResource("Theme_lcjx8")
+text = "Difficulty: Normal"
+
+[node name="Gamemode" type="Button" parent="."]
+offset_left = 48.0
+offset_top = 376.0
+offset_right = 656.0
+offset_bottom = 472.0
+theme = SubResource("Theme_lcjx8")
+text = "Mode: Adventure"
+
+[node name="Settings" type="Control" parent="."]
 visible = false
-offset_left = 672.0
-offset_top = 64.0
-offset_right = 1248.0
-offset_bottom = 192.0
-text = "Mystery Odyssey"
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ColorRect" type="ColorRect" parent="Settings"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.273873, 0.273873, 0.273873, 1)
+
+[node name="Label" type="Label" parent="Settings"]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 80.0
+offset_right = 1256.0
+offset_bottom = 208.0
+text = "Options"
 label_settings = SubResource("LabelSettings_pak4q")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Play" type="Button" parent="."]
-offset_left = 712.0
-offset_top = 120.0
-offset_right = 1210.0
-offset_bottom = 265.0
-theme = SubResource("Theme_ja0y5")
-text = "Play"
-
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Difficulty" to="." method="_on_difficulty_pressed"]
+[connection signal="pressed" from="Gamemode" to="." method="_on_gamemode_pressed"]

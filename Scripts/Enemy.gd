@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 10
+var health = 10 * Settings.difficulty_amplifier
 var n = 0
 var target = null
 
@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 	name = "Enemy" + str(n)
 	if health <= 0:
 		Global.killing_machine_progress += 1
+		SignalBus.enemy_slayed.emit()
 		queue_free()
 	
 	if not stunned:

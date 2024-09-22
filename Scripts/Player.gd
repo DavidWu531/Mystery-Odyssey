@@ -6,13 +6,14 @@ var respawn_pos = Vector2(0,0)
 var take_damage_respos = Vector2(0,0)
 var respawn_gravity = 980.0 * 1.75
 var old_position = position
-var heart_lost = false
 var old_health
 var original_polygon : PackedVector2Array
 var attack_speed = 1 / 1.5
 var coyote_time_left = 0.0
+var laser_time_left = 0.0
 
 const COYOTE_TIME = 0.2
+const LASER_TIME = 2.75
 const HALF_SPEED = 383.1
 const NORMAL_SPEED = 475.0
 const DOUBLE_SPEED = 590.7
@@ -25,6 +26,7 @@ var gravity = 980.0 * 1.75
 var jump_count = 1
 var can_move = true
 var can_attack = true
+var heart_lost = false
 var is_attacking = false
 var linear_moving = false
 var on_ice = false
@@ -34,6 +36,8 @@ var direction_x
 var hardcore = false
 var quick_retry = false
 var touching_laser = false
+var boss_mode = false
+var damage_immune = false
 
 var tile_vector : Vector2i
 var tile = null
@@ -49,7 +53,6 @@ var frost_obst_tiles = [7]
 
 var current_mode = "Default"
 var player_modes = ["Default", "DoubleJump", "GravityFlip", "LinearMotion"]
-var spectator = false
 
 func _ready():
 	Global.player_speed = NORMAL_SPEED
@@ -78,11 +81,10 @@ func _ready():
 	
 	$LightAttackRadial/RadialLight.texture_scale = 2.5 * Global.torch_level
 	$LightAttackRadial/RadialCollisionShape2D.shape.radius = (91 * $LightAttackRadial/RadialLight.texture_scale)/2
-	
-	#spectator_mode()
+
 
 func _physics_process(delta):
-	if not linear_moving and not spectator:
+	if not linear_moving and not Global.spectator:
 		velocity.y += gravity * delta
 		$LinearDirection.look_at(get_global_mouse_position())
 	
@@ -104,7 +106,7 @@ func _physics_process(delta):
 			current_mode = player_modes[0]
 	
 	if Input.is_action_just_pressed("Jump"):
-		if not spectator:
+		if not Global.spectator:
 			if can_move:
 				if not is_attacking:
 					respawn_gravity = gravity
@@ -144,7 +146,7 @@ func _physics_process(delta):
 			platform_tile_vector = Vector2i(0,-1)
 		
 	if Input.is_action_pressed("Jump"):
-		if not spectator:
+		if not Global.spectator:
 			if can_move:
 				if current_mode == "LinearMotion":
 					linear_moving = true
@@ -158,7 +160,7 @@ func _physics_process(delta):
 			velocity = Vector2(0,0)
 		
 	if Input.is_action_just_pressed("FastDrop"):
-		if not spectator:
+		if not Global.spectator:
 			if can_move:
 				if gravity > 0.0:
 					velocity.y = jump_velocity * 5
@@ -166,11 +168,11 @@ func _physics_process(delta):
 					velocity.y = -jump_velocity * 5
 	
 	if Input.is_action_pressed("FastDrop"):
-		if spectator:
+		if Global.spectator:
 			position.y += Global.player_speed * delta
 	
 	direction_x = Input.get_axis("Left", "Right")
-	if spectator:
+	if Global.spectator:
 		position.x += direction_x * 10
 	else:
 		if current_mode != "LinearMotion":
@@ -183,7 +185,8 @@ func _physics_process(delta):
 							velocity.x = direction_x * Global.player_speed
 						$Sprite2D.play("walking")
 						if Global.player_speed > NORMAL_SPEED:
-							Global.player_energy -= (Global.player_speed / NORMAL_SPEED) / 20.0
+							Global.player_energy -= (Global.player_speed / NORMAL_SPEED) / 60.0
+							$EnergyRegeneration.stop()
 					else:
 						if on_ice:
 							velocity.x = lerp(velocity.x, 0.0, 0.05)
@@ -194,13 +197,25 @@ func _physics_process(delta):
 					velocity.x = 0
 			else:
 				velocity = Vector2(0,0)
-
+	
 	if Global.player_energy <= 0:
 		Global.player_speed = NORMAL_SPEED
+		
 	
-	if Global.player_speed <= NORMAL_SPEED:
-		if Global.player_energy < 50:
-			Global.player_energy += 50 / 30.0 / 60.0
+	if Global.player_energy < Global.player_maxenergy:
+		if Global.player_speed <= NORMAL_SPEED:
+			if $EnergyDelay.is_stopped():
+				$EnergyDelay.start(3.0)
+		elif not ($LightAttackAngular/AngularLight.enabled or $LightAttackRadial/RadialLight.enabled):
+			if $EnergyDelay.is_stopped():
+				$EnergyDelay.start(3.0)
+		elif velocity == Vector2(0, gravity * delta) and Global.player_speed > NORMAL_SPEED:
+			if $EnergyDelay.is_stopped():
+				$EnergyDelay.start(3.0)
+		else:
+			$EnergyDelay.start(3.0)
+			$EnergyRegeneration.stop()
+			
 	
 	if Input.is_action_just_pressed("SpeedChange"):
 		if not on_quicksand:
@@ -223,23 +238,24 @@ func _physics_process(delta):
 		$Sprite2D.flip_h = true
 	
 	if Input.is_action_pressed("Attack"):
-		if can_attack:
-			$Sprite2D.play("attack")
-			is_attacking = true
-			$AttackCooldown.start(1 / attack_speed)
-			can_attack = false
-			if $Sprite2D.offset.x == 160:
-				$FistAttack/AnimationPlayer.play("punch_right")
-				$FistAttack/RightCollisionShape2D.set_deferred("disabled", false)
-				$FistAttack/LeftCollisionShape2D.set_deferred("disabled", true)
-			elif $Sprite2D.offset.x == -160:
-				$FistAttack/AnimationPlayer.play("punch_left")
-				$FistAttack/RightCollisionShape2D.set_deferred("disabled", true)
-				$FistAttack/LeftCollisionShape2D.set_deferred("disabled", false)
+		if not Global.spectator:
+			if can_attack:
+				$Sprite2D.play("attack")
+				is_attacking = true
+				$AttackCooldown.start(1 / attack_speed)
+				can_attack = false
+				if $Sprite2D.offset.x == 160:
+					$FistAttack/AnimationPlayer.play("punch_right")
+					$FistAttack/RightCollisionShape2D.set_deferred("disabled", false)
+					$FistAttack/LeftCollisionShape2D.set_deferred("disabled", true)
+				elif $Sprite2D.offset.x == -160:
+					$FistAttack/AnimationPlayer.play("punch_left")
+					$FistAttack/RightCollisionShape2D.set_deferred("disabled", true)
+					$FistAttack/LeftCollisionShape2D.set_deferred("disabled", false)
 	
 	
 	if Input.is_action_just_pressed("Retry"):
-		if (not hardcore or not spectator) and not quick_retry:
+		if (not hardcore or not Global.spectator or not boss_mode) and not quick_retry:
 			Global.player_health -= 1
 			quick_retry = true
 			death_engine()
@@ -261,7 +277,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func _process(_delta):
+func _process(delta):
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		if "Obstacles" in collision.get_collider().name:
@@ -284,21 +300,21 @@ func _process(_delta):
 			if tile and not tile_damage_taken:
 				if collision.get_collider().get_cell_source_id(tile) in grass_obst_tiles:
 					old_health = Global.player_health
-					Global.player_health -= 1
+					Global.player_health -= 1 * Settings.difficulty_amplifier
 					tile_damage_taken = true
 					if old_health == Global.player_maxhealth and old_health - Global.player_health >= Global.player_maxhealth:
 						if not Global.u_cant_c_me:
 							Global.u_cant_c_me_progress = 1
 				elif collision.get_collider().get_cell_source_id(tile) in desert_obst_tiles:
 					old_health = Global.player_health
-					Global.player_health -= 3
+					Global.player_health -= 3 * Settings.difficulty_amplifier
 					tile_damage_taken = true
 					if old_health == Global.player_maxhealth and old_health - Global.player_health >= Global.player_maxhealth:
 						if not Global.u_cant_c_me:
 							Global.u_cant_c_me_progress = 1
 				elif collision.get_collider().get_cell_source_id(tile) in frost_obst_tiles:
 					old_health = Global.player_health
-					Global.player_health -= 7
+					Global.player_health -= 7 * Settings.difficulty_amplifier
 					tile_damage_taken = true
 					if old_health == Global.player_maxhealth and old_health - Global.player_health >= Global.player_maxhealth:
 						if not Global.u_cant_c_me:
@@ -306,9 +322,9 @@ func _process(_delta):
 				elif collision.get_collider().get_cell_source_id(tile) == 5:
 					old_health = Global.player_health
 					if not hardcore:
-						Global.player_health -= 8
+						Global.player_health -= 8 * Settings.difficulty_amplifier
 					else:
-						Global.player_health -= 0.25
+						Global.player_health -= 0.25 * Settings.difficulty_amplifier
 						on_pad = true
 						$LavaBounce.start(get_process_delta_time())
 					tile_damage_taken = true
@@ -320,7 +336,7 @@ func _process(_delta):
 				
 				elif collision.get_collider().get_cell_source_id(tile) == 6:
 					old_health = Global.player_health
-					Global.player_health -= 6
+					Global.player_health -= 6 * Settings.difficulty_amplifier
 					tile_damage_taken = true
 					if not Global.not_safe:
 						Global.not_safe_progress = 1
@@ -330,11 +346,9 @@ func _process(_delta):
 							
 				elif collision.get_collider().get_cell_source_id(tile) == 8:
 					old_health = Global.player_health
-					Global.player_health -= 1.5
+					Global.player_health -= 1.5 * Settings.difficulty_amplifier
 					death_engine()
 					tile_damage_taken = true
-					if not Global.not_safe:
-						Global.not_safe_progress = 1
 					if old_health == Global.player_maxhealth and old_health - Global.player_health >= Global.player_maxhealth:
 						if not Global.u_cant_c_me:
 							Global.u_cant_c_me_progress = 1
@@ -374,40 +388,46 @@ func _process(_delta):
 		if not Global.fire_my_laser:
 			Global.fire_my_laser_progress = 1
 		if $LightAttackAngular/AngularLight.enabled:
-			$LightAttackAngular.set_deferred("monitoring", false)
-			$LightAttackAngular.set_deferred("monitorable", false)
-			$LightAttackAngular/AngularCollisionPolygon2D.set_deferred("disabled", true)
-			$LightAttackAngular/AngularLight.enabled = false
+			if not Global.spectator:
+				$LightAttackAngular.set_deferred("monitoring", false)
+				$LightAttackAngular.set_deferred("monitorable", false)
+				$LightAttackAngular/AngularCollisionPolygon2D.set_deferred("disabled", true)
+				
+				$LightAttackRadial.set_deferred("monitoring", true)
+				$LightAttackRadial.set_deferred("monitorable", true)
+				$LightAttackRadial/RadialCollisionShape2D.set_deferred("disabled", false)
 			
-			$LightAttackRadial.set_deferred("monitoring", true)
-			$LightAttackRadial.set_deferred("monitorable", true)
-			$LightAttackRadial/RadialCollisionShape2D.set_deferred("disabled", false)
+			$LightAttackAngular/AngularLight.enabled = false
 			$LightAttackRadial/RadialLight.enabled = true
-			
 		elif $LightAttackRadial/RadialLight.enabled:
-			$LightAttackAngular.set_deferred("monitoring", false)
-			$LightAttackAngular.set_deferred("monitorable", false)
-			$LightAttackAngular/AngularCollisionPolygon2D.set_deferred("disabled", true)
-			$LightAttackAngular/AngularLight.enabled = false
+			if not Global.spectator:
+				$LightAttackAngular.set_deferred("monitoring", false)
+				$LightAttackAngular.set_deferred("monitorable", false)
+				$LightAttackAngular/AngularCollisionPolygon2D.set_deferred("disabled", true)
+				
+				$LightAttackRadial.set_deferred("monitoring", false)
+				$LightAttackRadial.set_deferred("monitorable", false)
+				$LightAttackRadial/RadialCollisionShape2D.set_deferred("disabled", true)
 			
-			$LightAttackRadial.set_deferred("monitoring", false)
-			$LightAttackRadial.set_deferred("monitorable", false)
-			$LightAttackRadial/RadialCollisionShape2D.set_deferred("disabled", true)
+			$LightAttackAngular/AngularLight.enabled = false
 			$LightAttackRadial/RadialLight.enabled = false
 		else:
-			$LightAttackAngular.set_deferred("monitoring", true)
-			$LightAttackAngular.set_deferred("monitorable", true)
-			$LightAttackAngular/AngularCollisionPolygon2D.set_deferred("disabled", false)
+			if not Global.spectator:
+				$LightAttackAngular.set_deferred("monitoring", true)
+				$LightAttackAngular.set_deferred("monitorable", true)
+				$LightAttackAngular/AngularCollisionPolygon2D.set_deferred("disabled", false)
+				
+				$LightAttackRadial.set_deferred("monitoring", false)
+				$LightAttackRadial.set_deferred("monitorable", false)
+				$LightAttackRadial/RadialCollisionShape2D.set_deferred("disabled", true)
+				
 			$LightAttackAngular/AngularLight.enabled = true
-			
-			$LightAttackRadial.set_deferred("monitoring", false)
-			$LightAttackRadial.set_deferred("monitorable", false)
-			$LightAttackRadial/RadialCollisionShape2D.set_deferred("disabled", true)
 			$LightAttackRadial/RadialLight.enabled = false
 	
 	if $LightAttackAngular/AngularLight.enabled or $LightAttackRadial/RadialLight.enabled:
-		if not spectator:
+		if not Global.spectator:
 			Global.player_energy -= 2 / 60.0
+			$EnergyRegeneration.stop()
 			if Global.player_energy <= 0.0:
 				$LightAttackAngular.set_deferred("monitoring", false)
 				$LightAttackAngular.set_deferred("monitorable", false)
@@ -418,49 +438,97 @@ func _process(_delta):
 				$LightAttackRadial.set_deferred("monitorable", false)
 				$LightAttackRadial/RadialCollisionShape2D.set_deferred("disabled", true)
 				$LightAttackRadial/RadialLight.enabled = false
-	elif not $LightAttackAngular/AngularLight.enabled and not $LightAttackRadial/RadialLight.enabled:
-		if Global.player_energy < 50.0:
-			Global.player_energy += 50 / 30.0 / 60.0
 
 	for node in range(get_slide_collision_count()):
 		var collision = get_slide_collision(node)
 		if "Enemy" in collision.get_collider().name:
-			Global.player_health -= 3
+			old_health = Global.player_health
+			Global.player_health -= 3 * Settings.difficulty_amplifier
+			if old_health == Global.player_maxhealth and old_health - Global.player_health >= Global.player_maxhealth:
+				if not Global.u_cant_c_me:
+					Global.u_cant_c_me_progress = 1
 			death_engine()
 			break
 	
 	if touching_laser:
-		Global.player_health -= 0.5 / (1.0 / get_process_delta_time())
+		if not damage_immune:
+			Global.player_health -= 0.5 / (1.0 / get_process_delta_time()) * Settings.difficulty_amplifier
+			laser_time_left -= delta
+		else:
+			laser_time_left = LASER_TIME
+			if laser_time_left <= 0:
+				damage_immune = true
+				$DamageImmunity.start(2.5)
+				$AnimationPlayerII.play("respawn_bossmode")
 
 
 func death_engine():
 	$DeathSFX.play()
-	gravity = respawn_gravity
-	velocity = Vector2(0,0)
-	can_move = false
-	$SpawnImmunity.start(1.1)
-	$CollisionShape2D.set_deferred("disabled", true)
-	$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	Global.no_stopping_now_progress += 1
-	heart_lost = true
-	if quick_retry:
-		position = respawn_pos
-		take_damage_respos = respawn_pos
-		gravity = 980.0 * 1.75
-		SignalBus.player_died.emit()
-		quick_retry = false
-	if Global.player_health <= 0:
-		if not hardcore:
-			position = respawn_pos
-			take_damage_respos = respawn_pos
-			Global.player_health = Global.player_maxhealth
-			gravity = 980.0 * 1.75
-			SignalBus.player_died.emit()
-		else:
-			spectator_mode()
-	elif Global.player_health >= 1:
-		position = take_damage_respos
+	if Global.player_health > 0:
 		gravity = respawn_gravity
+		if boss_mode:
+			$DamageImmunity.start(2.5)
+			damage_immune = true
+			$AnimationPlayerII.play("respawn_bossmode")
+		else:
+			velocity = Vector2(0,0)
+			can_move = false
+			$SpawnImmunity.start(1.1)
+			$CollisionShape2D.set_deferred("disabled", true)
+			$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
+			position = take_damage_respos
+			gravity = respawn_gravity
+
+	elif Global.player_health <= 0:
+		SignalBus.player_died.emit()
+		if Settings.gamemode == "Permadeath":
+			spectator_mode()
+		else:
+			if boss_mode or hardcore:
+				spectator_mode()
+			else:
+				position = respawn_pos
+				take_damage_respos = respawn_pos
+				Global.player_health = Global.player_maxhealth
+				gravity = 980.0 * 1.75
+				
+		
+		
+		#if not boss_mode:
+			#$DeathSFX.play()
+#
+			#Global.no_stopping_now_progress += 1
+			#if quick_retry:
+				#position = respawn_pos
+				#take_damage_respos = respawn_pos
+				#gravity = 980.0 * 1.75
+				#SignalBus.player_died.emit()
+			#if Global.player_health <= 0:
+				#if Settings.gamemode == "Permadeath":
+					#spectator_mode()
+				#else:
+					#if not hardcore:
+						#position = respawn_pos
+						#take_damage_respos = respawn_pos
+						#Global.player_health = Global.player_maxhealth
+						#gravity = 980.0 * 1.75
+						#SignalBus.player_died.emit()
+					#else:
+						#spectator_mode()
+			#elif Global.player_health >= 1:
+				#position = take_damage_respos
+				#gravity = respawn_gravity
+		#else:
+			#if Global.player_health >= 1:
+				#$DeathSFX.play()
+				#gravity = respawn_gravity
+				#$DamageImmunity.start(2.5)
+				#Global.no_stopping_now_progress += 1
+				#damage_immune = true
+				#$AnimationPlayerII.play("respawn_bossmode")
+			#else:
+				#spectator_mode()
 
 
 func _on_res_pos_timer_timeout():
@@ -476,6 +544,8 @@ func checkpoint_ii_hit():
 
 
 func checkpoint_iv_hit():
+	z_index = 1
+	can_move = true
 	$Camera2D.limit_left = -64
 	$Camera2D.limit_top = 5504
 	$Camera2D.limit_right = 6080
@@ -491,6 +561,8 @@ func checkpoint_v_hit():
 
 
 func checkpoint_vi_hit():
+	z_index = 1
+	can_move = true
 	current_mode = player_modes[1]
 	$Camera2D.zoom = Vector2(1, 1)
 	$Camera2D.limit_left = 2304
@@ -511,10 +583,10 @@ func _on_keys_hold_timeout():
 
 
 func _on_spawn_immunity_timeout():
-	var tween = get_tree().create_tween()
-	tween.tween_property($Sprite2D, "modulate", Color(1.0, 1.0, 1.0, 1.0), 1.0)
-	await get_tree().create_timer(0.5).timeout
+	$AnimationPlayerII.play("respawn_default")
+	await $AnimationPlayerII.animation_finished
 	$CollisionShape2D.set_deferred("disabled", false)
+	quick_retry = false
 	can_move = true
 
 
@@ -583,10 +655,12 @@ func spectator_mode():
 	$Camera2D.limit_bottom = 100000000
 	$Camera2D.limit_top = -100000000
 	$Camera2D.limit_right = 100000000
+	$Camera2D.enabled = true
 	$Camera2D.zoom = Vector2(1,1)
 	
-	spectator = true
+	Global.spectator = true
 	Global.torch_level = 100
+	Global.player_energy = INF
 	gravity = 0
 	on_pad = false
 	velocity = Vector2.ZERO
@@ -653,3 +727,19 @@ func boss_spawned():
 	$Camera2D.limit_top = -15360
 	$Camera2D.limit_right = 17408
 	$Camera2D.limit_bottom = -13248
+	boss_mode = true
+
+
+func _on_damage_immunity_timeout() -> void:
+	damage_immune = false
+
+
+func _on_energy_regeneration_timeout() -> void:
+	if Global.player_energy < Global.player_maxenergy:
+		Global.player_energy += 5 / 60.0
+		if Global.player_energy >= Global.player_maxenergy:
+			$EnergyRegeneration.stop()
+
+
+func _on_energy_delay_timeout() -> void:
+	$EnergyRegeneration.start(get_process_delta_time())

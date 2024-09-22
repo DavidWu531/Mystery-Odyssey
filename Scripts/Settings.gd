@@ -1,4 +1,4 @@
 extends Node
 
-var show_hitboxes = false
-var speedrun_mode = false
+var gamemode = "Adventure"
+var difficulty_amplifier = 1.0

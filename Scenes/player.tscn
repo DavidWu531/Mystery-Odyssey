@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://k6q106c05g5l"]
+[gd_scene load_steps=64 format=3 uid="uid://k6q106c05g5l"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_o3pfn"]
 [ext_resource type="Texture2D" uid="uid://2wyrvl1cg84c" path="res://Art/Prismdroidattackdriller.png" id="2_0s1hf"]
@@ -393,16 +393,16 @@ tracks/0/path = NodePath("LeftCollisionShape2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.36, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.375, 0.6667, 0.9167, 1.3333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-63, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(-63, 0), Vector2(0, 0), Vector2(-63, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_hjq8o"]
 resource_name = "punch"
 length = 1.375
-step = 0.01
+step = 0.0001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -410,10 +410,10 @@ tracks/0/path = NodePath("RightCollisionShape2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3636, 0.7272),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.375, 0.6667, 0.9167, 1.3333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(63, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(63, 0), Vector2(0, 0), Vector2(63, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_14t46"]
@@ -421,6 +421,61 @@ _data = {
 "RESET": SubResource("Animation_wwysy"),
 "punch_left": SubResource("Animation_ggmxg"),
 "punch_right": SubResource("Animation_hjq8o")
+}
+
+[sub_resource type="Animation" id="Animation_06fg6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hvgvg"]
+resource_name = "respawn_bossmode"
+length = 2.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vggks"]
+resource_name = "respawn_default"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_edl7x"]
+_data = {
+"RESET": SubResource("Animation_06fg6"),
+"respawn_bossmode": SubResource("Animation_hvgvg"),
+"respawn_default": SubResource("Animation_vggks")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -433,6 +488,8 @@ scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_c03ud")
 animation = &"attack"
 autoplay = "static"
+frame = 32
+frame_progress = 1.0
 offset = Vector2(160, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -505,7 +562,7 @@ autostart = true
 [node name="UpdateTorch" type="Timer" parent="."]
 autostart = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerI" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_e6he1")
 }
@@ -538,6 +595,22 @@ stream = ExtResource("6_y6ncv")
 [node name="JumpSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_hb5ft")
 
+[node name="DamageImmunity" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="AnimationPlayerII" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_edl7x")
+}
+
+[node name="EnergyRegeneration" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="EnergyDelay" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="ResPosTimer" to="." method="_on_res_pos_timer_timeout"]
 [connection signal="area_entered" from="LightAttackRadial" to="." method="_on_light_attack_radial_area_entered"]
 [connection signal="area_exited" from="LightAttackRadial" to="." method="_on_light_attack_radial_area_exited"]
@@ -554,3 +627,6 @@ stream = ExtResource("7_hb5ft")
 [connection signal="area_entered" from="FistAttack" to="." method="_on_fist_attack_area_entered"]
 [connection signal="body_entered" from="FistAttack" to="." method="_on_fist_attack_body_entered"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="DamageImmunity" to="." method="_on_damage_immunity_timeout"]
+[connection signal="timeout" from="EnergyRegeneration" to="." method="_on_energy_regeneration_timeout"]
+[connection signal="timeout" from="EnergyDelay" to="." method="_on_energy_delay_timeout"]

@@ -15,5 +15,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
-		Global.player_health -= 0.75
-		queue_free()
+		if not body.damage_immune:
+			Global.player_health -= 0.75 * Settings.difficulty_amplifier
+			body.death_engine()
+			queue_free()

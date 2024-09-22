@@ -28,6 +28,7 @@ func _on_text_text_submitted(new_text):
 		for node in $"../../Other/Door".get_overlapping_bodies():
 			if "Player" in node.name:
 				SignalBus.undoomed.emit()
+				SignalBus.correct_code_entered.emit()
 	else:
 		$Result.text = "Access Denied!"
 	

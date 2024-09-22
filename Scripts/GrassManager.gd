@@ -38,7 +38,7 @@ func _process(_delta):
 			npci_dialogue_id += 1
 			if not npci_talked:
 				npci_talked = true
-				SignalBus.npc_talked.emit()
+				SignalBus.npc_talked_to.emit()
 				Global.social_expert_progress += 1
 		
 		if $NPCs/NPCII/Interactable.visible:
@@ -62,7 +62,7 @@ func _process(_delta):
 			npcii_dialogue_id += 1
 			if not npcii_talked:
 				npcii_talked = true
-				SignalBus.npc_talked.emit()
+				SignalBus.npc_talked_to.emit()
 				Global.social_expert_progress += 1
 	
 		if $NPCs/NPCIV/Interactable.visible:
@@ -87,7 +87,7 @@ func _process(_delta):
 			npciv_dialogue_id += 1
 			if not npciv_talked:
 				npciv_talked = true
-				SignalBus.npc_talked.emit()
+				SignalBus.npc_talked_to.emit()
 				Global.social_expert_progress += 1
 				
 		if $NPCs/NPCV/Interactable.visible:
@@ -110,7 +110,7 @@ func _process(_delta):
 			npcv_dialogue_id += 1
 			if not npcv_talked:
 				npcv_talked = true
-				SignalBus.npc_talked.emit()
+				SignalBus.npc_talked_to.emit()
 				Global.social_expert_progress += 1
 
 
@@ -184,6 +184,7 @@ func _on_lily_vanish_body_exited(body):
 func _on_lily_timer_timeout():
 	$Platforms.set_cell(Vector2i(73,-13), -1, Vector2i(0,0), -1)
 	$Platforms.set_cell(Vector2i(74,-13), -1, Vector2i(0,0), -1)
+	SignalBus.maze_escaped.emit()
 	
 
 func checkpoint_ii_hit():
@@ -211,7 +212,7 @@ func _on_npciii_body_entered(body):
 		$CanvasLayer/NPCIII.show()
 		if not npciii_talked:
 			npciii_talked = true
-			SignalBus.npc_talked.emit()
+			SignalBus.npc_talked_to.emit()
 			Global.social_expert_progress += 1
 
 
@@ -251,23 +252,33 @@ func _on_npcv_body_exited(body):
 
 func _on_block_i_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
-		$HelpfulBlocks/BlockI/Label.text = "You can press Tab to show and scroll through tips"
+		if $HelpfulBlocks/BlockI/Label.text == "HIT ME!!!":
+			$HelpfulBlocks/BlockI/Label.text = "You can press Tab to show and scroll through tips"
+			SignalBus.helpful_block_hit.emit()
 
 
 func _on_block_ii_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
-		$HelpfulBlocks/BlockII/Label.text = "Watch out for patrolling enemies"
+		if $HelpfulBlocks/BlockII/Label.text == "HIT ME!!!":
+			$HelpfulBlocks/BlockII/Label.text = "Watch out for patrolling enemies"
+			SignalBus.helpful_block_hit.emit()
 
 
 func _on_block_iii_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
-		$HelpfulBlocks/BlockIII/Label.text = "Jump down the crater and press E. Hover your mouse over the top left"
+		if $HelpfulBlocks/BlockIII/Label.text == "HIT ME!!!":
+			$HelpfulBlocks/BlockIII/Label.text = "Jump down the crater and press E. Hover your mouse over the top left"
+			SignalBus.helpful_block_hit.emit()
 
 func _on_block_iv_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
-		$HelpfulBlocks/BlockIV/Label.text = "Jump down and wait... unless you're not ready yet"
+		if $HelpfulBlocks/BlockIV/Label.text == "HIT ME!!!":
+			$HelpfulBlocks/BlockIV/Label.text = "Jump down and wait... unless you're not ready yet"
+			SignalBus.helpful_block_hit.emit()
 
 
 func _on_block_v_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
-		$HelpfulBlocks/BlockV/Label.text = "Walk through the press and press E. Hover your mouse over the top left"
+		if $HelpfulBlocks/BlockV/Label.text == "HIT ME!!!":
+			$HelpfulBlocks/BlockV/Label.text = "Walk through the press and press E. Hover your mouse over the top left"
+			SignalBus.helpful_block_hit.emit()

@@ -14,11 +14,11 @@ func _process(_delta):
 						node.can_move = false
 						await $AnimatedSprite2D.animation_finished
 						SignalBus.gravity_flip_silhouette.emit()
+						SignalBus.gravity_flip_activated.emit()
 						node.current_mode = node.player_modes[2]
 						node.can_move = true
 						$Interactable.hide()
 						break
-						
 
 
 func _on_body_entered(body):

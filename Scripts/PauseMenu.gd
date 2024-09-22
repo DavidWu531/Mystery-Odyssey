@@ -3,8 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with iftion body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -13,8 +12,9 @@ func _process(_delta):
 			$"../MainScreen/TutorialDialogue".hide()
 		else:
 			if get_tree().paused:
-				if $Achievements.visible:
+				if $Achievements.visible or $Quests.visible:
 					$Achievements.hide()
+					$Quests.hide()
 				get_tree().paused = false
 				hide()
 			else:
@@ -22,8 +22,12 @@ func _process(_delta):
 				show()
 	
 	$Achievements/Progress.value = Global.achievement_completed
+	$Quests/Progress.value = Global.quest_hunter_progress
 	$Achievements/Label.text = "Achievements Completed: " + str(Global.achievement_completed) + "/30"
+	$Quests/Label.text = "Quests Completed: " + str(Global.quest_hunter_progress) + "/14"
 
+
+func update_achievement():
 	if Global.grassland_explored:
 		$Achievements/ScrollContainer/GridContainer/AchID1/RichTextLabel.text = "[b][color=green]Achievement Unlocked![/color][/b]\n[color=gold]New Planet, Who Dis?[/color]\n[i]Travel 100 blocks in the grasslands[/i]"
 	else:
@@ -177,3 +181,11 @@ func _process(_delta):
 
 func _on_achievement_pressed():
 	$Achievements.show()
+
+
+func _on_quest_pressed() -> void:
+	$Quests.show()
+
+
+func _on_update_achievement_timer_timeout() -> void:
+	update_achievement()

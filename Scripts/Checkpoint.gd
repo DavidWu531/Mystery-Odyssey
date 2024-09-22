@@ -39,7 +39,10 @@ func _on_body_entered(body):
 			SignalBus.checkpoint_vi_hit.emit()
 			SignalBus.checkpoint_vi_emitted = true
 			SignalBus.checkpoint_vii_available = true
-		
+		elif not SignalBus.checkpoint_vii_emitted and SignalBus.checkpoint_vii_available:
+			SignalBus.checkpoint_vii_hit.emit()
+			SignalBus.checkpoint_vii_emitted = true
+
 		if not Global.ultra_insticto and Global.ultra_insticto_progress == 0:
 			if not body.heart_lost:
 				Global.ultra_insticto_progress += 1

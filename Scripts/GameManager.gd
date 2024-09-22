@@ -8,6 +8,7 @@ func _ready():
 	SignalBus.checkpoint_iv_hit.connect(checkpoint_iv_hit)
 	SignalBus.checkpoint_v_hit.connect(checkpoint_v_hit)
 	SignalBus.checkpoint_vi_hit.connect(checkpoint_vi_hit)
+	SignalBus.checkpoint_vii_hit.connect(checkpoint_vii_hit)
 	
 	SignalBus.player_died.connect(player_died)
 	SignalBus.doomed.connect(doomed)
@@ -81,18 +82,21 @@ func checkpoint_vii_hit():
 
 
 func player_died():
-	if SignalBus.checkpoint_i_emitted:
-		for node in get_children():
-			if "Player" in node.name:
-				node.current_mode = node.player_modes[0]
-				SignalBus.default_silhouette.emit()
-				break
-	if SignalBus.checkpoint_iii_emitted:
-		for node in get_children():
-			if "Player" in node.name:
-				node.current_mode = node.player_modes[1]
-				SignalBus.double_jump_silhouette.emit()
-				break
+	if Settings.gamemode != "Permadeath":
+		if SignalBus.checkpoint_i_emitted:
+			for node in get_children():
+				if "Player" in node.name:
+					node.current_mode = node.player_modes[0]
+					SignalBus.default_silhouette.emit()
+					break
+		if SignalBus.checkpoint_iii_emitted:
+			for node in get_children():
+				if "Player" in node.name:
+					node.current_mode = node.player_modes[1]
+					SignalBus.double_jump_silhouette.emit()
+					break
+	else:
+		$SceneCamera.enabled = false
 
 
 func _on_death_barrier_body_entered(body: Node2D) -> void:

@@ -57,14 +57,99 @@ var social_expert_progress = 0
 # Other variables
 var score = 0
 var player_health = 3
+var player_maxhealth = 3
 var player_energy = 50
+var player_maxenergy = 50
 var player_speed = 0
 var time_elapsed = 0.0
 var time_left = 180.0
-var player_maxhealth = 3
 var achievement_completed = 0
 var torch_level = 2
 var boss_health = 1000
+var spectator = false
+
+
+func _ready() -> void:
+	score = 0
+	player_health = 3
+	player_maxhealth = 3
+	player_energy = 50
+	player_maxenergy = 50
+	player_speed = 0
+	time_elapsed = 0
+	time_left = 180
+	achievement_completed = 0
+	torch_level = 2
+	boss_health = 1000 * Settings.difficulty_amplifier
+	spectator = false
+	
+	grassland_explored_progress = 0
+	desert_explored_progress = 0
+	frostland_explored_progress = 0
+	enter_cave_progress = 0
+	escape_cave_progress = 0
+	one_heart_escape_progress = 0
+	u_cant_c_me_progress = 0
+	eagle_eye_progress = 0
+	cant_let_go_progress = 0
+	ultra_insticto_progress = 0
+	fire_my_laser_progress = 0
+	no_cheese_progress = 0
+	i_c_u_progress = 0
+	weeee_progress = 0
+	not_safe_progress = 0
+	no_stopping_now_progress = 0
+	killing_machine_progress = 0
+	ooh_shiny_mine_progress = 0
+	quest_hunter_progress = 0
+	social_expert_progress = 0
+
+	no_stopping_now_i = false
+	no_stopping_now_ii = false
+	no_stopping_now_iii = false
+	killing_machine_i = false
+	killing_machine_ii = false
+	killing_machine_iii = false
+	ooh_shiny_mine_i = false
+	ooh_shiny_mine_ii = false
+	ooh_shiny_mine_iii = false
+	quest_hunter_i = false
+	quest_hunter_ii = false
+	quest_hunter_iii = false
+	social_expert_i = false
+	social_expert_ii = false
+	social_expert_iii = false
+	
+	grassland_explored = false
+	desert_explored = false
+	frostland_explored = false
+	enter_cave = false
+	escape_cave = false
+	one_heart_escape = false
+	u_cant_c_me = false
+	eagle_eye = false
+	cant_let_go = false
+	ultra_insticto = false
+	fire_my_laser = false
+	no_cheese = false
+	i_c_u = false
+	not_safe = false
+	weeee = false
+	
+	if Settings.gamemode != "Creative":
+		player_maxhealth = achievement_completed + 3
+	
+		if not spectator:
+			player_maxenergy = 50 * (1 + (quest_hunter_progress * 0.1))
+			torch_level = int(0.5 * achievement_completed + 2)
+			player_maxhealth = 3
+		else:
+			player_maxenergy = INF
+			torch_level = 100
+	else:
+		player_maxhealth = INF
+		torch_level = 100
+		player_maxenergy = INF
 
 func _process(_delta):
 	if grassland_explored_progress == 200 and not grassland_explored:
@@ -223,5 +308,16 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
-	player_maxhealth = achievement_completed + 3
-	torch_level = int(0.5 * achievement_completed + 2)
+	if Settings.gamemode != "Creative":
+		player_maxhealth = achievement_completed + 3
+	
+		if not spectator:
+			player_maxenergy = 50 * (1 + (quest_hunter_progress * 0.1))
+			torch_level = int(0.5 * achievement_completed + 2)
+		else:
+			player_maxenergy = INF
+			torch_level = 100
+	else:
+		player_maxhealth = INF
+		torch_level = 100
+		player_maxenergy = INF

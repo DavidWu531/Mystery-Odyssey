@@ -22,8 +22,12 @@ func _process(_delta: float) -> void:
 		if $ExitCave/Interactable.visible:
 			for node in $ExitCave.get_overlapping_bodies():
 				if "Player" in node.name:
+					node.z_index = -1
+					$AnimationPlayer.play("blackfadein")
+					await get_tree().create_timer(1.05).timeout
 					node.position = Vector2(2368, -10224)
 					Global.escape_cave_progress = 1
+					break
 		
 		if $BossAltar/Interactable.visible:
 			for node in $BossAltar/PlayerDetection.get_overlapping_bodies():
@@ -51,7 +55,8 @@ func _process(_delta: float) -> void:
 			boss_dialogue_id += 1
 			if not boss_talked:
 				boss_talked = true
-				SignalBus.npc_talked.emit()
+				SignalBus.npc_talked_to.emit()
+				SignalBus.andona_summoned.emit()
 				Global.social_expert_progress += 1
 		
 		if $NPCs/NPCIX/Interactable.visible:
@@ -61,15 +66,15 @@ func _process(_delta: float) -> void:
 			$CanvasLayer/NPCIX.show()
 			if npcix_dialogue_id == 0:
 				$CanvasLayer/NPCIX/Dialogue.text = "Geez, it's cold here"
-			if npcix_dialogue_id == 1:
+			elif npcix_dialogue_id == 1:
 				$CanvasLayer/NPCIX/Dialogue.text = "You must have came a long way"
-			if npcix_dialogue_id == 2:
+			elif npcix_dialogue_id == 2:
 				$CanvasLayer/NPCIX/Dialogue.text = "And of course, more challenges await"
-			if npcix_dialogue_id == 3:
+			elif npcix_dialogue_id == 3:
 				$CanvasLayer/NPCIX/Dialogue.text = "Icicles, ice, harmful water..."
-			if npcix_dialogue_id == 4:
+			elif npcix_dialogue_id == 4:
 				$CanvasLayer/NPCIX/Dialogue.text = "You get the idea, every hazard is cold-related"
-			if npcix_dialogue_id == 5:
+			elif npcix_dialogue_id == 5:
 				$CanvasLayer/NPCIX/Dialogue.text = "You're nearly there!"
 			else:
 				$CanvasLayer/NPCIX/Dialogue.text = ""
@@ -81,7 +86,7 @@ func _process(_delta: float) -> void:
 			npcix_dialogue_id += 1
 			if not npcix_talked:
 				npcix_talked = true
-				SignalBus.npc_talked.emit()
+				SignalBus.npc_talked_to.emit()
 				Global.social_expert_progress += 1
 		
 		if $NPCs/NPCX/Interactable.visible:
@@ -91,15 +96,15 @@ func _process(_delta: float) -> void:
 			$CanvasLayer/NPCX.show()
 			if npcx_dialogue_id == 0:
 				$CanvasLayer/NPCX/Dialogue.text = "One of us told you about Andona, didn't they?"
-			if npcx_dialogue_id == 1:
+			elif npcx_dialogue_id == 1:
 				$CanvasLayer/NPCX/Dialogue.text = "You were sent here to kill it, I presume?"
-			if npcx_dialogue_id == 2:
+			elif npcx_dialogue_id == 2:
 				$CanvasLayer/NPCX/Dialogue.text = "Good... that creature wanted to destroy this realm"
-			if npcx_dialogue_id == 3:
+			elif npcx_dialogue_id == 3:
 				$CanvasLayer/NPCX/Dialogue.text = "So glad someone is brave enough to fight it"
-			if npcx_dialogue_id == 4:
+			elif npcx_dialogue_id == 4:
 				$CanvasLayer/NPCX/Dialogue.text = "However, it's not easy... he's ruthless"
-			if npcx_dialogue_id == 5:
+			elif npcx_dialogue_id == 5:
 				$CanvasLayer/NPCX/Dialogue.text = "Good Luck, Player! Everyone on this world salutes you!"
 			else:
 				$CanvasLayer/NPCX/Dialogue.text = ""
@@ -111,7 +116,7 @@ func _process(_delta: float) -> void:
 			npcx_dialogue_id += 1
 			if not npcx_talked:
 				npcx_talked = true
-				SignalBus.npc_talked.emit()
+				SignalBus.npc_talked_to.emit()
 				Global.social_expert_progress += 1
 		
 	if $BossAltar.position == Vector2(15072,-8984) and not boss_mode:

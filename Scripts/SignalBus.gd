@@ -11,9 +11,21 @@ signal checkpoint_vii_hit
 
 signal player_died
 signal sign_movement_touch
-signal npc_talked
 signal coin_collected
-signal npci_dialogue
+signal hidden_coin_collected
+signal npc_talked_to
+signal helpful_block_hit
+signal enemy_slayed
+signal mushroom_bounced
+signal avoided_rolling_boulder
+signal gravity_flip_activated
+signal maze_escaped
+signal double_jump_activated
+signal hidden_key_found
+signal tungsten_cube_dropped
+signal correct_code_entered
+signal andona_summoned
+
 signal achievement_completed
 
 signal default_silhouette
@@ -83,9 +95,20 @@ func _ready():
 	
 	player_died.connect(e)
 	sign_movement_touch.connect(e)
-	npc_talked.connect(e)
 	coin_collected.connect(e)
-	npci_dialogue.connect(e)
+	hidden_coin_collected.connect(e)
+	npc_talked_to.connect(e)
+	helpful_block_hit.connect(e)
+	enemy_slayed.connect(e)
+	mushroom_bounced.connect(e)
+	avoided_rolling_boulder.connect(e)
+	gravity_flip_activated.connect(e)
+	maze_escaped.connect(e)
+	double_jump_activated.connect(e)
+	hidden_key_found.connect(e)
+	tungsten_cube_dropped.connect(e)
+	correct_code_entered.connect(e)
+	andona_summoned.connect(e)
 	achievement_completed.connect(e)
 	
 	default_silhouette.connect(e)

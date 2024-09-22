@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://u0rnbporjoyr"]
+[gd_scene load_steps=13 format=3 uid="uid://u0rnbporjoyr"]
 
 [ext_resource type="Script" path="res://Scripts/Boulder.gd" id="1_300n0"]
 [ext_resource type="Texture2D" uid="uid://c1i60l3anjcxk" path="res://Art/BoulderBig.png" id="2_1p41f"]
@@ -36,31 +36,63 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu4j6"]
-radius = 23.0
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_45jtu"]
-radius = 50.0
+radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7773n"]
-radius = 73.0
+radius = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsm0x"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t66fy"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ef77w"]
+radius = 60.0
 
 [node name="Boulder" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_ptcf8")
 inertia = 1.0
 contact_monitor = true
-max_contacts_reported = 2
+max_contacts_reported = 1
 constant_torque = -150.0
 script = ExtResource("1_300n0")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5e0a6")
-animation = &"med"
+animation = &"small"
 
 [node name="SmallCollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gu4j6")
+disabled = true
 
 [node name="MediumCollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_45jtu")
+disabled = true
 
 [node name="BigCollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7773n")
+disabled = true
+
+[node name="DamageManager" type="Area2D" parent="."]
+
+[node name="SmallCollisionShape2D" type="CollisionShape2D" parent="DamageManager"]
+shape = SubResource("CircleShape2D_fsm0x")
+disabled = true
+
+[node name="MediumCollisionShape2D" type="CollisionShape2D" parent="DamageManager"]
+shape = SubResource("CircleShape2D_t66fy")
+disabled = true
+
+[node name="BigCollisionShape2D" type="CollisionShape2D" parent="DamageManager"]
+shape = SubResource("CircleShape2D_ef77w")
+disabled = true
+
+[node name="QuestTracker" type="RayCast2D" parent="."]
+top_level = true
+target_position = Vector2(0, -500)
+
+[connection signal="body_entered" from="DamageManager" to="." method="_on_damage_manager_body_entered"]
