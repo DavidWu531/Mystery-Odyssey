@@ -319,5 +319,7 @@ func _physics_process(_delta):
 			torch_level = 100
 	else:
 		player_maxhealth = INF
+		player_health = player_maxhealth
 		torch_level = 100
 		player_maxenergy = INF
+		player_energy = player_maxenergy

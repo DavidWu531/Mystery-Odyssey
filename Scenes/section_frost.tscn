@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cn1jalkre7nt6" path="res://Scenes/enemy.tscn" id="16_80g1c"]
 [ext_resource type="Script" path="res://Scripts/Pads.gd" id="17_kx27t"]
 [ext_resource type="Texture2D" uid="uid://bemkd0cm8xinw" path="res://Art/JumpPad1.png" id="18_58vy6"]
-[ext_resource type="PackedScene" uid="uid://csccev04n5i4e" path="res://Scenes/boss.tscn" id="23_q3x0i"]
+[ext_resource type="Texture2D" uid="uid://sdrul36m117y" path="res://Art/ParticleSnow.png" id="23_olbi1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfexn"]
 size = Vector2(32, 32)
@@ -499,7 +499,7 @@ shape = SubResource("RectangleShape2D_yco48")
 
 [node name="Interactable" type="Sprite2D" parent="BossAltar"]
 visible = false
-position = Vector2(0, -112)
+position = Vector2(0, -240)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("4_a7wfw")
 
@@ -559,6 +559,9 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_flokl")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_8j325")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -663,11 +666,18 @@ label_settings = SubResource("LabelSettings_m0xno")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_8j325")
-
-[node name="Boss" parent="." instance=ExtResource("23_q3x0i")]
-position = Vector2(15808, -13912)
+[node name="Particles" type="CPUParticles2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(1920, 540)
+emitting = false
+amount = 20
+lifetime = 6.0
+texture = ExtResource("23_olbi1")
+emission_shape = 3
+emission_rect_extents = Vector2(120, 960)
+direction = Vector2(0, -1)
+gravity = Vector2(-980, 0)
+angle_max = 360.0
 
 [connection signal="body_entered" from="NPCs/NPCIX" to="." method="_on_npcix_body_entered"]
 [connection signal="body_exited" from="NPCs/NPCIX" to="." method="_on_npcix_body_exited"]

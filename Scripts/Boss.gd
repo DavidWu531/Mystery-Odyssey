@@ -17,6 +17,7 @@ var enemy = preload("res://Scenes/enemy.tscn")
 func _ready() -> void:
 	SignalBus.boss_spawned.connect(boss_spawned)
 
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor:
 		velocity.y += gravity * delta
@@ -33,10 +34,12 @@ func _physics_process(delta: float) -> void:
 	
 	position += velocity * delta
 
+
 func _process(_delta: float) -> void:
 	if touching_light:
 		Global.boss_health -= 0.1
 	if Global.boss_health <= 0:
+		SignalBus.boss_defeated.emit()
 		queue_free()
 	
 	if Global.boss_health <= 200:

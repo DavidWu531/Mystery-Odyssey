@@ -13,6 +13,7 @@ var npcv_talked = false
 func _ready():
 	SignalBus.checkpoint_i_hit.connect(checkpoint_i_hit)
 	SignalBus.checkpoint_ii_hit.connect(checkpoint_ii_hit)
+	SignalBus.checkpoint_iii_hit.connect(checkpoint_iii_hit)
 
 
 func _process(_delta):
@@ -194,6 +195,12 @@ func checkpoint_ii_hit():
 	$Checkpoints/CheckpointII.set_deferred("monitorable", false)
 	$Checkpoints/CheckpointII.set_deferred("monitoring", false)
 	$Checkpoints/CheckpointII/CollisionShape2D.set_deferred("disabled", true)
+
+
+func checkpoint_iii_hit():
+	$CanvasLayer/Particles.emitting = false
+	$CanvasLayer/Particles.visible = false
+
 
 func _on_npcii_body_entered(body):
 	if "Player" in body.name:
