@@ -1,4 +1,4 @@
-res://Scenes/section_frost.tscn
+res://Scenes/ui_manager.tscn
 res://Resources/obstacles.tres
 res://Resources/platforms.tres
 res://Resources/npc.tres
@@ -10,8 +10,8 @@ res://Scenes/loading_screen.tscn
 res://Scenes/player.tscn
 res://Scenes/tungsten_cube.tscn
 res://Scenes/section_grass.tscn
+res://Scenes/section_frost.tscn
 res://Scenes/section_desert.tscn
-res://Scenes/ui_manager.tscn
 res://Scenes/won.tscn
 res://Scenes/boulder.tscn
 res://Scenes/main.tscn
