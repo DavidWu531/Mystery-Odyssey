@@ -1256,6 +1256,7 @@ offset_right = 744.0
 offset_bottom = 1000.0
 
 [node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCI"]
+modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = -704.0
 offset_right = 1216.0
@@ -1294,6 +1295,7 @@ offset_right = 744.0
 offset_bottom = 1000.0
 
 [node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCII"]
+modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = -704.0
 offset_right = 1216.0
@@ -1332,6 +1334,7 @@ offset_right = 744.0
 offset_bottom = 1000.0
 
 [node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCIII"]
+modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = -704.0
 offset_right = 1216.0
@@ -1360,6 +1363,7 @@ offset_right = 744.0
 offset_bottom = 1000.0
 
 [node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCIV"]
+modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = -704.0
 offset_right = 1216.0
@@ -1398,6 +1402,7 @@ offset_right = 744.0
 offset_bottom = 1000.0
 
 [node name="DialogueBackground" type="TextureRect" parent="CanvasLayer/NPCV"]
+modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = -704.0
 offset_right = 1216.0

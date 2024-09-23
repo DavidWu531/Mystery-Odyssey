@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 res://Scenes/main_menu.tscn
 res://Resources/npc.tres
+=======
+<<<<<<< HEAD
+res://Scenes/ui_manager.tscn
+=======
+res://Scenes/boulder.tscn
+>>>>>>> 722b86ff5bcfbd3cdbd34f08e06e35ff7c4f9631
+>>>>>>> 997c195491e68914d20acc30b482b3af6a3c7c1f
 res://Resources/obstacles.tres
 res://Resources/platforms.tres
 res://Scripts/Boulder.gd
