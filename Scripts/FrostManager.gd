@@ -138,6 +138,9 @@ func checkpoint_vi_hit():
 	$Checkpoints/CheckpointVI.set_deferred("monitorable", false)
 	$Checkpoints/CheckpointVI.set_deferred("monitoring", false)
 	$Checkpoints/CheckpointVI/CollisionShape2D.set_deferred("disabled", true)
+	
+	$CanvasLayer/Particles.emitting = true
+	$CanvasLayer/Particles.visible = true
 
 
 func checkpoint_vii_hit():

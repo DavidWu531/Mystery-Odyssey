@@ -3,7 +3,10 @@ extends Area2D
 var speed = 170
 
 func _ready() -> void:
-	pass # Replace with function body.
+	if randf() >= 0.5:
+		big()
+	else:
+		small()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,3 +23,13 @@ func _on_body_entered(body: Node2D) -> void:
 			body.death_engine()
 			await get_tree().create_timer(1.0).timeout
 			queue_free()
+			
+
+func small():
+	speed = 375
+	scale = Vector2(2,2)
+	
+	
+func big():
+	speed = 125
+	scale = Vector2(4,4)

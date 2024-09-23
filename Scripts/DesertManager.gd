@@ -106,12 +106,18 @@ func checkpoint_iii_hit():
 	$Checkpoints/CheckpointIII.set_deferred("monitorable", false)
 	$Checkpoints/CheckpointIII.set_deferred("monitoring", false)
 	$Checkpoints/CheckpointIII/CollisionShape2D.set_deferred("disabled", true)
+	
+	$CanvasLayer/Particles.emitting = true
+	$CanvasLayer/Particles.visible = true
 
 
 func checkpoint_iv_hit():
 	$Checkpoints/CheckpointIV.set_deferred("monitorable", false)
 	$Checkpoints/CheckpointIV.set_deferred("monitoring", false)
 	$Checkpoints/CheckpointIV/CollisionShape2D.set_deferred("disabled", true)
+	
+	$CanvasLayer/Particles.emitting = false
+	$CanvasLayer/Particles.visible = false
 
 
 func checkpoint_v_hit():

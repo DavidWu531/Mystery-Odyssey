@@ -11,6 +11,22 @@ signal checkpoint_vii_hit
 
 signal player_died
 signal sign_movement_touch
+
+signal quest_coin_collected
+signal quest_hidden_coin_collected
+signal quest_npc_talked_to
+signal quest_helpful_block_hit
+signal quest_enemy_slayed
+signal quest_mushroom_bounced
+signal quest_avoided_rolling_boulder
+signal quest_gravity_flip_activated
+signal quest_maze_escaped
+signal quest_double_jump_activated
+signal quest_hidden_key_found
+signal quest_tungsten_cube_dropped
+signal quest_correct_code_entered
+signal quest_andona_summoned
+
 signal coin_collected
 signal hidden_coin_collected
 signal npc_talked_to
@@ -27,6 +43,7 @@ signal correct_code_entered
 signal andona_summoned
 
 signal achievement_completed
+signal boss_defeated
 
 signal default_silhouette
 signal double_jump_silhouette
@@ -95,6 +112,22 @@ func _ready():
 	
 	player_died.connect(e)
 	sign_movement_touch.connect(e)
+	
+	quest_coin_collected.connect(e)
+	quest_hidden_coin_collected.connect(e)
+	quest_npc_talked_to.connect(e)
+	quest_helpful_block_hit.connect(e)
+	quest_enemy_slayed.connect(e)
+	quest_mushroom_bounced.connect(e)
+	quest_avoided_rolling_boulder.connect(e)
+	quest_gravity_flip_activated.connect(e)
+	quest_maze_escaped.connect(e)
+	quest_double_jump_activated.connect(e)
+	quest_hidden_key_found.connect(e)
+	quest_tungsten_cube_dropped.connect(e)
+	quest_correct_code_entered.connect(e)
+	quest_andona_summoned.connect(e)
+	
 	coin_collected.connect(e)
 	hidden_coin_collected.connect(e)
 	npc_talked_to.connect(e)
@@ -109,7 +142,9 @@ func _ready():
 	tungsten_cube_dropped.connect(e)
 	correct_code_entered.connect(e)
 	andona_summoned.connect(e)
+	
 	achievement_completed.connect(e)
+	boss_defeated.connect(e)
 	
 	default_silhouette.connect(e)
 	double_jump_silhouette.connect(e)

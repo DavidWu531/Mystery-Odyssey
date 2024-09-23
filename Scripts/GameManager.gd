@@ -52,8 +52,9 @@ func checkpoint_iv_hit():
 		if not Global.one_heart_escape:
 			Global.one_heart_escape_progress = 1
 	Global.player_health = Global.player_maxhealth
-	$AnimationPlayer.seek(75.0)
-	$AnimationPlayer.pause()
+	if $AnimationPlayer.current_animation == "Cycle":
+		$AnimationPlayer.seek(75.0, true)
+		$AnimationPlayer.pause()
 	$AudioStreamPlayer.stream = load("res://Audio/BGM/sunflower-gaze-151009.mp3")
 	$AudioStreamPlayer.play()
 
@@ -72,7 +73,8 @@ func checkpoint_vi_hit():
 	Global.player_health = Global.player_maxhealth
 	if not Global.escape_cave:
 		Global.escape_cave_progress = 1
-
+	if $AnimationPlayer.current_animation == "Cycle":
+		$AnimationPlayer.stop()
 
 func checkpoint_vii_hit():
 	if Global.player_health == 1:

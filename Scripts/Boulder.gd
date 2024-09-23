@@ -29,13 +29,13 @@ func _physics_process(_delta):
 	
 	$QuestTracker.position = position
 
+
 func _process(_delta):
 	if $QuestTracker.is_colliding():
 		if "Player" in $QuestTracker.get_collider().name:
 			if not collided:
 				SignalBus.avoided_rolling_boulder.emit()
 				collided = true
-
 
 
 func big():
@@ -45,6 +45,7 @@ func big():
 	$BigCollisionShape2D.disabled = false
 	$DamageManager/BigCollisionShape2D.set_deferred("disabled", false)
 	
+	
 func small():
 	mass = 1
 	$Sprite2D.play("small")
@@ -52,12 +53,14 @@ func small():
 	$SmallCollisionShape2D.disabled = false
 	$DamageManager/SmallCollisionShape2D.set_deferred("disabled", false)
 	
+	
 func medium():
 	mass = 5
 	$Sprite2D.play("med")
 	damage = 3 * Settings.difficulty_amplifier
 	$MediumCollisionShape2D.disabled = false
 	$DamageManager/MediumCollisionShape2D.set_deferred("disabled", false)
+
 
 func _on_damage_manager_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:

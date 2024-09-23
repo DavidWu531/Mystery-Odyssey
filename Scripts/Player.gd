@@ -69,6 +69,7 @@ func _ready():
 	SignalBus.doomed.connect(doomed)
 	SignalBus.undoomed.connect(undoomed)
 	SignalBus.boss_spawned.connect(boss_spawned)
+	SignalBus.boss_defeated.connect(boss_defeated)
 	
 	$LightAttackAngular/AngularLight.offset = Vector2(45.5 * (5 * Global.torch_level) - 32, 0)
 	$LightAttackAngular/AngularLight.texture_scale = 5 * Global.torch_level
@@ -677,6 +678,8 @@ func _on_fist_attack_area_entered(area: Area2D) -> void:
 		area.get_parent().get_parent().breakable_health -= 1
 	elif "Boss" in area.name:
 		Global.boss_health -= 8
+	elif "Head" in area.name:
+		Global.boss_health -= 16
 
 
 func _on_attack_cooldown_timeout() -> void:
@@ -743,3 +746,7 @@ func _on_energy_regeneration_timeout() -> void:
 
 func _on_energy_delay_timeout() -> void:
 	$EnergyRegeneration.start(get_process_delta_time())
+	
+
+func boss_defeated():
+	Settings.gamemode = "Creative"
