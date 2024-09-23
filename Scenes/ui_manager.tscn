@@ -174,7 +174,7 @@ RichTextLabel/font_sizes/normal_font_size = 18
 
 [sub_resource type="Theme" id="Theme_4w7yt"]
 GridContainer/constants/h_separation = 506
-GridContainer/constants/v_separation = 151
+GridContainer/constants/v_separation = 48
 
 [node name="UIManager" type="CanvasLayer"]
 script = ExtResource("1_aajpp")
@@ -1665,6 +1665,7 @@ offset_bottom = 944.0
 horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="PauseMenu/Quests/ScrollContainer"]
+custom_minimum_size = Vector2(0, 1090)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2133,14 +2134,6 @@ text = "[b][color=gray]Achievement Locked![/color][/b]
 [color=gold]MORE POWER!![/color]
 [i]Travel 100 blocks in the desert[/i]"
 
-[node name="UpdateAchievementTimer" type="Timer" parent="PauseMenu"]
-wait_time = 3.0
-autostart = true
-
-[node name="UpdateQuestTimer" type="Timer" parent="PauseMenu"]
-wait_time = 3.0
-autostart = true
-
 [connection signal="mouse_entered" from="MainScreen/PlayerFrame" to="." method="_on_player_frame_mouse_entered"]
 [connection signal="mouse_exited" from="MainScreen/PlayerFrame" to="." method="_on_player_frame_mouse_exited"]
 [connection signal="mouse_entered" from="MainScreen/Health/Base/PlayerHealthOverlay" to="." method="_on_player_health_overlay_mouse_entered"]
@@ -2158,5 +2151,3 @@ autostart = true
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/Achievement" to="PauseMenu" method="_on_achievement_pressed"]
 [connection signal="pressed" from="PauseMenu/Quest" to="PauseMenu" method="_on_quest_pressed"]
-[connection signal="timeout" from="PauseMenu/UpdateAchievementTimer" to="PauseMenu" method="_on_update_achievement_timer_timeout"]
-[connection signal="timeout" from="PauseMenu/UpdateQuestTimer" to="." method="_on_update_quest_timer_timeout"]

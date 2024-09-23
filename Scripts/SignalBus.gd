@@ -43,6 +43,7 @@ signal correct_code_entered
 signal andona_summoned
 
 signal achievement_completed
+signal quest_completed
 signal boss_defeated
 
 signal default_silhouette
@@ -144,6 +145,7 @@ func _ready():
 	andona_summoned.connect(e)
 	
 	achievement_completed.connect(e)
+	quest_completed.connect(e)
 	boss_defeated.connect(e)
 	
 	default_silhouette.connect(e)

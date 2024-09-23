@@ -270,6 +270,7 @@ texture_region_size = Vector2i(64, 64)
 0:0/4 = 4
 0:0/4/modulate = Color(0.72549, 0.811765, 0.988235, 0.756863)
 0:0/4/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 0, -32, 0)
+0:0/4/physics_layer_0/polygon_0/one_way = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8bcyv"]
 texture = ExtResource("17_48nr6")

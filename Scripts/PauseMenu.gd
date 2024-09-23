@@ -25,6 +25,8 @@ func _process(_delta):
 	$Quests/Progress.value = Global.quest_hunter_progress
 	$Achievements/Label.text = "Achievements Completed: " + str(Global.achievement_completed) + "/30"
 	$Quests/Label.text = "Quests Completed: " + str(Global.quest_hunter_progress) + "/14"
+	
+	update_achievement()
 
 
 func update_achievement():
@@ -185,7 +187,3 @@ func _on_achievement_pressed():
 
 func _on_quest_pressed() -> void:
 	$Quests.show()
-
-
-func _on_update_achievement_timer_timeout() -> void:
-	update_achievement()

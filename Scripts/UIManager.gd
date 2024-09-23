@@ -18,6 +18,7 @@ var quests = {
 }
 
 var banner = preload("res://Scenes/achievement_banner.tscn")
+var banner_ii = preload("res://Scenes/quest_banner.tscn")
 var scroll_tip_id = 0
 
 var boss_maxhealth = 1000
@@ -41,6 +42,7 @@ func _ready():
 	
 	
 	SignalBus.achievement_completed.connect(achievement_completed)
+	SignalBus.quest_completed.connect(quest_completed)
 	SignalBus.doomed.connect(doomed)
 	SignalBus.undoomed.connect(undoomed)
 	SignalBus.boss_spawned.connect(boss_spawned)
@@ -187,6 +189,8 @@ func _physics_process(_delta: float) -> void:
 		$MainScreen/Dialogue/Dialogue.text = "Beware! Andona has become stronger and even more dangerous!"
 		$MainScreen/Dialogue.show()
 		$MainScreen/Dialogue/DialogueTimer.start(5.0)
+	
+	update_quest()
 
 func _on_continue_pressed():
 	$PauseMenu.hide()
@@ -224,7 +228,7 @@ func linear_motion_silhouette():
 func achievement_completed():
 	var new_banner = banner.instantiate()
 	new_banner.position = Vector2(36,774)
-	add_child(new_banner)
+	$MainScreen.add_child(new_banner)
 
 
 func _on_player_frame_mouse_entered() -> void:
@@ -442,10 +446,13 @@ func check_quest_completion(quest_name):
 	if quest["progress"] >= quest["goal"]:
 		quest["completed"] = true
 		Global.quest_hunter_progress += 1
+		SignalBus.quest_completed.emit()
 
 
-func _on_update_quest_timer_timeout() -> void:
-	update_quest()
+func quest_completed():
+	var new_banner = banner_ii.instantiate()
+	new_banner.position = Vector2(36,774)
+	$MainScreen.add_child(new_banner)
 
 
 func _on_player_health_mouse_entered() -> void:
