@@ -1,20 +1,20 @@
 extends CanvasLayer
 
 var quests = { 
-	"Talk to an NPC": {"progress": 0, "goal": 1, "completed": false},
-	"Collect Coins": {"progress": 0, "goal": 5, "completed": false},
-	"Find Hidden Coins": {"progress": 0, "goal": 3, "completed": false},
-	"Hit helpful blocks": {"progress": 0, "goal": 2, "completed": false},
-	"Slay Enemies": {"progress": 0, "goal": 3, "completed": false},
-	"Bounce on mushroom pads": {"progress": 0, "goal": 10, "completed": false},
-	"Avoid rolling boulders": {"progress": 0, "goal": 15, "completed": false},
-	"Activate Gravity Flip Mode": {"progress": 0, "goal": 1, "completed": false},
-	"Escape the maze": {"progress": 0, "goal": 1, "completed": false},
-	"Activate Double Jump Mode": {"progress": 0, "goal": 1, "completed": false},
-	"Find the hidden key": {"progress": 0, "goal": 1, "completed": false},
-	"Drop the tungsten cube in lava": {"progress": 0, "goal": 1, "completed": false},
-	"Enter the correct code": {"progress": 0, "goal": 1, "completed": false},
-	"Summon Andona using his altar": {"progress": 0, "goal": 1, "completed": false}
+	"Talk to an NPC": {"progress": 0, "goal": 1, "completed": false, "updated": false},
+	"Collect Coins": {"progress": 0, "goal": 5, "completed": false, "updated": false},
+	"Find Hidden Coins": {"progress": 0, "goal": 3, "completed": false, "updated": false},
+	"Hit helpful blocks": {"progress": 0, "goal": 2, "completed": false, "updated": false},
+	"Slay Enemies": {"progress": 0, "goal": 3, "completed": false, "updated": false},
+	"Bounce on mushroom pads": {"progress": 0, "goal": 10, "completed": false, "updated": false},
+	"Avoid rolling boulders": {"progress": 0, "goal": 15, "completed": false, "updated": false},
+	"Activate Gravity Flip Mode": {"progress": 0, "goal": 1, "completed": false, "updated": false},
+	"Escape the maze": {"progress": 0, "goal": 1, "completed": false, "updated": false},
+	"Activate Double Jump Mode": {"progress": 0, "goal": 1, "completed": false, "updated": false},
+	"Find the hidden key": {"progress": 0, "goal": 1, "completed": false, "updated": false},
+	"Drop the tungsten cube in lava": {"progress": 0, "goal": 1, "completed": false, "updated": false},
+	"Enter the correct code": {"progress": 0, "goal": 1, "completed": false, "updated": false},
+	"Summon Andona using his altar": {"progress": 0, "goal": 1, "completed": false, "updated": false}
 }
 
 var banner = preload("res://Scenes/achievement_banner.tscn")
@@ -52,6 +52,12 @@ func _ready():
 	SignalBus.double_jump_silhouette.connect(double_jump_silhouette)
 	SignalBus.gravity_flip_silhouette.connect(gravity_flip_silhouette)
 	SignalBus.linear_motion_silhouette.connect(linear_motion_silhouette)
+	
+	SignalBus.checkpoint_iii_hit.connect(checkpoint_iii_hit)
+	SignalBus.checkpoint_iv_hit.connect(checkpoint_iv_hit)
+	SignalBus.checkpoint_vi_hit.connect(checkpoint_vi_hit)
+	
+	$MainScreen/Particles.texture = load("res://Art/ParticleLeaf.png")
 	
 	$MainScreen/BossHealth/BossHealthbar.max_value = 200
 	
@@ -276,85 +282,141 @@ func update_quest():
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID1/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Talk to an NPC[/color]\n[i](" + str(quests["Talk to an NPC"]["progress"]) + "/" + str(quests["Talk to an NPC"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID1/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Talk to an NPC[/color]\n[i](" + str(quests["Talk to an NPC"]["progress"]) + "/" + str(quests["Talk to an NPC"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_npc_talked_to.emit()
+		if not quests["Talk to an NPC"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Talk to an NPC"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_npc_talked_to.emit()
 	
 	if not quests["Collect Coins"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID2/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Collect Coins[/color]\n[i](" + str(quests["Collect Coins"]["progress"]) + "/" + str(quests["Collect Coins"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID2/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Collect Coins[/color]\n[i](" + str(quests["Collect Coins"]["progress"]) + "/" + str(quests["Collect Coins"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_coin_collected.emit()
+		if not quests["Collect Coins"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Collect Coins"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_coin_collected.emit()
 	
 	if not quests["Find Hidden Coins"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID3/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Find Hidden Coins[/color]\n[i](" + str(quests["Find Hidden Coins"]["progress"]) + "/" + str(quests["Find Hidden Coins"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID3/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Find Hidden Coins[/color]\n[i](" + str(quests["Find Hidden Coins"]["progress"]) + "/" + str(quests["Find Hidden Coins"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_hidden_coin_collected.emit()
+		if not quests["Find Hidden Coins"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Find Hidden Coins"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_hidden_coin_collected.emit()
 	
 	if not quests["Hit helpful blocks"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID4/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Hit helpful blocks[/color]\n[i](" + str(quests["Hit helpful blocks"]["progress"]) + "/" + str(quests["Hit helpful blocks"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID4/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Hit helpful blocks[/color]\n[i](" + str(quests["Hit helpful blocks"]["progress"]) + "/" + str(quests["Hit helpful blocks"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_helpful_block_hit.emit()
+		if not quests["Hit helpful blocks"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Hit helpful blocks"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_helpful_block_hit.emit()
 	
 	if not quests["Slay Enemies"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID5/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Slay Enemies[/color]\n[i](" + str(quests["Slay Enemies"]["progress"]) + "/" + str(quests["Slay Enemies"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID5/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Slay Enemies[/color]\n[i](" + str(quests["Slay Enemies"]["progress"]) + "/" + str(quests["Slay Enemies"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_enemy_slayed.emit()
+		if not quests["Slay Enemies"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Slay Enemies"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_enemy_slayed.emit()
 	
 	if not quests["Bounce on mushroom pads"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID6/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Bounce on mushroom pads[/color]\n[i](" + str(quests["Bounce on mushroom pads"]["progress"]) + "/" + str(quests["Bounce on mushroom pads"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID6/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Bounce on mushroom pads[/color]\n[i](" + str(quests["Bounce on mushroom pads"]["progress"]) + "/" + str(quests["Bounce on mushroom pads"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_mushroom_bounced.emit()
+		if not quests["Bounce on mushroom pads"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Bounce on mushroom pads"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_mushroom_bounced.emit()
 	
 	if not quests["Avoid rolling boulders"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID7/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Avoid rolling boulders[/color]\n[i](" + str(quests["Avoid rolling boulders"]["progress"]) + "/" + str(quests["Avoid rolling boulders"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID7/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Avoid rolling boulders[/color]\n[i](" + str(quests["Avoid rolling boulders"]["progress"]) + "/" + str(quests["Avoid rolling boulders"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_avoided_rolling_boulder.emit()
+		if not quests["Avoid rolling boulders"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Avoid rolling boulders"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_avoided_rolling_boulder.emit()
 	
 	if not quests["Activate Gravity Flip Mode"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID8/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Activate Gravity Flip Mode[/color]\n[i](" + str(quests["Activate Gravity Flip Mode"]["progress"]) + "/" + str(quests["Activate Gravity Flip Mode"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID8/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Activate Gravity Flip Mode[/color]\n[i](" + str(quests["Activate Gravity Flip Mode"]["progress"]) + "/" + str(quests["Activate Gravity Flip Mode"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_gravity_flip_activated.emit()
+		if not quests["Activate Gravity Flip Mode"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Activate Gravity Flip Mode"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_gravity_flip_activated.emit()
 	
 	if not quests["Escape the maze"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID9/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Escape the maze[/color]\n[i](" + str(quests["Escape the maze"]["progress"]) + "/" + str(quests["Escape the maze"]["goal"]) + ")[/i]"
 	else:
-		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID9/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Escape the maze/color]\n[i](" + str(quests["Escape the maze"]["progress"]) + "/" + str(quests["Escape the maze"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_maze_escaped.emit()
+		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID9/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Escape the maze[/color]\n[i](" + str(quests["Escape the maze"]["progress"]) + "/" + str(quests["Escape the maze"]["goal"]) + ") Completed[/i]"
+		if not quests["Escape the maze"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Escape the maze"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_maze_escaped.emit()
 	
 	if not quests["Activate Double Jump Mode"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID10/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Activate Double Jump Mode[/color]\n[i](" + str(quests["Activate Double Jump Mode"]["progress"]) + "/" + str(quests["Activate Double Jump Mode"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID10/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Activate Double Jump Mode[/color]\n[i](" + str(quests["Activate Double Jump Mode"]["progress"]) + "/" + str(quests["Activate Double Jump Mode"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_double_jump_activated.emit()
+		if not quests["Activate Double Jump Mode"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Activate Double Jump Mode"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_double_jump_activated.emit()
 	
 	if not quests["Find the hidden key"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID11/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Find the hidden key[/color]\n[i](" + str(quests["Find the hidden key"]["progress"]) + "/" + str(quests["Find the hidden key"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID11/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Find the hidden key[/color]\n[i](" + str(quests["Find the hidden key"]["progress"]) + "/" + str(quests["Find the hidden key"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_hidden_key_found.emit()
+		if not quests["Find the hidden key"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Find the hidden key"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_hidden_key_found.emit()
 	
 	if not quests["Drop the tungsten cube in lava"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID12/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Drop the tungsten cube in lava[/color]\n[i](" + str(quests["Drop the tungsten cube in lava"]["progress"]) + "/" + str(quests["Drop the tungsten cube in lava"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID12/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Drop the tungsten cube in lava[/color]\n[i](" + str(quests["Drop the tungsten cube in lava"]["progress"]) + "/" + str(quests["Drop the tungsten cube in lava"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_tungsten_cube_dropped.emit()
+		if not quests["Drop the tungsten cube in lava"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Drop the tungsten cube in lava"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_tungsten_cube_dropped.emit()
 	
 	if not quests["Enter the correct code"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID13/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Enter the correct code[/color]\n[i](" + str(quests["Enter the correct code"]["progress"]) + "/" + str(quests["Enter the correct code"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID13/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Enter the correct code[/color]\n[i](" + str(quests["Enter the correct code"]["progress"]) + "/" + str(quests["Enter the correct code"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_correct_code_entered.emit()
+		if not quests["Enter the correct code"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Enter the correct code"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_correct_code_entered.emit()
 	
 	if not quests["Summon Andona using his altar"]["completed"]:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID14/RichTextLabel.text = "[b][color=gray]Quest Uncompleted![/color][/b]\n[color=gold]Summon Andona using his altar[/color]\n[i](" + str(quests["Summon Andona using his altar"]["progress"]) + "/" + str(quests["Summon Andona using his altar"]["goal"]) + ")[/i]"
 	else:
 		$PauseMenu/Quests/ScrollContainer/GridContainer/QuestID14/RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Summon Andona using his altar[/color]\n[i](" + str(quests["Summon Andona using his altar"]["progress"]) + "/" + str(quests["Summon Andona using his altar"]["goal"]) + ") Completed[/i]"
-		SignalBus.quest_andona_summoned.emit()
+		if not quests["Summon Andona using his altar"]["updated"]:
+			Global.quest_hunter_progress += 1
+			quests["Summon Andona using his altar"]["updated"] = true
+			SignalBus.quest_completed.emit()
+			SignalBus.quest_andona_summoned.emit()
 
 func talk_to_npc():
 	if not quests["Talk to an NPC"]["completed"]:
@@ -441,12 +503,10 @@ func summon_andona_using_his_altar():
 
 
 func check_quest_completion(quest_name):
-	update_quest()
 	var quest = quests[quest_name]
 	if quest["progress"] >= quest["goal"]:
 		quest["completed"] = true
-		Global.quest_hunter_progress += 1
-		SignalBus.quest_completed.emit()
+	update_quest()
 
 
 func quest_completed():
@@ -505,3 +565,16 @@ func _on_boss_healthbar_mouse_exited() -> void:
 
 func boss_defeated():
 	$MainScreen/BossHealth.hide()
+
+
+func checkpoint_iii_hit():
+	$MainScreen/Particles.texture = load("res://Art/ParticleSand.png")
+	
+	
+func checkpoint_iv_hit():
+	$MainScreen/Particles.emitting = false
+	
+
+func checkpoint_vi_hit():
+	$MainScreen/Particles.texture = load("res://Art/ParticleSnow.png")
+	$MainScreen/Particles.emitting = true

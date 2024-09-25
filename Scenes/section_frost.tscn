@@ -564,6 +564,7 @@ libraries = {
 stream = ExtResource("16_8j325")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="BossAltar" type="Control" parent="CanvasLayer"]
 visible = false

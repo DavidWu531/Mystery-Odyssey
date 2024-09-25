@@ -76,6 +76,7 @@ func checkpoint_vi_hit():
 	if $AnimationPlayer.current_animation == "Cycle":
 		$AnimationPlayer.stop()
 
+
 func checkpoint_vii_hit():
 	if Global.player_health == 1:
 		if not Global.one_heart_escape:

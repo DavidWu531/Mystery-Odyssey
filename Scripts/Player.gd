@@ -466,33 +466,45 @@ func _process(delta):
 func death_engine():
 	$DeathSFX.play()
 	Global.no_stopping_now_progress += 1
-	if Global.player_health > 0:
-		gravity = respawn_gravity
-		if boss_mode:
-			$DamageImmunity.start(2.5)
-			damage_immune = true
-			$AnimationPlayerII.play("respawn_bossmode")
-		else:
-			velocity = Vector2(0,0)
-			can_move = false
-			$SpawnImmunity.start(1.1)
-			$CollisionShape2D.set_deferred("disabled", true)
-			$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
-			position = take_damage_respos
-			gravity = respawn_gravity
-
-	elif Global.player_health <= 0:
+	if quick_retry:
+		velocity = Vector2(0,0)
+		can_move = false
+		$SpawnImmunity.start(1.1)
+		$CollisionShape2D.set_deferred("disabled", true)
+		$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
+		position = respawn_pos
+		take_damage_respos = respawn_pos
+		gravity = 980.0 * 1.75
 		SignalBus.player_died.emit()
-		if Settings.gamemode == "Permadeath":
-			spectator_mode()
-		else:
-			if boss_mode or hardcore:
+		quick_retry = false
+	else:
+		if Global.player_health > 0:
+			gravity = respawn_gravity
+			if boss_mode:
+				$DamageImmunity.start(2.5)
+				damage_immune = true
+				$AnimationPlayerII.play("respawn_bossmode")
+			else:
+				velocity = Vector2(0,0)
+				can_move = false
+				$SpawnImmunity.start(1.1)
+				$CollisionShape2D.set_deferred("disabled", true)
+				$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
+				position = take_damage_respos
+				gravity = respawn_gravity
+
+		elif Global.player_health <= 0:
+			SignalBus.player_died.emit()
+			if Settings.gamemode == "Permadeath":
 				spectator_mode()
 			else:
-				position = respawn_pos
-				take_damage_respos = respawn_pos
-				Global.player_health = Global.player_maxhealth
-				gravity = 980.0 * 1.75
+				if boss_mode or hardcore:
+					spectator_mode()
+				else:
+					position = respawn_pos
+					take_damage_respos = respawn_pos
+					Global.player_health = Global.player_maxhealth
+					gravity = 980.0 * 1.75
 				
 		
 		

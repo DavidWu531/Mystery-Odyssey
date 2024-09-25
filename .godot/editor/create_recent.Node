@@ -1,7 +1,7 @@
+CPUParticles2D
 ScrollContainer
 Button
 VBoxContainer
-CPUParticles2D
 CollisionShape2D
 Area2D
 Control
@@ -12,4 +12,3 @@ ColorRect
 RayCast2D
 AnimationPlayer
 AudioStreamPlayer
-CanvasLayer
