@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://dmpp7c4u2ikui"]
+[gd_scene load_steps=71 format=4 uid="uid://dmpp7c4u2ikui"]
 
 [ext_resource type="Script" path="res://Scripts/DesertManager.gd" id="1_ugj6b"]
 [ext_resource type="TileSet" uid="uid://dqj7cg6vm786t" path="res://Resources/obstacles.tres" id="2_1sx2f"]
@@ -27,6 +27,7 @@
 [ext_resource type="Material" uid="uid://dwffojaycyc6x" path="res://Resources/darkness_immune.tres" id="22_7ig0i"]
 [ext_resource type="Texture2D" uid="uid://ccucohel1pk46" path="res://Art/BlockHelp.png" id="23_8afcy"]
 [ext_resource type="Texture2D" uid="uid://cql55dg1gcgnf" path="res://Resources/npc.tres" id="24_00p4u"]
+[ext_resource type="AudioStream" uid="uid://qmy5ve7vk2rw" path="res://Audio/SFX/earth-rumble-6953.mp3" id="28_vni11"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bjy4x"]
 atlas = ExtResource("4_6ldl2")
@@ -1678,6 +1679,15 @@ label_settings = SubResource("LabelSettings_os13b")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="RisingLavaAudio" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(8960, 8136)
+stream = ExtResource("28_vni11")
+max_distance = 4550.0
+parameters/looping = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(11392, 8184)
 
 [connection signal="body_entered" from="Checkpoints/CheckpointIII" to="Checkpoints/CheckpointIII" method="_on_body_entered"]
 [connection signal="body_entered" from="Checkpoints/CheckpointIV" to="Checkpoints/CheckpointIV" method="_on_body_entered"]

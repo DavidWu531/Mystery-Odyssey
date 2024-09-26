@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bvdcl15vsqy0v"]
+[gd_scene load_steps=41 format=3 uid="uid://bvdcl15vsqy0v"]
 
 [ext_resource type="Script" path="res://Scripts/UIManager.gd" id="1_aajpp"]
 [ext_resource type="Texture2D" uid="uid://j5bqpsh1t2qt" path="res://Art/Health.png" id="2_ajn7e"]
@@ -21,6 +21,7 @@
 [ext_resource type="Material" uid="uid://dwffojaycyc6x" path="res://Resources/darkness_immune.tres" id="14_sscf0"]
 [ext_resource type="Texture2D" uid="uid://cdhre4kp4otsa" path="res://Art/AchievementIconExploration.png" id="15_rpew3"]
 [ext_resource type="Texture2D" uid="uid://gjdi0j382lrp" path="res://Art/AchievementIconShiny.png" id="16_104kt"]
+[ext_resource type="AudioStream" uid="uid://blpy8ijagapgy" path="res://Audio/SFX/ding-126626.mp3" id="16_v37cf"]
 [ext_resource type="Texture2D" uid="uid://hx8bi6l3k1gq" path="res://Art/AchievementIconSurprise.png" id="17_ouk37"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0jo67"]
@@ -529,6 +530,9 @@ offset_bottom = 192.0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="NotificationAudio" type="AudioStreamPlayer" parent="MainScreen"]
+stream = ExtResource("16_v37cf")
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3

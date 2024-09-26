@@ -233,8 +233,11 @@ func linear_motion_silhouette():
 
 func achievement_completed():
 	var new_banner = banner.instantiate()
-	new_banner.position = Vector2(36,774)
+	new_banner.position = Vector2(-236,774)
 	$MainScreen.add_child(new_banner)
+	$MainScreen/NotificationAudio.play()
+	var tween = get_tree().create_tween()
+	tween.tween_property(new_banner, "position", Vector2(36,774), 1.0)
 
 
 func _on_player_frame_mouse_entered() -> void:
@@ -511,8 +514,11 @@ func check_quest_completion(quest_name):
 
 func quest_completed():
 	var new_banner = banner_ii.instantiate()
-	new_banner.position = Vector2(36,774)
+	new_banner.position = Vector2(-236,774)
 	$MainScreen.add_child(new_banner)
+	$MainScreen/NotificationAudio.play()
+	var tween = get_tree().create_tween()
+	tween.tween_property(new_banner, "position", Vector2(36,774), 1.0)
 
 
 func _on_player_health_mouse_entered() -> void:

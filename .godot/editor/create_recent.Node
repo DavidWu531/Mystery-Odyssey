@@ -1,3 +1,6 @@
+Marker2D
+AudioStreamPlayer2D
+AudioStreamPlayer
 CPUParticles2D
 ScrollContainer
 Button
@@ -10,5 +13,3 @@ Timer
 Label
 ColorRect
 RayCast2D
-AnimationPlayer
-AudioStreamPlayer
