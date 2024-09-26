@@ -20,9 +20,3 @@ res://Scenes/boss.tscn
 res://Scenes/laser_poison.tscn
 res://Scenes/ice_shot.tscn
 res://Scenes/fire_ball.tscn
-res://Scripts/DesertManager.gd
-res://Scripts/FrostManager.gd
-res://Scripts/GrassManager.gd
-res://Scripts/UIManager.gd
-res://Scripts/GameManager.gd
-res://Scripts/Player.gd
