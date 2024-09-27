@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://u0rnbporjoyr"]
+[gd_scene load_steps=15 format=3 uid="uid://u0rnbporjoyr"]
 
 [ext_resource type="Script" path="res://Scripts/Boulder.gd" id="1_300n0"]
 [ext_resource type="Texture2D" uid="uid://c1i60l3anjcxk" path="res://Art/BoulderBig.png" id="2_1p41f"]
 [ext_resource type="Texture2D" uid="uid://bdgaf66h6b7vr" path="res://Art/BoulderMedium.png" id="3_xhuhq"]
 [ext_resource type="Texture2D" uid="uid://bhdhb8oynuxxm" path="res://Art/BoulderSmall.png" id="4_rck2n"]
+[ext_resource type="AudioStream" uid="uid://c5kwqrbfm2pkm" path="res://Audio/SFX/heavy-book-falling-96257.mp3" id="5_rdjip"]
+[ext_resource type="AudioStream" uid="uid://cj0wqvk0kegj8" path="res://Audio/SFX/rock-break-hard-184891.mp3" id="6_6epbf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ptcf8"]
 friction = 0.0
@@ -94,5 +96,13 @@ disabled = true
 [node name="QuestTracker" type="RayCast2D" parent="."]
 top_level = true
 target_position = Vector2(0, -500)
+
+[node name="LandAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_rdjip")
+volume_db = 24.0
+
+[node name="DespawnAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_6epbf")
+volume_db = 24.0
 
 [connection signal="body_entered" from="DamageManager" to="." method="_on_damage_manager_body_entered"]

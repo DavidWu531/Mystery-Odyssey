@@ -75,7 +75,7 @@ func checkpoint_vi_hit():
 		Global.escape_cave_progress = 1
 	if $AnimationPlayer.current_animation == "Cycle":
 		$AnimationPlayer.play("Cycle")
-		await get_tree().create_timer(1 / get_process_delta_time())
+		await get_tree().create_timer(1 / get_process_delta_time()).timeout
 		$AnimationPlayer.stop()
 
 
