@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://k6q106c05g5l"]
+[gd_scene load_steps=65 format=3 uid="uid://k6q106c05g5l"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_o3pfn"]
 [ext_resource type="Texture2D" uid="uid://2wyrvl1cg84c" path="res://Art/Prismdroidattackdriller.png" id="2_0s1hf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dwyku5y3yd8vs" path="res://Art/PlayerPosition.png" id="3_xtdmu"]
 [ext_resource type="Texture2D" uid="uid://dgtg2cvyqihd5" path="res://Art/RadialLight.png" id="4_nool5"]
 [ext_resource type="AudioStream" uid="uid://daf0exb3udxbf" path="res://Audio/SFX/glass-breaking-99389.mp3" id="6_y6ncv"]
+[ext_resource type="AudioStream" uid="uid://c5kwqrbfm2pkm" path="res://Audio/SFX/heavy-book-falling-96257.mp3" id="6_yhy2d"]
 [ext_resource type="AudioStream" uid="uid://waabley4bit8" path="res://Audio/SFX/jump-sound.mp3" id="7_hb5ft"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvhcs"]
@@ -635,13 +636,20 @@ libraries = {
 "": SubResource("AnimationLibrary_14t46")
 }
 
+[node name="PunchAudio" type="AudioStreamPlayer" parent="FistAttack"]
+stream = ExtResource("6_yhy2d")
+volume_db = 24.0
+bus = &"SFX"
+
 [node name="AttackCooldown" type="Timer" parent="."]
 
 [node name="DeathSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_y6ncv")
+bus = &"SFX"
 
 [node name="JumpSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_hb5ft")
+bus = &"SFX"
 
 [node name="DamageImmunity" type="Timer" parent="."]
 wait_time = 2.5

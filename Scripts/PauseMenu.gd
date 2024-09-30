@@ -15,8 +15,9 @@ func _process(_delta):
 				if $Achievements.visible or $Quests.visible:
 					$Achievements.hide()
 					$Quests.hide()
-				get_tree().paused = false
-				hide()
+				else:
+					get_tree().paused = false
+					hide()
 			else:
 				get_tree().paused = true
 				show()
@@ -187,3 +188,8 @@ func _on_achievement_pressed():
 
 func _on_quest_pressed() -> void:
 	$Quests.show()
+
+
+func _on_back_pressed() -> void:
+	$Achievements.hide()
+	$Quests.hide()

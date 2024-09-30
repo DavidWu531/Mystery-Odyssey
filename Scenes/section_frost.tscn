@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://dc5kpmgtm7i7k"]
+[gd_scene load_steps=43 format=4 uid="uid://dc5kpmgtm7i7k"]
 
 [ext_resource type="Script" path="res://Scripts/FrostManager.gd" id="1_0s8sj"]
 [ext_resource type="TileSet" uid="uid://by7wu55cjrnhd" path="res://Resources/platforms.tres" id="1_qgxo7"]
@@ -18,7 +18,6 @@
 [ext_resource type="AudioStream" uid="uid://dlq0acp6qglar" path="res://Audio/SFX/retro-coin-1-236677.mp3" id="13_io0up"]
 [ext_resource type="Texture2D" uid="uid://cql55dg1gcgnf" path="res://Resources/npc.tres" id="13_mdun8"]
 [ext_resource type="AudioStream" uid="uid://dbqy37bfwifmw" path="res://Audio/SFX/hiddencollectcoin-6075.mp3" id="14_3ow3a"]
-[ext_resource type="AudioStream" uid="uid://c7i2uftu4c0uu" path="res://Audio/BGM/sunflower-gaze-151009.mp3" id="16_8j325"]
 [ext_resource type="PackedScene" uid="uid://cn1jalkre7nt6" path="res://Scenes/enemy.tscn" id="16_80g1c"]
 [ext_resource type="Script" path="res://Scripts/Pads.gd" id="17_kx27t"]
 [ext_resource type="Texture2D" uid="uid://bemkd0cm8xinw" path="res://Art/JumpPad1.png" id="18_58vy6"]
@@ -279,6 +278,7 @@ shape = SubResource("RectangleShape2D_8ny5a")
 
 [node name="CheckpointHit" type="AudioStreamPlayer" parent="Checkpoints"]
 stream = ExtResource("9_0rsvr")
+bus = &"SFX"
 
 [node name="Coins" type="Node2D" parent="."]
 
@@ -406,9 +406,11 @@ shape = SubResource("CircleShape2D_uowpc")
 
 [node name="NormalCoin" type="AudioStreamPlayer" parent="Coins"]
 stream = ExtResource("13_io0up")
+bus = &"SFX"
 
 [node name="HiddenCoin" type="AudioStreamPlayer" parent="Coins"]
 stream = ExtResource("14_3ow3a")
+bus = &"SFX"
 
 [node name="Enemy" type="Node2D" parent="."]
 
@@ -559,9 +561,6 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_flokl")
 }
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_8j325")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0

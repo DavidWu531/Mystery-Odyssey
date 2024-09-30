@@ -237,7 +237,7 @@ func achievement_completed():
 	$MainScreen.add_child(new_banner)
 	$MainScreen/NotificationAudio.play()
 	var tween = get_tree().create_tween()
-	tween.tween_property(new_banner, "position", Vector2(36,774), 1.0)
+	tween.tween_property(new_banner, "position", Vector2(36,774), 0.5)
 
 
 func _on_player_frame_mouse_entered() -> void:
@@ -518,7 +518,7 @@ func quest_completed():
 	$MainScreen.add_child(new_banner)
 	$MainScreen/NotificationAudio.play()
 	var tween = get_tree().create_tween()
-	tween.tween_property(new_banner, "position", Vector2(36,774), 1.0)
+	tween.tween_property(new_banner, "position", Vector2(36,774), 0.5)
 
 
 func _on_player_health_mouse_entered() -> void:

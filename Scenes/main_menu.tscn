@@ -1,38 +1,94 @@
-[gd_scene load_steps=10 format=3 uid="uid://ct5ekpjb28mih"]
+[gd_scene load_steps=25 format=3 uid="uid://ct5ekpjb28mih"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_2dulc"]
-[ext_resource type="Texture2D" uid="uid://d2hxpsvdei4c6" path="res://Art/Cover.png" id="2_krjej"]
+[ext_resource type="Texture2D" uid="uid://rpb76jfig0so" path="res://Art/Prismdroidhaha.png" id="2_w7gll"]
+[ext_resource type="Texture2D" uid="uid://bi4rv8wim7x7u" path="res://Art/Achievements.png" id="3_adwmb"]
 [ext_resource type="Texture2D" uid="uid://bb6kdgqv5sdj3" path="res://Art/GUI.png" id="3_ttai5"]
+[ext_resource type="Texture2D" uid="uid://di5gclpiuudif" path="res://Art/Settings.png" id="4_vjhea"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fv4pt"]
-texture = ExtResource("3_ttai5")
-region_rect = Rect2(145, 98, 46, 13)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_teaok"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kns06"]
-texture = ExtResource("3_ttai5")
-region_rect = Rect2(145, 81, 46, 14)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xuca4"]
+load_path = "res://.godot/imported/Play.png-f67b67308e3b4b5b35cdc260265d2234.ctex"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_if6dn"]
-texture = ExtResource("3_ttai5")
-region_rect = Rect2(145, 113, 46, 14)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rgkr1"]
+texture = SubResource("CompressedTexture2D_xuca4")
+region_rect = Rect2(104, 104, 387, 206)
 
-[sub_resource type="Theme" id="Theme_ja0y5"]
+[sub_resource type="Theme" id="Theme_mwcrp"]
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/constants/outline_size = 10
 Button/font_sizes/font_size = 100
-Button/styles/hover = SubResource("StyleBoxTexture_fv4pt")
-Button/styles/normal = SubResource("StyleBoxTexture_kns06")
-Button/styles/pressed = SubResource("StyleBoxTexture_if6dn")
+Button/styles/focus = SubResource("StyleBoxEmpty_teaok")
+Button/styles/hover = null
+Button/styles/normal = SubResource("StyleBoxTexture_rgkr1")
+Button/styles/pressed = null
 
-[sub_resource type="Theme" id="Theme_lcjx8"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u1dpi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vkjw1"]
+texture = ExtResource("3_adwmb")
+region_rect = Rect2(167, 108, 260, 202)
+
+[sub_resource type="Theme" id="Theme_u0kk3"]
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/constants/outline_size = 10
 Button/font_sizes/font_size = 60
-Button/styles/hover = SubResource("StyleBoxTexture_fv4pt")
+Button/styles/focus = SubResource("StyleBoxEmpty_u1dpi")
+Button/styles/hover = null
+Button/styles/normal = SubResource("StyleBoxTexture_vkjw1")
+Button/styles/pressed = null
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kns06"]
+texture = ExtResource("4_vjhea")
+region_rect = Rect2(136, 109, 285, 199)
+
+[sub_resource type="Theme" id="Theme_sfm4g"]
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 60
+Button/styles/hover = null
 Button/styles/normal = SubResource("StyleBoxTexture_kns06")
-Button/styles/pressed = SubResource("StyleBoxTexture_if6dn")
+Button/styles/pressed = null
 
 [sub_resource type="LabelSettings" id="LabelSettings_pak4q"]
+font_size = 69
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_llxfb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ifll5"]
+texture = ExtResource("3_ttai5")
+region_rect = Rect2(145, 98, 46, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gkt3d"]
+texture = ExtResource("3_ttai5")
+region_rect = Rect2(145, 81, 46, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yv5f3"]
+texture = ExtResource("3_ttai5")
+region_rect = Rect2(145, 113, 46, 14)
+
+[sub_resource type="Theme" id="Theme_13hgw"]
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 69
+Button/styles/focus = SubResource("StyleBoxEmpty_llxfb")
+Button/styles/hover = SubResource("StyleBoxTexture_ifll5")
+Button/styles/normal = SubResource("StyleBoxTexture_gkt3d")
+Button/styles/pressed = SubResource("StyleBoxTexture_yv5f3")
+
+[sub_resource type="LabelSettings" id="LabelSettings_22mjp"]
+font_size = 69
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r10x8"]
+
+[sub_resource type="Theme" id="Theme_5ym1g"]
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_r10x8")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7qt2y"]
 font_size = 69
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
@@ -48,47 +104,44 @@ color = Color(0, 0, 0, 1)
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("2_krjej")
+texture = ExtResource("2_w7gll")
 expand_mode = 1
 
 [node name="Play" type="Button" parent="."]
-offset_left = 728.0
-offset_top = 88.0
-offset_right = 1226.0
-offset_bottom = 233.0
-theme = SubResource("Theme_ja0y5")
-text = "Play"
+offset_left = 540.0
+offset_top = 678.0
+offset_right = 1420.0
+offset_bottom = 1048.0
+theme = SubResource("Theme_mwcrp")
 
-[node name="Difficulty" type="Button" parent="."]
+[node name="Achievements" type="Button" parent="."]
 offset_left = 1272.0
-offset_top = 360.0
-offset_right = 1880.0
-offset_bottom = 456.0
-theme = SubResource("Theme_lcjx8")
-text = "Difficulty: Normal"
+offset_top = 680.0
+offset_right = 1872.0
+offset_bottom = 1048.0
+theme = SubResource("Theme_u0kk3")
 
-[node name="Gamemode" type="Button" parent="."]
-offset_left = 48.0
-offset_top = 376.0
-offset_right = 656.0
-offset_bottom = 472.0
-theme = SubResource("Theme_lcjx8")
-text = "Mode: Adventure"
+[node name="Settings" type="Button" parent="."]
+offset_left = 40.0
+offset_top = 680.0
+offset_right = 688.0
+offset_bottom = 1040.0
+theme = SubResource("Theme_sfm4g")
 
-[node name="Settings" type="Control" parent="."]
+[node name="Options" type="Control" parent="."]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="ColorRect" type="ColorRect" parent="Settings"]
+[node name="ColorRect" type="ColorRect" parent="Options"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.273873, 0.273873, 0.273873, 1)
 
-[node name="Label" type="Label" parent="Settings"]
+[node name="Label" type="Label" parent="Options"]
 layout_mode = 0
 offset_left = 680.0
 offset_top = 80.0
@@ -99,6 +152,113 @@ label_settings = SubResource("LabelSettings_pak4q")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Difficulty" type="Button" parent="Options"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 832.0
+offset_bottom = 448.0
+theme = SubResource("Theme_13hgw")
+text = "Difficulty: Normal"
+
+[node name="Gamemode" type="Button" parent="Options"]
+layout_mode = 0
+offset_left = 1088.0
+offset_top = 312.0
+offset_right = 1856.0
+offset_bottom = 440.0
+theme = SubResource("Theme_13hgw")
+text = "Mode: Adventure"
+
+[node name="Back" type="Button" parent="Options"]
+layout_mode = 0
+offset_right = 576.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 40
+text = "[ESC] Back to main menu"
+
+[node name="BGMSlider" type="HSlider" parent="Options"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 832.0
+offset_right = 352.0
+offset_bottom = 853.0
+scale = Vector2(3, 3)
+min_value = -60.0
+max_value = 0.0
+
+[node name="BGMAudio" type="Label" parent="Options"]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 736.0
+offset_right = 546.0
+offset_bottom = 831.0
+text = "Music"
+label_settings = SubResource("LabelSettings_22mjp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="Options"]
+layout_mode = 0
+offset_left = 1184.0
+offset_top = 832.0
+offset_right = 1376.0
+offset_bottom = 853.0
+scale = Vector2(3, 3)
+min_value = -60.0
+max_value = 0.0
+
+[node name="SFXAudio" type="Label" parent="Options"]
+layout_mode = 0
+offset_left = 1240.0
+offset_top = 736.0
+offset_right = 1692.0
+offset_bottom = 831.0
+text = "Sound Effects"
+label_settings = SubResource("LabelSettings_22mjp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Accomplishments" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_5ym1g")
+
+[node name="ColorRect" type="ColorRect" parent="Accomplishments"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.273873, 0.273873, 0.273873, 1)
+
+[node name="Label" type="Label" parent="Accomplishments"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 80.0
+offset_right = 1537.0
+offset_bottom = 208.0
+text = "View Achievements in Pause Menu"
+label_settings = SubResource("LabelSettings_7qt2y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="Accomplishments"]
+offset_right = 576.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 40
+text = "[ESC] Back to main menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Difficulty" to="." method="_on_difficulty_pressed"]
-[connection signal="pressed" from="Gamemode" to="." method="_on_gamemode_pressed"]
+[connection signal="pressed" from="Achievements" to="." method="_on_achievements_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Options/Difficulty" to="." method="_on_difficulty_pressed"]
+[connection signal="pressed" from="Options/Gamemode" to="." method="_on_gamemode_pressed"]
+[connection signal="pressed" from="Options/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="Options/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
+[connection signal="value_changed" from="Options/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="Accomplishments/Back" to="." method="_on_back_pressed"]

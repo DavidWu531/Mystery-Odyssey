@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://diu8f7en41r61"]
+[gd_scene load_steps=11 format=3 uid="uid://diu8f7en41r61"]
 
 [ext_resource type="Script" path="res://Scripts/LaserPoison.gd" id="1_622nm"]
 [ext_resource type="Texture2D" uid="uid://bmicm77bupuv1" path="res://Art/LaserPoison.png" id="1_dghvr"]
+[ext_resource type="AudioStream" uid="uid://8lx3mfqx5yej" path="res://Audio/SFX/electro-laser-161555.mp3" id="3_lsh2q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmdio"]
 size = Vector2(64, 4)
@@ -111,6 +112,10 @@ libraries = {
 
 [node name="DespawnTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lsh2q")
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

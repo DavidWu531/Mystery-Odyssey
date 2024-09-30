@@ -241,6 +241,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Attack"):
 		if not Global.spectator:
 			if can_attack:
+				$FistAttack/PunchAudio.play()
 				$Sprite2D.play("attack")
 				is_attacking = true
 				$AttackCooldown.start(1 / attack_speed)
@@ -254,7 +255,7 @@ func _physics_process(delta):
 					$FistAttack/RightCollisionShape2D.set_deferred("disabled", true)
 					$FistAttack/LeftCollisionShape2D.set_deferred("disabled", false)
 	
-	
+
 	if Input.is_action_just_pressed("Retry"):
 		if (not hardcore or not Global.spectator or not boss_mode) and not quick_retry:
 			Global.player_health -= 1
@@ -467,16 +468,17 @@ func death_engine():
 	$DeathSFX.play()
 	Global.no_stopping_now_progress += 1
 	if quick_retry:
-		velocity = Vector2(0,0)
-		can_move = false
-		$SpawnImmunity.start(1.1)
-		$CollisionShape2D.set_deferred("disabled", true)
-		$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
-		position = respawn_pos
-		take_damage_respos = respawn_pos
-		gravity = 980.0 * 1.75
-		SignalBus.player_died.emit()
-		quick_retry = false
+		if not hardcore or not Global.spectator or not boss_mode:
+			velocity = Vector2(0,0)
+			can_move = false
+			$SpawnImmunity.start(1.1)
+			$CollisionShape2D.set_deferred("disabled", true)
+			$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
+			position = respawn_pos
+			take_damage_respos = respawn_pos
+			gravity = 980.0 * 1.75
+			SignalBus.player_died.emit()
+			quick_retry = false
 	else:
 		if Global.player_health > 0:
 			gravity = respawn_gravity
@@ -751,7 +753,7 @@ func _on_damage_immunity_timeout() -> void:
 
 func _on_energy_regeneration_timeout() -> void:
 	if Global.player_energy < Global.player_maxenergy:
-		Global.player_energy += 5 / 60.0
+		Global.player_energy += 20 / 60.0
 		if Global.player_energy >= Global.player_maxenergy:
 			$EnergyRegeneration.stop()
 

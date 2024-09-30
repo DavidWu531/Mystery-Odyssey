@@ -533,6 +533,7 @@ size_flags_vertical = 3
 
 [node name="NotificationAudio" type="AudioStreamPlayer" parent="MainScreen"]
 stream = ExtResource("16_v37cf")
+bus = &"SFX"
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
@@ -632,6 +633,12 @@ text = "Achievements Completed: 0/28"
 label_settings = SubResource("LabelSettings_l1rh5")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Back" type="Button" parent="PauseMenu/Achievements"]
+offset_right = 576.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 40
+text = "[ESC] Back to main menu"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PauseMenu/Achievements"]
 layout_mode = 0
@@ -1674,6 +1681,12 @@ label_settings = SubResource("LabelSettings_l1rh5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Back" type="Button" parent="PauseMenu/Quests"]
+offset_right = 576.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 40
+text = "[ESC] Back to main menu"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="PauseMenu/Quests"]
 layout_mode = 0
 offset_left = 256.0
@@ -2169,3 +2182,5 @@ text = "[b][color=gray]Achievement Locked![/color][/b]
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/Achievement" to="PauseMenu" method="_on_achievement_pressed"]
 [connection signal="pressed" from="PauseMenu/Quest" to="PauseMenu" method="_on_quest_pressed"]
+[connection signal="pressed" from="PauseMenu/Achievements/Back" to="PauseMenu" method="_on_back_pressed"]
+[connection signal="pressed" from="PauseMenu/Quests/Back" to="PauseMenu" method="_on_back_pressed"]

@@ -125,5 +125,6 @@ shape = SubResource("RectangleShape2D_kuiht")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_d1ghr")
 autoplay = true
+bus = &"BGM"
 
 [connection signal="body_entered" from="DeathBarrier" to="." method="_on_death_barrier_body_entered"]

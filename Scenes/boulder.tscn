@@ -100,9 +100,11 @@ target_position = Vector2(0, -500)
 [node name="LandAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_rdjip")
 volume_db = 24.0
+bus = &"SFX"
 
 [node name="DespawnAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_6epbf")
 volume_db = 24.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="DamageManager" to="." method="_on_damage_manager_body_entered"]

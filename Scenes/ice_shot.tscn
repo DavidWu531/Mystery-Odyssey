@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg253ipjyvu3d"]
+[gd_scene load_steps=9 format=3 uid="uid://dg253ipjyvu3d"]
 
 [ext_resource type="Script" path="res://Scripts/IceShot.gd" id="1_4d8lq"]
 [ext_resource type="Texture2D" uid="uid://drhg508wfdchd" path="res://Art/Ice.png" id="2_jvdir"]
+[ext_resource type="AudioStream" uid="uid://uan0w8itu17" path="res://Audio/SFX/10110351_ice-blast-1_by_gameaudiosource_preview_instrumental.mp3" id="3_d03f6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twpxv"]
 atlas = ExtResource("2_jvdir")
@@ -47,5 +48,10 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_d4827")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_d03f6")
+autoplay = true
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

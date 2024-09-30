@@ -224,6 +224,8 @@ func doomed():
 		$Platforms.set_cell(Vector2i(tile, 99), -1, Vector2i(-1,-1), -1)
 	SignalBus.tungsten_cube_dropped.emit()
 	
+	$RisingLavaAudio.play()
+	
 	$DoomedLavaRise.start(2.142857143)
 	$Other/Hidden/PinI.position = Vector2(2112, -4472)
 	$Other/Hidden/PinII.position = Vector2(2112, -3768)
@@ -242,6 +244,7 @@ func _on_doomed_lava_rise_timeout() -> void:
 		n -= 1
 	else:
 		$DoomedLavaRise.stop()
+	$RisingLavaAudio.position.y += -64
 
 
 func _on_doomed_body_entered(body: Node2D) -> void:

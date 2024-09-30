@@ -640,6 +640,7 @@ texture = ExtResource("9_m4d8i")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DoubleJump"]
 stream = ExtResource("6_2evrm")
+bus = &"SFX"
 
 [node name="GravityFlip" type="Area2D" parent="."]
 position = Vector2(2968, -960)
@@ -666,6 +667,7 @@ texture = ExtResource("9_m4d8i")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GravityFlip"]
 stream = ExtResource("6_2evrm")
+bus = &"SFX"
 
 [node name="Platforms" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -912,9 +914,11 @@ shape = SubResource("CircleShape2D_qdo5f")
 
 [node name="NormalCoin" type="AudioStreamPlayer" parent="Coins"]
 stream = ExtResource("14_863xw")
+bus = &"SFX"
 
 [node name="HiddenCoin" type="AudioStreamPlayer" parent="Coins"]
 stream = ExtResource("15_tqsgp")
+bus = &"SFX"
 
 [node name="Checkpoints" type="Node2D" parent="."]
 
@@ -946,6 +950,7 @@ shape = SubResource("RectangleShape2D_5jx47")
 
 [node name="CheckpointHit" type="AudioStreamPlayer" parent="Checkpoints"]
 stream = ExtResource("19_d2cnd")
+bus = &"SFX"
 
 [node name="NPCs" type="Node2D" parent="."]
 
