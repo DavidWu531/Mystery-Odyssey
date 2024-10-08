@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bvdcl15vsqy0v"]
+[gd_scene load_steps=42 format=3 uid="uid://bvdcl15vsqy0v"]
 
 [ext_resource type="Script" path="res://Scripts/UIManager.gd" id="1_aajpp"]
 [ext_resource type="Texture2D" uid="uid://j5bqpsh1t2qt" path="res://Art/Health.png" id="2_ajn7e"]
@@ -90,6 +90,11 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_p0ogc"]
 font_size = 30
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c7lg4"]
+font_size = 40
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -198,13 +203,13 @@ direction = Vector2(0, -1)
 gravity = Vector2(-980, 0)
 angle_max = 360.0
 
-[node name="PlayerFrame" type="TextureRect" parent="MainScreen"]
+[node name="PlayerFrame" type="TextureRect" parent="MainScreen" groups=["LDM"]]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 texture = ExtResource("2_ie8wj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainScreen/PlayerFrame"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainScreen/PlayerFrame" groups=["LDM"]]
 position = Vector2(32, 32)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_0jo67")
@@ -233,7 +238,7 @@ label_settings = SubResource("LabelSettings_veqy4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Health" type="Control" parent="MainScreen"]
+[node name="Health" type="Control" parent="MainScreen" groups=["LDM"]]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -312,7 +317,7 @@ label_settings = SubResource("LabelSettings_ooumm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Energy" type="Control" parent="MainScreen"]
+[node name="Energy" type="Control" parent="MainScreen" groups=["LDM"]]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -352,7 +357,7 @@ label_settings = SubResource("LabelSettings_ooumm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Speed" type="Control" parent="MainScreen"]
+[node name="Speed" type="Control" parent="MainScreen" groups=["LDM"]]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -380,12 +385,13 @@ max_value = 878.2
 value = 475.0
 show_percentage = false
 
-[node name="ShowTipsKey" type="Label" parent="MainScreen"]
+[node name="Keys" type="Label" parent="MainScreen"]
 layout_mode = 0
 offset_top = 192.0
 offset_right = 384.0
 offset_bottom = 256.0
-text = "Show Tips [Tab]"
+text = "Show Tips [Tab]
+Toggle HUD [H]"
 label_settings = SubResource("LabelSettings_lw6fv")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -535,6 +541,18 @@ size_flags_vertical = 3
 stream = ExtResource("16_v37cf")
 bus = &"SFX"
 
+[node name="EndKey" type="Label" parent="MainScreen"]
+visible = false
+layout_mode = 0
+offset_left = 704.0
+offset_top = 904.0
+offset_right = 1026.0
+offset_bottom = 959.0
+text = "[RMB] End Game"
+label_settings = SubResource("LabelSettings_c7lg4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
 visible = false
@@ -553,9 +571,9 @@ color = Color(0, 0, 0, 0.784314)
 [node name="Summary" type="Label" parent="PauseMenu"]
 layout_mode = 0
 offset_left = 712.0
-offset_top = 120.0
+offset_top = 64.0
 offset_right = 1169.0
-offset_bottom = 215.0
+offset_bottom = 159.0
 text = "Game Paused"
 label_settings = SubResource("LabelSettings_fw5wo")
 horizontal_alignment = 1
@@ -563,10 +581,10 @@ vertical_alignment = 1
 
 [node name="Score" type="Label" parent="PauseMenu"]
 layout_mode = 0
-offset_left = 704.0
-offset_top = 288.0
-offset_right = 1161.0
-offset_bottom = 383.0
+offset_left = 696.0
+offset_top = 192.0
+offset_right = 1153.0
+offset_bottom = 287.0
 text = "Score: "
 label_settings = SubResource("LabelSettings_loj3b")
 horizontal_alignment = 1
@@ -575,29 +593,38 @@ vertical_alignment = 1
 [node name="Continue" type="Button" parent="PauseMenu"]
 layout_mode = 0
 offset_left = 768.0
-offset_top = 448.0
+offset_top = 312.0
 offset_right = 1088.0
-offset_bottom = 575.0
+offset_bottom = 439.0
 theme = SubResource("Theme_h57yl")
 text = "Continue"
 
 [node name="Achievement" type="Button" parent="PauseMenu"]
 layout_mode = 0
-offset_left = 696.0
-offset_top = 640.0
-offset_right = 1173.0
-offset_bottom = 743.0
+offset_left = 704.0
+offset_top = 480.0
+offset_right = 1181.0
+offset_bottom = 583.0
 theme = SubResource("Theme_f5a0s")
 text = "Achievements"
 
 [node name="Quest" type="Button" parent="PauseMenu"]
 layout_mode = 0
 offset_left = 696.0
-offset_top = 808.0
+offset_top = 656.0
 offset_right = 1173.0
-offset_bottom = 911.0
+offset_bottom = 759.0
 theme = SubResource("Theme_f5a0s")
 text = "Quests"
+
+[node name="Home" type="Button" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 840.0
+offset_right = 1181.0
+offset_bottom = 943.0
+theme = SubResource("Theme_f5a0s")
+text = "Home"
 
 [node name="Achievements" type="Control" parent="PauseMenu"]
 visible = false
@@ -635,6 +662,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Back" type="Button" parent="PauseMenu/Achievements"]
+layout_mode = 0
 offset_right = 576.0
 offset_bottom = 64.0
 theme_override_font_sizes/font_size = 40
@@ -1682,6 +1710,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Back" type="Button" parent="PauseMenu/Quests"]
+layout_mode = 0
 offset_right = 576.0
 offset_bottom = 64.0
 theme_override_font_sizes/font_size = 40
@@ -2182,5 +2211,6 @@ text = "[b][color=gray]Achievement Locked![/color][/b]
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/Achievement" to="PauseMenu" method="_on_achievement_pressed"]
 [connection signal="pressed" from="PauseMenu/Quest" to="PauseMenu" method="_on_quest_pressed"]
+[connection signal="pressed" from="PauseMenu/Home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="PauseMenu/Achievements/Back" to="PauseMenu" method="_on_back_pressed"]
 [connection signal="pressed" from="PauseMenu/Quests/Back" to="PauseMenu" method="_on_back_pressed"]

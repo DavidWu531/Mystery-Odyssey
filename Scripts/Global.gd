@@ -67,6 +67,7 @@ var achievement_completed = 0
 var torch_level = 2
 var boss_health = 1000
 var spectator = false
+var end_game = false
 
 
 func _ready() -> void:

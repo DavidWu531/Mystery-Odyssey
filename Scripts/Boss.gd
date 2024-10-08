@@ -8,6 +8,7 @@ var timer_multiplier = 1.0
 var speed = 50
 var velocity = Vector2.ZERO
 var is_on_floor = false
+var enemy_count_scale = 1
 
 var ice_shot = preload("res://Scenes/ice_shot.tscn")
 var fire_ball = preload("res://Scenes/fire_ball.tscn")
@@ -45,18 +46,23 @@ func _process(_delta: float) -> void:
 	if Global.boss_health <= 200:
 		timer_multiplier = 0.2
 		$AnimatedSprite2D.speed_scale = 1.0 / timer_multiplier
+		enemy_count_scale = 5
 	elif Global.boss_health <= 400:
 		timer_multiplier = 0.4
 		$AnimatedSprite2D.speed_scale = 1.0 / timer_multiplier
+		enemy_count_scale = 4
 	elif Global.boss_health <= 600:
 		timer_multiplier = 0.6
 		$AnimatedSprite2D.speed_scale = 1.0 / timer_multiplier
+		enemy_count_scale = 3
 	elif Global.boss_health <= 800:
 		timer_multiplier = 0.8
 		$AnimatedSprite2D.speed_scale = 1.0 / timer_multiplier
+		enemy_count_scale = 2
 	else:
 		timer_multiplier = 1.0
 		$AnimatedSprite2D.speed_scale = 1.0 / timer_multiplier
+		enemy_count_scale = 1
 
 
 func _on_attack_timer_timeout() -> void:
@@ -73,9 +79,9 @@ func _on_attack_timer_timeout() -> void:
 		get_tree().root.add_child(new_laserpoison)
 	elif attack_id % 5 == 0:
 		$AttackTimer.start(2.25 * timer_multiplier)
-		for i in range(3):
+		for i in range(3 * enemy_count_scale):
 			var new_enemy = enemy.instantiate()
-			new_enemy.position = position
+			new_enemy.position = position + Vector2(randi_range(-100, 100), randi_range(-100, 100))
 			get_tree().root.add_child(new_enemy)
 	elif attack_id % 3 == 0:
 		$AttackTimer.start(2.25 * timer_multiplier)

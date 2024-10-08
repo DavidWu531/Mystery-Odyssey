@@ -60,7 +60,7 @@ func gravity_flip_activated():
 	
 	
 func maze_escaped():
-	$RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Escape the maze\n[i](1/1) Completed[/i]"
+	$RichTextLabel.text = "[b][color=green]Quest Completed![/color][/b]\n[color=gold]Escape the maze[/color]\n[i](1/1) Completed[/i]"
 	$AnimatedSprite2D.play("Exploration")
 	
 	

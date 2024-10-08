@@ -40,7 +40,6 @@ func _ready():
 	SignalBus.correct_code_entered.connect(enter_the_correct_code)
 	SignalBus.andona_summoned.connect(summon_andona_using_his_altar)
 	
-	
 	SignalBus.achievement_completed.connect(achievement_completed)
 	SignalBus.quest_completed.connect(quest_completed)
 	SignalBus.doomed.connect(doomed)
@@ -80,11 +79,13 @@ func _process(delta):
 	
 	if Global.spectator:
 		$MainScreen/Health/Base/PlayerHealthText.text = "Spectator Mode: Health N/A"
+		$MainScreen/Health/Boss/PlayerHealthText.text = "Spectator Mode: Health N/A"
 		$MainScreen/Health/Base/PlayerHealth.size = Vector2(0,31)
 		$MainScreen/Health/Base/PlayerHealthText.position = Vector2(64,0)
 		$MainScreen/Energy/PlayerEnergyText.text = "Spectator Mode: Energy N/A"
 	elif Settings.gamemode == "Creative":
 		$MainScreen/Health/Base/PlayerHealthText.text = "Creative Mode: Infinite Health"
+		$MainScreen/Health/Boss/PlayerHealthText.text = "Creative Mode: Infinite Health"
 		$MainScreen/Health/Base/PlayerHealth.size = Vector2(0,31)
 		$MainScreen/Health/Base/PlayerHealthText.position = Vector2(64,0)
 		$MainScreen/Energy/PlayerEnergyText.text = "Creative Mode: Infinite Energy"
@@ -186,7 +187,7 @@ func _physics_process(_delta: float) -> void:
 				$MainScreen/TutorialDialogue/Label.text = "Check the list of achievements or quests in the pause menu\n \
 				Press Esc to dismiss message\nStuck on something? Press Tab to display tips"
 		
-		if scroll_tip_id < 13:
+		if scroll_tip_id < 14:
 			scroll_tip_id += 1
 		else:
 			scroll_tip_id = 0
@@ -195,6 +196,13 @@ func _physics_process(_delta: float) -> void:
 		$MainScreen/Dialogue/Dialogue.text = "Beware! Andona has become stronger and even more dangerous!"
 		$MainScreen/Dialogue.show()
 		$MainScreen/Dialogue/DialogueTimer.start(5.0)
+	
+	if Input.is_action_just_pressed("ui_filedialog_show_hidden"):
+		for node in get_tree().get_nodes_in_group("LDM"):
+			if not node.visible:
+				node.show()
+			elif node.visible:
+				node.hide()
 	
 	update_quest()
 
@@ -571,6 +579,7 @@ func _on_boss_healthbar_mouse_exited() -> void:
 
 func boss_defeated():
 	$MainScreen/BossHealth.hide()
+	$MainScreen/EndKey.show()
 
 
 func checkpoint_iii_hit():
@@ -584,3 +593,7 @@ func checkpoint_iv_hit():
 func checkpoint_vi_hit():
 	$MainScreen/Particles.texture = load("res://Art/ParticleSnow.png")
 	$MainScreen/Particles.emitting = true
+
+
+func _on_home_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

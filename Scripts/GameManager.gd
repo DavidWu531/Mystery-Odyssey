@@ -20,7 +20,9 @@ func _ready():
 
 
 func _process(_delta):
-	pass
+	if Input.is_action_just_pressed("End"):
+		if Global.end_game == true:
+			get_tree().change_scene_to_file("res://Scenes/won.tscn")
 
 
 func checkpoint_i_hit():
@@ -73,10 +75,7 @@ func checkpoint_vi_hit():
 	Global.player_health = Global.player_maxhealth
 	if not Global.escape_cave:
 		Global.escape_cave_progress = 1
-	if $AnimationPlayer.current_animation == "Cycle":
-		$AnimationPlayer.play("Cycle")
-		await get_tree().create_timer(1 / get_process_delta_time()).timeout
-		$AnimationPlayer.stop()
+	$AnimationPlayer.play("Cycle")
 
 
 func checkpoint_vii_hit():

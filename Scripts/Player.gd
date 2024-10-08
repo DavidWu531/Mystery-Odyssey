@@ -96,16 +96,6 @@ func _physics_process(delta):
 	else:
 		coyote_time_left -= delta
 	
-	if Input.is_action_just_pressed("ui_filedialog_show_hidden"):
-		if current_mode == player_modes[0]:
-			current_mode = player_modes[1]
-		elif current_mode == player_modes[1]:
-			current_mode = player_modes[2]
-		elif current_mode == player_modes[2]:
-			current_mode = player_modes[3]
-		elif current_mode == player_modes[3]:
-			current_mode = player_modes[0]
-	
 	if Input.is_action_just_pressed("Jump"):
 		if not Global.spectator:
 			if can_move:
@@ -257,7 +247,7 @@ func _physics_process(delta):
 	
 
 	if Input.is_action_just_pressed("Retry"):
-		if (not hardcore or not Global.spectator or not boss_mode) and not quick_retry:
+		if (not hardcore and not Global.spectator and not boss_mode) and not quick_retry:
 			Global.player_health -= 1
 			quick_retry = true
 			death_engine()
@@ -503,47 +493,15 @@ func death_engine():
 				if boss_mode or hardcore:
 					spectator_mode()
 				else:
+					velocity = Vector2(0,0)
+					can_move = false
+					$SpawnImmunity.start(1.1)
+					$CollisionShape2D.set_deferred("disabled", true)
+					$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.0)
 					position = respawn_pos
 					take_damage_respos = respawn_pos
 					Global.player_health = Global.player_maxhealth
 					gravity = 980.0 * 1.75
-				
-		
-		
-		#if not boss_mode:
-			#$DeathSFX.play()
-#
-			#Global.no_stopping_now_progress += 1
-			#if quick_retry:
-				#position = respawn_pos
-				#take_damage_respos = respawn_pos
-				#gravity = 980.0 * 1.75
-				#SignalBus.player_died.emit()
-			#if Global.player_health <= 0:
-				#if Settings.gamemode == "Permadeath":
-					#spectator_mode()
-				#else:
-					#if not hardcore:
-						#position = respawn_pos
-						#take_damage_respos = respawn_pos
-						#Global.player_health = Global.player_maxhealth
-						#gravity = 980.0 * 1.75
-						#SignalBus.player_died.emit()
-					#else:
-						#spectator_mode()
-			#elif Global.player_health >= 1:
-				#position = take_damage_respos
-				#gravity = respawn_gravity
-		#else:
-			#if Global.player_health >= 1:
-				#$DeathSFX.play()
-				#gravity = respawn_gravity
-				#$DamageImmunity.start(2.5)
-				#Global.no_stopping_now_progress += 1
-				#damage_immune = true
-				#$AnimationPlayerII.play("respawn_bossmode")
-			#else:
-				#spectator_mode()
 
 
 func _on_res_pos_timer_timeout():
@@ -556,6 +514,7 @@ func checkpoint_ii_hit():
 	current_mode = player_modes[0]
 	SignalBus.default_silhouette.emit()
 	$Camera2D.limit_bottom = 768
+	$Camera2D.limit_right = 15488
 
 
 func checkpoint_iv_hit():
@@ -763,4 +722,7 @@ func _on_energy_delay_timeout() -> void:
 	
 
 func boss_defeated():
+	Global.end_game = true
+	$Camera2D.limit_left = -384
+	$Camera2D.limit_bottom = 8192
 	Settings.gamemode = "Creative"

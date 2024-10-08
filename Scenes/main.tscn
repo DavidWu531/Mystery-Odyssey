@@ -122,6 +122,10 @@ shape = SubResource("RectangleShape2D_kuiht")
 position = Vector2(0, -3000)
 shape = SubResource("RectangleShape2D_kuiht")
 
+[node name="High" type="CollisionShape2D" parent="DeathBarrier"]
+position = Vector2(1168, -16808)
+shape = SubResource("RectangleShape2D_kuiht")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_d1ghr")
 autoplay = true

@@ -1,7 +1,7 @@
-AudioStreamPlayer
-Label
-HSlider
 Button
+Label
+AudioStreamPlayer
+HSlider
 Control
 TabBar
 TabContainer

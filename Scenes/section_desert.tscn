@@ -1208,6 +1208,7 @@ shape = SubResource("RectangleShape2D_n63ng")
 
 [node name="Interactable" type="Sprite2D" parent="PyramidAccess"]
 visible = false
+material = ExtResource("22_7ig0i")
 position = Vector2(-328, -48)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("11_gehs5")

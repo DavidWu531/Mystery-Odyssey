@@ -18,6 +18,7 @@ func _ready():
 	n += 1
 	$Healthbar.max_value = health
 
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta

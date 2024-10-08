@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://belfkbv6p4bv6"]
+[gd_scene load_steps=4 format=3 uid="uid://belfkbv6p4bv6"]
 
 [ext_resource type="Script" path="res://Scripts/Won.gd" id="1_au05f"]
 
@@ -6,6 +6,9 @@
 font_size = 100
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_y4r6k"]
+Button/font_sizes/font_size = 69
 
 [node name="Won" type="Node2D"]
 script = ExtResource("1_au05f")
@@ -24,3 +27,14 @@ text = "You beat the game!"
 label_settings = SubResource("LabelSettings_tyddp")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Home" type="Button" parent="."]
+offset_left = 755.0
+offset_top = 744.0
+offset_right = 1164.0
+offset_bottom = 847.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_y4r6k")
+text = "PLAY AGAIN"
+
+[connection signal="pressed" from="Home" to="." method="_on_home_pressed"]

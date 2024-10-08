@@ -13,6 +13,7 @@ var npcv_talked = false
 func _ready():
 	SignalBus.checkpoint_i_hit.connect(checkpoint_i_hit)
 	SignalBus.checkpoint_ii_hit.connect(checkpoint_ii_hit)
+	SignalBus.boss_defeated.connect(boss_defeated)
 
 
 func _process(_delta):
@@ -283,3 +284,15 @@ func _on_block_v_body_entered(body: Node2D) -> void:
 		if $HelpfulBlocks/BlockV/Label.text == "HIT ME!!!":
 			$HelpfulBlocks/BlockV/Label.text = "Walk through the press and press E. Hover your mouse over the top left"
 			SignalBus.helpful_block_hit.emit()
+
+
+func boss_defeated():
+	$Platforms.set_cell(Vector2i(25,-23), 0, Vector2i(0,0), -1)
+	$Platforms.set_cell(Vector2i(25,-22), 0, Vector2i(0,0), -1)
+	$Platforms.set_cell(Vector2i(25,-21), 0, Vector2i(0,0), -1)
+	$Platforms.set_cell(Vector2i(25,-20), 0, Vector2i(0,0), -1)
+	$Platforms.set_cell(Vector2i(25,-19), 0, Vector2i(0,0), -1)
+	$Platforms.set_cell(Vector2i(25,-18), 0, Vector2i(0,0), -1)
+	
+	$Platforms.set_cell(Vector2i(73,-13), -1, Vector2i(0,0), -1)
+	$Platforms.set_cell(Vector2i(74,-13), -1, Vector2i(0,0), -1)

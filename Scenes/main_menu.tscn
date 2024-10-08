@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ct5ekpjb28mih"]
+[gd_scene load_steps=32 format=3 uid="uid://ct5ekpjb28mih"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_2dulc"]
 [ext_resource type="Texture2D" uid="uid://rpb76jfig0so" path="res://Art/Prismdroidhaha.png" id="2_w7gll"]
@@ -8,48 +8,64 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_teaok"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qgtcw"]
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xuca4"]
 load_path = "res://.godot/imported/Play.png-f67b67308e3b4b5b35cdc260265d2234.ctex"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rgkr1"]
 texture = SubResource("CompressedTexture2D_xuca4")
-region_rect = Rect2(104, 104, 387, 206)
+texture_margin_bottom = 0.952887
+region_rect = Rect2(104, 108, 387, 203)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqgym"]
 
 [sub_resource type="Theme" id="Theme_mwcrp"]
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/constants/outline_size = 10
 Button/font_sizes/font_size = 100
 Button/styles/focus = SubResource("StyleBoxEmpty_teaok")
-Button/styles/hover = null
+Button/styles/hover = SubResource("StyleBoxEmpty_qgtcw")
 Button/styles/normal = SubResource("StyleBoxTexture_rgkr1")
-Button/styles/pressed = null
+Button/styles/pressed = SubResource("StyleBoxEmpty_gqgym")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u1dpi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oy2bp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vkjw1"]
 texture = ExtResource("3_adwmb")
 region_rect = Rect2(167, 108, 260, 202)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r2uqf"]
 
 [sub_resource type="Theme" id="Theme_u0kk3"]
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/constants/outline_size = 10
 Button/font_sizes/font_size = 60
 Button/styles/focus = SubResource("StyleBoxEmpty_u1dpi")
-Button/styles/hover = null
+Button/styles/hover = SubResource("StyleBoxEmpty_oy2bp")
 Button/styles/normal = SubResource("StyleBoxTexture_vkjw1")
-Button/styles/pressed = null
+Button/styles/pressed = SubResource("StyleBoxEmpty_r2uqf")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mcjpm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_75jpl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kns06"]
 texture = ExtResource("4_vjhea")
 region_rect = Rect2(136, 109, 285, 199)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u8uip"]
+
 [sub_resource type="Theme" id="Theme_sfm4g"]
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/constants/outline_size = 10
 Button/font_sizes/font_size = 60
-Button/styles/hover = null
+Button/styles/focus = SubResource("StyleBoxEmpty_mcjpm")
+Button/styles/hover = SubResource("StyleBoxEmpty_75jpl")
 Button/styles/normal = SubResource("StyleBoxTexture_kns06")
-Button/styles/pressed = null
+Button/styles/pressed = SubResource("StyleBoxEmpty_u8uip")
 
 [sub_resource type="LabelSettings" id="LabelSettings_pak4q"]
 font_size = 69
@@ -108,10 +124,11 @@ texture = ExtResource("2_w7gll")
 expand_mode = 1
 
 [node name="Play" type="Button" parent="."]
-offset_left = 540.0
-offset_top = 678.0
+offset_left = 537.0
+offset_top = 676.0
 offset_right = 1420.0
-offset_bottom = 1048.0
+offset_bottom = 1044.0
+mouse_default_cursor_shape = 2
 theme = SubResource("Theme_mwcrp")
 
 [node name="Achievements" type="Button" parent="."]
@@ -119,6 +136,7 @@ offset_left = 1272.0
 offset_top = 680.0
 offset_right = 1872.0
 offset_bottom = 1048.0
+mouse_default_cursor_shape = 2
 theme = SubResource("Theme_u0kk3")
 
 [node name="Settings" type="Button" parent="."]
@@ -126,6 +144,7 @@ offset_left = 40.0
 offset_top = 680.0
 offset_right = 688.0
 offset_bottom = 1040.0
+mouse_default_cursor_shape = 2
 theme = SubResource("Theme_sfm4g")
 
 [node name="Options" type="Control" parent="."]
@@ -158,6 +177,7 @@ offset_left = 64.0
 offset_top = 320.0
 offset_right = 832.0
 offset_bottom = 448.0
+mouse_default_cursor_shape = 2
 theme = SubResource("Theme_13hgw")
 text = "Difficulty: Normal"
 
@@ -167,6 +187,7 @@ offset_left = 1088.0
 offset_top = 312.0
 offset_right = 1856.0
 offset_bottom = 440.0
+mouse_default_cursor_shape = 2
 theme = SubResource("Theme_13hgw")
 text = "Mode: Adventure"
 
@@ -174,6 +195,7 @@ text = "Mode: Adventure"
 layout_mode = 0
 offset_right = 576.0
 offset_bottom = 64.0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "[ESC] Back to main menu"
 
@@ -230,6 +252,7 @@ size_flags_vertical = 3
 theme = SubResource("Theme_5ym1g")
 
 [node name="ColorRect" type="ColorRect" parent="Accomplishments"]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.273873, 0.273873, 0.273873, 1)
@@ -246,8 +269,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Back" type="Button" parent="Accomplishments"]
+layout_mode = 0
 offset_right = 576.0
 offset_bottom = 64.0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "[ESC] Back to main menu"
 

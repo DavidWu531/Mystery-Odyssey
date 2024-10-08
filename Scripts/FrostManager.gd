@@ -14,6 +14,7 @@ func _ready() -> void:
 	SignalBus.checkpoint_vi_hit.connect(checkpoint_vi_hit)
 	SignalBus.checkpoint_vii_hit.connect(checkpoint_vii_hit)
 	SignalBus.boss_spawned.connect(boss_spawned)
+	SignalBus.boss_defeated.connect(boss_defeated)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -193,3 +194,8 @@ func _on_npcx_body_exited(body: Node2D) -> void:
 		$NPCs/NPCX/Interactable.hide()
 		npcx_dialogue_id = 0
 		$CanvasLayer/NPCX.hide()
+
+
+func boss_defeated():
+	for y in range(-210,-241,-1):
+		$Platforms.set_cell(Vector2i(218, y), 22, Vector2i(0,0), -1)
